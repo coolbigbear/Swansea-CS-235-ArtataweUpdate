@@ -1,6 +1,7 @@
 package model;
 
-class Auction {
-	
+public class Auction {
+
+
 	
 }
