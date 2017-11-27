@@ -86,7 +86,7 @@ class ModelTests {
 	
 	//endregion
 	
-	//region Bidding Tests
+	//region Bid Tests
 	
 	
 	//endregion

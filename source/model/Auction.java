@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Auction {
+public final class Auction {
 	
 	/*
 	 * Bassam Helal 27-Nov-17
@@ -17,7 +17,6 @@ public class Auction {
 	 *
 	 */
 	
-	//region FIELDS
 	
 	private final Artwork artwork;
 	private final Profile seller;
@@ -31,15 +30,14 @@ public class Auction {
 	private final Integer bidsAllowed;
 	private final Date datePlaced;
 	
-	//endregion
-	
-	//region CONSTRUCTORS
 	
 	public Auction(Artwork artwork, Profile seller, Integer bidsAllowed, Double reservePrice) {
 		this.artwork = artwork;
 		this.seller = seller;
+		
 		//something to set the auctionID from Database
 		this.auctionID = null;
+		
 		this.bidList = new ArrayList<>();
 		this.bidsLeft = bidsAllowed;
 		this.bidsAllowed = bidsAllowed;
@@ -48,21 +46,96 @@ public class Auction {
 		this.datePlaced = new Date();
 	}
 	
-	//endregion
+	/*
+	public Boolean placeBid(Bid bid) {
 	
-	//region METHODS
+	}
+	
+	public Boolean validateBid(Bid bid) {
+	
+	}
+	
+	private Boolean checkIfNotHighestBidder(Bid bid) {
+	
+	}
+	
+	private Boolean checkIfHigherThanReservePrice(Bid bid) {
+	
+	}
+	
+	private Boolean checkIfHigherThanCurrentHighest(Bid bid) {
+	
+	}
 	
 	
-	//endregion
+	private void setHighestBidder(Profile profile) {
 	
-	//region SETTERS
+	}
+	
+	private void setHighestPrice(Integer highestPrice) {
+	
+	}
+	*/
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 	
 	
-	//endregion
+	public Artwork getArtwork() {
+		return this.artwork;
+	}
 	
-	//region GETTERS
+	public Profile getSeller() {
+		return this.seller;
+	}
 	
+	public Integer getAuctionID() {
+		return this.auctionID;
+	}
 	
-	//endregion
+	public List<Bid> getBidList() {
+		return this.bidList;
+	}
+	
+	public Integer getBidsLeft() {
+		return this.bidsLeft;
+	}
+	
+	public Profile getHighestBidder() {
+		return this.highestBidder;
+	}
+	
+	public Boolean getCompleted() {
+		return this.isCompleted;
+	}
+	
+	public Double getHighestPrice() {
+		return this.highestPrice;
+	}
+	
+	public Double getReservePrice() {
+		return this.reservePrice;
+	}
+	
+	public Integer getBidsAllowed() {
+		return this.bidsAllowed;
+	}
+	
+	public Date getDatePlaced() {
+		return this.datePlaced;
+	}
+	
 	
 }
