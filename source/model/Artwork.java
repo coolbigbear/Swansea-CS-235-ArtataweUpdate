@@ -1,6 +1,9 @@
 package model;
 
-public class Artwork {
+public abstract class Artwork {
 	
+	public abstract ArtworkType getType();
 	
 }
+
+

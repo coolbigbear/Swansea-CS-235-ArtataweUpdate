@@ -1,5 +1,9 @@
 package test;
 
+import model.Artwork;
+import model.ArtworkType;
+import model.Painting;
+import model.Sculpture;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -51,10 +55,21 @@ class ModelTests {
 	//region Artwork Tests
 	
 	//region Painting Tests
+	@Test
+	void paintingGetType() {
+		Artwork painting = new Painting();
+		assertEquals(ArtworkType.PAINTING, painting.getType());
+	}
 	
 	//endregion
 	
 	//region Sculpture Tests
+	
+	@Test
+	void sculptureGetType() {
+		Artwork sculpture = new Sculpture();
+		assertEquals(ArtworkType.SCULPTURE, sculpture.getType());
+	}
 	
 	//endregion
 	
@@ -65,7 +80,6 @@ class ModelTests {
 	//endregion
 	
 	//region Bidding Tests
-	
 	
 	
 	//endregion
@@ -94,10 +108,5 @@ class ModelTests {
 	
 	
 	//endregion
-	
-	@Test
-	void test(){
-	    assertEquals( 2+2, 4);
-	}
 	
 }

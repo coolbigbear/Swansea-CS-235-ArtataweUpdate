@@ -1,6 +1,9 @@
 package model;
 
-public class Sculpture {
+public class Sculpture extends Artwork{
 	
-	
+	@Override
+	public ArtworkType getType() {
+		return ArtworkType.SCULPTURE;
+	}
 }
