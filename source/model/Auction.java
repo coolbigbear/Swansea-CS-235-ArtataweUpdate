@@ -1,5 +1,7 @@
 package model;
 
+import model.exceptions.IllegalBidException;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +22,7 @@ public final class Auction {
 	
 	private final Artwork artwork;
 	private final Profile seller;
-	private final Integer auctionID; // TODO: Bassam Helal 27-Nov-17 This needs to be taken care of using the Database
+	private final Integer auctionID; /*TODO: Bassam Helal 27-Nov-17 This needs to be taken care of using the Database */
 	private final List<Bid> bidList;
 	private Integer bidsLeft;
 	private Profile highestBidder;
@@ -46,36 +48,33 @@ public final class Auction {
 		this.datePlaced = new Date();
 	}
 	
-	/*
-	public Boolean placeBid(Bid bid) {
 	
+	public Boolean placeBid(Bid bid) {
+		if (validateBid(bid)) {
+			this.highestBidder = bid.getBidder();
+			this.highestPrice = bid.getBidAmount();
+			return true;
+		} else throw new IllegalBidException("Invalid Bid!");
 	}
 	
-	public Boolean validateBid(Bid bid) {
-	
+	private Boolean validateBid(Bid bid) {
+		return (checkIfNotHighestBidder(bid) &&
+				checkIfHigherThanReservePrice(bid) &&
+				checkIfHigherThanCurrentHighest(bid));
 	}
 	
 	private Boolean checkIfNotHighestBidder(Bid bid) {
-	
+		return (!bid.getBidder().equals(this.highestBidder));
 	}
 	
 	private Boolean checkIfHigherThanReservePrice(Bid bid) {
-	
+		return (bid.getBidAmount() >= this.reservePrice);
 	}
 	
 	private Boolean checkIfHigherThanCurrentHighest(Bid bid) {
-	
+		return (bid.getBidAmount() > this.highestPrice);
 	}
 	
-	
-	private void setHighestBidder(Profile profile) {
-	
-	}
-	
-	private void setHighestPrice(Integer highestPrice) {
-	
-	}
-	*/
 	
 	@Override
 	public int hashCode() {
