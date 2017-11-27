@@ -55,6 +55,10 @@ class ModelTests {
 	//region Artwork Tests
 	
 	//region Painting Tests
+	
+	/**
+	 * Tests the type of a Painting which is an Artwork
+	 */
 	@Test
 	void paintingGetType() {
 		Artwork painting = new Painting();
@@ -65,6 +69,9 @@ class ModelTests {
 	
 	//region Sculpture Tests
 	
+	/**
+	 * Tests the type of a Sculpture which is an Artwork
+	 */
 	@Test
 	void sculptureGetType() {
 		Artwork sculpture = new Sculpture();
