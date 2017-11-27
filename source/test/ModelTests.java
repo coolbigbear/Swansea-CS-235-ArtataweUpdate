@@ -1,7 +1,14 @@
 package test;
 
-import model.*;
+import model.Artwork;
+import model.ArtworkType;
+import model.Painting;
+import model.Sculpture;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,7 +36,17 @@ class ModelTests {
 	
 	//region Profile Tests
 	
-	/**
+	@BeforeEach
+	void setUp() {
+	
+	}
+	
+	@AfterEach
+	void tearDown() {
+	
+	}
+	
+	/**s
 	 * Will test the Profile constructor and getters at the same time
 	 */
 	/*
@@ -58,8 +75,8 @@ class ModelTests {
 	 */
 	@Test
 	void testPaintingGetType() {
-		Artwork painting = new Painting();
-		assertEquals(ArtworkType.PAINTING, painting.getType());
+		Artwork localPainting = new Painting("", new StringBuilder(""), new Date(), "", null, 5, 5);
+		assertEquals(ArtworkType.PAINTING, localPainting.getType());
 	}
 	
 	//endregion
@@ -71,8 +88,9 @@ class ModelTests {
 	 */
 	@Test
 	void testSculptureGetType() {
-		Artwork sculpture = new Sculpture();
-		assertEquals(ArtworkType.SCULPTURE, sculpture.getType());
+		Artwork localSculpture = new Sculpture("", new StringBuilder(""), new Date(), "",
+				null, 5, 5, 5, "");
+		assertEquals(ArtworkType.SCULPTURE, localSculpture.getType());
 	}
 	
 	//endregion
@@ -86,8 +104,8 @@ class ModelTests {
 	//region Bid Tests
 	
 	@Test
-	void testBidConstructorAndGetters(){
-	    //assertEquals();
+	void testBidConstructorAndGetters() {
+	
 	}
 	
 	//endregion
