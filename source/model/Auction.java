@@ -1,11 +1,22 @@
 package model;
 
-import model.exceptions.IllegalBidException;
+import model.exception.IllegalBidException;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * An Auction is the only means of selling and buying a product (Artworks) in the Artatawe system.
+ * The buying and selling is done through means of bidding, similar to traditional auctioning systems.
+ *
+ * Note that after an Auction has been placed it cannot be changed, it is immutable.
+ *
+ * @author Bassam Helal
+ * @see Bid
+ * @see Artwork
+ * @version 1.0
+ */
 public final class Auction {
 	
 	/*
@@ -32,7 +43,13 @@ public final class Auction {
 	private final Integer bidsAllowed;
 	private final Date datePlaced;
 	
-	
+	/**
+	 * Constructs a new Auction, note that all the parameters are immutable
+	 * @param artwork the Artwork that the Auction will be selling
+	 * @param seller the Profile representing the seller of the Auction
+	 * @param bidsAllowed the number of Bids allowed before the Auction ends
+	 * @param reservePrice the minimum accepted price of a Bid
+	 */
 	public Auction(Artwork artwork, Profile seller, Integer bidsAllowed, Double reservePrice) {
 		this.artwork = artwork;
 		this.seller = seller;
@@ -74,7 +91,6 @@ public final class Auction {
 	private Boolean checkIfHigherThanCurrentHighest(Bid bid) {
 		return (bid.getBidAmount() > this.highestPrice);
 	}
-	
 	
 	@Override
 	public int hashCode() {

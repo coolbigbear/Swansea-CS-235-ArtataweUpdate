@@ -3,6 +3,7 @@ package model;
 /* TODO: 27-Nov-17 Bassam Helal We should consider using something other than the java.lang.Date
  * we could use the Calendar class or better yet the javax.time package, I will look into this
  */
+
 import java.util.Date;
 
 /**
@@ -23,13 +24,14 @@ import java.util.Date;
  *
  * @author Bassam Helal
  * @version 1.0
+ * @see Auction
  */
 public final class Bid {
 	
-	private final Double bidAmount;
-	private final Date timePlaced;
-	private final Profile bidder;
 	private final Auction auction;
+	private final Double bidAmount;
+	private final Profile bidder;
+	private final Date timePlaced;
 	
 	/**
 	 * The primary and only constructor for a Bid, this assumes the Profile
@@ -48,6 +50,7 @@ public final class Bid {
 	
 	/**
 	 * Gets the Bid amount
+	 *
 	 * @return the amount or price associated with the Bid
 	 */
 	public Double getBidAmount() {
@@ -56,6 +59,7 @@ public final class Bid {
 	
 	/**
 	 * Gets the time the Bid was placed
+	 *
 	 * @return the time the Bid was placed
 	 */
 	public Date getTimePlaced() {
@@ -64,6 +68,7 @@ public final class Bid {
 	
 	/**
 	 * Gets the Profile that placed the Bid
+	 *
 	 * @return the Profile that placed the Bid
 	 */
 	public Profile getBidder() {
@@ -72,9 +77,29 @@ public final class Bid {
 	
 	/**
 	 * Gets the Auction that the Bid will be placed on
+	 *
 	 * @return the Auction the Bid will be placed on
 	 */
 	public Auction getAuction() {
 		return this.auction;
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.timePlaced.hashCode() + this.bidAmount.intValue() + this.auction.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Bid && obj.toString().equals(this.toString());
+	}
+	
+	@Override
+	public String toString() {
+		return "Bid: " + this.hashCode() + "\n" +
+				"\tAuction: " + this.auction.toString() + "\n" +
+				"\tAmount: " + this.bidAmount.toString() + "\n" +
+				"\tBidder: " + this.bidder.toString() + "\n" +
+				"\tTime: " + this.timePlaced.toString() + "\n";
 	}
 }
