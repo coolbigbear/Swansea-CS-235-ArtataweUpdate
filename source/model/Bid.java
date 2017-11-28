@@ -91,7 +91,7 @@ public final class Bid {
 	
 	@Override
 	public boolean equals(Object obj) {
-		return obj instanceof Bid && obj.toString().equals(this.toString());
+		return (obj instanceof Bid) && (obj.hashCode() == this.hashCode());
 	}
 	
 	@Override
