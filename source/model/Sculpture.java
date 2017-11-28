@@ -2,9 +2,9 @@ package model;
 
 import javafx.scene.image.Image;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class Sculpture extends Artwork {
@@ -12,11 +12,11 @@ public class Sculpture extends Artwork {
 	private Integer width;
 	private Integer height;
 	private Integer depth;
-	private String mainMaterial;
+	private String mainMaterial; // TODO: 28-Nov-17 Bassam Helal consider making an enum of materials maybe???
 	private List<Image> additionalImages;
 	
-	public Sculpture(String title, StringBuilder description, Date creationDate, String creatorName, Image mainImage,
-	          Integer width, Integer height, Integer depth, String mainMaterial) {
+	public Sculpture(String title, StringBuilder description, LocalDate creationDate, String creatorName, Image mainImage,
+	                 Integer width, Integer height, Integer depth, String mainMaterial) {
 		super(title, description, creationDate, creatorName, mainImage);
 		this.width = width;
 		this.height = height;

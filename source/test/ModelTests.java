@@ -7,7 +7,7 @@ import model.Sculpture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *
  * @author Bassam Helal
  */
+@DisplayName("Model")
 class ModelTests {
 	
 	/*
@@ -109,7 +110,7 @@ class ModelTests {
 	@DisplayName("Painting Type")
 	@Test
 	void testPaintingGetType() {
-		Artwork localPainting = new Painting("", new StringBuilder(""), new Date(), "", null, 5, 5);
+		Artwork localPainting = new Painting("", new StringBuilder(""), LocalDate.now(), "", null, 5, 5);
 		assertEquals(ArtworkType.PAINTING, localPainting.getType());
 	}
 	
@@ -123,7 +124,7 @@ class ModelTests {
 	@DisplayName("Sculpture Type")
 	@Test
 	void testSculptureGetType() {
-		Artwork localSculpture = new Sculpture("", new StringBuilder(""), new Date(), "",
+		Artwork localSculpture = new Sculpture("", new StringBuilder(""), LocalDate.now(), "",
 				null, 5, 5, 5, "");
 		assertEquals(ArtworkType.SCULPTURE, localSculpture.getType());
 	}
@@ -142,12 +143,14 @@ class ModelTests {
 	
 	//region Bid Tests
 	
+	// We may need some Bid time tests as well
+	
 	/**
 	 * Will test the Bid's getters
 	 */
 	@DisplayName("Bid Getters")
 	@Test
-	void testAllBidGetters(){
+	void testAllBidGetters() {
 	
 	}
 	
@@ -156,7 +159,7 @@ class ModelTests {
 	 */
 	@DisplayName("Bid Equals false")
 	@Test
-	void testBidEqualsFalseMethod(){
+	void testBidEqualsFalseMethod() {
 	
 	}
 	
@@ -165,7 +168,7 @@ class ModelTests {
 	 */
 	@DisplayName("Bid Equals true")
 	@Test
-	void testBidEqualsTrueMethod(){
+	void testBidEqualsTrueMethod() {
 	
 	}
 	
@@ -174,7 +177,7 @@ class ModelTests {
 	 */
 	@DisplayName("Bid toString")
 	@Test
-	void testBidToString(){
+	void testBidToString() {
 	
 	}
 	

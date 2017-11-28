@@ -2,17 +2,17 @@ package model;
 
 import javafx.scene.image.Image;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public abstract class Artwork {
 	
 	protected String title;
 	protected StringBuilder description;
-	protected Date creationDate;
+	protected LocalDate creationDate; // This should support all possible dates including stuff before 1970
 	protected String creatorName;
 	protected Image mainImage;
 	
-	Artwork(String title, StringBuilder description, Date creationDate, String creatorName, Image mainImage) {
+	Artwork(String title, StringBuilder description, LocalDate creationDate, String creatorName, Image mainImage) {
 		this.title = title;
 		this.description = description;
 		this.creationDate = creationDate;
@@ -30,7 +30,7 @@ public abstract class Artwork {
 		this.description = description;
 	}
 	
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(LocalDate creationDate) {
 		this.creationDate = creationDate;
 	}
 	
@@ -50,7 +50,7 @@ public abstract class Artwork {
 		return this.description;
 	}
 	
-	public Date getCreationDate() {
+	public LocalDate getCreationDate() {
 		return this.creationDate;
 	}
 	

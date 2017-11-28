@@ -4,7 +4,7 @@ package model;
  * we could use the Calendar class or better yet the javax.time package, I will look into this
  */
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * A Bid is an offer on an Auction with a proposed amount, all made by the current user
@@ -31,7 +31,7 @@ public final class Bid {
 	private final Auction auction;
 	private final Double bidAmount;
 	private final Profile bidder;
-	private final Date timePlaced;
+	private final LocalDateTime timePlaced;
 	
 	/**
 	 * The primary and only constructor for a Bid, this assumes the Profile
@@ -44,7 +44,7 @@ public final class Bid {
 	public Bid(Auction auction, Double bidAmount) {
 		this.auction = auction;
 		this.bidAmount = bidAmount;
-		this.timePlaced = new Date();
+		this.timePlaced = LocalDateTime.now();
 		this.bidder = Util.currentUser;
 	}
 	
@@ -62,7 +62,7 @@ public final class Bid {
 	 *
 	 * @return the time the Bid was placed
 	 */
-	public Date getTimePlaced() {
+	public LocalDateTime getTimePlaced() {
 		return this.timePlaced;
 	}
 	
@@ -84,6 +84,9 @@ public final class Bid {
 		return this.auction;
 	}
 	
+	// TODO: 28-Nov-17 Bassam Helal the hashCode of LocalDate and LocalDateTime may produce unpredictable results
+	// I need to check this, my theory is that it gets the code based on the value of the instance, which isn't a
+	// problem in our case
 	@Override
 	public int hashCode() {
 		return this.timePlaced.hashCode() + this.bidAmount.intValue() + this.auction.hashCode();

@@ -2,8 +2,8 @@ package model;
 
 import model.exception.IllegalBidException;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,7 +41,7 @@ public final class Auction {
 	private Double highestPrice;
 	private final Double reservePrice;
 	private final Integer bidsAllowed;
-	private final Date datePlaced;
+	private final LocalDateTime datePlaced;
 	
 	/**
 	 * Constructs a new Auction, note that all the parameters are immutable
@@ -62,7 +62,7 @@ public final class Auction {
 		this.bidsAllowed = bidsAllowed;
 		this.reservePrice = reservePrice;
 		this.isCompleted = false;
-		this.datePlaced = new Date();
+		this.datePlaced = LocalDateTime.now();
 	}
 	
 	
@@ -107,7 +107,6 @@ public final class Auction {
 		return super.toString();
 	}
 	
-	
 	public Artwork getArtwork() {
 		return this.artwork;
 	}
@@ -148,7 +147,7 @@ public final class Auction {
 		return this.bidsAllowed;
 	}
 	
-	public Date getDatePlaced() {
+	public LocalDateTime getDatePlaced() {
 		return this.datePlaced;
 	}
 	
