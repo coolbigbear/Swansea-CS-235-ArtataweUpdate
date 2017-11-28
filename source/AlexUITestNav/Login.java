@@ -2,8 +2,10 @@ package AlexUITestNav;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
@@ -14,6 +16,17 @@ import java.util.Observable;
 public class Login extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        primaryStage.setTitle("Art-atawe Login");
+        Pane myPane = (Pane) FXMLLoader.load(getClass().getResource("LoginNavigate.fxml"));
+
+        Scene myScene = new Scene(myPane);
+
+        //Adding the scene to Stage
+        primaryStage.setScene(myScene);
+
+        //Displaying the contents of the stage
+        primaryStage.show();
 
         //Create the Text object
         Text text = new Text();
@@ -42,9 +55,6 @@ public class Login extends Application {
 
         //setting color to the scene
         scene.setFill(Color.BROWN);
-
-        //Setting the title to Stage.
-        primaryStage.setTitle("Sample Application");
 
         //Adding the scene to Stage
         primaryStage.setScene(scene);
