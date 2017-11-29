@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
  * the Auction, this Bid will not exist on the Database.
  *
  * @author Bassam Helal
- * @version 1.0
+ * @version 1.1
  * @see Auction
  */
 public final class Bid {
@@ -27,7 +27,7 @@ public final class Bid {
 	private final Auction auction;
 	private final Double bidAmount;
 	private final Profile bidder;
-	private final LocalDateTime timePlaced;
+	private final LocalDateTime dateTimePlaced;
 	
 	/**
 	 * The primary and only constructor for a Bid, this assumes the Profile
@@ -40,7 +40,7 @@ public final class Bid {
 	public Bid(Auction auction, Double bidAmount) {
 		this.auction = auction;
 		this.bidAmount = bidAmount;
-		this.timePlaced = LocalDateTime.now();
+		this.dateTimePlaced = LocalDateTime.now();
 		this.bidder = Util.currentUser;
 	}
 	
@@ -54,12 +54,12 @@ public final class Bid {
 	}
 	
 	/**
-	 * Gets the time the Bid was placed
+	 * Gets the date and time the Bid was placed
 	 *
-	 * @return the time the Bid was placed
+	 * @return the date and time the Bid was placed
 	 */
-	public LocalDateTime getTimePlaced() {
-		return this.timePlaced;
+	public LocalDateTime getDateTimePlaced() {
+		return this.dateTimePlaced;
 	}
 	
 	/**
@@ -80,22 +80,41 @@ public final class Bid {
 		return this.auction;
 	}
 	
+	/**
+	 * Returns the hashcode of the Bid, this is used to uniquely identify a Bid
+	 * and is used to check if two Bids are equal
+	 *
+	 * @return the int representing the hashcode of the Bid
+	 */
 	@Override
 	public int hashCode() {
-		return this.timePlaced.hashCode() + this.bidAmount.intValue() + this.auction.hashCode();
+		return this.dateTimePlaced.hashCode() + this.bidAmount.intValue() + this.auction.hashCode();
 	}
 	
+	/**
+	 * Checks to see if two Bids are equal, the current instance and the passed in parameter.
+	 * Note that this is not necessarily identity based, two different instances of Bid can be equal.
+	 *
+	 * @param obj the Object to check if it is equal to this current Bid
+	 *
+	 * @return true if they are exactly equal and false otherwise
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		return (obj instanceof Bid) && (obj.hashCode() == this.hashCode());
 	}
 	
+	/**
+	 * Returns a String representation of the current Bid instance
+	 *
+	 * @return the String representation of the current Bid instance
+	 */
 	@Override
 	public String toString() {
 		return "Bid: " + this.hashCode() + "\n" +
 				"\tAuction: " + this.auction.toString() + "\n" +
 				"\tAmount: " + this.bidAmount.toString() + "\n" +
 				"\tBidder: " + this.bidder.toString() + "\n" +
-				"\tTime: " + this.timePlaced.toString() + "\n";
+				"\tTime: " + this.dateTimePlaced.toString() + "\n";
 	}
 }
