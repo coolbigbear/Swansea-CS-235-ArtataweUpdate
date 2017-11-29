@@ -1,6 +1,9 @@
 package model;
 
-public final class BHFeed{
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public final class BHFeed implements Iterable{
 	
 	
 	/*
@@ -21,6 +24,50 @@ public final class BHFeed{
 	 *
 	 */
 	
+	private static BHFeed instance;
+	private ArrayList<Auction> arrayList;
+	
+	private BHFeed(int size) {
+		arrayList = new ArrayList<>(size);
+	}
+	
+	public BHFeed getInstanceWithSize(int size) {
+		if (instance == null || instance.size()< size) {
+			instance = new BHFeed(size);
+		}
+		return instance;
+	}
+	
+	public BHFeed getInstance() {
+		if (instance == null) {
+			instance = new BHFeed(50);
+		}
+		return instance;
+	}
+	
+	public int size() {
+		return arrayList.size();
+	}
+	
+	public boolean isEmpty() {
+		return arrayList.isEmpty();
+	}
+	
+	public Iterator iterator() {
+		return arrayList.iterator();
+	}
+	
+	public void add(Auction auction) {
+		arrayList.add(auction);
+	}
+	
+	public void clear() {
+		arrayList.clear();
+	}
+	
+	public void update() {
+	
+	}
 	
 	//constructor (probably not needed, this will be a singleton)
 	//size
@@ -28,7 +75,7 @@ public final class BHFeed{
 	//iterator (used by the view)
 	//add (used for adding elements one by one could make an addIterator)
 	//clear (empty itself)
-	//copy (copy itself to another thing, not very useful)
+	//copy (copy itself to another thing, not very useful or needed)
 	//update (used to update itself)
 	
 	
