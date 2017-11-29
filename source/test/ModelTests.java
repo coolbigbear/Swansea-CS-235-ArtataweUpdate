@@ -8,8 +8,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This Test class will test the base code also called the Model
@@ -34,18 +37,18 @@ class ModelTests {
 	 *
 	 */
 	
-	//region Test Setup
+	//region Test Init
 	
 	
 		/*
 		
 			@BeforeAll
-	void setUpBeforeAll() {
+	void initAll() {
 	
 	}
 	
 	@BeforeEach
-	void setUp() {
+	void init() {
 		StringBuilder monaLisaDescription = new StringBuilder();
 		monaLisaDescription.append("The Mona Lisa (/ˌmoʊnə ˈliːsə/; Italian: Monna Lisa " +
 				"[ˈmɔnna ˈliːza] or La Gioconda [la dʒoˈkonda], French: La Joconde [la ʒɔkɔ̃d])");
@@ -69,11 +72,7 @@ class ModelTests {
 		//Auction auction = new Auction();
 	}
 	
-	@AfterEach
-	void tearDown() {
-	
-	}
-	*/
+
 	
 	//endregion
 	
@@ -181,6 +180,8 @@ class ModelTests {
 	
 	}
 	
+
+	
 	//endregion
 	
 	//region Feed Tests
@@ -190,6 +191,46 @@ class ModelTests {
 	
 	//region Util Tests
 	
+	
+	//endregion
+	
+	//region Other Tests
+	
+	@DisplayName("LocalDateTime now +1 millisecond hashcode")
+	@Test
+	void testLocalDateTimeNowHashCode() throws InterruptedException {
+		LocalDateTime now = LocalDateTime.now();
+		int nowHashCode = now.hashCode();
+		Thread.sleep(1);
+		now = LocalDateTime.now();
+		int laterHashcode = now.hashCode();
+		assertTrue(nowHashCode != laterHashcode);
+	}
+	
+	@DisplayName("LocalDate equal and hashcode")
+	@Test
+	void testLocalDatesEqual(){
+		LocalDate july271950 = LocalDate.of(1950, Month.JULY, 27);
+		LocalDate j7271950 = LocalDate.of(1950, 7, 27);
+	    assertEquals(july271950, j7271950);
+	    assertTrue(july271950.hashCode() == j7271950.hashCode());
+	}
+	
+	//endregion
+	
+	//region Test Teardown
+	
+	/*
+	@AfterEach
+	void tearDown() {
+	
+	}
+	
+	@AfterAll
+	void tearDownAll() {
+	
+	}
+	*/
 	
 	//endregion
 	
