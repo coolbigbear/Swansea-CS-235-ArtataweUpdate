@@ -1,9 +1,6 @@
 package test;
 
-import model.Artwork;
-import model.ArtworkType;
-import model.Painting;
-import model.Sculpture;
+import model.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -214,6 +212,27 @@ class ModelTests {
 		LocalDate j7271950 = LocalDate.of(1950, 7, 27);
 	    assertEquals(july271950, j7271950);
 	    assertTrue(july271950.hashCode() == j7271950.hashCode());
+	}
+	
+	@DisplayName("BHFeed for each")
+	@Test
+	void testBHFeedForEach(){
+		BHFeed feed = BHFeed.getInstance();
+		feed.add(new Auction(null, null, null, null));
+		feed.add(new Auction(null, null, null, null));
+		feed.add(new Auction(null, null, null, null));
+		feed.add(new Auction(null, null, null, null));
+		feed.add(new Auction(null, null, null, null));
+		feed.add(new Auction(null, null, null, null));
+		feed.add(new Auction(null, null, null, null));
+		
+		for (Auction auction: feed) {
+			System.out.println(auction.getCompleted());
+			assertFalse(auction.getCompleted());
+		}
+		
+		feed.clear();
+		assertTrue(feed.isEmpty());
 	}
 	
 	//endregion

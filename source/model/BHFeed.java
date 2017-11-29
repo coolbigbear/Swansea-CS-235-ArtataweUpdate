@@ -1,9 +1,12 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.function.Consumer;
 
-public final class BHFeed implements Iterable{
+public final class BHFeed implements Iterable<Auction> {
 	
 	
 	/*
@@ -26,22 +29,33 @@ public final class BHFeed implements Iterable{
 	
 	private static BHFeed instance;
 	private ArrayList<Auction> arrayList;
+	private final static int DEFAULT_SIZE = 50;
 	
 	private BHFeed(int size) {
 		arrayList = new ArrayList<>(size);
 	}
 	
-	public BHFeed getInstanceWithSize(int size) {
-		if (instance == null || instance.size()< size) {
+	public static BHFeed getInstance() {
+		if (instance == null) {
+			instance = new BHFeed(DEFAULT_SIZE);
+		}
+		return instance;
+	}
+	
+	public static BHFeed getInstanceWithSize(int size) {
+		if (instance == null || instance.size() < size) {
 			instance = new BHFeed(size);
 		}
 		return instance;
 	}
 	
-	public BHFeed getInstance() {
-		if (instance == null) {
-			instance = new BHFeed(50);
-		}
+	public static BHFeed getNewInstance() {
+		instance = new BHFeed(50);
+		return instance;
+	}
+	
+	public static BHFeed getNewInstanceWithSize(int size) {
+		instance = new BHFeed(size);
 		return instance;
 	}
 	
@@ -53,17 +67,48 @@ public final class BHFeed implements Iterable{
 		return arrayList.isEmpty();
 	}
 	
-	public Iterator iterator() {
+	public Iterator<Auction> iterator() {
 		return arrayList.iterator();
+	}
+	
+	@Override
+	public void forEach(Consumer action) {
+		arrayList.forEach(action);
 	}
 	
 	public void add(Auction auction) {
 		arrayList.add(auction);
 	}
 	
+	public void addAll(Auction... auctions) {
+		arrayList.addAll(Arrays.asList(auctions));
+	}
+	
+	public void addAll(Collection<Auction> auctions) {
+		arrayList.addAll(auctions);
+	}
+	
 	public void clear() {
 		arrayList.clear();
 	}
+	
+//	public BHFeed copyToNewInstance() {
+//		if ( instance == null) {
+//			return getNewInstance();
+//		} else {
+//			BHFeed local = new BHFeed(DEFAULT_SIZE);
+//			for (Auction auction : instance) {
+//				local.add(auction);
+//			}
+//		}
+//	}
+//
+//	public BHFeed copyToNewInstanceWithSize(int size) {
+//		BHFeed local = new BHFeed(size);
+//		for (Auction auction: instance) {
+//			local.add(auction);
+//		}
+//	}
 	
 	public void update() {
 	
