@@ -25,5 +25,14 @@
     <orderEntry type="library" exported="" name="org.hamcrest:hamcrest-junit:2.0.0.0" level="project" />
     <orderEntry type="library" exported="" name="com.google.guava:guava:14.0.1" level="project" />
     <orderEntry type="library" exported="" name="org.testfx:testfx-core:4.0.6-alpha" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/redist/annotations-java8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
