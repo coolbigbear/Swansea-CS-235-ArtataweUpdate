@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This Test class will test the base code also called the Model
@@ -35,8 +36,6 @@ class ModelTests {
 	 * an idea on what needs to work how.
 	 *
 	 */
-	
-	
 	
 	//region Test Init
 	
@@ -181,13 +180,7 @@ class ModelTests {
 	
 	}
 	
-	@DisplayName("LocalDateTime Test")
-	@Test
-	void testLocalDateTime(){
-		LocalDateTime now = LocalDateTime.now();
-		LocalDateTime later = LocalDateTime.now();
-		assertFalse(now.hashCode() == later.hashCode());
-	}
+
 	
 	//endregion
 	
@@ -198,6 +191,30 @@ class ModelTests {
 	
 	//region Util Tests
 	
+	
+	//endregion
+	
+	//region Other Tests
+	
+	@DisplayName("LocalDateTime now +1 millisecond hashcode")
+	@Test
+	void testLocalDateTimeNowHashCode() throws InterruptedException {
+		LocalDateTime now = LocalDateTime.now();
+		int nowHashCode = now.hashCode();
+		Thread.sleep(1);
+		now = LocalDateTime.now();
+		int laterHashcode = now.hashCode();
+		assertTrue(nowHashCode != laterHashcode);
+	}
+	
+	@DisplayName("LocalDate equal and hashcode")
+	@Test
+	void testLocalDatesEqual(){
+		LocalDate july271950 = LocalDate.of(1950, Month.JULY, 27);
+		LocalDate j7271950 = LocalDate.of(1950, 7, 27);
+	    assertEquals(july271950, j7271950);
+	    assertTrue(july271950.hashCode() == j7271950.hashCode());
+	}
 	
 	//endregion
 	
