@@ -27,6 +27,23 @@ public final class BHFeed implements Iterable<Auction> {
 	 *
 	 */
 	
+	/*
+	 * This implementation of Feed is like a selective ArrayList.
+	 *
+	 * Basically the Feed is an ArrayList of Auctions with limited functionality
+	 * and some special functionality. It is a singleton, meaning there can only ever exist
+	 * a single instance of itself at any given time.
+	 *
+	 * The Feed has the ability to:
+	 *
+	 *      Add one or add many Auctions using a Collection or Array
+	 *      Clear its contents
+	 *      Retrieve all of its contents as an ArrayList or Array
+	 *      Copy all of its contents to a new instance
+	 *      Update itself with new contents of a Collection or Array
+	 *          this would clear the Feed and add all of the Collection or Array
+	 */
+	
 	private static BHFeed instance;
 	private ArrayList<Auction> arrayList;
 	private final static int DEFAULT_SIZE = 50;
@@ -50,7 +67,7 @@ public final class BHFeed implements Iterable<Auction> {
 	}
 	
 	public static BHFeed getNewInstance() {
-		instance = new BHFeed(50);
+		instance = new BHFeed(DEFAULT_SIZE);
 		return instance;
 	}
 	
@@ -67,6 +84,7 @@ public final class BHFeed implements Iterable<Auction> {
 		return arrayList.isEmpty();
 	}
 	
+	@Override
 	public Iterator<Auction> iterator() {
 		return arrayList.iterator();
 	}
@@ -92,26 +110,56 @@ public final class BHFeed implements Iterable<Auction> {
 		arrayList.clear();
 	}
 	
-//	public BHFeed copyToNewInstance() {
-//		if ( instance == null) {
-//			return getNewInstance();
-//		} else {
-//			BHFeed local = new BHFeed(DEFAULT_SIZE);
-//			for (Auction auction : instance) {
-//				local.add(auction);
-//			}
-//		}
-//	}
-//
-//	public BHFeed copyToNewInstanceWithSize(int size) {
-//		BHFeed local = new BHFeed(size);
-//		for (Auction auction: instance) {
-//			local.add(auction);
-//		}
-//	}
+	public ArrayList<Auction> getAllAsArrayList() {
+		return arrayList;
+	}
 	
-	public void update() {
+	public Auction[] getAllAsArray() {
+		return arrayList.toArray(new Auction[arrayList.size()]);
+	}
 	
+	public BHFeed copyToNewInstance() {
+		if (instance == null) {
+			return getNewInstance();
+		} else {
+			BHFeed local = new BHFeed(DEFAULT_SIZE);
+			local.addAll(instance.getAllAsArrayList());
+			instance = local;
+			return instance;
+		}
+	}
+	
+	public BHFeed copyToNewInstanceWithSize(int size) {
+		if (instance == null) {
+			return getNewInstanceWithSize(size);
+		} else {
+			BHFeed local = new BHFeed(size);
+			local.addAll(instance.getAllAsArrayList());
+			instance = local;
+			return instance;
+		}
+	}
+	
+	public void updateWith(Collection<Auction> auctions) {
+		instance.clear();
+		instance.addAll(auctions);
+	}
+	
+	public void updateWith(Auction... auctions) {
+		instance.clear();
+		instance.addAll(auctions);
+	}
+	
+	public void updateWithSize(int size, Collection<Auction> auctions) {
+		instance.clear();
+		instance = getInstanceWithSize(size);
+		instance.addAll(auctions);
+	}
+	
+	public void updateWithSize(int size, Auction... auctions) {
+		instance.clear();
+		instance = getNewInstanceWithSize(size);
+		instance.addAll(auctions);
 	}
 	
 	//constructor (probably not needed, this will be a singleton)
