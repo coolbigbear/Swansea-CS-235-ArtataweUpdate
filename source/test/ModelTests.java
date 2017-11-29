@@ -8,8 +8,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * This Test class will test the base code also called the Model
@@ -34,18 +36,18 @@ class ModelTests {
 	 *
 	 */
 	
-	//region Test Setup
+	//region Test Init
 	
 	
 		/*
 		
 			@BeforeAll
-	void setUpBeforeAll() {
+	void initAll() {
 	
 	}
 	
 	@BeforeEach
-	void setUp() {
+	void init() {
 		StringBuilder monaLisaDescription = new StringBuilder();
 		monaLisaDescription.append("The Mona Lisa (/ˌmoʊnə ˈliːsə/; Italian: Monna Lisa " +
 				"[ˈmɔnna ˈliːza] or La Gioconda [la dʒoˈkonda], French: La Joconde [la ʒɔkɔ̃d])");
@@ -69,11 +71,7 @@ class ModelTests {
 		//Auction auction = new Auction();
 	}
 	
-	@AfterEach
-	void tearDown() {
-	
-	}
-	*/
+
 	
 	//endregion
 	
@@ -181,6 +179,14 @@ class ModelTests {
 	
 	}
 	
+	@DisplayName("LocalDateTime Test")
+	@Test
+	void testLocalDateTime(){
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime later = LocalDateTime.now();
+		assertFalse(now.hashCode() == later.hashCode());
+	}
+	
 	//endregion
 	
 	//region Feed Tests
@@ -190,6 +196,22 @@ class ModelTests {
 	
 	//region Util Tests
 	
+	
+	//endregion
+	
+	//region Test Teardown
+	
+	/*
+	@AfterEach
+	void tearDown() {
+	
+	}
+	
+	@AfterAll
+	void tearDownAll() {
+	
+	}
+	*/
 	
 	//endregion
 	

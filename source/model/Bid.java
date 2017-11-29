@@ -1,9 +1,5 @@
 package model;
 
-/* TODO: 27-Nov-17 Bassam Helal We should consider using something other than the java.lang.Date
- * we could use the Calendar class or better yet the javax.time package, I will look into this
- */
-
 import java.time.LocalDateTime;
 
 /**
@@ -84,9 +80,6 @@ public final class Bid {
 		return this.auction;
 	}
 	
-	// TODO: 28-Nov-17 Bassam Helal the hashCode of LocalDate and LocalDateTime may produce unpredictable results
-	// I need to check this, my theory is that it gets the code based on the value of the instance, which isn't a
-	// problem in our case
 	@Override
 	public int hashCode() {
 		return this.timePlaced.hashCode() + this.bidAmount.intValue() + this.auction.hashCode();
