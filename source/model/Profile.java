@@ -2,6 +2,7 @@ package model;
 
 public class Profile {
 	
+	// Bassam Helal, I discourage using ContactInfo as we showed in the design, just put everything here directly
 	
 	@Override
 	public int hashCode() {

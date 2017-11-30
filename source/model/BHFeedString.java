@@ -10,73 +10,73 @@ import java.util.Iterator;
 import java.util.function.Consumer;
 
 public final class BHFeedString implements Iterable<String> {
-	
+
+	//there's a difference between instance and arrayList
 	@Nullable
 	private static BHFeedString instance;
 	@NotNull
 	private ArrayList<String> arrayList;
 	private final static int DEFAULT_CAPACITY = 50;
 	
-	
 	private BHFeedString(int capacity) {
 		arrayList = new ArrayList<>(capacity);
 	}
-	
+
 	public static BHFeedString getInstance() {
 		if (instance == null) {
 			instance = new BHFeedString(DEFAULT_CAPACITY);
 		}
 		return instance;
 	}
-	
+
 	public static BHFeedString getNewInstance() {
 		instance = new BHFeedString(DEFAULT_CAPACITY);
 		return instance;
 	}
-	
+
 	public static BHFeedString getNewInstanceWithCapacity(int capacity) {
 		instance = new BHFeedString(capacity);
 		return instance;
 	}
-	
+
 	public int size() {
 		return arrayList.size();
 	}
-	
+
 	public boolean isEmpty() {
 		return arrayList.isEmpty();
 	}
-	
+
 	@Override
 	public Iterator<String> iterator() {
 		return arrayList.iterator();
 	}
-	
+
 	@Override
 	public void forEach(Consumer action) {
 		arrayList.forEach(action);
 	}
-	
+
 	public void add(String string) {
 		arrayList.add(string);
 	}
-	
+
 	public void addAll(String... strings) {
 		arrayList.addAll(Arrays.asList(strings));
 	}
-	
+
 	public void addAll(Collection<String> strings) {
 		arrayList.addAll(strings);
 	}
-	
+
 	public void clear() {
 		arrayList.clear();
 	}
-	
+
 	public ArrayList<String> getAllAsArrayList() {
 		return arrayList;
 	}
-	
+
 	public String[] getAllAsArray() {
 		return arrayList.toArray(new String[arrayList.size()]);
 	}
@@ -91,7 +91,7 @@ public final class BHFeedString implements Iterable<String> {
 			return instance;
 		}
 	}
-	
+
 	public BHFeedString copyToNewInstanceWithCapacity(int capacity) {
 		if (instance == null) {
 			return getNewInstanceWithCapacity(capacity);
@@ -103,56 +103,71 @@ public final class BHFeedString implements Iterable<String> {
 		}
 	}
 	
-	public void updateWith(Collection<String> strings) {
+	public BHFeedString updateWith(Collection<String> strings) {
 		if (instance == null) {
-			instance = getNewInstance();
+			instance = new BHFeedString(DEFAULT_CAPACITY);
 			instance.addAll(strings);
 		} else {
 			instance.clear();
 			instance.addAll(strings);
 		}
-		
+		return instance;
 	}
-	
-	public void updateWith(String... strings) {
+
+	public BHFeedString updateWith(String... strings) {
 		if (instance == null) {
-			instance = getNewInstance();
+			instance = new BHFeedString(DEFAULT_CAPACITY);
 			instance.addAll(strings);
 		} else {
 			instance.clear();
 			instance.addAll(strings);
 		}
+		return instance;
 	}
 	
-	// TODO: 30-Nov-17 Maybe have it trim to size instead of throwing exception
-	//Something doesn't work here!
-	public void updateWithCapacity(int capacity, Collection<String> strings) {
-		if (capacity < strings.size()) {
-			throw new IllegalArgumentException("Capacity is less than collection size");
-		} else if (instance == null) {
-			instance = getNewInstanceWithCapacity(capacity);
+	public BHFeedString updateWithCapacity(int capacity, Collection<String> strings) {
+		if (instance == null) {
+			instance = new BHFeedString(capacity);
 			instance.addAll(strings);
 		} else {
-			instance.clear();
-			instance = getNewInstanceWithCapacity(capacity);
+			instance = new BHFeedString(capacity);
 			instance.addAll(strings);
 		}
+		return instance;
 	}
 	
-	public void updateWithCapacity(int capacity, String... strings) {
-		if (capacity < strings.length) {
-			throw new IllegalArgumentException("Capacity is less than array length");
-		} else if (instance == null) {
-			instance = getNewInstanceWithCapacity(capacity);
+	public BHFeedString updateWithCapacity(int capacity, String... strings) {
+		if (instance == null) {
+			instance = new BHFeedString(capacity);
 			instance.addAll(strings);
 		} else {
-			instance.clear();
-			instance = getNewInstanceWithCapacity(capacity);
+			instance = new BHFeedString(capacity);
 			instance.addAll(strings);
 		}
+		return instance;
+	}
+	
+	public void destroyInstance() {
+		instance = null;
+	}
+	
+	@Override
+	public int hashCode() {
+		return arrayList.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof Collection) && (obj.equals(arrayList));
+	}
+	
+	//implement this later!!!
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 	
 	//hashCode equals and toString
-	
+
 }
 

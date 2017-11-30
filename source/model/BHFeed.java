@@ -1,8 +1,5 @@
 package model;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -71,11 +68,9 @@ public final class BHFeed implements Iterable<Auction> {
 	 */
 	
 	//The current instance, may be null
-	@Nullable
 	private static BHFeed instance;
 	
 	//The main implementation and data structure of Feed, a dynamic array of Auctions
-	@NotNull
 	private ArrayList<Auction> arrayList;
 	
 	//The default size of the Feed, if one is never given, this is just initial size

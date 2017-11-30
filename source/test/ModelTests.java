@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -231,6 +232,7 @@ class ModelTests {
 		BHFeedString stringFeed = BHFeedString.getNewInstanceWithCapacity(5);
 		BHFeedString stringFeed2 = BHFeedString.getNewInstanceWithCapacity(50);
 		assertNotEquals(stringFeed, stringFeed2);
+		assertEquals(stringFeed.size(), stringFeed2.size());
 	}
 	
 	@DisplayName("BHFeedString check instances not equal with new capacity smaller")
@@ -239,6 +241,7 @@ class ModelTests {
 		BHFeedString stringFeed = BHFeedString.getNewInstanceWithCapacity(50);
 		BHFeedString stringFeed2 = BHFeedString.getNewInstanceWithCapacity(5);
 		assertNotEquals(stringFeed, stringFeed2);
+		assertEquals(stringFeed.size(), stringFeed2.size());
 	}
 	
 	@DisplayName("BHFeedString add one by one")
@@ -247,8 +250,8 @@ class ModelTests {
 		BHFeedString stringFeed = BHFeedString.getNewInstance();
 		stringFeed.add("Hello");
 		stringFeed.add("Hi");
-		stringFeed.add("Hello");
-		stringFeed.add("Hi");
+		stringFeed.add("Welcome");
+		stringFeed.add("Greetings");
 		assertEquals(4, stringFeed.size());
 	}
 	
@@ -276,7 +279,7 @@ class ModelTests {
 	
 	@DisplayName("BHFeedString Check current instance")
 	@Test
-	void testBHFeedStringCheckInstances2() {
+	void testBHFeedStringCheckInstances() {
 		BHFeedString stringFeed = BHFeedString.getNewInstance();
 		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
 		
@@ -287,7 +290,7 @@ class ModelTests {
 	
 	@DisplayName("BHFeedString Check current instance 2")
 	@Test
-	void testBHFeedStringCheckInstances() {
+	void testBHFeedStringCheckInstances2() {
 		BHFeedString stringFeed = BHFeedString.getNewInstance();
 		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
 		
@@ -375,7 +378,7 @@ class ModelTests {
 		arrayList.add("Wonder woman");
 		arrayList.add("Cyborg");
 		
-		stringFeed.updateWith(arrayList);
+		stringFeed = stringFeed.updateWith(arrayList);
 		
 		assertEquals(arrayList, stringFeed.getAllAsArrayList());
 	}
@@ -388,7 +391,7 @@ class ModelTests {
 		
 		String[] array = {"Batman", "Superman", "Wonder Woman", "Cyborg"};
 		
-		stringFeed.updateWith(array);
+		stringFeed = stringFeed.updateWith(array);
 		
 		assertEquals(array[0], stringFeed.getAllAsArray()[0]);
 		assertEquals(array[1], stringFeed.getAllAsArray()[1]);
@@ -400,7 +403,7 @@ class ModelTests {
 	@Test
 	void testBHFeedStringUpdateWithCapacityCollection() {
 		BHFeedString stringFeed = BHFeedString.getNewInstance();
-		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome", "hi");
+		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
 		
 		ArrayList<String> arrayList = new ArrayList<>();
 		arrayList.add("Batman");
@@ -408,9 +411,50 @@ class ModelTests {
 		arrayList.add("Wonder woman");
 		arrayList.add("Cyborg");
 		
-		stringFeed.updateWithCapacity(60, arrayList);
+		stringFeed = stringFeed.updateWithCapacity(10, arrayList);
 		
-		assertEquals(arrayList, stringFeed.getAllAsArrayList());
+		assertEquals("Cyborg", stringFeed.getAllAsArrayList().get(3));
+	}
+	
+	@DisplayName("BHFeedString update with capacity array")
+	@Test
+	void testBHFeedStringUpdateWithCapacityArray() {
+		BHFeedString stringFeed = BHFeedString.getNewInstance();
+		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
+		
+		String[] array = {"Batman", "Superman", "Wonder woman", "Cyborg"};
+		
+		stringFeed = stringFeed.updateWithCapacity(10, array);
+		
+		assertEquals("Cyborg", stringFeed.getAllAsArray()[3]);
+	}
+	
+	@DisplayName("BHFeedString iterator with for each")
+	@Test
+	void testBHFeedStringIteratorForEach() {
+		BHFeedString stringFeed = BHFeedString.getNewInstanceWithCapacity(10);
+		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
+		ArrayList<String> arrayList = new ArrayList<>();
+		
+		for(String string: stringFeed) {
+			arrayList.add(string);
+		}
+		
+		
+		assertEquals("Greetings", arrayList.get(2));
+	}
+	
+	@DisplayName("BHFeedString for each")
+	@Test
+	void testBHFeedStringForEach() {
+		BHFeedString stringFeed = BHFeedString.getNewInstanceWithCapacity(10);
+		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
+		ArrayList<String> arrayList = new ArrayList<>();
+		
+		stringFeed.forEach((Consumer<String>) s -> arrayList.add(s));
+		
+		
+		assertEquals("Greetings", arrayList.get(2));
 	}
 	
 	//endregion
