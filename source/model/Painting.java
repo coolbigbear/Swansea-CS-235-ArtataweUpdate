@@ -39,14 +39,15 @@ public class Painting extends Artwork {
 	
 	@Override
 	public int hashCode() {
-		return super.hashCode();
+		return title.hashCode() + creationDate.hashCode() + description.hashCode();
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
-		return super.equals(obj);
+		return (obj instanceof Painting) && (obj.hashCode() == this.hashCode());
 	}
 	
+	// TODO: 29-Nov-17 Bassam Helal need to do this 
 	@Override
 	public String toString() {
 		return super.toString();

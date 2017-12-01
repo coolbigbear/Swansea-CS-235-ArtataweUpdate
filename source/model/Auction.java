@@ -26,22 +26,22 @@ public final class Auction {
 	 *
 	 * Double reservePrice;
 	 * Integer bidsAllowed;
-	 * Date datePlaced;
+	 * Date dateTimePlaced;
 	 *
 	 */
-	
 	
 	private final Artwork artwork;
 	private final Profile seller;
 	private final Integer auctionID; /*TODO: Bassam Helal 27-Nov-17 This needs to be taken care of using the Database */
 	private final List<Bid> bidList;
+	private final Double reservePrice;
+	private final Integer bidsAllowed;
+	private final LocalDateTime dateTimePlaced;
 	private Integer bidsLeft;
 	private Profile highestBidder;
 	private Boolean isCompleted;
 	private Double highestPrice;
-	private final Double reservePrice;
-	private final Integer bidsAllowed;
-	private final LocalDateTime datePlaced;
+
 	
 	/**
 	 * Constructs a new Auction, note that all the parameters are immutable
@@ -54,7 +54,7 @@ public final class Auction {
 		this.artwork = artwork;
 		this.seller = seller;
 		
-		//something to set the auctionID from Database
+		// TODO: 29-Nov-17 Bassam Helal, ***REMOVED*** ***REMOVED*** change this to correspond to Database
 		this.auctionID = null;
 		
 		this.bidList = new ArrayList<>();
@@ -62,7 +62,7 @@ public final class Auction {
 		this.bidsAllowed = bidsAllowed;
 		this.reservePrice = reservePrice;
 		this.isCompleted = false;
-		this.datePlaced = LocalDateTime.now();
+		this.dateTimePlaced = LocalDateTime.now();
 	}
 	
 	
@@ -90,21 +90,6 @@ public final class Auction {
 	
 	private Boolean checkIfHigherThanCurrentHighest(Bid bid) {
 		return (bid.getBidAmount() > this.highestPrice);
-	}
-	
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
-	
-	@Override
-	public String toString() {
-		return super.toString();
 	}
 	
 	public Artwork getArtwork() {
@@ -147,9 +132,24 @@ public final class Auction {
 		return this.bidsAllowed;
 	}
 	
-	public LocalDateTime getDatePlaced() {
-		return this.datePlaced;
+	public LocalDateTime getDateTimePlaced() {
+		return this.dateTimePlaced;
 	}
 	
+	@Override
+	public int hashCode() {
+		return this.dateTimePlaced.hashCode() + this.auctionID;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof Auction) && (obj.hashCode() == this.hashCode());
+	}
+	
+	// TODO: 29-Nov-17 Bassam Helal need to do this
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 	
 }
