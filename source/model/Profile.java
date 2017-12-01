@@ -2,7 +2,6 @@ package model;
 
 import com.sun.xml.internal.bind.v2.TODO;
 
-import java.util.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +74,15 @@ public class Profile {
 
     public LocalDateTime getLastLogInTime() {
         return this.lastLogInTime;
+    }
+
+    public boolean checkUsername (String username){
+        String checkUsername = "[a-zA-Z0-9]";
+        if(username.matches(checkUsername)){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 
