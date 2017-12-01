@@ -6,10 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Artwork;
-import model.Auction;
-import model.Painting;
-import model.Profile;
+
+import model.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -53,20 +51,25 @@ public class TestFx extends Application {
 		Artwork art3 = new Painting("Sunflower", new StringBuilder("Only one like this"), LocalDate.now(), "VanGogh");
 
 		Auction a1 = new Auction(art1, p1, 20, 18000.0);
+		Auction a2 = new Auction(art2, p2, 30, 28000.0);
 
 		auctions.add(a1);
+		auctions.add(a2);
 
 		//Json - Gson stuff
 		Gson gson = new Gson();
 
 		//Write JSON String to file
 		try {
-			FileWriter fileWriter = new FileWriter("C:\\Users\\MiniDragon\\Dropbox\\Swansea University\\Computer Science\\Year 2\\CS - 230\\Artetawe\\A3\\source\\JSON files\\Auction.json");
+			FileWriter fileWriter = new FileWriter("JSON Files/Auction.json");
 			gson.toJson(auctions, fileWriter);
 			fileWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		Util util = new Util();
+		util.readInAllAuctions();
 
     	launch(args);
 	}

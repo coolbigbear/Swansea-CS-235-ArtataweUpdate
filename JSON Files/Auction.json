@@ -1,0 +1,110 @@
+[
+  {
+    "artwork": {
+      "title": "Monalisa",
+      "description": "The most beautiful painting",
+      "creationDate": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
+      },
+      "creatorName": "DaVinci"
+    },
+    "seller": {
+      "favouriteUsers": [],
+      "wonAuctions": [],
+      "completedAuction": [],
+      "currentlySelling": [],
+      "newAuctions": [],
+      "auctionsNewBids": [],
+      "allBidsPlaced": [],
+      "username": "bigbear1",
+      "contactInfo": "No contact info",
+      "lastLogInTime": {
+        "date": {
+          "year": 2017,
+          "month": 12,
+          "day": 1
+        },
+        "time": {
+          "hour": 19,
+          "minute": 45,
+          "second": 53,
+          "nano": 108000000
+        }
+      }
+    },
+    "bidList": [],
+    "reservePrice": 18000.0,
+    "bidsAllowed": 20,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
+      },
+      "time": {
+        "hour": 19,
+        "minute": 45,
+        "second": 53,
+        "nano": 118000000
+      }
+    },
+    "bidsLeft": 20,
+    "isCompleted": false
+  },
+  {
+    "artwork": {
+      "title": "Scream",
+      "description": "Can you hear the voices?",
+      "creationDate": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
+      },
+      "creatorName": "James down the road"
+    },
+    "seller": {
+      "favouriteUsers": [],
+      "wonAuctions": [],
+      "completedAuction": [],
+      "currentlySelling": [],
+      "newAuctions": [],
+      "auctionsNewBids": [],
+      "allBidsPlaced": [],
+      "username": "bigbear2",
+      "contactInfo": "No contact info",
+      "lastLogInTime": {
+        "date": {
+          "year": 2017,
+          "month": 12,
+          "day": 1
+        },
+        "time": {
+          "hour": 19,
+          "minute": 45,
+          "second": 53,
+          "nano": 116000000
+        }
+      }
+    },
+    "bidList": [],
+    "reservePrice": 28000.0,
+    "bidsAllowed": 30,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
+      },
+      "time": {
+        "hour": 19,
+        "minute": 45,
+        "second": 53,
+        "nano": 119000000
+      }
+    },
+    "bidsLeft": 30,
+    "isCompleted": false
+  }
+]
