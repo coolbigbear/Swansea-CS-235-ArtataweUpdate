@@ -1,5 +1,4 @@
 package layouts;
 
-public class loginController
-{
+public class loginController {
 }
