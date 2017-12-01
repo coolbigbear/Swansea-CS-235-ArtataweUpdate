@@ -1,7 +1,5 @@
 package model;
 
-import javafx.scene.image.Image;
-
 import java.time.LocalDate;
 
 public class Painting extends Artwork {
@@ -9,9 +7,8 @@ public class Painting extends Artwork {
 	private Integer width;
 	private Integer height;
 	
-	public Painting(String title, StringBuilder description, LocalDate creationDate, String creatorName, Image mainImage,
-	                Integer width, Integer height) {
-		super(title, description, creationDate, creatorName, mainImage);
+	public Painting(String title, StringBuilder description, LocalDate creationDate, String creatorName){//,Image mainImage, Integer width, Integer height) {
+		super(title, description, creationDate, creatorName);
 		this.width = width;
 		this.height = height;
 	}

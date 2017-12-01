@@ -1,48 +1,170 @@
 [
   {
-    "name": "Holly",
-    "age": 25,
-    "favourites": []
-  },
-  {
-    "name": "Rebecka",
-    "age": 19,
-    "favourites": []
-  },
-  {
-    "name": "Chloe",
-    "age": 35,
-    "favourites": []
-  },
-  {
-    "name": "Harry",
-    "age": 2,
-    "favourites": []
-  },
-  {
-    "name": "James",
-    "age": 24,
-    "favourites": [
-      {
-        "name": "Holly",
-        "age": 25,
-        "favourites": []
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuction": [],
+    "currentlySelling": [],
+    "newAuctions": [],
+    "auctionsNewBids": [],
+    "allBidsPlaced": [],
+    "username": "bigbear1",
+    "contactInfo": "No contact info",
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
       },
-      {
-        "name": "Rebecka",
-        "age": 19,
-        "favourites": []
-      },
-      {
-        "name": "Chloe",
-        "age": 35,
-        "favourites": []
-      },
-      {
-        "name": "Harry",
-        "age": 2,
-        "favourites": []
+      "time": {
+        "hour": 13,
+        "minute": 35,
+        "second": 50,
+        "nano": 278000000
       }
-    ]
+    }
+  },
+  {
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuction": [],
+    "currentlySelling": [],
+    "newAuctions": [],
+    "auctionsNewBids": [],
+    "allBidsPlaced": [],
+    "username": "bigbear2",
+    "contactInfo": "No contact info",
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
+      },
+      "time": {
+        "hour": 13,
+        "minute": 35,
+        "second": 50,
+        "nano": 287000000
+      }
+    }
+  },
+  {
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuction": [],
+    "currentlySelling": [],
+    "newAuctions": [],
+    "auctionsNewBids": [],
+    "allBidsPlaced": [],
+    "username": "bigbear3",
+    "contactInfo": "No contact info",
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
+      },
+      "time": {
+        "hour": 13,
+        "minute": 35,
+        "second": 50,
+        "nano": 287000000
+      }
+    }
+  },
+  {
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuction": [],
+    "currentlySelling": [],
+    "newAuctions": [],
+    "auctionsNewBids": [],
+    "allBidsPlaced": [],
+    "username": "bigbear4",
+    "contactInfo": "No contact info",
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
+      },
+      "time": {
+        "hour": 13,
+        "minute": 35,
+        "second": 50,
+        "nano": 287000000
+      }
+    }
+  },
+  {
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuction": [],
+    "currentlySelling": [],
+    "newAuctions": [],
+    "auctionsNewBids": [],
+    "allBidsPlaced": [],
+    "username": "bigbear5",
+    "contactInfo": "No contact info",
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
+      },
+      "time": {
+        "hour": 13,
+        "minute": 35,
+        "second": 50,
+        "nano": 287000000
+      }
+    }
+  },
+  {
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuction": [],
+    "currentlySelling": [],
+    "newAuctions": [],
+    "auctionsNewBids": [],
+    "allBidsPlaced": [],
+    "username": "bigbear6",
+    "contactInfo": "No contact info",
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
+      },
+      "time": {
+        "hour": 13,
+        "minute": 35,
+        "second": 50,
+        "nano": 287000000
+      }
+    }
+  },
+  {
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuction": [],
+    "currentlySelling": [],
+    "newAuctions": [],
+    "auctionsNewBids": [],
+    "allBidsPlaced": [],
+    "username": "bigbear7",
+    "contactInfo": "No contact info",
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 1
+      },
+      "time": {
+        "hour": 13,
+        "minute": 35,
+        "second": 50,
+        "nano": 287000000
+      }
+    }
   }
 ]

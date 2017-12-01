@@ -1,12 +1,11 @@
 package model;
 
 import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -29,9 +28,10 @@ public class Util {
 			for(Profile profile: fromJson) {
 				//Read the variables required for constructor
 				String name = profile.getUsername();
-				List favourites = profile.getFavouriteUsers();
+				String contactInfo = profile.getContactInfo();
+
 				if (Objects.equals(name, currentUser.getUsername())) {
-					currentUser = new Profile(name, favourites);
+					currentUser = new Profile(name, contactInfo);
 				}
 			}
 		} catch (FileNotFoundException e) {
