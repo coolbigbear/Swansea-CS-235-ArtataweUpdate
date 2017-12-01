@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="layouts.testing"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="107.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="116.0" layoutY="43.0" text="Label" />
+            <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="920.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
+            <MenuButton layoutX="797.0" layoutY="67.0" mnemonicParsing="false" text="Options">
+              <items>
+                <MenuItem mnemonicParsing="false" text="My Profile" />
+                <MenuItem mnemonicParsing="false" text="Logout" />
+              </items>
+            </MenuButton>
+            <Label layoutX="841.0" layoutY="43.0" text="Label" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <SplitPane dividerPositions="0.20770877944325483" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <items>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Current auctions" />
+                  <MenuButton mnemonicParsing="false" text="Buying">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Bids placed" />
+                      <MenuItem mnemonicParsing="false" text="Bids won" />
+                      <MenuItem mnemonicParsing="false" text="All bids" />
+                    </items>
+                  </MenuButton>
+                  <MenuButton mnemonicParsing="false" text="Selling">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Currently selling" />
+                      <MenuItem mnemonicParsing="false" text="Auctions sold" />
+                      <MenuItem mnemonicParsing="false" text="All selling/sold" />
+                    </items>
+                  </MenuButton>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="FAVORITES" />
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="74.0" minWidth="10.0" prefWidth="55.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="103.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label text="Guy 1" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+        </items>
+      </SplitPane>
+   </left>
+</BorderPane>
