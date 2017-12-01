@@ -1,1 +1,48 @@
-[{"name":"Holly","age":25,"favourites":[]},{"name":"Rebecka","age":19,"favourites":[]},{"name":"Chloe","age":35,"favourites":[]},{"name":"Harry","age":2,"favourites":[]},{"name":"James","age":24,"favourites":[{"name":"Holly","age":25,"favourites":[]},{"name":"Rebecka","age":19,"favourites":[]},{"name":"Chloe","age":35,"favourites":[]},{"name":"Harry","age":2,"favourites":[]}]}]
+[
+  {
+    "name": "Holly",
+    "age": 25,
+    "favourites": []
+  },
+  {
+    "name": "Rebecka",
+    "age": 19,
+    "favourites": []
+  },
+  {
+    "name": "Chloe",
+    "age": 35,
+    "favourites": []
+  },
+  {
+    "name": "Harry",
+    "age": 2,
+    "favourites": []
+  },
+  {
+    "name": "James",
+    "age": 24,
+    "favourites": [
+      {
+        "name": "Holly",
+        "age": 25,
+        "favourites": []
+      },
+      {
+        "name": "Rebecka",
+        "age": 19,
+        "favourites": []
+      },
+      {
+        "name": "Chloe",
+        "age": 35,
+        "favourites": []
+      },
+      {
+        "name": "Harry",
+        "age": 2,
+        "favourites": []
+      }
+    ]
+  }
+]
