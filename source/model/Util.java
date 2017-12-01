@@ -19,13 +19,12 @@ public class Util {
 	/**
 	 * The current user who is signed in to the system.
 	 */
-	public static Profile currentUser;
+	private  static Profile currentUser;
+	private Gson gson = new Gson();
 	
-	Gson gson = new Gson();
-
 	public void readInLoggedInUser(String username) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Profile.json"));
+			BufferedReader br = new BufferedReader(new FileReader("database/Profiles.json"));
 			ArrayList<Profile> fromJson = gson.fromJson(br, (Type) Profile.class);
 
 			for(Profile profile: fromJson) {
@@ -44,9 +43,10 @@ public class Util {
 
 	public void readInAllAuctions() {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auction.json"));
+			BufferedReader br = new BufferedReader(new FileReader("database/Auctions.json"));
 			Auction[] fromJson = gson.fromJson(br, Auction[].class); // TODO Error on reading JSON artwork is to abstract
-
+			ArrayList<Auction> auctionArrayList = new ArrayList<>();
+			
 			for(Auction auction: fromJson) {
 				//Read the variables required for constructor
 				Artwork artwork = auction.getArtwork();
@@ -61,10 +61,18 @@ public class Util {
 				Boolean isCompleted = auction.getCompleted();
 				Double highestPrice = auction.getHighestPrice();
 
-				BHFeed.getNewInstance().addAll(new Auction(artwork,seller,auctionID,bidList,reservePrice,bidsAllowed,dateTimePlaced,bidsLeft,highestBidder,isCompleted,highestPrice));
+				
+				auctionArrayList.add(auction);
+				
 			}
+			BHFeed.getNewInstance().addAll(auctionArrayList);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public static Profile getCurrentUser() {
+		return currentUser;
 	}
 }

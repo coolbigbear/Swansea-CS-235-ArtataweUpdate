@@ -12,17 +12,27 @@ public class Sculpture extends Artwork {
 	private Integer width;
 	private Integer height;
 	private Integer depth;
-	private String mainMaterial; // TODO: 28-Nov-17 Bassam Helal consider making an enum of materials maybe???
+	private String mainMaterial;
 	private List<Image> additionalImages;
 	
-	public Sculpture(String title, StringBuilder description, LocalDate creationDate, String creatorName, Image mainImage,
-	                 Integer width, Integer height, Integer depth, String mainMaterial) {
+	public Sculpture(String title, StringBuilder description, LocalDate creationDate, String creatorName,
+	                 Image mainImage, Integer width, Integer height, Integer depth, String mainMaterial) {
 		super(title, description, creationDate, creatorName);
 		this.width = width;
 		this.height = height;
 		this.depth = depth;
 		this.mainMaterial = mainMaterial;
 		this.additionalImages = new ArrayList<>();
+	}
+	
+	Sculpture(String title, StringBuilder description, LocalDate creationDate, String creatorName,
+	          Integer width, Integer height, Integer depth, String mainMaterial, List<Image> additionalImages) {
+		super(title, description, creationDate, creatorName);
+		this.width = width;
+		this.height = height;
+		this.depth = depth;
+		this.mainMaterial = mainMaterial;
+		this.additionalImages = additionalImages;
 	}
 	
 	public void addAdditionalImages(Image... images) {

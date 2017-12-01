@@ -1,8 +1,5 @@
 package model;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,9 +9,9 @@ import java.util.function.Consumer;
 public final class BHFeedString implements Iterable<String> {
 
 	//there's a difference between instance and arrayList
-	@Nullable
+	//@Nullable
 	private static BHFeedString instance;
-	@NotNull
+	//@NotNull
 	private ArrayList<String> arrayList;
 	private final static int DEFAULT_CAPACITY = 50;
 	
@@ -158,7 +155,7 @@ public final class BHFeedString implements Iterable<String> {
 	
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof Collection) && (obj.equals(arrayList));
+		return ((super.equals(obj) && (obj.hashCode() == this.hashCode())));
 	}
 	
 	//implement this later!!!
@@ -167,7 +164,6 @@ public final class BHFeedString implements Iterable<String> {
 		return super.toString();
 	}
 	
-	//hashCode equals and toString
 
 }
 

@@ -41,7 +41,7 @@ public final class Bid {
 		this.auction = auction;
 		this.bidAmount = bidAmount;
 		this.dateTimePlaced = LocalDateTime.now();
-		this.bidder = Util.currentUser;
+		this.bidder = Util.getCurrentUser();
 	}
 	
 	/**

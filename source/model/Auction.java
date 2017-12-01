@@ -13,22 +13,11 @@ import java.util.List;
  * Note that after an Auction has been placed it cannot be changed, it is immutable.
  *
  * @author Bassam Helal
+ * @version 1.0
  * @see Bid
  * @see Artwork
- * @version 1.0
  */
 public final class Auction {
-	
-	/*
-	 * Bassam Helal 27-Nov-17
-	 * I really discourage putting the following fields in the Artwork class
-	 * so I've put them here where they belong better
-	 *
-	 * Double reservePrice;
-	 * Integer bidsAllowed;
-	 * Date dateTimePlaced;
-	 *
-	 */
 	
 	private final Artwork artwork;
 	private final Profile seller;
@@ -41,10 +30,11 @@ public final class Auction {
 	private Profile highestBidder;
 	private Boolean isCompleted;
 	private Double highestPrice;
-
+	
 	
 	/**
 	 * Constructs a new Auction, note that all the parameters are immutable
+	 *
 	 * @param artwork the Artwork that the Auction will be selling
 	 * @param seller the Profile representing the seller of the Auction
 	 * @param bidsAllowed the number of Bids allowed before the Auction ends
@@ -55,7 +45,6 @@ public final class Auction {
 		this.seller = seller;
 		
 		// TODO: 29-Nov-17 Bassam Helal, ***REMOVED*** ***REMOVED*** change this to correspond to Database
-		// TODO: Create full constructors for reading in each class.
 		this.auctionID = null;
 		
 		this.bidList = new ArrayList<>();
@@ -65,8 +54,10 @@ public final class Auction {
 		this.isCompleted = false;
 		this.dateTimePlaced = LocalDateTime.now();
 	}
-
-	public Auction(Artwork artwork, Profile seller, Integer auctionID, List<Bid> bidList, Double reservePrice, Integer bidsAllowed, LocalDateTime dateTimePlaced, Integer bidsLeft, Profile highestBidder, Boolean isCompleted, Double highestPrice) {
+	
+	Auction(Artwork artwork, Profile seller, Integer auctionID, List<Bid> bidList,
+	        Double reservePrice, Integer bidsAllowed, LocalDateTime dateTimePlaced,
+	        Integer bidsLeft, Profile highestBidder, Boolean isCompleted, Double highestPrice) {
 		this.artwork = artwork;
 		this.seller = seller;
 		this.auctionID = auctionID;
@@ -79,7 +70,7 @@ public final class Auction {
 		this.isCompleted = isCompleted;
 		this.highestPrice = highestPrice;
 	}
-
+	
 	public Boolean placeBid(Bid bid) {
 		if (validateBid(bid)) {
 			this.highestBidder = bid.getBidder();

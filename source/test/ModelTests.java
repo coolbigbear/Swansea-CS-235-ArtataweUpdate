@@ -23,19 +23,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Model")
 class ModelTests {
 	
-	/*
-	 * Bassam Helal 26-Nov-17
-	 *
-	 * Don't touch this class without telling me but I'm assuming
-	 * none of you like this shit anyway.
-	 *
-	 *
-	 * This is like a template of the tests for the model we would need
-	 * in order to satisfy the requirements, they aren't fully done but will give us
-	 * an idea on what needs to work how.
-	 *
-	 */
-	
 	//region Test Init
 	
 	
@@ -108,7 +95,7 @@ class ModelTests {
 	@DisplayName("Painting Type")
 	@Test
 	void testPaintingGetType() {
-	//	Artwork localPainting = new Painting("", new StringBuilder(""), LocalDate.now(), "", null, 5, 5);
+		//	Artwork localPainting = new Painting("", new StringBuilder(""), LocalDate.now(), "", null, 5, 5);
 		// assertEquals(ArtworkType.PAINTING, localPainting.getType());
 	}
 	
@@ -217,6 +204,7 @@ class ModelTests {
 		BHFeedString stringFeed = BHFeedString.getNewInstance();
 		BHFeedString stringFeed2 = BHFeedString.getInstance();
 		assertEquals(stringFeed, stringFeed2);
+		assertEquals(BHFeedString.getInstance(), BHFeedString.getInstance());
 	}
 	
 	@DisplayName("BHFeedString check instances not equal")
@@ -300,6 +288,7 @@ class ModelTests {
 		
 		assertEquals(4, anotherStringFeed.size());
 		assertEquals(stringFeed, anotherStringFeed);
+		assertEquals(BHFeedString.getInstance(), BHFeedString.getInstance());
 		
 	}
 	
@@ -328,6 +317,15 @@ class ModelTests {
 		ArrayList<String> arrayList = stringFeed.getAllAsArrayList();
 		
 		assertEquals("Welcome", arrayList.get(3));
+	}
+	
+	@DisplayName("BHFeedString Get all as ArrayList Empty")
+	@Test
+	void testBHFeedStringGetAllAsArrayListEmpty() {
+		BHFeedString stringFeed = BHFeedString.getNewInstance();
+		ArrayList<String> arrayList = stringFeed.getAllAsArrayList();
+		
+		assertNotNull(arrayList);
 	}
 	
 	@DisplayName("BHFeedString Get all as Array")
@@ -437,7 +435,7 @@ class ModelTests {
 		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
 		ArrayList<String> arrayList = new ArrayList<>();
 		
-		for(String string: stringFeed) {
+		for (String string : stringFeed) {
 			arrayList.add(string);
 		}
 		
@@ -456,6 +454,40 @@ class ModelTests {
 		
 		
 		assertEquals("Greetings", arrayList.get(2));
+	}
+	
+	@DisplayName("BHFeedString non equal")
+	@Test
+	void testBHFeedStringNonEqual() {
+		BHFeedString stringFeed = BHFeedString.getNewInstance();
+		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
+		
+		BHFeedString anotherStringFeed = BHFeedString.getNewInstance();
+		anotherStringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
+		
+	    assertNotEquals(stringFeed, anotherStringFeed);
+	}
+	
+	@DisplayName("BHFeedString equal")
+	@Test
+	void testBHFeedStringEqual() {
+		BHFeedString stringFeed = BHFeedString.getNewInstance();
+		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
+		
+		BHFeedString anotherStringFeed = BHFeedString.getNewInstance();
+		anotherStringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
+		
+		assertEquals(stringFeed.getAllAsArrayList(), anotherStringFeed.getAllAsArrayList());
+	}
+	
+	@DisplayName("BHFeedString Destroy Instance Not Null")
+	@Test
+	void testBHFeedStringDestroyInstanceNotNull() {
+		BHFeedString stringFeed = BHFeedString.getNewInstance();
+		stringFeed.addAll("Hello", "Hi", "Greetings", "Welcome");
+		stringFeed.destroyInstance();
+		
+	    assertNotNull(BHFeedString.getInstance());
 	}
 	
 	//endregion

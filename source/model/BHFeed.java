@@ -1,5 +1,8 @@
 package model;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -7,7 +10,7 @@ import java.util.Iterator;
 import java.util.function.Consumer;
 
 /**
- * A Feed is a dynamic collection of Auctions with specific functionality for Artatawe.
+ * A Feed is a dynamic collection (similar to an ArrayList) of Auctions with specific functionality for Artatawe.
  *
  * A Feed is a singleton, meaning only one instance can exist at any given time.
  * To get a new instance of Feed use one of its many static factory methods.
@@ -32,53 +35,21 @@ public final class BHFeed implements Iterable<Auction> {
 	
 	// TODO: 29-Nov-17 Bassam Helal, consider sorting and getting sorted lists based on a given Comparator
 	
-	/*
-	 * A sequential collection of Auctions that is required to
-	 * update itself entirely, clear itself entirely and return an iterable
-	 * copy of itself which will be used by the view to show Auctions
-	 *
-	 * This is because of the following:
-	 *
-	 * A Feed will be used to contain all the Auctions read from the Database, it
-	 * will not care about parameters or filtering, it will only be a collection of
-	 * Auctions and the view will use this collection to decide what to display,
-	 * the filtering should be done through a method in Util by reading specific things in the
-	 * Database, for example to see only Paintings the function will read through the
-	 * entire Database and choose what to add to the Feed based on this filtering, the Feed
-	 * never knows about what the Database is doing, in fact the Feed does not know about the Database
-	 * at all.
-	 *
-	 */
+	//there's a difference between the instance and the arrayList
 	
-	/*
-	 * This implementation of Feed is like a selective ArrayList.
-	 *
-	 * Basically the Feed is an ArrayList of Auctions with limited functionality
-	 * and some special functionality. It is a singleton, meaning there can only ever exist
-	 * a single instance of itself at any given time.
-	 *
-	 * The Feed has the ability to:
-	 *
-	 *      Add one or add many Auctions using a Collection or Array
-	 *      Clear its contents
-	 *      Retrieve all of its contents as an ArrayList or Array
-	 *      Copy all of its contents to a new instance of itself
-	 *      Update itself with new contents of a Collection or Array
-	 *          this would clear the Feed and add all of the Collection or Array
-	 */
-	
-	//The current instance, may be null
+	//The current Feed instance, may be null
+	@Nullable
 	private static BHFeed instance;
-	
-	//The main implementation and data structure of Feed, a dynamic array of Auctions
+	//The main data structure, an ArrayList
+	@NotNull
 	private ArrayList<Auction> arrayList;
-	
-	//The default size of the Feed, if one is never given, this is just initial size
-	private final static int DEFAULT_SIZE = 50;
+	//The initial capacity, note that the Feed grows
+	//this is only useful for guarenteeing no overhead with larger collections
+	private final static int DEFAULT_CAPACITY = 50;
 	
 	//Private because it's a singleton
-	private BHFeed(int size) {
-		arrayList = new ArrayList<>(size);
+	private BHFeed(int capacity) {
+		arrayList = new ArrayList<>(capacity);
 	}
 	
 	/**
@@ -90,25 +61,7 @@ public final class BHFeed implements Iterable<Auction> {
 	 */
 	public static BHFeed getInstance() {
 		if (instance == null) {
-			instance = new BHFeed(DEFAULT_SIZE);
-		}
-		return instance;
-	}
-	
-	/**
-	 * Returns the instance of Feed if its size is greater than the given size.
-	 *
-	 * If one does not exist or the current instance's size is less than
-	 * the given size then returns a new one with the given size.
-	 *
-	 * @param size the desired initial size of the Feed
-	 *
-	 * @return the current instance of Feed if one exists and its size is greater than
-	 * 		the given size, a new one with the given size otherwise
-	 */
-	public static BHFeed getInstanceWithSize(int size) {
-		if (instance == null || instance.size() < size) {
-			instance = new BHFeed(size);
+			instance = new BHFeed(DEFAULT_CAPACITY);
 		}
 		return instance;
 	}
@@ -121,7 +74,7 @@ public final class BHFeed implements Iterable<Auction> {
 	 * @return a new instance of Feed with the default size
 	 */
 	public static BHFeed getNewInstance() {
-		instance = new BHFeed(DEFAULT_SIZE);
+		instance = new BHFeed(DEFAULT_CAPACITY);
 		return instance;
 	}
 	
@@ -130,12 +83,12 @@ public final class BHFeed implements Iterable<Auction> {
 	 *
 	 * This would be used to delete the current instance and get new one with the given size
 	 *
-	 * @param size the desired initial size of the new Feed
+	 * @param capacity the desired initial size of the new Feed
 	 *
 	 * @return a new instance of Feed with the given size
 	 */
-	public static BHFeed getNewInstanceWithSize(int size) {
-		instance = new BHFeed(size);
+	public static BHFeed getNewInstanceWithCapacity(int capacity) {
+		instance = new BHFeed(capacity);
 		return instance;
 	}
 	
@@ -213,7 +166,7 @@ public final class BHFeed implements Iterable<Auction> {
 	 * instance's capacity for those cases, retrieve a new instance.
 	 *
 	 * @see BHFeed#getNewInstance()
-	 * @see BHFeed#getNewInstanceWithSize(int)
+	 * @see BHFeed#getNewInstanceWithCapacity(int)
 	 */
 	public void clear() {
 		arrayList.clear();
@@ -253,7 +206,7 @@ public final class BHFeed implements Iterable<Auction> {
 		if (instance == null) {
 			return getNewInstance();
 		} else {
-			BHFeed local = new BHFeed(DEFAULT_SIZE);
+			BHFeed local = new BHFeed(DEFAULT_CAPACITY);
 			local.addAll(instance.getAllAsArrayList());
 			instance = local;
 			return instance;
@@ -266,16 +219,16 @@ public final class BHFeed implements Iterable<Auction> {
 	 *
 	 * This may be used when a sudden growth is required.
 	 *
-	 * @param size the desired size of the new Feed instance
+	 * @param capacity the desired size of the new Feed instance
 	 *
 	 * @return the new Feed instance with all the current instance's elements copied,
 	 * 		its size would be the given size.
 	 */
-	public BHFeed copyToNewInstanceWithSize(int size) {
+	public BHFeed copyToNewInstanceWithCapacity(int capacity) {
 		if (instance == null) {
-			return getNewInstanceWithSize(size);
+			return getNewInstanceWithCapacity(capacity);
 		} else {
-			BHFeed local = new BHFeed(size);
+			BHFeed local = new BHFeed(capacity);
 			local.addAll(instance.getAllAsArrayList());
 			instance = local;
 			return instance;
@@ -289,15 +242,15 @@ public final class BHFeed implements Iterable<Auction> {
 	 *
 	 * @param auctions the Collection of Auctions to fill the Feed with
 	 */
-	public void updateWith(Collection<Auction> auctions) {
+	public BHFeed updateWith(Collection<Auction> auctions) {
 		if (instance == null) {
-			instance = getNewInstance();
+			instance = new BHFeed(DEFAULT_CAPACITY);
 			instance.addAll(auctions);
 		} else {
 			instance.clear();
 			instance.addAll(auctions);
 		}
-		
+		return instance;
 	}
 	
 	/**
@@ -307,14 +260,15 @@ public final class BHFeed implements Iterable<Auction> {
 	 *
 	 * @param auctions the array or varargs Auctions to fill the Feed with
 	 */
-	public void updateWith(Auction... auctions) {
+	public BHFeed updateWith(Auction... auctions) {
 		if (instance == null) {
-			instance = getNewInstance();
+			instance = new BHFeed(DEFAULT_CAPACITY);
 			instance.addAll(auctions);
 		} else {
 			instance.clear();
 			instance.addAll(auctions);
 		}
+		return instance;
 	}
 	
 	/**
@@ -324,18 +278,22 @@ public final class BHFeed implements Iterable<Auction> {
 	 *
 	 * Updating means clearing the instance's contents and filling them with the parameter.
 	 *
-	 * @param size the desired size of the Feed
+	 * @param capacity the desired size of the Feed
 	 * @param auctions the Collection of Auctions to fill the Feed with
 	 */
-	public void updateWithSize(int size, Collection<Auction> auctions) {
+	public BHFeed updateWithCapacity(int capacity, Collection<Auction> auctions) {
 		if (instance == null) {
-			instance = getNewInstanceWithSize(size);
+			instance = new BHFeed(capacity);
 			instance.addAll(auctions);
 		} else {
-			instance.clear();
-			instance = getInstanceWithSize(size);
+			instance = new BHFeed(capacity);
 			instance.addAll(auctions);
 		}
+		return instance;
+	}
+	
+	public void destroyInstance() {
+		instance = null;
 	}
 	
 	/**
@@ -345,20 +303,35 @@ public final class BHFeed implements Iterable<Auction> {
 	 *
 	 * Updating means clearing the instance's contents and filling them with the parameter.
 	 *
-	 * @param size the desired size of the Feed
+	 * @param capacity the desired size of the Feed
 	 * @param auctions the Array or varargs Auctions to fill the Feed with
 	 */
-	public void updateWithSize(int size, Auction... auctions) {
+	public BHFeed updateWithCapacity(int capacity, Auction... auctions) {
 		if (instance == null) {
-			instance = getNewInstanceWithSize(size);
+			instance = new BHFeed(capacity);
 			instance.addAll(auctions);
 		} else {
-			instance.clear();
-			instance = getNewInstanceWithSize(size);
+			instance = new BHFeed(capacity);
 			instance.addAll(auctions);
 		}
+		return instance;
 	}
 	
-	// TODO: 29-Nov-17 hashCode equals and toString
+	@Override
+	public int hashCode() {
+		return arrayList.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof Collection) && (obj.equals(arrayList));
+	}
+	
+	//implement this later!!!
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+	
 	
 }
