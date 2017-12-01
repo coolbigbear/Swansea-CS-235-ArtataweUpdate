@@ -30,10 +30,10 @@ public class Util {
 			for(Profile profile: fromJson) {
 				//Read the variables required for constructor
 				String name = profile.getUsername();
-				String contactInfo = profile.getContactInfo();
+				//String contactInfo = profile.getContactInfo();
 
 				if (Objects.equals(name, username)) {
-					currentUser = new Profile(name, contactInfo);
+					//currentUser = new Profile(name, contactInfo);
 				}
 			}
 		} catch (FileNotFoundException e) {

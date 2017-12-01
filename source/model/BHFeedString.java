@@ -1,5 +1,8 @@
 package model;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,9 +12,9 @@ import java.util.function.Consumer;
 public final class BHFeedString implements Iterable<String> {
 
 	//there's a difference between instance and arrayList
-	//@Nullable
+	@Nullable
 	private static BHFeedString instance;
-	//@NotNull
+	@NotNull
 	private ArrayList<String> arrayList;
 	private final static int DEFAULT_CAPACITY = 50;
 	

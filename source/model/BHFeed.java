@@ -292,10 +292,6 @@ public final class BHFeed implements Iterable<Auction> {
 		return instance;
 	}
 	
-	public void destroyInstance() {
-		instance = null;
-	}
-	
 	/**
 	 * Updates the current Feed instance with the given Array or varargs and a new size.
 	 *
@@ -317,6 +313,15 @@ public final class BHFeed implements Iterable<Auction> {
 		return instance;
 	}
 	
+	/**
+	 * Destroys the current Feed instance, this is safe and has no effect and purpose
+	 * other than to clear memory, would be used before application shutdown for example
+	 * or to save memory when the current instance is becoming very large
+	 */
+	public void destroyInstance() {
+		instance = null;
+	}
+	
 	@Override
 	public int hashCode() {
 		return arrayList.hashCode();
@@ -324,7 +329,7 @@ public final class BHFeed implements Iterable<Auction> {
 	
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof Collection) && (obj.equals(arrayList));
+		return ((super.equals(obj) && (obj.hashCode() == this.hashCode())));
 	}
 	
 	//implement this later!!!
