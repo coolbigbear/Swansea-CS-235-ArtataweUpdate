@@ -12,12 +12,12 @@ public abstract class Artwork {
 	protected String creatorName;
 	protected Image mainImage;
 	
-	Artwork(String title, StringBuilder description, LocalDate creationDate, String creatorName, Image mainImage) {
+	Artwork(String title, StringBuilder description, LocalDate creationDate, String creatorName) {//, Image mainImage) {
 		this.title = title;
 		this.description = description;
 		this.creationDate = creationDate;
 		this.creatorName = creatorName;
-		this.mainImage = mainImage;
+		//this.mainImage = mainImage;
 	}
 	
 	public abstract ArtworkType getType();

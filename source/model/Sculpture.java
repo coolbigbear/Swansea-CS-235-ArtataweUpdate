@@ -17,7 +17,7 @@ public class Sculpture extends Artwork {
 	
 	public Sculpture(String title, StringBuilder description, LocalDate creationDate, String creatorName, Image mainImage,
 	                 Integer width, Integer height, Integer depth, String mainMaterial) {
-		super(title, description, creationDate, creatorName, mainImage);
+		super(title, description, creationDate, creatorName);
 		this.width = width;
 		this.height = height;
 		this.depth = depth;

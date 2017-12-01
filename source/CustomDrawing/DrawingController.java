@@ -28,7 +28,8 @@ public class DrawingController {
     public void onSave(){
         try{
             Image snapshot = canvas.snapshot(null, null);
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File("C:\\Users\\x\\IdeaProjects\\ProfileImage.png"));
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File
+                    ("\\ProfileImage.png")); // TODO: 30-Nov-17 Update this path to be relative path or have a picker
         }catch(Exception e){
             System.out.println("Cannot save file!" + e);
         }

@@ -55,6 +55,7 @@ public final class Auction {
 		this.seller = seller;
 		
 		// TODO: 29-Nov-17 Bassam Helal, ***REMOVED*** ***REMOVED*** change this to correspond to Database
+		// TODO: Create full constructors for reading in each class.
 		this.auctionID = null;
 		
 		this.bidList = new ArrayList<>();
@@ -64,8 +65,21 @@ public final class Auction {
 		this.isCompleted = false;
 		this.dateTimePlaced = LocalDateTime.now();
 	}
-	
-	
+
+	public Auction(Artwork artwork, Profile seller, Integer auctionID, List<Bid> bidList, Double reservePrice, Integer bidsAllowed, LocalDateTime dateTimePlaced, Integer bidsLeft, Profile highestBidder, Boolean isCompleted, Double highestPrice) {
+		this.artwork = artwork;
+		this.seller = seller;
+		this.auctionID = auctionID;
+		this.bidList = bidList;
+		this.reservePrice = reservePrice;
+		this.bidsAllowed = bidsAllowed;
+		this.dateTimePlaced = dateTimePlaced;
+		this.bidsLeft = bidsLeft;
+		this.highestBidder = highestBidder;
+		this.isCompleted = isCompleted;
+		this.highestPrice = highestPrice;
+	}
+
 	public Boolean placeBid(Bid bid) {
 		if (validateBid(bid)) {
 			this.highestBidder = bid.getBidder();
