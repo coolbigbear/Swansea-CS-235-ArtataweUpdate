@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layouts.testing">
+   <children>
+      <ImageView fitHeight="193.0" fitWidth="252.0" layoutX="83.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox layoutX="92.0" layoutY="241.0" prefHeight="57.0" prefWidth="252.0">
+         <children>
+            <ImageView fitHeight="57.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <Label layoutX="591.0" layoutY="48.0" text="auction name" />
+      <GridPane layoutX="556.0" layoutY="166.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Creator" />
+            <Label text="Creation year" GridPane.rowIndex="1" />
+            <Label text="Dimeonsions" GridPane.rowIndex="2" />
+            <Label text="Main material" GridPane.rowIndex="3" />
+            <Label text="davinci" GridPane.columnIndex="1" />
+            <Label text="1999" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="yes" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="no" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <Label layoutX="434.0" layoutY="311.0" text="Description" />
+      <Label layoutX="539.0" layoutY="311.0" text="Descriptioning" />
+      <GridPane layoutX="109.0" layoutY="322.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Seller" />
+            <Label text="ilian putka" GridPane.columnIndex="1" />
+            <Label text="forgot what this was" GridPane.rowIndex="1" />
+            <Label text="????" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Highest bid" GridPane.rowIndex="2" />
+            <Label text="00.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Place bid" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" text="BID" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

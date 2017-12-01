@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.5909090909090909" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <VBox prefHeight="478.0" prefWidth="373.0">
+               <children>
+                  <ImageView fitHeight="312.0" fitWidth="373.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <VBox prefHeight="478.0" prefWidth="257.0">
+               <children>
+                  <Label prefHeight="137.0" prefWidth="256.0" text="Artatawe">
+                     <font>
+                        <Font size="61.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="64.0" prefWidth="257.0" />
+                  <TextField prefHeight="31.0" prefWidth="234.0" promptText="Username" />
+                  <Label prefHeight="33.0" prefWidth="257.0" text="Label" />
+                  <Button mnemonicParsing="false" text="Login" />
+               </children></VBox>
+         </children></AnchorPane>
+  </items>
+</SplitPane>
