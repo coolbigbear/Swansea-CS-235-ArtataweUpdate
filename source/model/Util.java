@@ -1,6 +1,7 @@
 package model;
 
 import com.google.gson.Gson;
+import model.exception.ProfileNotFoundException;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -19,35 +20,45 @@ public class Util {
 	/**
 	 * The current user who is signed in to the system.
 	 */
-	private  static Profile currentUser;
+	private static Profile currentUser;
 	private Gson gson = new Gson();
 	
 	public void readInLoggedInUser(String username) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("database/Profiles.json"));
 			ArrayList<Profile> fromJson = gson.fromJson(br, (Type) Profile.class);
-
-			for(Profile profile: fromJson) {
+			
+			for (Profile profile : fromJson) {
 				//Read the variables required for constructor
 				String name = profile.getUsername();
-				//String contactInfo = profile.getContactInfo();
-
+				
 				if (Objects.equals(name, username)) {
-					//currentUser = new Profile(name, contactInfo);
+					setCurrentUser(profile);
+					return;
 				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		throw new ProfileNotFoundException("Profile not found!");
 	}
-
+	
+	private void setCurrentUser(Profile profile) {
+		currentUser = new Profile(profile.getUsername(), profile.getFirstName(), profile.getLastName(),
+				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),
+				profile.getCity(), profile.getCountry(), profile.getPostcode(),
+				profile.getFavouriteUsers(), profile.getWonAuctions(), profile.getCompletedAuctions(),
+				profile.getCurrentlySelling(), profile.getNewAuctions(), profile.getAuctionsNewBids(),
+				profile.getAllBidsPlaced(), profile.getLastLogInTime());
+	}
+	
 	public void readInAllAuctions() {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("database/Auctions.json"));
 			Auction[] fromJson = gson.fromJson(br, Auction[].class); // TODO Error on reading JSON artwork is to abstract
 			ArrayList<Auction> auctionArrayList = new ArrayList<>();
 			
-			for(Auction auction: fromJson) {
+			for (Auction auction : fromJson) {
 				//Read the variables required for constructor
 				Artwork artwork = auction.getArtwork();
 				Profile seller = auction.getSeller();
@@ -60,7 +71,7 @@ public class Util {
 				Profile highestBidder = auction.getHighestBidder();
 				Boolean isCompleted = auction.getCompleted();
 				Double highestPrice = auction.getHighestPrice();
-
+				
 				
 				auctionArrayList.add(auction);
 				

@@ -28,7 +28,7 @@ public final class Profile {
 	private List<Bid> allBidsPlaced;
 	private LocalDateTime lastLogInTime;
 	
-	
+	//Private because should only be used by the factory
 	private Profile(String username, String firstName, String lastName, Integer phoneNumber,
 	                String addressLine1, String addressLine2, String city, String country, String postcode) {
 		this.username = username;
@@ -51,6 +51,7 @@ public final class Profile {
 		this.lastLogInTime = LocalDateTime.now();
 	}
 	
+	//Used by the Database
 	public Profile(String username, String firstName, String lastName, Integer phoneNumber,
 	               String addressLine1, String addressLine2, String city, String country,
 	               String postcode, List<Profile> favouriteUsers, List<Auction> wonAuctions,
@@ -76,8 +77,8 @@ public final class Profile {
 		this.lastLogInTime = lastLogInTime;
 	}
 	
-	//Factory for making new Profiles in the System, new Users, not Objects!!!
-	public Profile createNewProfile(String username, String firstName, String lastName, Integer phoneNumber,
+	//Factory for adding new Profiles in the System, new Users, not Objects!!!
+	public static Profile createNewProfile(String username, String firstName, String lastName, Integer phoneNumber,
 	                                String addressLine1, String addressLine2, String city, String country,
 	                                String postcode) {
 		Profile profile = new Profile(username, firstName, lastName, phoneNumber, addressLine1, addressLine2, city,
@@ -88,6 +89,42 @@ public final class Profile {
 		//...
 		
 		return profile;
+	}
+	
+	public String getUsername() {
+		return this.username;
+	}
+	
+	public String getFirstName() {
+		return this.firstName;
+	}
+	
+	public String getLastName() {
+		return this.lastName;
+	}
+	
+	public Integer getPhoneNumber() {
+		return this.phoneNumber;
+	}
+	
+	public String getAddressLine1() {
+		return this.addressLine1;
+	}
+	
+	public String getAddressLine2() {
+		return this.addressLine2;
+	}
+	
+	public String getCity() {
+		return this.city;
+	}
+	
+	public String getCountry() {
+		return this.country;
+	}
+	
+	public String getPostcode() {
+		return this.postcode;
 	}
 	
 	public List<Profile> getFavouriteUsers() {
@@ -118,10 +155,6 @@ public final class Profile {
 		return this.allBidsPlaced;
 	}
 	
-	public String getUsername() {
-		return this.username;
-	}
-	
 	public LocalDateTime getLastLogInTime() {
 		return this.lastLogInTime;
 	}
@@ -134,10 +167,6 @@ public final class Profile {
 			return false;
 		}
 	}
-	
-	
-	// Bassam Helal, I discourage using ContactInfo as we showed in the design, just put everything here directly
-	
 	
 	@Override
 	public int hashCode() {

@@ -1,6 +1,9 @@
 package test;
 
-import model.*;
+import model.Artwork;
+import model.ArtworkType;
+import model.BHFeedString;
+import model.Sculpture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
