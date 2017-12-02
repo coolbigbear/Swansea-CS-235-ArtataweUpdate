@@ -40,12 +40,12 @@ public final class Auction {
 	 * @param bidsAllowed the number of Bids allowed before the Auction ends
 	 * @param reservePrice the minimum accepted price of a Bid
 	 */
-	public Auction(Artwork artwork, Profile seller, Integer bidsAllowed, Double reservePrice) {
+	public Auction(Artwork artwork, Profile seller, Integer auctionID, Integer bidsAllowed, Double reservePrice) {
 		this.artwork = artwork;
 		this.seller = seller;
 		
 		// TODO: 29-Nov-17 Bassam Helal, ***REMOVED*** ***REMOVED*** change this to correspond to Database
-		this.auctionID = null;
+		this.auctionID = auctionID;
 		
 		this.bidList = new ArrayList<>();
 		this.bidsLeft = bidsAllowed;
@@ -154,7 +154,7 @@ public final class Auction {
 	// TODO: 29-Nov-17 Bassam Helal need to do this
 	@Override
 	public String toString() {
-		return super.toString();
+		return "This is the auction id: " + getAuctionID();
 	}
 	
 }

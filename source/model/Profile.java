@@ -13,7 +13,7 @@ public final class Profile {
 	private final String username;
 	private final String firstName;
 	private final String lastName;
-	private final Integer phoneNumber;
+	private final String phoneNumber;
 	private final String addressLine1;
 	private final String addressLine2;
 	private final String city;
@@ -29,7 +29,7 @@ public final class Profile {
 	private LocalDateTime lastLogInTime;
 	
 	//Private because should only be used by the factory
-	private Profile(String username, String firstName, String lastName, Integer phoneNumber,
+	private Profile(String username, String firstName, String lastName, String phoneNumber,
 	                String addressLine1, String addressLine2, String city, String country, String postcode) {
 		this.username = username;
 		this.firstName = firstName;
@@ -52,7 +52,7 @@ public final class Profile {
 	}
 	
 	//Used by the Database
-	public Profile(String username, String firstName, String lastName, Integer phoneNumber,
+	public Profile(String username, String firstName, String lastName, String phoneNumber,
 	               String addressLine1, String addressLine2, String city, String country,
 	               String postcode, List<Profile> favouriteUsers, List<Auction> wonAuctions,
 	               List<Auction> completedAuctions, List<Auction> currentlySelling,
@@ -78,7 +78,7 @@ public final class Profile {
 	}
 	
 	//Factory for adding new Profiles in the System, new Users, not Objects!!!
-	public static Profile createNewProfile(String username, String firstName, String lastName, Integer phoneNumber,
+	public static Profile createNewProfile(String username, String firstName, String lastName, String phoneNumber,
 	                                String addressLine1, String addressLine2, String city, String country,
 	                                String postcode) {
 		Profile profile = new Profile(username, firstName, lastName, phoneNumber, addressLine1, addressLine2, city,
@@ -103,7 +103,7 @@ public final class Profile {
 		return this.lastName;
 	}
 	
-	public Integer getPhoneNumber() {
+	public String getPhoneNumber() {
 		return this.phoneNumber;
 	}
 	

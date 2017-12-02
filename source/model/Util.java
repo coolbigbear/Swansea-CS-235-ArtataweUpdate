@@ -1,6 +1,8 @@
 package model;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import javafx.scene.shape.Shape;
 import model.exception.ProfileNotFoundException;
 
 import java.io.BufferedReader;
@@ -25,7 +27,7 @@ public class Util {
 	
 	public void readInLoggedInUser(String username) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("database/Profiles.json"));
+			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Profiles.json"));
 			ArrayList<Profile> fromJson = gson.fromJson(br, (Type) Profile.class);
 			
 			for (Profile profile : fromJson) {
@@ -54,7 +56,18 @@ public class Util {
 	
 	public void readInAllAuctions() {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("database/Auctions.json"));
+			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
+
+			RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "type");
+
+			artworkAdapterFactory.registerSubtype(Artwork.class);
+			artworkAdapterFactory.registerSubtype(Sculpture.class);
+			artworkAdapterFactory.registerSubtype(Painting.class);
+
+			Gson gson = new GsonBuilder()
+					.registerTypeAdapterFactory(artworkAdapterFactory)
+					.create();
+
 			Auction[] fromJson = gson.fromJson(br, Auction[].class); // TODO Error on reading JSON artwork is to abstract
 			ArrayList<Auction> auctionArrayList = new ArrayList<>();
 			
@@ -77,6 +90,7 @@ public class Util {
 				
 			}
 			BHFeed.getNewInstance().addAll(auctionArrayList);
+			System.out.println(BHFeed.getInstance());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

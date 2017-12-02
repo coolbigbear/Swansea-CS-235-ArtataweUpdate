@@ -44,7 +44,7 @@ public final class BHFeed implements Iterable<Auction> {
 	@NotNull
 	private ArrayList<Auction> arrayList;
 	//The initial capacity, note that the Feed grows
-	//this is only useful for guarenteeing no overhead with larger collections
+	//this is only useful for guaranteeing no overhead with larger collections
 	private final static int DEFAULT_CAPACITY = 50;
 	
 	//Private because it's a singleton
