@@ -23,8 +23,12 @@ public final class Profile {
 	private List<Auction> wonAuctions;
 	private List<Auction> completedAuctions;
 	private List<Auction> currentlySelling;
-	private List<Auction> newAuctions;      //Bassam Helal What's this??
-	private List<Auction> auctionsNewBids;  //Bassam Helal What's this also??
+	
+	//maybe we can do these differently {
+	private List<Auction> newAuctions;
+	private List<Auction> auctionsNewBids;
+	//}
+	
 	private List<Bid> allBidsPlaced;
 	private LocalDateTime lastLogInTime;
 	
@@ -79,8 +83,8 @@ public final class Profile {
 	
 	//Factory for adding new Profiles in the System, new Users, not Objects!!!
 	public static Profile createNewProfile(String username, String firstName, String lastName, String phoneNumber,
-	                                String addressLine1, String addressLine2, String city, String country,
-	                                String postcode) {
+	                                       String addressLine1, String addressLine2, String city, String country,
+	                                       String postcode) {
 		Profile profile = new Profile(username, firstName, lastName, phoneNumber, addressLine1, addressLine2, city,
 				country, postcode);
 		
@@ -159,6 +163,7 @@ public final class Profile {
 		return this.lastLogInTime;
 	}
 	
+	//This is validation of a username I think
 	public boolean checkUsername(String username) {
 		String checkUsername = "[a-zA-Z0-9]";
 		if (username.matches(checkUsername)) {
@@ -170,14 +175,15 @@ public final class Profile {
 	
 	@Override
 	public int hashCode() {
-		return super.hashCode();
+		return this.username.hashCode();
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
-		return super.equals(obj);
+		return (obj instanceof Profile) && (obj.hashCode() == this.hashCode());
 	}
 	
+	//Implement this later!!!
 	@Override
 	public String toString() {
 		return super.toString();
