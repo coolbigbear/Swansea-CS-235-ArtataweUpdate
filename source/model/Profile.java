@@ -1,7 +1,5 @@
 package model;
 
-import javafx.scene.image.Image;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ public final class Profile {
 	private final String country;
 	private final String postcode;
 	//private final Image profileImage; //TODO: Locate and set users profile image
-	private List<Profile> favouriteUsers;
+	private List<String> favouriteUsers;
 	private List<Auction> wonAuctions;
 	private List<Auction> completedAuctions;
 	private List<Auction> currentlySelling;
@@ -58,11 +56,11 @@ public final class Profile {
 	
 	//Used by the Database
 	public Profile(String username, String firstName, String lastName, String phoneNumber,
-	               String addressLine1, String addressLine2, String city, String country,
-	               String postcode, List<Profile> favouriteUsers, List<Auction> wonAuctions,
-	               List<Auction> completedAuctions, List<Auction> currentlySelling,
-	               List<Auction> newAuctions, List<Auction> auctionsNewBids, List<Bid> allBidsPlaced,
-	               LocalDateTime lastLogInTime) {
+                   String addressLine1, String addressLine2, String city, String country,
+                   String postcode, List<String> favouriteUsers, List<Auction> wonAuctions,
+                   List<Auction> completedAuctions, List<Auction> currentlySelling,
+                   List<Auction> newAuctions, List<Auction> auctionsNewBids, List<Bid> allBidsPlaced,
+                   LocalDateTime lastLogInTime) {
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -137,7 +135,7 @@ public final class Profile {
 		return this.postcode;
 	}
 	
-	public List<Profile> getFavouriteUsers() {
+	public List<String> getFavouriteUsers() {
 		return this.favouriteUsers;
 	}
 	

@@ -83,7 +83,7 @@ public final class Util {
 					.registerTypeAdapterFactory(artworkAdapterFactory)
 					.create();
 			
-			Auction[] fromJson = gson.fromJson(br, Auction[].class); // TODO Error on reading JSON artwork is to abstract
+			Auction[] fromJson = gson.fromJson(br, Auction[].class);
 			ArrayList<Auction> auctionArrayList = new ArrayList<>();
 			
 			for (Auction auction : fromJson) {
@@ -109,6 +109,27 @@ public final class Util {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void removeFavouriteUser(String usernameToRemove) {
+		BufferedReader bufferedReader = null;
+		try {
+			bufferedReader = new BufferedReader(new FileReader("JSON Files/Profiles.json"));
+			ArrayList<Profile> allProfiles = gson.fromJson(bufferedReader, (Type) Profile.class);
+
+			for (Profile profile : allProfiles) {
+				String name = profile.getUsername();
+
+//				if (Objects.equals(name, currentUser.getUsername())) {
+//					for(Profile profile1 : name)
+//					return profile;
+//				}
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	public static Profile getCurrentUser() {

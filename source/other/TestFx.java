@@ -30,11 +30,12 @@ public class TestFx extends Application {
 
 		List<Profile> profiles = new ArrayList<>();
 		List<Auction> auctions = new ArrayList<>();
+		List<String> favourites = new ArrayList<>();
 
 
 		Profile p1 = new Profile("bigbear1", "***REMOVED***", "***REMOVED***","07856912862",
                 "Some Address","BitDifferent Address","someCity","UK, duh","somePostcode",
-                profiles, new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
+                favourites, new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
 		Profile p2 = new Profile("bigbear2", "***REMOVED***", "***REMOVED***","07856912862",
                 "Some Address","BitDifferent Address","someCity","UK, duh","somePostcode",
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
@@ -44,13 +45,16 @@ public class TestFx extends Application {
 //		Profile p6 = new Profile("bigbear6", "No contact info");
 //		Profile p7 = new Profile("bigbear7", "No contact info");
 
-//		profiles.add(p1);
+		profiles.add(p1);
 		profiles.add(p2);
 //		profiles.add(p3);
 //		profiles.add(p4);
 //		profiles.add(p5);
 //		profiles.add(p6);
 //		profiles.add(p7);
+
+		favourites.add(p1.getUsername());
+		favourites.add(p2.getUsername());
 
 		Artwork art1 = new Painting("Monalisa", new StringBuilder("The most beautiful painting"), LocalDate.now(), "DaVinci");
 		Artwork art2 = new Painting("Scream", new StringBuilder("Can you hear the voices?"), LocalDate.now(), "James down the road");

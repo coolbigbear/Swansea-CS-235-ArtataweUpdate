@@ -1,169 +1,66 @@
 [
   {
-    "favouriteUsers": [],
-    "wonAuctions": [],
-    "completedAuction": [],
-    "currentlySelling": [],
-    "newAuctions": [],
-    "auctionsNewBids": [],
-    "allBidsPlaced": [],
     "username": "bigbear1",
-    "contactInfo": "No contact info",
-    "lastLogInTime": {
-      "date": {
-        "year": 2017,
-        "month": 12,
-        "day": 1
-      },
-      "time": {
-        "hour": 13,
-        "minute": 35,
-        "second": 50,
-        "nano": 278000000
-      }
-    }
-  },
-  {
-    "favouriteUsers": [],
+    "firstName": "***REMOVED***",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
+    "favouriteUsers": [
+      "bigbear1",
+      "bigbear2"
+    ],
     "wonAuctions": [],
-    "completedAuction": [],
+    "completedAuctions": [],
     "currentlySelling": [],
     "newAuctions": [],
     "auctionsNewBids": [],
     "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 3
+      },
+      "time": {
+        "hour": 15,
+        "minute": 17,
+        "second": 53,
+        "nano": 330000000
+      }
+    }
+  },
+  {
     "username": "bigbear2",
-    "contactInfo": "No contact info",
-    "lastLogInTime": {
-      "date": {
-        "year": 2017,
-        "month": 12,
-        "day": 1
-      },
-      "time": {
-        "hour": 13,
-        "minute": 35,
-        "second": 50,
-        "nano": 287000000
-      }
-    }
-  },
-  {
+    "firstName": "***REMOVED***",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
     "favouriteUsers": [],
     "wonAuctions": [],
-    "completedAuction": [],
+    "completedAuctions": [],
     "currentlySelling": [],
     "newAuctions": [],
     "auctionsNewBids": [],
     "allBidsPlaced": [],
-    "username": "bigbear3",
-    "contactInfo": "No contact info",
     "lastLogInTime": {
       "date": {
         "year": 2017,
         "month": 12,
-        "day": 1
+        "day": 3
       },
       "time": {
-        "hour": 13,
-        "minute": 35,
-        "second": 50,
-        "nano": 287000000
-      }
-    }
-  },
-  {
-    "favouriteUsers": [],
-    "wonAuctions": [],
-    "completedAuction": [],
-    "currentlySelling": [],
-    "newAuctions": [],
-    "auctionsNewBids": [],
-    "allBidsPlaced": [],
-    "username": "bigbear4",
-    "contactInfo": "No contact info",
-    "lastLogInTime": {
-      "date": {
-        "year": 2017,
-        "month": 12,
-        "day": 1
-      },
-      "time": {
-        "hour": 13,
-        "minute": 35,
-        "second": 50,
-        "nano": 287000000
-      }
-    }
-  },
-  {
-    "favouriteUsers": [],
-    "wonAuctions": [],
-    "completedAuction": [],
-    "currentlySelling": [],
-    "newAuctions": [],
-    "auctionsNewBids": [],
-    "allBidsPlaced": [],
-    "username": "bigbear5",
-    "contactInfo": "No contact info",
-    "lastLogInTime": {
-      "date": {
-        "year": 2017,
-        "month": 12,
-        "day": 1
-      },
-      "time": {
-        "hour": 13,
-        "minute": 35,
-        "second": 50,
-        "nano": 287000000
-      }
-    }
-  },
-  {
-    "favouriteUsers": [],
-    "wonAuctions": [],
-    "completedAuction": [],
-    "currentlySelling": [],
-    "newAuctions": [],
-    "auctionsNewBids": [],
-    "allBidsPlaced": [],
-    "username": "bigbear6",
-    "contactInfo": "No contact info",
-    "lastLogInTime": {
-      "date": {
-        "year": 2017,
-        "month": 12,
-        "day": 1
-      },
-      "time": {
-        "hour": 13,
-        "minute": 35,
-        "second": 50,
-        "nano": 287000000
-      }
-    }
-  },
-  {
-    "favouriteUsers": [],
-    "wonAuctions": [],
-    "completedAuction": [],
-    "currentlySelling": [],
-    "newAuctions": [],
-    "auctionsNewBids": [],
-    "allBidsPlaced": [],
-    "username": "bigbear7",
-    "contactInfo": "No contact info",
-    "lastLogInTime": {
-      "date": {
-        "year": 2017,
-        "month": 12,
-        "day": 1
-      },
-      "time": {
-        "hour": 13,
-        "minute": 35,
-        "second": 50,
-        "nano": 287000000
+        "hour": 15,
+        "minute": 17,
+        "second": 53,
+        "nano": 335000000
       }
     }
   }

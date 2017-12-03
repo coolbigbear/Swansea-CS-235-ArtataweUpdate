@@ -1,1 +1,131 @@
-[{"artwork":{"type":"Painting","title":"Monalisa","description":"The most beautiful painting","creationDate":{"year":2017,"month":12,"day":2},"creatorName":"DaVinci"},"seller":{"username":"bigbear1","firstName":"***REMOVED***","lastName":"***REMOVED***","phoneNumber":"07856912862","addressLine1":"Some Address","addressLine2":"BitDifferent Address","city":"someCity","country":"UK, duh","postcode":"somePostcode","favouriteUsers":[{"username":"bigbear2","firstName":"***REMOVED***","lastName":"***REMOVED***","phoneNumber":"07856912862","addressLine1":"Some Address","addressLine2":"BitDifferent Address","city":"someCity","country":"UK, duh","postcode":"somePostcode","favouriteUsers":[],"wonAuctions":[],"completedAuctions":[],"currentlySelling":[],"newAuctions":[],"auctionsNewBids":[],"allBidsPlaced":[],"lastLogInTime":{"date":{"year":2017,"month":12,"day":2},"time":{"hour":16,"minute":2,"second":15,"nano":860000000}}}],"wonAuctions":[],"completedAuctions":[],"currentlySelling":[],"newAuctions":[],"auctionsNewBids":[],"allBidsPlaced":[],"lastLogInTime":{"date":{"year":2017,"month":12,"day":2},"time":{"hour":16,"minute":2,"second":15,"nano":854000000}}},"auctionID":1,"bidList":[],"reservePrice":18000.0,"bidsAllowed":20,"dateTimePlaced":{"date":{"year":2017,"month":12,"day":2},"time":{"hour":16,"minute":2,"second":15,"nano":862000000}},"bidsLeft":20,"isCompleted":false},{"artwork":{"type":"Painting","title":"Scream","description":"Can you hear the voices?","creationDate":{"year":2017,"month":12,"day":2},"creatorName":"James down the road"},"seller":{"username":"bigbear2","firstName":"***REMOVED***","lastName":"***REMOVED***","phoneNumber":"07856912862","addressLine1":"Some Address","addressLine2":"BitDifferent Address","city":"someCity","country":"UK, duh","postcode":"somePostcode","favouriteUsers":[],"wonAuctions":[],"completedAuctions":[],"currentlySelling":[],"newAuctions":[],"auctionsNewBids":[],"allBidsPlaced":[],"lastLogInTime":{"date":{"year":2017,"month":12,"day":2},"time":{"hour":16,"minute":2,"second":15,"nano":860000000}}},"auctionID":2,"bidList":[],"reservePrice":28000.0,"bidsAllowed":30,"dateTimePlaced":{"date":{"year":2017,"month":12,"day":2},"time":{"hour":16,"minute":2,"second":15,"nano":862000000}},"bidsLeft":30,"isCompleted":false}]
+[
+  {
+    "artwork": {
+      "type": "Painting",
+      "title": "Monalisa",
+      "description": "The most beautiful painting",
+      "creationDate": {
+        "year": 2017,
+        "month": 12,
+        "day": 3
+      },
+      "creatorName": "DaVinci"
+    },
+    "seller": {
+      "username": "bigbear1",
+      "firstName": "***REMOVED***",
+      "lastName": "***REMOVED***",
+      "phoneNumber": "07856912862",
+      "addressLine1": "Some Address",
+      "addressLine2": "BitDifferent Address",
+      "city": "someCity",
+      "country": "UK, duh",
+      "postcode": "somePostcode",
+      "favouriteUsers": [
+        "bigbear1",
+        "bigbear2"
+      ],
+      "wonAuctions": [],
+      "completedAuctions": [],
+      "currentlySelling": [],
+      "newAuctions": [],
+      "auctionsNewBids": [],
+      "allBidsPlaced": [],
+      "lastLogInTime": {
+        "date": {
+          "year": 2017,
+          "month": 12,
+          "day": 3
+        },
+        "time": {
+          "hour": 15,
+          "minute": 18,
+          "second": 29,
+          "nano": 449000000
+        }
+      }
+    },
+    "auctionID": 1,
+    "bidList": [],
+    "reservePrice": 18000.0,
+    "bidsAllowed": 20,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 3
+      },
+      "time": {
+        "hour": 15,
+        "minute": 18,
+        "second": 29,
+        "nano": 456000000
+      }
+    },
+    "bidsLeft": 20,
+    "isCompleted": false
+  },
+  {
+    "artwork": {
+      "type": "Painting",
+      "title": "Scream",
+      "description": "Can you hear the voices?",
+      "creationDate": {
+        "year": 2017,
+        "month": 12,
+        "day": 3
+      },
+      "creatorName": "James down the road"
+    },
+    "seller": {
+      "username": "bigbear2",
+      "firstName": "***REMOVED***",
+      "lastName": "***REMOVED***",
+      "phoneNumber": "07856912862",
+      "addressLine1": "Some Address",
+      "addressLine2": "BitDifferent Address",
+      "city": "someCity",
+      "country": "UK, duh",
+      "postcode": "somePostcode",
+      "favouriteUsers": [],
+      "wonAuctions": [],
+      "completedAuctions": [],
+      "currentlySelling": [],
+      "newAuctions": [],
+      "auctionsNewBids": [],
+      "allBidsPlaced": [],
+      "lastLogInTime": {
+        "date": {
+          "year": 2017,
+          "month": 12,
+          "day": 3
+        },
+        "time": {
+          "hour": 15,
+          "minute": 18,
+          "second": 29,
+          "nano": 454000000
+        }
+      }
+    },
+    "auctionID": 2,
+    "bidList": [],
+    "reservePrice": 28000.0,
+    "bidsAllowed": 30,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 3
+      },
+      "time": {
+        "hour": 15,
+        "minute": 18,
+        "second": 29,
+        "nano": 456000000
+      }
+    },
+    "bidsLeft": 30,
+    "isCompleted": false
+  }
+]
