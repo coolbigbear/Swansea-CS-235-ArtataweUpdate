@@ -67,27 +67,14 @@ public class TestFx extends Application {
 		auctions.add(a2);
 
 		//Json - Gson stuff
-		RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "type");
-
-		artworkAdapterFactory.registerSubtype(Artwork.class);
-		artworkAdapterFactory.registerSubtype(Sculpture.class);
-		artworkAdapterFactory.registerSubtype(Painting.class);
-
-		Gson gson = new GsonBuilder()
-				.registerTypeAdapterFactory(artworkAdapterFactory)
-				.create();
 
 		//Write JSON String to file
-		try {
-			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
-			gson.toJson(auctions, fileWriter);
-			fileWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
-		Util util = new Util();
-		util.readInAllAuctions();
+		Util.saveAuctionsToFile(auctions);
+		//Util.saveProfileToFile(auctions);
+
+		Util.readInAllAuctions();
+
 
     	launch(args);
 	}
