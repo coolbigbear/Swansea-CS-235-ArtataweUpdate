@@ -1,12 +1,12 @@
 package model;
 
+import javafx.scene.image.Image;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Unsure on a 'Checkusername' method
 // TODO: Have to add 'Filter' methods for profile
-// TODO: Profile image as no class??
 
 public final class Profile {
 	
@@ -19,6 +19,7 @@ public final class Profile {
 	private final String city;
 	private final String country;
 	private final String postcode;
+	//private final Image profileImage; //TODO: Locate and set users profile image
 	private List<Profile> favouriteUsers;
 	private List<Auction> wonAuctions;
 	private List<Auction> completedAuctions;
@@ -94,6 +95,11 @@ public final class Profile {
 		
 		return profile;
 	}
+
+	//TODO: Make a get for profile image? Unsure fully how this would be done
+/*	public Image getProfileImage(){
+		return this.profileImage;
+	}*/
 	
 	public String getUsername() {
 		return this.username;
@@ -163,15 +169,34 @@ public final class Profile {
 		return this.lastLogInTime;
 	}
 	
-	//This is validation of a username I think
+	//TODO: Could this be done through database? Checking if a username has been entered twice?
+	/**
+	 * Checks if the username entered consists of a valid string that includes a-z, A-Z, 0-9.
+	 * If username consists of something other it throws an exception and returns false.
+	 *
+	 * @param username The users custom username
+	 *
+	 * @return true if its a valid username, false if otherwise
+	 */
 	public boolean checkUsername(String username) {
 		String checkUsername = "[a-zA-Z0-9]";
-		if (username.matches(checkUsername)) {
+		try {
+			username.matches(checkUsername);
+			System.out.println("Valid username");
+			return true;
+		} catch (Exception e) {
+			System.out.println("Not a valid username" + e);
+			return false;
+		}
+
+/*		if (username.matches(checkUsername)) {
 			return true;
 		} else {
 			return false;
-		}
+		}*/
+
 	}
+
 	
 	@Override
 	public int hashCode() {
