@@ -2,6 +2,7 @@ package model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.exception.ProfileNotFoundException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public final class Util {
 	 */
 	private static Profile currentUser;
 	private static Gson gson = new Gson();
-
+	
 	/**
 	 * Reads in all profiles from database.
 	 *
@@ -26,25 +27,25 @@ public final class Util {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Profiles.json"));
 			return gson.fromJson(br, Profile[].class);
-
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return null;
+		throw new ProfileNotFoundException("Profile not found!");
 	}
-
+	
 	/**
 	 * Read logged in user.
 	 *
 	 * @param username the username
 	 */
 	public static void readInLoggedInUser(String username) {
-
+		
 		Profile[] fromJson = readInProfileFile();
 		for (Profile profile : fromJson) {
 			//Read the variables required for constructor
 			String name = profile.getUsername();
-
+			
 			if (Objects.equals(name, username)) {
 				setCurrentUser(profile);
 			}
@@ -54,32 +55,33 @@ public final class Util {
 	private static void setCurrentUser(Profile profile) {
 		currentUser = new Profile(profile.getUsername(), profile.getFirstName(), profile.getLastName(),
 				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),
-				profile.getCity(), profile.getCountry(), profile.getPostcode(),
+				profile.getCity(), profile.getCountry(), profile.getPostcode(), profile.getProfileImagePath(),
 				profile.getFavouriteUsers(), profile.getWonAuctions(), profile.getCompletedAuctions(),
 				profile.getCurrentlySelling(), profile.getNewAuctions(), profile.getAuctionsNewBids(),
 				profile.getAllBidsPlaced(), profile.getLastLogInTime());
 	}
-
+	
 	/**
 	 * Gets profile by username from database.
 	 *
 	 * @param username the username
+	 *
 	 * @return the profile to be returned
 	 */
 	//Helper method, could be useful
 	public static Profile getProfileByUsername(String username) {
-
+		
 		Profile[] allProfiles = readInProfileFile();
 		for (Profile profile : allProfiles) {
 			String name = profile.getUsername();
-
+			
 			if (Objects.equals(name, username)) {
 				return profile;
 			}
 		}
-		return null;
+		throw new ProfileNotFoundException("Profile not found!");
 	}
-
+	
 	/**
 	 * Saves a profile to file.
 	 *
@@ -103,7 +105,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Save all auctions to file.
 	 *
@@ -119,7 +121,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Read in all auctions from database.
 	 */
@@ -128,7 +130,7 @@ public final class Util {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
 			
 			Auction[] fromJson = gson.fromJson(br, Auction[].class);
-
+			
 			ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 			//TODO for each to see if completed
 			BHFeed.getNewInstance().addAll(auctionArrayList);
@@ -137,22 +139,22 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Add types to gson for artwork, sculpture and painting.
 	 */
 	public static void addTypesToGson() {
 		RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "type");
-
+		
 		artworkAdapterFactory.registerSubtype(Artwork.class);
 		artworkAdapterFactory.registerSubtype(Sculpture.class);
 		artworkAdapterFactory.registerSubtype(Painting.class);
-
+		
 		gson = new GsonBuilder()
 				.registerTypeAdapterFactory(artworkAdapterFactory)
 				.create();
 	}
-
+	
 	/**
 	 * Gets current user.
 	 *

@@ -17,7 +17,7 @@ public final class Profile {
 	private final String city;
 	private final String country;
 	private final String postcode;
-	//private final Image profileImage; //TODO: Locate and set users profile image
+	private final String profileImagePath;
 	private List<String> favouriteUsers;
 	private List<Auction> wonAuctions;
 	private List<Auction> completedAuctions;
@@ -33,7 +33,8 @@ public final class Profile {
 	
 	//Private because should only be used by the factory
 	private Profile(String username, String firstName, String lastName, String phoneNumber,
-	                String addressLine1, String addressLine2, String city, String country, String postcode) {
+	                String addressLine1, String addressLine2, String city, String country, String postcode,
+	                String profileImagePath) {
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -43,7 +44,7 @@ public final class Profile {
 		this.city = city;
 		this.country = country;
 		this.postcode = postcode;
-		
+		this.profileImagePath = profileImagePath;
 		this.favouriteUsers = new ArrayList<>();
 		this.wonAuctions = new ArrayList<>();
 		this.completedAuctions = new ArrayList<>();
@@ -57,7 +58,7 @@ public final class Profile {
 	//Used by the Database
 	public Profile(String username, String firstName, String lastName, String phoneNumber,
                    String addressLine1, String addressLine2, String city, String country,
-                   String postcode, List<String> favouriteUsers, List<Auction> wonAuctions,
+                   String postcode, String profileImagePath, List<String> favouriteUsers, List<Auction> wonAuctions,
                    List<Auction> completedAuctions, List<Auction> currentlySelling,
                    List<Auction> newAuctions, List<Auction> auctionsNewBids, List<Bid> allBidsPlaced,
                    LocalDateTime lastLogInTime) {
@@ -69,6 +70,7 @@ public final class Profile {
 		this.addressLine2 = addressLine2;
 		this.city = city;
 		this.country = country;
+		this.profileImagePath = profileImagePath;
 		this.postcode = postcode;
 		this.favouriteUsers = favouriteUsers;
 		this.wonAuctions = wonAuctions;
@@ -83,9 +85,9 @@ public final class Profile {
 	//Factory for adding new Profiles in the System, new Users, not Objects!!!
 	public static Profile createNewProfile(String username, String firstName, String lastName, String phoneNumber,
 	                                       String addressLine1, String addressLine2, String city, String country,
-	                                       String postcode) {
+	                                       String postcode, String profileImagePath) {
 		Profile profile = new Profile(username, firstName, lastName, phoneNumber, addressLine1, addressLine2, city,
-				country, postcode);
+				country, postcode, profileImagePath);
 		
 		//send this to Database...
 		//...
@@ -133,6 +135,10 @@ public final class Profile {
 	
 	public String getPostcode() {
 		return this.postcode;
+	}
+	
+	public String getProfileImagePath() {
+		return this.profileImagePath;
 	}
 	
 	public List<String> getFavouriteUsers() {
@@ -194,7 +200,6 @@ public final class Profile {
 		}*/
 
 	}
-
 	
 	@Override
 	public int hashCode() {
