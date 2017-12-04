@@ -1,6 +1,7 @@
 package model;
 
 import model.exception.IllegalBidException;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
  * @see Bid
  * @see Artwork
  */
-public final class Auction {
+public final class Auction implements Comparable<Auction> {
 	
 	private final Artwork artwork;
 	private final String seller;
@@ -164,4 +165,8 @@ public final class Auction {
 		return "Auction id: " + getAuctionID();
 	}
 	
+	@Override
+	public int compareTo(@NotNull Auction otherAuction) {
+		return this.getDateTimePlaced().compareTo(otherAuction.getDateTimePlaced());
+	}
 }

@@ -24,20 +24,19 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Model")
 class ModelTests {
 	
-	/**
-	 * Tests the type of a Painting which is an Artwork
-	 */
+	//region Artworks Tests
+	
+	
+	//endregion
+	
 	@Disabled
 	@DisplayName("Painting Type")
 	@Test
 	void testPaintingGetType() {
-		//Artwork localPainting = new Painting("", new StringBuilder(""), LocalDate.now(), "", null, 5, 5);
-		//assertEquals(ArtworkType.PAINTING, localPainting.getType());
+		Artwork localPainting = new Painting("", new StringBuilder(""), LocalDate.now(), "", "path", 5, 5);
+		assertEquals(ArtworkType.PAINTING, localPainting.getType());
 	}
 	
-	/**
-	 * Tests the type of a Sculpture which is an Artwork
-	 */
 	@DisplayName("Sculpture Type")
 	@Test
 	void testSculptureGetType() {
@@ -45,37 +44,25 @@ class ModelTests {
 				null, 5, 5, 5, "");
 		assertEquals(ArtworkType.SCULPTURE, localSculpture.getType());
 	}
-	
-	/**
-	 * Will test the Bid's getters
-	 */
+
 	@DisplayName("Bid Getters")
 	@Test
 	void testAllBidGetters() {
 	
 	}
-	
-	/**
-	 * Will test two unequal Bids to see if they are equal
-	 */
+
 	@DisplayName("Bid Equals false")
 	@Test
 	void testBidEqualsFalseMethod() {
 	
 	}
 	
-	/**
-	 * Will test two equal Bids to see if they are equal
-	 */
 	@DisplayName("Bid Equals true")
 	@Test
 	void testBidEqualsTrueMethod() {
 	
 	}
 	
-	/**
-	 * Will test the Bid's toString method
-	 */
 	@DisplayName("Bid toString")
 	@Test
 	void testBidToString() {

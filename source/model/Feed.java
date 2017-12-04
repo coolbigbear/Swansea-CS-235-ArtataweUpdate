@@ -1,9 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
@@ -317,6 +314,10 @@ public final class Feed implements Iterable<Auction> {
 	 */
 	public void destroyInstance() {
 		instance = null;
+	}
+	
+	public void sortByDate() {
+		Collections.sort(arrayList);
 	}
 	
 	@Override

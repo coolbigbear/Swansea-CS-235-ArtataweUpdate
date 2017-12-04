@@ -144,6 +144,7 @@ public final class Util {
 			
 			Feed feed = Feed.getNewInstance();
 			
+			//for each Auction only add it to the Feed if it is not completed
 			for (Auction auction : auctionArrayList) {
 				if (!auction.isCompleted()) {
 					feed.add(auction);

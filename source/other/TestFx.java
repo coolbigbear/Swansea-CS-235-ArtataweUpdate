@@ -50,8 +50,10 @@ public class TestFx extends Application {
 		favourites.add(p1.getUsername());
 		favourites.add(p2.getUsername());
 		
-		Artwork art1 = new Painting("Monalisa", new StringBuilder("The most beautiful painting"), LocalDate.now(), "DaVinci");
-		Artwork art2 = new Painting("Scream", new StringBuilder("Can you hear the voices?"), LocalDate.now(), "James down the road");
+		Artwork art1 = new Painting("Monalisa", new StringBuilder("The most beautiful painting"), LocalDate.now(),
+				"DaVinci", "path", 5, 5);
+		Artwork art2 = new Painting("Scream", new StringBuilder("Can you hear the voices?"), LocalDate.now(),
+				"James down the road", "path", 5, 5);
 		
 		Auction a1 = new Auction(art1, p1.getUsername(), 01, 20, 18000.0);
 		Auction a2 = new Auction(art2, p2.getUsername(), 02, bids, 20000.0, 15, LocalDateTime.now(), 4, p1.getUsername(), false, 5000.0);

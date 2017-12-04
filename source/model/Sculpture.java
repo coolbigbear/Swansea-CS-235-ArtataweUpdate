@@ -1,7 +1,5 @@
 package model;
 
-import javafx.scene.image.Image;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,30 +11,21 @@ public class Sculpture extends Artwork {
 	private Integer height;
 	private Integer depth;
 	private String mainMaterial;
-	private List<Image> additionalImages;
+	private List<String> additionalImagesPaths;
 	
 	public Sculpture(String title, StringBuilder description, LocalDate creationDate, String creatorName,
-	                 Image mainImage, Integer width, Integer height, Integer depth, String mainMaterial) {
-		super(title, description, creationDate, creatorName);
+	                 String mainImagePath, Integer width, Integer height, Integer depth, String mainMaterial) {
+		super(title, description, creationDate, creatorName, mainImagePath);
 		this.width = width;
 		this.height = height;
 		this.depth = depth;
 		this.mainMaterial = mainMaterial;
-		this.additionalImages = new ArrayList<>();
+		this.type = ArtworkType.SCULPTURE;
+		this.additionalImagesPaths = new ArrayList<String>();
 	}
 	
-	Sculpture(String title, StringBuilder description, LocalDate creationDate, String creatorName,
-	          Integer width, Integer height, Integer depth, String mainMaterial, List<Image> additionalImages) {
-		super(title, description, creationDate, creatorName);
-		this.width = width;
-		this.height = height;
-		this.depth = depth;
-		this.mainMaterial = mainMaterial;
-		this.additionalImages = additionalImages;
-	}
-	
-	public void addAdditionalImages(Image... images) {
-		this.additionalImages.addAll(Arrays.asList(images));
+	public void addAdditionalImages(String... images) {
+		this.additionalImagesPaths.addAll(Arrays.asList(images));
 	}
 	
 	public void setWidth(Integer width) {
@@ -55,8 +44,8 @@ public class Sculpture extends Artwork {
 		this.mainMaterial = mainMaterial;
 	}
 	
-	public void setAdditionalImages(List<Image> additionalImages) {
-		this.additionalImages = additionalImages;
+	public void setAdditionalImagesPaths(List<String> additionalImagesPaths) {
+		this.additionalImagesPaths = additionalImagesPaths;
 	}
 	
 	public Integer getWidth() {
@@ -75,8 +64,8 @@ public class Sculpture extends Artwork {
 		return this.mainMaterial;
 	}
 	
-	public List<Image> getAdditionalImages() {
-		return this.additionalImages;
+	public List<String> getAdditionalImagesPaths() {
+		return this.additionalImagesPaths;
 	}
 	
 	@Override
@@ -94,9 +83,15 @@ public class Sculpture extends Artwork {
 		return (obj instanceof Sculpture) && (obj.hashCode() == this.hashCode());
 	}
 	
-	// TODO: 29-Nov-17 Bassam Helal need to do this
 	@Override
 	public String toString() {
-		return super.toString();
+		return this.type.toString() + "\n" +
+				"\tTitle: " + this.title + "\n" +
+				"\tCreator Name: " + this.creatorName + "\n" +
+				"\tCreation Date: " + this.creationDate + "\n" +
+				"\tWidth: " + this.width + "\n" +
+				"\tHeight: " + this.height + "\n" +
+				"\tDepth: " + this.depth + "\n" +
+				"\tMain Material: " + this.mainMaterial + "\n";
 	}
 }
