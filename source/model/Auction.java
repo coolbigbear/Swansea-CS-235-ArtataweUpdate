@@ -1,6 +1,7 @@
 package model;
 
 import model.exception.IllegalBidException;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
  * @see Bid
  * @see Artwork
  */
-public final class Auction {
+public final class Auction implements Comparable<Auction> {
 	
 	private final Artwork artwork;
 	private final String seller;
@@ -56,8 +57,8 @@ public final class Auction {
 	}
 	
 	public Auction(Artwork artwork, String seller, Integer auctionID, List<Bid> bidList,
-	        Double reservePrice, Integer bidsAllowed, LocalDateTime dateTimePlaced,
-	        Integer bidsLeft, String highestBidder, Boolean isCompleted, Double highestPrice) {
+	               Double reservePrice, Integer bidsAllowed, LocalDateTime dateTimePlaced,
+	               Integer bidsLeft, String highestBidder, Boolean isCompleted, Double highestPrice) {
 		this.artwork = artwork;
 		this.seller = seller;
 		this.auctionID = auctionID;
@@ -85,8 +86,12 @@ public final class Auction {
 				checkIfHigherThanCurrentHighest(bid));
 	}
 	
-	private Boolean checkIfNotHighestBidder(Bid bid) { //TODO returns null pointer exception?!
-		return (!bid.getBidder().equals(this.highestBidder));
+	private Boolean checkIfNotHighestBidder(Bid bid) {
+		if (this.highestBidder == null) {
+			return true;
+		} else {
+			return (!bid.getBidder().equals(this.highestBidder));
+		}
 	}
 	
 	private Boolean checkIfHigherThanReservePrice(Bid bid) {
@@ -94,7 +99,11 @@ public final class Auction {
 	}
 	
 	private Boolean checkIfHigherThanCurrentHighest(Bid bid) {
-		return (bid.getBidAmount() > this.highestPrice);
+		if (this.highestPrice == null) {
+			return true;
+		} else {
+			return (bid.getBidAmount() > this.highestPrice);
+		}
 	}
 	
 	public Artwork getArtwork() {
@@ -121,7 +130,7 @@ public final class Auction {
 		return this.highestBidder;
 	}
 	
-	public Boolean getCompleted() {
+	public Boolean isCompleted() {
 		return this.isCompleted;
 	}
 	
@@ -151,10 +160,13 @@ public final class Auction {
 		return (obj instanceof Auction) && (obj.hashCode() == this.hashCode());
 	}
 	
-	// TODO: 29-Nov-17 Bassam Helal need to do this
 	@Override
 	public String toString() {
-		return "This is the auction id: " + getAuctionID();
+		return "Auction id: " + getAuctionID();
 	}
 	
+	@Override
+	public int compareTo(@NotNull Auction otherAuction) {
+		return this.getDateTimePlaced().compareTo(otherAuction.getDateTimePlaced());
+	}
 }

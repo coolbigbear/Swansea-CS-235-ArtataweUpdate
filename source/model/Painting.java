@@ -2,15 +2,18 @@ package model;
 
 import java.time.LocalDate;
 
+// TODO: 04-Dec-17 Documentation!
 public class Painting extends Artwork {
 	
 	private Integer width;
 	private Integer height;
 	
-	public Painting(String title, StringBuilder description, LocalDate creationDate, String creatorName){//,Image mainImage, Integer width, Integer height) {
-		super(title, description, creationDate, creatorName);
+	public Painting(String title, StringBuilder description, LocalDate creationDate,
+	                String creatorName, String mainImagePath, Integer width, Integer height) {
+		super(title, description, creationDate, creatorName, mainImagePath);
 		this.width = width;
 		this.height = height;
+		this.type = ArtworkType.PAINTING;
 	}
 	
 	@Override
@@ -36,7 +39,7 @@ public class Painting extends Artwork {
 	
 	@Override
 	public int hashCode() {
-		return title.hashCode() + creationDate.hashCode() + description.hashCode();
+		return this.title.hashCode() + this.creationDate.hashCode() + this.description.toString().hashCode();
 	}
 	
 	@Override
@@ -44,9 +47,14 @@ public class Painting extends Artwork {
 		return (obj instanceof Painting) && (obj.hashCode() == this.hashCode());
 	}
 	
-	// TODO: 29-Nov-17 Bassam Helal need to do this 
 	@Override
 	public String toString() {
-		return super.toString();
+		return this.type.toString() + ": \n" +
+				"\tTitle: " + this.title + "\n" +
+				"\tCreator Name: " + this.creatorName + "\n" +
+				"\tCreation Date: " + this.creationDate + "\n" +
+				"\tWidth: " + this.width + "\n" +
+				"\tHeight: " + this.height + "\n";
+		
 	}
 }
