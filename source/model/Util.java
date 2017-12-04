@@ -57,8 +57,7 @@ public final class Util {
 				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),
 				profile.getCity(), profile.getCountry(), profile.getPostcode(), profile.getProfileImagePath(),
 				profile.getFavouriteUsers(), profile.getWonAuctions(), profile.getCompletedAuctions(),
-				profile.getCurrentlySelling(), profile.getNewAuctions(), profile.getAuctionsNewBids(),
-				profile.getAllBidsPlaced(), profile.getLastLogInTime());
+				profile.getCurrentlySelling(), profile.getAllBidsPlaced(), profile.getLastLogInTime());
 	}
 
 	/**
@@ -68,7 +67,6 @@ public final class Util {
 	 *
 	 * @return the profile to be returned
 	 */
-	//Helper method, could be useful
 	public static Profile getProfileByUsername(String username) {
 
 		Profile[] allProfiles = readInProfileFile();
@@ -142,8 +140,8 @@ public static void saveProfilesToFile(List<Profile> profiles) {
 
 			ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 			//TODO for each to see if completed
-			BHFeed.getNewInstance().addAll(auctionArrayList);
-			System.out.println(BHFeed.getInstance());
+			Feed.getNewInstance().addAll(auctionArrayList);
+			System.out.println(Feed.getInstance());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

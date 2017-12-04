@@ -63,9 +63,9 @@ public final class Bid {
 	}
 	
 	/**
-	 * Gets the Profile that placed the Bid
+	 * Gets the username of the Profile that placed the Bid
 	 *
-	 * @return the Profile that placed the Bid
+	 * @return the username of the Profile that placed the Bid
 	 */
 	public String getBidder() {
 		return this.bidder;

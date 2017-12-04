@@ -2,9 +2,10 @@ package model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
-// TODO: Have to add 'Filter' methods for profile
+// TODO: Filter Auctions by type!
 
 public final class Profile {
 	
@@ -22,12 +23,6 @@ public final class Profile {
 	private List<Auction> wonAuctions;
 	private List<Auction> completedAuctions;
 	private List<Auction> currentlySelling;
-	
-	//maybe we can do these differently {
-	private List<Auction> newAuctions;
-	private List<Auction> auctionsNewBids;
-	//}
-	
 	private List<Bid> allBidsPlaced;
 	private LocalDateTime lastLogInTime;
 	
@@ -49,19 +44,16 @@ public final class Profile {
 		this.wonAuctions = new ArrayList<>();
 		this.completedAuctions = new ArrayList<>();
 		this.currentlySelling = new ArrayList<>();
-		this.newAuctions = new ArrayList<>();
-		this.auctionsNewBids = new ArrayList<>();
 		this.allBidsPlaced = new ArrayList<>();
 		this.lastLogInTime = LocalDateTime.now();
 	}
 	
 	//Used by the Database
 	public Profile(String username, String firstName, String lastName, String phoneNumber,
-                   String addressLine1, String addressLine2, String city, String country,
-                   String postcode, String profileImagePath, List<String> favouriteUsers, List<Auction> wonAuctions,
-                   List<Auction> completedAuctions, List<Auction> currentlySelling,
-                   List<Auction> newAuctions, List<Auction> auctionsNewBids, List<Bid> allBidsPlaced,
-                   LocalDateTime lastLogInTime) {
+	               String addressLine1, String addressLine2, String city, String country,
+	               String postcode, String profileImagePath, List<String> favouriteUsers,
+	               List<Auction> wonAuctions, List<Auction> completedAuctions,
+	               List<Auction> currentlySelling, List<Bid> allBidsPlaced, LocalDateTime lastLogInTime) {
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -76,8 +68,6 @@ public final class Profile {
 		this.wonAuctions = wonAuctions;
 		this.completedAuctions = completedAuctions;
 		this.currentlySelling = currentlySelling;
-		this.newAuctions = newAuctions;
-		this.auctionsNewBids = auctionsNewBids;
 		this.allBidsPlaced = allBidsPlaced;
 		this.lastLogInTime = lastLogInTime;
 	}
@@ -95,11 +85,6 @@ public final class Profile {
 		
 		return profile;
 	}
-
-	//TODO: Make a get for profile image? Unsure fully how this would be done
-/*	public Image getProfileImage(){
-		return this.profileImage;
-	}*/
 	
 	public String getUsername() {
 		return this.username;
@@ -156,14 +141,14 @@ public final class Profile {
 	public List<Auction> getCurrentlySelling() {
 		return this.currentlySelling;
 	}
-	
-	public List<Auction> getNewAuctions() {
-		return this.newAuctions;
-	}
-	
-	public List<Auction> getAuctionsNewBids() {
-		return this.auctionsNewBids;
-	}
+
+//	public List<Auction> getNewAuctions() {
+//		return this.newAuctions;
+//	}
+//
+//	public List<Auction> getAuctionsNewBids() {
+//		return this.auctionsNewBids;
+//	}
 	
 	public List<Bid> getAllBidsPlaced() {
 		return this.allBidsPlaced;
@@ -173,24 +158,26 @@ public final class Profile {
 		return this.lastLogInTime;
 	}
 	
-	//TODO: Could this be done through database? Checking if a username has been entered twice?
+	//This will only be useful for creating new usernames!
 	/**
 	 * Checks if the username entered consists of a valid string that includes a-z, A-Z, 0-9.
-	 * If username consists of something other it throws an exception and returns false.
+	 * If username consists of something other it throws an exception.
+	 *
+	 * Used to ensure that the username is valid upon username creation.
 	 *
 	 * @param username The users custom username
 	 *
-	 * @return true if its a valid username, false if otherwise
+	 * @return true if its a valid username, throws an InputMismatchException otherwise
+	 *
+	 * @throws InputMismatchException if the username is not a valid username
 	 */
-	public boolean checkUsername(String username) {
+	public Boolean checkUsername(String username) {
 		String checkUsername = "[a-zA-Z0-9]";
-		try {
-			username.matches(checkUsername);
+		if (username.matches(checkUsername)) {
 			System.out.println("Valid username");
 			return true;
-		} catch (Exception e) {
-			System.out.println("Not a valid username" + e);
-			return false;
+		} else {
+			throw new InputMismatchException("Invalid username!");
 		}
 
 /*		if (username.matches(checkUsername)) {
@@ -198,7 +185,7 @@ public final class Profile {
 		} else {
 			return false;
 		}*/
-
+		
 	}
 	
 	@Override
