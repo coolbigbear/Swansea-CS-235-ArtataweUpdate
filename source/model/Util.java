@@ -85,19 +85,19 @@ public final class Util {
 	 *
 	 * @param profile the profile
 	 */
-	public static void saveProfileToFile(List<Profile> profile) {
+	public static void saveProfileToFile(Profile profile) {
 		try {
 			addTypesToGson();
-//			Profile[] temp = readInProfileFile();
-//			String username = profile.getUsername();
-//			for (Profile name: temp) {
-//
-//                if (Objects.equals(name.getUsername(), username)) {
-//                   name = profile;
-//                }
-//            }
+			Profile[] temp = readInProfileFile();
+			String username = profile.getUsername();
+			for (int i=0; i < temp.length; i++) {
+
+                if (Objects.equals(temp[i].getUsername(), username)) {
+                   temp[i] = profile;
+                }
+            }
 			FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
-			gson.toJson(profile, fileWriter);
+			gson.toJson(temp, fileWriter);
 			fileWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -114,6 +114,17 @@ public final class Util {
 			addTypesToGson();
 			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
 			gson.toJson(auctions, fileWriter);
+			fileWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void saveProfilesToFile(List<Profile> profiles) {
+		try {
+			addTypesToGson();
+			FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
+			gson.toJson(profiles, fileWriter);
 			fileWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();

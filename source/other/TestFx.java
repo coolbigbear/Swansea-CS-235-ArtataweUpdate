@@ -58,7 +58,7 @@ public class TestFx extends Application {
 		Auction a1 = new Auction(art1, p1.getUsername(), 01, 20, 18000.0);
 		Auction a2 = new Auction(art2, p2.getUsername(), 02, bids, 20000.0, 15, LocalDateTime.now(), 4, p1.getUsername(), false, 5000.0);
 
-		Util.saveProfileToFile(profiles);
+		Util.saveProfilesToFile(profiles);
 		Util.readInLoggedInUser("bigbear1");
 
 		Bid b1 = new Bid(02,10000.0);
@@ -72,7 +72,10 @@ public class TestFx extends Application {
 
 
 		Util.saveAuctionsToFile(auctions);
-		//Util.saveProfileToFile(auctions);
+        Profile p3 = new Profile("bigbear2", "James", "***REMOVED***","07856912862",
+                "Some Address","BitDifferent Address","someCity","UK, duh","somePostcode",
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
+		Util.saveProfileToFile(p3);
 
 		Util.readInAllAuctions();
 
