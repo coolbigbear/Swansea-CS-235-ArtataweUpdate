@@ -8,9 +8,10 @@ public abstract class  Artwork {
 	
 	protected String title;
 	protected StringBuilder description;
-	protected LocalDate creationDate; // This should support all possible dates including stuff before 1970
+	protected LocalDate creationDate;
 	protected String creatorName;
 	protected Image mainImage;
+	//protected ArtworkType type;
 	
 	public Artwork(String title, StringBuilder description, LocalDate creationDate, String creatorName) {//, Image mainImage) {
 		this.title = title;

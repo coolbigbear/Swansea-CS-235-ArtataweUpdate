@@ -30,10 +30,9 @@ public class TestFx extends Application {
 
 
 		Profile p1 = new Profile("bigbear1", "***REMOVED***", "***REMOVED***","07856912862",
-                "Some Address","BitDifferent Address","someCity","UK, duh","somePostcode",
-                favourites, new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
+                "Some Address","BitDifferent Address","someCity","UK, duh","somePostcode","path", favourites, new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
 		Profile p2 = new Profile("bigbear2", "***REMOVED***", "***REMOVED***","07856912862",
-                "Some Address","BitDifferent Address","someCity","UK, duh","somePostcode",
+                "Some Address","BitDifferent Address","someCity","UK, duh","somePostcode", "path",
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
 //		Profile p3 = new Profile("bigbear3", "No contact info");
 //		Profile p4 = new Profile("bigbear4", "No contact info");

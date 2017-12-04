@@ -2,6 +2,7 @@ package model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.exception.ProfileNotFoundException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public final class Util {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return null;
+		throw new ProfileNotFoundException("Profile not found!");
 	}
 
 	/**
@@ -54,7 +55,7 @@ public final class Util {
 	private static void setCurrentUser(Profile profile) {
 		currentUser = new Profile(profile.getUsername(), profile.getFirstName(), profile.getLastName(),
 				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),
-				profile.getCity(), profile.getCountry(), profile.getPostcode(),
+				profile.getCity(), profile.getCountry(), profile.getPostcode(), profile.getProfileImagePath(),
 				profile.getFavouriteUsers(), profile.getWonAuctions(), profile.getCompletedAuctions(),
 				profile.getCurrentlySelling(), profile.getNewAuctions(), profile.getAuctionsNewBids(),
 				profile.getAllBidsPlaced(), profile.getLastLogInTime());
@@ -64,6 +65,7 @@ public final class Util {
 	 * Gets profile by username from database.
 	 *
 	 * @param username the username
+	 *
 	 * @return the profile to be returned
 	 */
 	//Helper method, could be useful
@@ -77,7 +79,7 @@ public final class Util {
 				return profile;
 			}
 		}
-		return null;
+		throw new ProfileNotFoundException("Profile not found!");
 	}
 
 	/**
@@ -119,8 +121,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
-	public static void saveProfilesToFile(List<Profile> profiles) {
+public static void saveProfilesToFile(List<Profile> profiles) {
 		try {
 			addTypesToGson();
 			FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
@@ -130,7 +131,6 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
 	/**
 	 * Read in all auctions from database.
 	 */
