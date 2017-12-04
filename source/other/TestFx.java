@@ -14,12 +14,12 @@ import java.util.List;
 
 public class TestFx extends Application {
 	
-    @Override
-    public void start(Stage primaryStage) throws  Exception {
-	    Parent root = FXMLLoader.load(getClass().getResource("testFXML.fxml"));
-    	primaryStage.setScene(new Scene(root));
-    	primaryStage.show();
-    }
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("testFXML.fxml"));
+		primaryStage.setScene(new Scene(root));
+		primaryStage.show();
+	}
 	
 	public static void main(String[] args) {
 

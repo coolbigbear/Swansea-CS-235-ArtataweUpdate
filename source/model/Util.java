@@ -10,9 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * The type Util.
- */
 public final class Util {
 	
 	/**
@@ -157,7 +154,7 @@ public final class Util {
 	 *
 	 * @param auctions Auctions to be saved to file
 	 */
-	public static void saveListOfAuctionsToFile(List<Auction> auctions) {
+	public static void saveAuctionsToFile(List<Auction> auctions) {
 		try {
 			addTypesToGson();
 			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
@@ -167,13 +164,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * Saves a list of profiles to file.
-	 *
-	 * @param profiles the profiles to be saved
-	 */
-	public static void saveListOfProfilesToFile(List<Profile> profiles) {
+public static void saveProfilesToFile(List<Profile> profiles) {
 		try {
 			addTypesToGson();
 			FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
@@ -186,21 +177,25 @@ public final class Util {
 	/**
 	 * Read in all auctions from database.
 	 */
-	public static void readInActiveAuctions() {
+	public static void readInAllAuctions() {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
 			
 			Auction[] fromJson = gson.fromJson(br, Auction[].class);
-            ArrayList<Auction> auctionArrayList = new ArrayList<>();
 
-			for (Auction auction: fromJson) {
-			    if (!auction.getCompleted()) {
-			        auctionArrayList.add(auction);
-                }
-            }
+			ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 
-			BHFeed.getNewInstance().addAll(auctionArrayList);
-			System.out.println(BHFeed.getInstance());
+			Feed feed = Feed.getNewInstance();
+
+			//for each Auction only add it to the Feed if it is not completed
+			for (Auction auction : auctionArrayList) {
+				if (!auction.isCompleted()) {
+					feed.add(auction);
+				}
+			}
+			//TODO for each to see if completed
+			//Feed.getNewInstance().addAll(auctionArrayList);
+			//System.out.println(Feed.getInstance());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

@@ -1,24 +1,23 @@
 package model;
 
-import javafx.scene.image.Image;
-
 import java.time.LocalDate;
 
+// TODO: 04-Dec-17 Documentation!
 public abstract class  Artwork {
 	
 	protected String title;
 	protected StringBuilder description;
 	protected LocalDate creationDate;
 	protected String creatorName;
-	protected Image mainImage;
-	//protected ArtworkType type;
+	protected String mainImagePath;
+	protected ArtworkType type;
 	
-	public Artwork(String title, StringBuilder description, LocalDate creationDate, String creatorName) {//, Image mainImage) {
+	public Artwork(String title, StringBuilder description, LocalDate creationDate, String creatorName, String mainImagePath) {
 		this.title = title;
 		this.description = description;
 		this.creationDate = creationDate;
 		this.creatorName = creatorName;
-		//this.mainImage = mainImage;
+		this.mainImagePath = mainImagePath;
 	}
 
 	public abstract ArtworkType getType();
@@ -39,8 +38,8 @@ public abstract class  Artwork {
 		this.creatorName = creatorName;
 	}
 	
-	public void setMainImage(Image mainImage) {
-		this.mainImage = mainImage;
+	public void setMainImagePath(String mainImagePath) {
+		this.mainImagePath = mainImagePath;
 	}
 	
 	public String getTitle() {
@@ -59,8 +58,8 @@ public abstract class  Artwork {
 		return this.creatorName;
 	}
 	
-	public Image getMainImage() {
-		return this.mainImage;
+	public String getMainImagePath() {
+		return this.mainImagePath;
 	}
 	
 }
