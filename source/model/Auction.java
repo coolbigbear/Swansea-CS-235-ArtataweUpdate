@@ -129,7 +129,7 @@ public final class Auction {
 		return this.highestBidder;
 	}
 	
-	public Boolean getCompleted() {
+	public Boolean isCompleted() {
 		return this.isCompleted;
 	}
 	
