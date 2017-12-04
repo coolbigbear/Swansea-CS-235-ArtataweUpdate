@@ -10,6 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The type Util.
+ */
 public final class Util {
 	
 	/**
@@ -32,6 +35,17 @@ public final class Util {
 			e.printStackTrace();
 		}
 		throw new ProfileNotFoundException("Profile not found!");
+	}
+
+	private static Auction[] readInAuctionFile() {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
+			return gson.fromJson(br, Auction[].class);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		throw new ProfileNotFoundException("Auction not found!");
 	}
 
 	/**
@@ -82,6 +96,19 @@ public final class Util {
 		throw new ProfileNotFoundException("Profile not found!");
 	}
 
+	public static Auction getAuctionByAuctionID(Integer auctionID) {
+
+		Auction[] allAuctions = readInAuctionFile();
+		for (Auction auction: allAuctions) {
+			Integer id = auction.getAuctionID();
+
+			if (Objects.equals(id, auctionID)) {
+				return auction;
+			}
+		}
+		throw new ProfileNotFoundException("Profile not found!");
+	}
+
 	/**
 	 * Saves a profile to file.
 	 *
@@ -106,12 +133,31 @@ public final class Util {
 		}
 	}
 
+	public static void saveAuctionToFile(Auction auction) {
+		try {
+			addTypesToGson();
+			Auction[] temp = readInAuctionFile();
+			Integer auctionID = auction.getAuctionID();
+			for (int i=0; i < temp.length; i++) {
+
+                if (auctionID.equals(temp[i].getAuctionID())) {
+                   temp[i] = auction;
+                }
+            }
+			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
+			gson.toJson(temp, fileWriter);
+			fileWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Save all auctions to file.
 	 *
 	 * @param auctions Auctions to be saved to file
 	 */
-	public static void saveAuctionsToFile(List<Auction> auctions) {
+	public static void saveListOfAuctionsToFile(List<Auction> auctions) {
 		try {
 			addTypesToGson();
 			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
@@ -121,7 +167,13 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-public static void saveProfilesToFile(List<Profile> profiles) {
+
+	/**
+	 * Saves a list of profiles to file.
+	 *
+	 * @param profiles the profiles to be saved
+	 */
+	public static void saveListOfProfilesToFile(List<Profile> profiles) {
 		try {
 			addTypesToGson();
 			FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
@@ -134,14 +186,19 @@ public static void saveProfilesToFile(List<Profile> profiles) {
 	/**
 	 * Read in all auctions from database.
 	 */
-	public static void readInAllAuctions() {
+	public static void readInActiveAuctions() {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
 			
 			Auction[] fromJson = gson.fromJson(br, Auction[].class);
+            ArrayList<Auction> auctionArrayList = new ArrayList<>();
 
-			ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-			//TODO for each to see if completed
+			for (Auction auction: fromJson) {
+			    if (!auction.getCompleted()) {
+			        auctionArrayList.add(auction);
+                }
+            }
+
 			BHFeed.getNewInstance().addAll(auctionArrayList);
 			System.out.println(BHFeed.getInstance());
 		} catch (FileNotFoundException e) {
