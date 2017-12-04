@@ -74,7 +74,7 @@ public final class Auction implements Comparable<Auction> {
 	
 	public Boolean placeBid(Bid bid) {
 		if (validateBid(bid)) {
-			this.highestBidder = bid.getBidder();
+			this.highestBidder = bid.getBidderUsername();
 			this.highestPrice = bid.getBidAmount();
 			return true;
 		} else throw new IllegalBidException("Invalid Bid!");
@@ -90,7 +90,7 @@ public final class Auction implements Comparable<Auction> {
 		if (this.highestBidder == null) {
 			return true;
 		} else {
-			return (!bid.getBidder().equals(this.highestBidder));
+			return (!bid.getBidderUsername().equals(this.highestBidder));
 		}
 	}
 	

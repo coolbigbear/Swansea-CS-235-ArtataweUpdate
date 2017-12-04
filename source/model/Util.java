@@ -52,12 +52,13 @@ public final class Util {
 		}
 	}
 	
-	private static void setCurrentUser(Profile profile) {
-		currentUser = new Profile(profile.getUsername(), profile.getFirstName(), profile.getLastName(),
-				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),
-				profile.getCity(), profile.getCountry(), profile.getPostcode(), profile.getProfileImagePath(),
-				profile.getFavouriteUsers(), profile.getWonAuctions(), profile.getCompletedAuctions(),
-				profile.getCurrentlySelling(), profile.getAllBidsPlaced(), profile.getLastLogInTime());
+	public static void setCurrentUser(Profile profile) {
+		currentUser = profile;
+//		currentUser = new Profile(profile.getUsername(), profile.getFirstName(), profile.getLastName(),
+//				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),
+//				profile.getCity(), profile.getCountry(), profile.getPostcode(), profile.getProfileImagePath(),
+//				profile.getFavouriteUsers(), profile.getWonAuctions(), profile.getCompletedAuctions(),
+//				profile.getCurrentlySelling(), profile.getAllBidsPlaced(), profile.getLastLogInTime());
 	}
 	
 	/**

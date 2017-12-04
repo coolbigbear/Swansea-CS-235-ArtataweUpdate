@@ -1,6 +1,7 @@
 package test;
 
 import model.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -23,8 +24,16 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Bassam Helal
  */
-@DisplayName("Model")
+@DisplayName("Model Tests")
 class ModelTests {
+	
+	@BeforeAll
+	static void beforeAll() {
+		Profile currentUser = Profile.createNewProfile("BassHelal", "Bassam", "Helal",
+				"00974666999123", "University", "Lane", "Swansea", "United Kingdom",
+				"SA12PP", "path");
+		Util.setCurrentUser(currentUser);
+	}
 	
 	@Nested
 	class ArtworkTests {
@@ -147,8 +156,8 @@ class ModelTests {
 			Painting painting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507, 1, 1),
 					"Leonardo DaVinci", "path", 5, 5);
 			
-			assertEquals("Painting: \n\tTitle: Mona Lisa\n\tCreator Name: Leonardo DaVinci\n\tCreation Date: "+
-					painting.getCreationDate().toString() +"\n\tWidth: 5\n\tHeight: 5\n" , painting.toString());
+			assertEquals("Painting: \n\tTitle: Mona Lisa\n\tCreator Name: Leonardo DaVinci\n\tCreation Date: " +
+					painting.getCreationDate().toString() + "\n\tWidth: 5\n\tHeight: 5\n", painting.toString());
 		}
 		
 		@DisplayName("Painting Type")
@@ -161,20 +170,20 @@ class ModelTests {
 		@DisplayName("Sculpture Add Additional Images")
 		@Test
 		void testSculptureAddAdditionalImages() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500,5,5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			sculpture.addAdditionalImages("path1", "path2", "path3");
 			
 			List<String> list = new ArrayList<>(Arrays.asList("path1", "path2", "path3"));
 			
-		    assertEquals(list, sculpture.getAdditionalImagesPaths());
+			assertEquals(list, sculpture.getAdditionalImagesPaths());
 		}
 		
 		@DisplayName("Sculpture Set Additional Images")
 		@Test
 		void testSculptureSetAdditionalImages() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500,5,5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			List<String> list = new ArrayList<>(Arrays.asList("path1", "path2", "path3"));
@@ -187,7 +196,7 @@ class ModelTests {
 		@DisplayName("Sculpture Width, Height & Depth")
 		@Test
 		void testSculptureWidthHeightAndDepth() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500,5,5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			sculpture.setHeight(50);
@@ -201,7 +210,7 @@ class ModelTests {
 		@DisplayName("Sculpture Main Material")
 		@Test
 		void testSculptureMainMaterial() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500,5,5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			sculpture.setMainMaterial("Granite");
@@ -219,10 +228,10 @@ class ModelTests {
 		@DisplayName("Sculpture Equals True")
 		@Test
 		void testSculptureEqualsTrue() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500,5,5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
-			Sculpture anotherSculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500,5,
+			Sculpture anotherSculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5,
 					5),
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
@@ -233,11 +242,11 @@ class ModelTests {
 		@DisplayName("Sculpture Equals False")
 		@Test
 		void testSculptureEqualsFalse() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500,5,5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			Sculpture anotherSculpture = new Sculpture("Other David", new StringBuilder("Not so Majestic"),
-					LocalDate.of(1500,5, 5), "Michelangelo",
+					LocalDate.of(1500, 5, 5), "Michelangelo",
 					"path", 5, 5, 10, "Marble");
 			
 			assertFalse(sculpture.hashCode() == anotherSculpture.hashCode());
@@ -247,43 +256,76 @@ class ModelTests {
 		@DisplayName("Sculpture toString")
 		@Test
 		void testSculptureToString() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500,5,5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
-			assertEquals("Sculpture: \n\tTitle: David\n\tCreator Name: Michelangelo\n\tCreation Date: "+
-					sculpture.getCreationDate().toString() +"\n\tWidth: 5\n\tHeight: 5\n\tDepth: 10\n\tMain " +
-							"Material: Marble\n" ,
+			assertEquals("Sculpture: \n\tTitle: David\n\tCreator Name: Michelangelo\n\tCreation Date: " +
+							sculpture.getCreationDate().toString() + "\n\tWidth: 5\n\tHeight: 5\n\tDepth: 10\n\tMain " +
+							"Material: Marble\n",
 					sculpture.toString());
 		}
 		
 	}
 	
-	@DisplayName("Bid Getters")
-	@Test
-	void testAllBidGetters() {
-	
+	@Nested
+	class BidTests {
+		
+		@DisplayName("Bid Main")
+		@Test
+		void testBid() throws InterruptedException {
+			Bid bid = new Bid(1, 50.00);
+			assertEquals(Integer.valueOf(1), bid.getAuctionID());
+			assertEquals(Double.valueOf(50.00), bid.getBidAmount());
+			assertEquals(Util.getCurrentUser().getUsername(), bid.getBidderUsername());
+			assertTrue(bid.getDateTimePlaced().isEqual(LocalDateTime.now()));
+			Thread.sleep(1);
+			assertTrue(bid.getDateTimePlaced().isBefore(LocalDateTime.now()));
+		}
+		
+		@DisplayName("Bid Equals True")
+		@Test
+		void testBidEqualsTrue() {
+			Bid bid = new Bid(1, 50.00);
+			Bid anotherBid = new Bid(1, 50.00);
+			assertTrue(bid.equals(anotherBid));
+		}
+		
+		@DisplayName("Bid Equals False")
+		@Test
+		void testBidEqualsFalse() {
+			Bid bid = new Bid(1, 50.00);
+			Bid anotherBid = new Bid(3, 55.00);
+			assertFalse(bid.equals(anotherBid));
+		}
+		
+		@DisplayName("Bid toString")
+		@Test
+		void testBidToString() {
+			Bid bid = new Bid(1, 50.00);
+			assertEquals("Bid: " + bid.hashCode() + "\n\tAuction: 1\n\tAmount: 50.0\n\t" +
+							"Bidder: BassHelal\n\tTime: " + bid.getDateTimePlaced().toString() + "\n",
+					bid.toString());
+		}
+		
 	}
 	
-	@DisplayName("Bid Equals false")
-	@Test
-	void testBidEqualsFalseMethod() {
-	
-	}
-	
-	@DisplayName("Bid Equals true")
-	@Test
-	void testBidEqualsTrueMethod() {
-	
-	}
-	
-	@DisplayName("Bid toString")
-	@Test
-	void testBidToString() {
+	@Nested
+	class AuctionTests {
 	
 	}
 	
 	@Nested
-	class FeedString {
+	class  ProfileTests {
+	
+	}
+	
+	@Nested
+	class FeedTests {
+	
+	}
+	
+	@Nested
+	class FeedStringTests {
 		@DisplayName("BHFeedString isEmpty")
 		@Test
 		void testBHFeedStringIsEmpty() {
@@ -602,24 +644,29 @@ class ModelTests {
 		}
 	}
 	
-	@DisplayName("LocalDateTime now +1 millisecond hashcode")
-	@Test
-	void testLocalDateTimeNowHashCode() throws InterruptedException {
-		LocalDateTime now = LocalDateTime.now();
-		int nowHashCode = now.hashCode();
-		Thread.sleep(1);
-		now = LocalDateTime.now();
-		int laterHashcode = now.hashCode();
-		assertTrue(nowHashCode != laterHashcode);
-	}
-	
-	@DisplayName("LocalDate equal and hashcode")
-	@Test
-	void testLocalDatesEqual() {
-		LocalDate july271950 = LocalDate.of(1950, Month.JULY, 27);
-		LocalDate j7271950 = LocalDate.of(1950, 7, 27);
-		assertEquals(july271950, j7271950);
-		assertTrue(july271950.hashCode() == j7271950.hashCode());
+	@Nested
+	class OtherTests {
+		
+		@DisplayName("LocalDateTime now +1 millisecond hashcode")
+		@Test
+		void testLocalDateTimeNowHashCode() throws InterruptedException {
+			LocalDateTime now = LocalDateTime.now();
+			int nowHashCode = now.hashCode();
+			Thread.sleep(1);
+			now = LocalDateTime.now();
+			int laterHashcode = now.hashCode();
+			assertTrue(nowHashCode != laterHashcode);
+		}
+		
+		@DisplayName("LocalDate equal and hashcode")
+		@Test
+		void testLocalDatesEqual() {
+			LocalDate july271950 = LocalDate.of(1950, Month.JULY, 27);
+			LocalDate j7271950 = LocalDate.of(1950, 7, 27);
+			assertEquals(july271950, j7271950);
+			assertTrue(july271950.hashCode() == j7271950.hashCode());
+		}
+		
 	}
 	
 	
