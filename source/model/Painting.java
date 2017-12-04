@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
+// TODO: 04-Dec-17 Documentation!
 public class Painting extends Artwork {
 	
 	private Integer width;
@@ -38,7 +39,7 @@ public class Painting extends Artwork {
 	
 	@Override
 	public int hashCode() {
-		return title.hashCode() + creationDate.hashCode() + description.hashCode();
+		return this.title.hashCode() + this.creationDate.hashCode() + this.description.toString().hashCode();
 	}
 	
 	@Override
@@ -48,7 +49,7 @@ public class Painting extends Artwork {
 	
 	@Override
 	public String toString() {
-		return this.type.toString() + "\n" +
+		return this.type.toString() + ": \n" +
 				"\tTitle: " + this.title + "\n" +
 				"\tCreator Name: " + this.creatorName + "\n" +
 				"\tCreation Date: " + this.creationDate + "\n" +

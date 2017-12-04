@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
+// TODO: 04-Dec-17 Documentation!
 public abstract class  Artwork {
 	
 	protected String title;

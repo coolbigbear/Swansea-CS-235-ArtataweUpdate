@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// TODO: 04-Dec-17 Documentation!
 public class Sculpture extends Artwork {
 	
 	private Integer width;
@@ -21,7 +22,7 @@ public class Sculpture extends Artwork {
 		this.depth = depth;
 		this.mainMaterial = mainMaterial;
 		this.type = ArtworkType.SCULPTURE;
-		this.additionalImagesPaths = new ArrayList<String>();
+		this.additionalImagesPaths = new ArrayList<>();
 	}
 	
 	public void addAdditionalImages(String... images) {
@@ -75,7 +76,7 @@ public class Sculpture extends Artwork {
 	
 	@Override
 	public int hashCode() {
-		return title.hashCode() + creationDate.hashCode() + description.hashCode();
+		return this.title.hashCode() + this.creationDate.hashCode() + this.description.toString().hashCode();
 	}
 	
 	@Override
@@ -85,7 +86,7 @@ public class Sculpture extends Artwork {
 	
 	@Override
 	public String toString() {
-		return this.type.toString() + "\n" +
+		return this.type.toString() + ": \n" +
 				"\tTitle: " + this.title + "\n" +
 				"\tCreator Name: " + this.creatorName + "\n" +
 				"\tCreation Date: " + this.creationDate + "\n" +
