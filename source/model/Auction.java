@@ -20,14 +20,14 @@ import java.util.List;
 public final class Auction {
 	
 	private final Artwork artwork;
-	private final Profile seller;
+	private final String seller;
 	private final Integer auctionID; /*TODO: Bassam Helal 27-Nov-17 This needs to be taken care of using the Database */
 	private final List<Bid> bidList;
 	private final Double reservePrice;
 	private final Integer bidsAllowed;
 	private final LocalDateTime dateTimePlaced;
 	private Integer bidsLeft;
-	private Profile highestBidder;
+	private String highestBidder;
 	private Boolean isCompleted;
 	private Double highestPrice;
 	
@@ -40,7 +40,7 @@ public final class Auction {
 	 * @param bidsAllowed the number of Bids allowed before the Auction ends
 	 * @param reservePrice the minimum accepted price of a Bid
 	 */
-	public Auction(Artwork artwork, Profile seller, Integer auctionID, Integer bidsAllowed, Double reservePrice) {
+	public Auction(Artwork artwork, String seller, Integer auctionID, Integer bidsAllowed, Double reservePrice) {
 		this.artwork = artwork;
 		this.seller = seller;
 		
@@ -55,9 +55,9 @@ public final class Auction {
 		this.dateTimePlaced = LocalDateTime.now();
 	}
 	
-	Auction(Artwork artwork, Profile seller, Integer auctionID, List<Bid> bidList,
+	public Auction(Artwork artwork, String seller, Integer auctionID, List<Bid> bidList,
 	        Double reservePrice, Integer bidsAllowed, LocalDateTime dateTimePlaced,
-	        Integer bidsLeft, Profile highestBidder, Boolean isCompleted, Double highestPrice) {
+	        Integer bidsLeft, String highestBidder, Boolean isCompleted, Double highestPrice) {
 		this.artwork = artwork;
 		this.seller = seller;
 		this.auctionID = auctionID;
@@ -85,7 +85,7 @@ public final class Auction {
 				checkIfHigherThanCurrentHighest(bid));
 	}
 	
-	private Boolean checkIfNotHighestBidder(Bid bid) {
+	private Boolean checkIfNotHighestBidder(Bid bid) { //TODO returns null pointer exception?!
 		return (!bid.getBidder().equals(this.highestBidder));
 	}
 	
@@ -101,7 +101,7 @@ public final class Auction {
 		return this.artwork;
 	}
 	
-	public Profile getSeller() {
+	public String getSeller() {
 		return this.seller;
 	}
 	
@@ -117,7 +117,7 @@ public final class Auction {
 		return this.bidsLeft;
 	}
 	
-	public Profile getHighestBidder() {
+	public String getHighestBidder() {
 		return this.highestBidder;
 	}
 	

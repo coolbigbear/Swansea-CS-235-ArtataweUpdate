@@ -24,24 +24,24 @@ import java.time.LocalDateTime;
  */
 public final class Bid {
 	
-	private final Auction auction;
+	private final Integer auctionID;
 	private final Double bidAmount;
-	private final Profile bidder;
+	private final String bidder;
 	private final LocalDateTime dateTimePlaced;
 	
 	/**
 	 * The primary and only constructor for a Bid, this assumes the Profile
 	 * placing the Bid is the current user.
 	 *
-	 * @param auction the Auction which the Bid will be placed on
+	 * @param auctionID the Auction which the Bid will be placed on
 	 * @param bidAmount the Double representing the amount or price associated
 	 * 		with the Bid
 	 */
-	public Bid(Auction auction, Double bidAmount) {
-		this.auction = auction;
+	public Bid(Integer auctionID, Double bidAmount) {
+		this.auctionID = auctionID;
 		this.bidAmount = bidAmount;
 		this.dateTimePlaced = LocalDateTime.now();
-		this.bidder = Util.getCurrentUser();
+		this.bidder = Util.getCurrentUser().getUsername();
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public final class Bid {
 	 *
 	 * @return the Profile that placed the Bid
 	 */
-	public Profile getBidder() {
+	public String getBidder() {
 		return this.bidder;
 	}
 	
@@ -76,8 +76,8 @@ public final class Bid {
 	 *
 	 * @return the Auction the Bid will be placed on
 	 */
-	public Auction getAuction() {
-		return this.auction;
+	public Integer getAuction() {
+		return this.auctionID;
 	}
 	
 	/**
@@ -88,7 +88,7 @@ public final class Bid {
 	 */
 	@Override
 	public int hashCode() {
-		return this.dateTimePlaced.hashCode() + this.bidAmount.intValue() + this.auction.hashCode();
+		return this.dateTimePlaced.hashCode() + this.bidAmount.intValue() + this.auctionID.hashCode();
 	}
 	
 	/**
@@ -112,7 +112,7 @@ public final class Bid {
 	@Override
 	public String toString() {
 		return "Bid: " + this.hashCode() + "\n" +
-				"\tAuction: " + this.auction.toString() + "\n" +
+				"\tAuction: " + this.auctionID.toString() + "\n" +
 				"\tAmount: " + this.bidAmount.toString() + "\n" +
 				"\tBidder: " + this.bidder.toString() + "\n" +
 				"\tTime: " + this.dateTimePlaced.toString() + "\n";

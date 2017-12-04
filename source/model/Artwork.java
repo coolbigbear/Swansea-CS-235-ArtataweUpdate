@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 
 import java.time.LocalDate;
 
-public abstract class Artwork {
+public abstract class  Artwork {
 	
 	protected String title;
 	protected StringBuilder description;
@@ -21,7 +21,7 @@ public abstract class Artwork {
 	}
 
 	public abstract ArtworkType getType();
-	
+
 	public void setTitle(String title) {
 		this.title = title;
 	}

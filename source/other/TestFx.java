@@ -1,17 +1,12 @@
 package other;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import model.*;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,6 +26,7 @@ public class TestFx extends Application {
 		List<Profile> profiles = new ArrayList<>();
 		List<Auction> auctions = new ArrayList<>();
 		List<String> favourites = new ArrayList<>();
+		List<Bid> bids = new ArrayList<>();
 
 
 		Profile p1 = new Profile("bigbear1", "***REMOVED***", "***REMOVED***","07856912862",
@@ -58,17 +54,22 @@ public class TestFx extends Application {
 
 		Artwork art1 = new Painting("Monalisa", new StringBuilder("The most beautiful painting"), LocalDate.now(), "DaVinci");
 		Artwork art2 = new Painting("Scream", new StringBuilder("Can you hear the voices?"), LocalDate.now(), "James down the road");
-		Artwork art3 = new Painting("Sunflower", new StringBuilder("Only one like this"), LocalDate.now(), "VanGogh");
 
-		Auction a1 = new Auction(art1, p1, 01, 20, 18000.0);
-		Auction a2 = new Auction(art2, p2, 02, 30, 28000.0);
+		Auction a1 = new Auction(art1, p1.getUsername(), 01, 20, 18000.0);
+		Auction a2 = new Auction(art2, p2.getUsername(), 02, bids, 20000.0, 15, LocalDateTime.now(), 4, p1.getUsername(), false, 5000.0);
+
+		Util.saveProfileToFile(profiles);
+		Util.readInLoggedInUser("bigbear1");
+
+		Bid b1 = new Bid(02,10000.0);
+		bids.add(b1);
 
 		auctions.add(a1);
 		auctions.add(a2);
 
+
 		//Json - Gson stuff
 
-		//Write JSON String to file
 
 		Util.saveAuctionsToFile(auctions);
 		//Util.saveProfileToFile(auctions);

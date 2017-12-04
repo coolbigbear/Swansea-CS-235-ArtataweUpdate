@@ -2,11 +2,8 @@ package model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.exception.ProfileNotFoundException;
 
 import java.io.*;
-import java.lang.reflect.Type;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,12 +22,11 @@ public final class Util {
 	 *
 	 * @return List of Profiles read from database
 	 */
-	private static ArrayList<Profile> readInProfileFile() {
+	private static Profile[] readInProfileFile() {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Profiles.json"));
-			ArrayList<Profile> fromJson = gson.fromJson(br, (Type) Profile.class);
+			return gson.fromJson(br, Profile[].class);
 
-			return fromJson;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -44,7 +40,7 @@ public final class Util {
 	 */
 	public static void readInLoggedInUser(String username) {
 
-		ArrayList<Profile> fromJson = readInProfileFile();
+		Profile[] fromJson = readInProfileFile();
 		for (Profile profile : fromJson) {
 			//Read the variables required for constructor
 			String name = profile.getUsername();
@@ -73,7 +69,7 @@ public final class Util {
 	//Helper method, could be useful
 	public static Profile getProfileByUsername(String username) {
 
-		ArrayList<Profile> allProfiles = readInProfileFile();
+		Profile[] allProfiles = readInProfileFile();
 		for (Profile profile : allProfiles) {
 			String name = profile.getUsername();
 
@@ -89,9 +85,17 @@ public final class Util {
 	 *
 	 * @param profile the profile
 	 */
-	public static void saveProfileToFile(Profile profile) {
+	public static void saveProfileToFile(List<Profile> profile) {
 		try {
 			addTypesToGson();
+//			Profile[] temp = readInProfileFile();
+//			String username = profile.getUsername();
+//			for (Profile name: temp) {
+//
+//                if (Objects.equals(name.getUsername(), username)) {
+//                   name = profile;
+//                }
+//            }
 			FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
 			gson.toJson(profile, fileWriter);
 			fileWriter.close();
@@ -126,7 +130,7 @@ public final class Util {
 			Auction[] fromJson = gson.fromJson(br, Auction[].class);
 
 			ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-
+			//TODO for each to see if completed
 			BHFeed.getNewInstance().addAll(auctionArrayList);
 			System.out.println(BHFeed.getInstance());
 		} catch (FileNotFoundException e) {
