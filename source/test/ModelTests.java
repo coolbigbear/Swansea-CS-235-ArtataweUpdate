@@ -1,9 +1,7 @@
 package test;
 
-import model.Artwork;
-import model.ArtworkType;
-import model.BHFeedString;
-import model.Sculpture;
+import model.*;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,91 +24,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Model")
 class ModelTests {
 	
-	//region Test Init
-	
-	
-		/*
-		
-			@BeforeAll
-	void initAll() {
-	
-	}
-	
-	@BeforeEach
-	void init() {
-		StringBuilder monaLisaDescription = new StringBuilder();
-		monaLisaDescription.append("The Mona Lisa (/ˌmoʊnə ˈliːsə/; Italian: Monna Lisa " +
-				"[ˈmɔnna ˈliːza] or La Gioconda [la dʒoˈkonda], French: La Joconde [la ʒɔkɔ̃d])");
-		monaLisaDescription.append(" is a half-length portrait painting by the Italian Renaissance artist " +
-				"Leonardo da Vinci that has been described as \"the best known, the most visited," +
-				" the most written about, the most sung about, the most parodied work of art in the world\".");
-		Date monaLisaDate = new Date();
-		Image monaLisaImage = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg");
-		Artwork monaLisa = new Painting("Mona Lisa", monaLisaDescription, monaLisaDate,
-				"Leonardo da Vinci", monaLisaImage, 25, 50);
-		
-		StringBuilder davidDescription = new StringBuilder();
-		davidDescription.append("David (Italian pronunciation: [ˈdaːvid]) is a masterpiece of Renaissance " +
-				"sculpture created between 1501 and 1504 by Michelangelo.");
-		Date davidDate = new Date();
-		Image davidImage = new Image("https://upload.wikimedia.org/wikipedia/commons/8/84/Michelangelo%27s_David_2015.jpg");
-		Artwork david = new Sculpture("David", davidDescription, davidDate,
-				"Michelangelo", davidImage, 500, 500, 1000, "Marble");
-		
-		
-		//Auction auction = new Auction();
-	}
-	
-
-	
-	//endregion
-	
-	//region Profile Tests
-	
-	/**
-	 * Will test the Profile constructor and getters at the same time
-	 */
-	/*
-	@Test
-	
-	void testProfileConstructorAndGetters(){
-		model.Profile profile = new model.Profile(
-				 args );
-		// many asserts here to do the getters all together
-	    assertEquals( hardcoded expected, profile.get... ));
-	}
-	*/
-	
-	//endregion
-	
-	//region Profile Tests
-	
-	
-	
-	//endregion
-	
-	//region Database Tests
-	
-	
-	//endregion
-	
-	//region Artwork Tests
-	
-	//region Painting Tests
-	
 	/**
 	 * Tests the type of a Painting which is an Artwork
 	 */
+	@Disabled
 	@DisplayName("Painting Type")
 	@Test
 	void testPaintingGetType() {
-		//	Artwork localPainting = new Painting("", new StringBuilder(""), LocalDate.now(), "", null, 5, 5);
-		// assertEquals(ArtworkType.PAINTING, localPainting.getType());
+		//Artwork localPainting = new Painting("", new StringBuilder(""), LocalDate.now(), "", null, 5, 5);
+		//assertEquals(ArtworkType.PAINTING, localPainting.getType());
 	}
-	
-	//endregion
-	
-	//region Sculpture Tests
 	
 	/**
 	 * Tests the type of a Sculpture which is an Artwork
@@ -122,22 +45,6 @@ class ModelTests {
 				null, 5, 5, 5, "");
 		assertEquals(ArtworkType.SCULPTURE, localSculpture.getType());
 	}
-	
-	//endregion
-	
-	//endregion
-	
-	//region Auction Tests
-	
-	//region Bid Validation
-	
-	//endregion
-	
-	//endregion
-	
-	//region Bid Tests
-	
-	// We may need some Bid time tests as well
 	
 	/**
 	 * Will test the Bid's getters
@@ -174,13 +81,6 @@ class ModelTests {
 	void testBidToString() {
 	
 	}
-	
-	
-	//endregion
-	
-	//region Feed Tests
-	
-	//region BHFeedString Tests
 	
 	@DisplayName("BHFeedString isEmpty")
 	@Test
@@ -499,18 +399,6 @@ class ModelTests {
 	    assertNotNull(BHFeedString.getInstance());
 	}
 	
-	//endregion
-	
-	
-	//endregion
-	
-	//region Util Tests
-	
-	
-	//endregion
-	
-	//region Other Tests
-	
 	@DisplayName("LocalDateTime now +1 millisecond hashcode")
 	@Test
 	void testLocalDateTimeNowHashCode() throws InterruptedException {
@@ -531,22 +419,5 @@ class ModelTests {
 		assertTrue(july271950.hashCode() == j7271950.hashCode());
 	}
 	
-	//endregion
-	
-	//region Test Teardown
-	
-	/*
-	@AfterEach
-	void tearDown() {
-	
-	}
-	
-	@AfterAll
-	void tearDownAll() {
-	
-	}
-	*/
-	
-	//endregion
 	
 }

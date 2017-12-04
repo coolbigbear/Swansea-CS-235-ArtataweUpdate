@@ -1,5 +1,6 @@
 package CustomDrawing;
 
+
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -8,6 +9,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+
 import javax.imageio.ImageIO;
 import java.io.File;
 
