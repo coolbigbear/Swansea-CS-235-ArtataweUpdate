@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * This Test class will test the base code also called the Model
- * this means no UI related things will be tested
+ * this means no UI related things will be tested here
  * Uses JUnit5
  *
  * @author Bassam Helal
@@ -32,7 +32,7 @@ class ModelTests {
 		Profile currentUser = Profile.createNewProfile("BassHelal", "Bassam", "Helal",
 				"00974666999123", "University", "Lane", "Swansea", "United Kingdom",
 				"SA12PP", "path");
-		//Util.setCurrentUser(currentUser);
+		//Util.setCurrentUser(currentUser); // TODO: 05-Dec-17 fix this!
 	}
 	
 	@Nested

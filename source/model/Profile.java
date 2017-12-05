@@ -179,13 +179,6 @@ public final class Profile {
 		} else {
 			throw new InputMismatchException("Invalid username!");
 		}
-
-/*		if (username.matches(checkUsername)) {
-			return true;
-		} else {
-			return false;
-		}*/
-		
 	}
 	
 	@Override
