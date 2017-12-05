@@ -9,17 +9,17 @@ import java.time.LocalDateTime;
  * A Bid cannot exist without these attributes, specifically a Bid requires:
  * <ul>
  * <li>Auction which the Bid will be placed on.</li>
- * <li>Profile which is the current user, or the person placing the Bid</li>
+ * <li>Profile Username which is the username of the current user, or the person placing the Bid</li>
  * <li>Bid Amount which is the amount associated with the Bid</li>
  * <li>Date which is the date and time the Bid was placed</li>
  * </ul>
  *
- * Notice that Bid validation on an Auction does not occur here, instead on the Auction,
+ * Note that Bid validation on an Auction does not occur here, instead on the Auction,
  * meaning a Bid instance may exist where it does not satisfy the validation requirements of
  * the Auction, this Bid will not exist on the Database.
  *
  * @author Bassam Helal
- * @version 1.1
+ * @version 1.2
  * @see Auction
  */
 public final class Bid {
@@ -67,7 +67,7 @@ public final class Bid {
 	 *
 	 * @return the username of the Profile that placed the Bid
 	 */
-	public String getBidder() {
+	public String getBidderUsername() {
 		return this.bidder;
 	}
 	
@@ -76,7 +76,7 @@ public final class Bid {
 	 *
 	 * @return the Auction the Bid will be placed on
 	 */
-	public Integer getAuction() {
+	public Integer getAuctionID() {
 		return this.auctionID;
 	}
 	

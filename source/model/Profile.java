@@ -201,6 +201,6 @@ public final class Profile {
 	//Implement this later!!!
 	@Override
 	public String toString() {
-		return super.toString();
+		return this.username;
 	}
 }

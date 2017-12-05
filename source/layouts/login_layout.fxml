@@ -14,16 +14,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
          <Label layoutX="376.0" prefHeight="137.0" prefWidth="256.0" text="Artatawe">
             <font>
                <Font size="61.0" />
             </font>
          </Label>
-         <TextField layoutX="376.0" layoutY="160.0" prefHeight="31.0" prefWidth="234.0" promptText="Username" />
-         <Label layoutX="376.0" layoutY="192.0" prefHeight="33.0" prefWidth="257.0" text="Username not found..." />
-         <Button layoutX="465.0" layoutY="296.0" mnemonicParsing="false" text="Login" />
+         <TextField fx:id="loginTextField" layoutX="376.0" layoutY="160.0" prefHeight="31.0" prefWidth="234.0" promptText="Username" />
+         <Label fx:id="loginUserPrompt" layoutX="376.0" layoutY="192.0" prefHeight="33.0" prefWidth="257.0" text="Username not found..." />
+         <Button layoutX="465.0" layoutY="296.0" mnemonicParsing="false" onAction="#loginButtonAction" text="Login" />
       <ImageView fitHeight="329.0" fitWidth="329.0" layoutX="25.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

@@ -22,7 +22,7 @@ public final class Auction implements Comparable<Auction> {
 	
 	private final Artwork artwork;
 	private final String seller;
-	private final Integer auctionID; /*TODO: Bassam Helal 27-Nov-17 This needs to be taken care of using the Database */
+	private final Integer auctionID; //TODO: ***REMOVED***  Increment ID during new auction creation
 	private final List<Bid> bidList;
 	private final Double reservePrice;
 	private final Integer bidsAllowed;
@@ -30,7 +30,7 @@ public final class Auction implements Comparable<Auction> {
 	private Integer bidsLeft;
 	private String highestBidder;
 	private Boolean isCompleted;
-	private Double highestPrice;
+	private Double highestPrice = 0.0;
 	
 	
 	/**
@@ -44,10 +44,7 @@ public final class Auction implements Comparable<Auction> {
 	public Auction(Artwork artwork, String seller, Integer auctionID, Integer bidsAllowed, Double reservePrice) {
 		this.artwork = artwork;
 		this.seller = seller;
-		
-		// TODO: 29-Nov-17 Bassam Helal, ***REMOVED*** ***REMOVED*** change this to correspond to Database
 		this.auctionID = auctionID;
-		
 		this.bidList = new ArrayList<>();
 		this.bidsLeft = bidsAllowed;
 		this.bidsAllowed = bidsAllowed;
@@ -74,7 +71,7 @@ public final class Auction implements Comparable<Auction> {
 	
 	public Boolean placeBid(Bid bid) {
 		if (validateBid(bid)) {
-			this.highestBidder = bid.getBidder();
+			this.highestBidder = bid.getBidderUsername();
 			this.highestPrice = bid.getBidAmount();
 			return true;
 		} else throw new IllegalBidException("Invalid Bid!");
@@ -90,7 +87,7 @@ public final class Auction implements Comparable<Auction> {
 		if (this.highestBidder == null) {
 			return true;
 		} else {
-			return (!bid.getBidder().equals(this.highestBidder));
+			return (!bid.getBidderUsername().equals(this.highestBidder));
 		}
 	}
 	
