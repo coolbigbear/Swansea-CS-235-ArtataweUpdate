@@ -32,12 +32,12 @@ public class TestFx extends Application {
 		Profile p1 = new Profile("bigbear1", "***REMOVED***", "***REMOVED***","07856912862",
                 "Some Address","BitDifferent Address","someCity","UK, duh",
 				"somePostcode","path", favourites, new ArrayList<>(), new ArrayList<>(),
-				new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
+				new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
 		Profile p2 = new Profile("bigbear2", "***REMOVED***", "***REMOVED***","07856912862",
                 "Some Address","BitDifferent Address","someCity","UK, duh",
 				"somePostcode", "path",
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(),
-				new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
+				LocalDateTime.now());
 
 //		Profile p3 = new Profile("bigbear3", "No contact info");
 //		Profile p4 = new Profile("bigbear4", "No contact info");
@@ -57,9 +57,9 @@ public class TestFx extends Application {
 		favourites.add(p2.getUsername());
 
 		Artwork art1 = new Painting("Monalisa", new StringBuilder("The most beautiful painting"), LocalDate.now(),
-				"DaVinci");
+				"DaVinci", "string", 400, 400);
 		Artwork art2 = new Painting("Scream", new StringBuilder("Can you hear the voices?"), LocalDate.now(),
-				"James down the road");
+				"James down the road", "string", 400, 400);
 
 		Auction a1 = new Auction(art1, p1.getUsername(), 01, 20, 18000.0);
 		Auction a2 = new Auction(art2, p2.getUsername(), 02, new ArrayList<>() , 20000.0, 15,
@@ -82,7 +82,7 @@ public class TestFx extends Application {
         Profile p3 = new Profile("bigbear2", "James", "***REMOVED***","07856912862",
                 "Some Address","BitDifferent Address","someCity","UK, duh",
 				"somePostcode", null, new ArrayList<String>(), new ArrayList<Auction>(),
-				new ArrayList<Auction>(), new ArrayList<Auction>(), new ArrayList<Auction>(), new ArrayList<Auction>(), new ArrayList<Bid>(),
+				new ArrayList<Auction>(), new ArrayList<Auction>(), new ArrayList<Bid>(),
 				LocalDateTime.now());
 
 		Util.saveProfileToFile(p3);
