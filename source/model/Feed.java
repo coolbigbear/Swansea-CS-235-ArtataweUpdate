@@ -27,10 +27,6 @@ import java.util.function.Consumer;
  */
 public final class Feed implements Iterable<Auction> {
 	
-	// TODO: 29-Nov-17 Bassam Helal, consider sorting and getting sorted lists based on a given Comparator
-	
-	//there's a difference between the instance and the arrayList
-	
 	//The current Feed instance, may be null
 	private static Feed instance;
 	
@@ -316,8 +312,9 @@ public final class Feed implements Iterable<Auction> {
 		instance = null;
 	}
 	
+	//makes the current instance collections sorted, no return types required
 	public void sortByDate() {
-		Collections.sort(arrayList);
+		Collections.sort(this.arrayList);
 	}
 	
 	@Override

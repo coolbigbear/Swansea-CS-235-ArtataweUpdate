@@ -3,10 +3,7 @@ package model;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 import java.util.function.Consumer;
 
 public final class BHFeedString implements Iterable<String> {
@@ -151,6 +148,10 @@ public final class BHFeedString implements Iterable<String> {
 		instance = null;
 	}
 	
+	public void sort() {
+		Collections.sort(this.arrayList);
+	}
+	
 	@Override
 	public int hashCode() {
 		return arrayList.hashCode();
@@ -161,10 +162,16 @@ public final class BHFeedString implements Iterable<String> {
 		return ((super.equals(obj) && (obj.hashCode() == this.hashCode())));
 	}
 	
-	//implement this later!!!
 	@Override
 	public String toString() {
-		return super.toString();
+		StringBuilder contents = new StringBuilder();
+		for (String string: this.arrayList) {
+			contents.append(string);
+			contents.append(" ");
+		}
+		return "Feed: " + "\n" +
+				"\tSize: " + this.size() + "\n" +
+				"\tContents: " + contents + "\n";
 	}
 	
 
