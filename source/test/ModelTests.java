@@ -32,7 +32,7 @@ class ModelTests {
 		Profile currentUser = Profile.createNewProfile("BassHelal", "Bassam", "Helal",
 				"00974666999123", "University", "Lane", "Swansea", "United Kingdom",
 				"SA12PP", "path");
-		Util.setCurrentUser(currentUser);
+		//Util.setCurrentUser(currentUser);
 	}
 	
 	@Nested
@@ -309,19 +309,30 @@ class ModelTests {
 		
 	}
 	
+	//Profile and Auction and Feed need the Database to work first for them to test and work
 	@Nested
 	class AuctionTests {
 	
 	}
 	
 	@Nested
-	class  ProfileTests {
+	class ProfileTests {
 	
 	}
 	
 	@Nested
 	class FeedTests {
 	
+	}
+	
+	@Nested
+	class UtilTests {
+		
+		@Nested
+		class DataBaseTests {
+		
+		}
+		
 	}
 	
 	@Nested
@@ -641,6 +652,37 @@ class ModelTests {
 			stringFeed.destroyInstance();
 			
 			assertNotNull(BHFeedString.getInstance());
+		}
+		
+		@DisplayName("BHFeedString Sort")
+		@Test
+		void testBHFeedStringSort() {
+			BHFeedString stringFeed = BHFeedString.getNewInstance();
+			stringFeed.addAll("Felicia", "Eve", "Daniel", "Bob", "Alice", "Charlie");
+			stringFeed.sort();
+			
+			assertEquals("Alice", stringFeed.getAllAsArray()[0]);
+			assertEquals("Bob", stringFeed.getAllAsArray()[1]);
+			assertEquals("Charlie", stringFeed.getAllAsArray()[2]);
+			assertEquals("Daniel", stringFeed.getAllAsArray()[3]);
+			assertEquals("Eve", stringFeed.getAllAsArray()[4]);
+			assertEquals("Felicia", stringFeed.getAllAsArray()[5]);
+		}
+		
+		@DisplayName("BHFeedString toString")
+		@Test
+		void testBHFeedStringToString() {
+			BHFeedString stringFeed = BHFeedString.getNewInstance();
+			stringFeed.addAll("Felicia", "Eve", "Daniel", "Bob", "Alice", "Charlie");
+			stringFeed.sort();
+			
+			StringBuilder strings = new StringBuilder();
+			for (String string : stringFeed) {
+				strings.append(string);
+				strings.append(" ");
+			}
+			
+			assertEquals("Feed: \n\tSize: 6\n\tContents: " + strings + "\n", stringFeed.toString());
 		}
 	}
 	
