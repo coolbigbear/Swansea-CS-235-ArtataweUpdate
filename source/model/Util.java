@@ -77,6 +77,21 @@ public final class Util {
 		}
 	}
 
+	public static boolean checkAndSetUser(String username) {
+		boolean found = false;
+		Profile[] fromJson = readInProfileFile();
+		for (Profile profile : fromJson) {
+			//Read the variables required for constructor
+			String name = profile.getUsername();
+
+			if (Objects.equals(name, username)) {
+				currentUser = profile;
+				found = true;
+			}
+		}
+		return found;
+	}
+
 //	private static void setCurrentUser(Profile profile) {
 //		currentUser = new Profile(profile.getUsername(), profile.getFirstName(), profile.getLastName(),
 //				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),

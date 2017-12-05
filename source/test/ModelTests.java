@@ -32,7 +32,7 @@ class ModelTests {
 		Profile currentUser = Profile.createNewProfile("BassHelal", "Bassam", "Helal",
 				"00974666999123", "University", "Lane", "Swansea", "United Kingdom",
 				"SA12PP", "path");
-		Util.setCurrentUser(currentUser);
+		//Util.setCurrentUser(currentUser);
 	}
 	
 	@Nested

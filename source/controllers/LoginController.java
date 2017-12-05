@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.Util;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +31,7 @@ public class LoginController implements Initializable {
     }
 
     private void successfulLogin() {
-
+        loginUserPrompt.setText("Welcome to Artatawe" + ", !" + Util.getCurrentUser().getFirstName());
     }
 
     private boolean validate(String input) {
@@ -64,7 +65,7 @@ public class LoginController implements Initializable {
     }
 
     private boolean validUser(String input) {
-        return false;
+        return Util.checkAndSetUser(input);
     }
 
 }
