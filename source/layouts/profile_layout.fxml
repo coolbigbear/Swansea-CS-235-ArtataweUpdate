@@ -21,10 +21,10 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="160.0" fitWidth="157.0" layoutX="31.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="33.0" layoutY="207.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" text="Browse Default" />
-            <Button layoutX="33.0" layoutY="257.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" text="Create Custom" />
-            <Label layoutX="33.0" layoutY="308.0" prefHeight="35.0" prefWidth="75.0" text="Last Login:" />
+            <ImageView fx:id="profileImg" fitHeight="160.0" fitWidth="157.0" layoutX="31.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
+            <Button  fx:id="browseDefault" layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Browse Default" />
+            <Button  fx:id="createCustom" layoutX="33.0" layoutY="257.0" mnemonicParsing="false" onAction="#createCustomImg" prefHeight="31.0" prefWidth="157.0" text="Create Custom" />
+            <Label fx:id="lastLogin" layoutX="33.0" layoutY="308.0" prefHeight="35.0" prefWidth="196.0" text="bigbear1" /> <!--"bigbear1" temp test method-->
             <GridPane layoutX="255.0" layoutY="73.0" prefHeight="368.0" prefWidth="443.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -38,14 +38,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="postCode" prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" /> <!--Post Code-->
                   <Label prefHeight="95.0" prefWidth="229.0" text="Last Name" GridPane.rowIndex="1" />
                   <Label prefHeight="95.0" prefWidth="229.0" text="Address" GridPane.rowIndex="3" />
-                  <Label prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="contactNumber" prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" /> <!--Contact Number-->
                   <Label prefHeight="95.0" prefWidth="229.0" text="Contact Number" GridPane.rowIndex="2" />
-                  <Label prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" />
-                  <Label prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="lastName" prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" /> <!--Last Name-->
+                  <Label fx:id="firstName" prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" /> <!--First Name-->
+                  <Label fx:id="address" prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" /> <!--Address-->
                   <Label prefHeight="95.0" prefWidth="229.0" text="First Name" />
                   <Label prefHeight="95.0" prefWidth="229.0" text="Post Code" GridPane.rowIndex="4" />
                </children>
