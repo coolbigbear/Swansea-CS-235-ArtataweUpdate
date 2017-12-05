@@ -10,6 +10,15 @@ import java.util.*;
 
 public final class Util {
 	
+	/*
+	 * Notes:
+	 *          Filter by Artwork type
+	 *          Get all Auctions by a Profile
+	 *          Get all new Auctions
+	 *          Get all Bids from an Auction
+	 *          Get highest Bidder and Bid of an Auction
+	 */
+	
 	/**
 	 * The current user who is signed in to the system.
 	 */
