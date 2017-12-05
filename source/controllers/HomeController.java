@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.Util;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,13 +19,17 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //setProfileImageView();
+        welcomeLabel.setText(Util.getCurrentUser().getFirstName() + Util.getCurrentUser().getLastName());
+        setProfileImageView(Util.getCurrentUser().getProfileImagePath());
     }
 
-    //when user changed profile in his profile settings, this needs to be updated
-    public void setProfileImageView(String imagePath) {
+    private void setProfileImageView(String imagePath) {
         Image img = new Image(imagePath);
-        profileImageView.setImage(img);
+        try {
+            profileImageView.setImage(img);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
