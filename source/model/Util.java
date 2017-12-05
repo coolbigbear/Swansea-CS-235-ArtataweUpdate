@@ -11,6 +11,14 @@ import java.util.List;
 import java.util.Objects;
 
 public final class Util {
+	/*
+	 * Notes:
+	 *          Filter by Artwork type
+	 *          Get all Auctions by a Profile
+	 *          Get all new Auctions
+	 *          Get all Bids from an Auction
+	 *          Get highest Bidder and Bid of an Auction
+	 */
 	
 	/*
 	 * Notes:
