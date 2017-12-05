@@ -44,6 +44,8 @@ public final class Auction implements Comparable<Auction> {
 	public Auction(Artwork artwork, String seller, Integer auctionID, Integer bidsAllowed, Double reservePrice) {
 		this.artwork = artwork;
 		this.seller = seller;
+		
+		// TODO: 29-Nov-17 Bassam Helal, ***REMOVED*** ***REMOVED*** change this to correspond to Database, it shouldn't be parameter
 		this.auctionID = auctionID;
 		this.bidList = new ArrayList<>();
 		this.bidsLeft = bidsAllowed;
@@ -52,6 +54,13 @@ public final class Auction implements Comparable<Auction> {
 		this.isCompleted = false;
 		this.dateTimePlaced = LocalDateTime.now();
 	}
+	
+	//factory
+	public static Auction createNewAuction(Artwork artwork, String seller, Integer auctionID,
+	                                       Integer bidsAllowed, Double reservePrice) {
+		return new Auction(artwork, seller, auctionID, bidsAllowed, reservePrice);
+	}
+	
 	
 	public Auction(Artwork artwork, String seller, Integer auctionID, List<Bid> bidList,
 	               Double reservePrice, Integer bidsAllowed, LocalDateTime dateTimePlaced,
