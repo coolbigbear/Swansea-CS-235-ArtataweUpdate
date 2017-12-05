@@ -11,23 +11,6 @@ import java.util.List;
 import java.util.Objects;
 
 public final class Util {
-	/*
-	 * Notes:
-	 *          Filter by Artwork type
-	 *          Get all Auctions by a Profile
-	 *          Get all new Auctions
-	 *          Get all Bids from an Auction
-	 *          Get highest Bidder and Bid of an Auction
-	 */
-	
-	/*
-	 * Notes:
-	 *          Filter by Artwork type
-	 *          Get all Auctions by a Profile
-	 *          Get all new Auctions
-	 *          Get all Bids from an Auction
-	 *          Get highest Bidder and Bid of an Auction
-	 */
 	
 	/*
 	 * Notes:
@@ -60,6 +43,11 @@ public final class Util {
 		throw new ProfileNotFoundException("Profile not found!");
 	}
 	
+	/**
+	 * Reads in all auctions from database.
+	 *
+	 * @return List of Auctions read from database
+	 */
 	private static Auction[] readInAuctionFile() {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
@@ -84,18 +72,19 @@ public final class Util {
 			String name = profile.getUsername();
 			
 			if (Objects.equals(name, username)) {
-				setCurrentUser(profile);
+				currentUser = profile;
 			}
 		}
 	}
-	
-	public static void setCurrentUser(Profile profile) {
-		currentUser = new Profile(profile.getUsername(), profile.getFirstName(), profile.getLastName(),
-				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),
-				profile.getCity(), profile.getCountry(), profile.getPostcode(), profile.getProfileImagePath(),
-				profile.getFavouriteUsers(), profile.getWonAuctions(), profile.getCompletedAuctions(),
-				profile.getCurrentlySelling(), profile.getAllBidsPlaced(), profile.getLastLogInTime());
-	}
+
+//	private static void setCurrentUser(Profile profile) {
+//		currentUser = new Profile(profile.getUsername(), profile.getFirstName(), profile.getLastName(),
+//				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),
+//				profile.getCity(), profile.getCountry(), profile.getPostcode(), profile.getProfileImagePath(),
+//				profile.getFavouriteUsers(), profile.getWonAuctions(), profile.getCompletedAuctions(),
+//				profile.getCurrentlySelling(), profile.getNewAuctions(), profile.getAuctionsNewBids(),
+//				profile.getAllBidsPlaced(), profile.getLastLogInTime());
+//	}
 	
 	/**
 	 * Gets profile by username from database.
@@ -104,6 +93,7 @@ public final class Util {
 	 *
 	 * @return the profile to be returned
 	 */
+	//Helper method, could be useful
 	public static Profile getProfileByUsername(String username) {
 		
 		Profile[] allProfiles = readInProfileFile();
@@ -117,6 +107,13 @@ public final class Util {
 		throw new ProfileNotFoundException("Profile not found!");
 	}
 	
+	/**
+	 * Gets Auction by auctionID from database.
+	 *
+	 * @param auctionID the ID of auction to be found
+	 *
+	 * @return the auction to be returned
+	 */
 	public static Auction getAuctionByAuctionID(Integer auctionID) {
 		
 		Auction[] allAuctions = readInAuctionFile();
@@ -154,6 +151,11 @@ public final class Util {
 		}
 	}
 	
+	/**
+	 * Saves a auction to file.
+	 *
+	 * @param auction the auction
+	 */
 	public static void saveAuctionToFile(Auction auction) {
 		try {
 			addTypesToGson();
@@ -174,11 +176,11 @@ public final class Util {
 	}
 	
 	/**
-	 * Save all auctions to file.
+	 * Save a list of auctions to file.
 	 *
 	 * @param auctions Auctions to be saved to file
 	 */
-	public static void saveAuctionsToFile(List<Auction> auctions) {
+	public static void saveListOfAuctionsToFile(List<Auction> auctions) {
 		try {
 			addTypesToGson();
 			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
@@ -189,7 +191,12 @@ public final class Util {
 		}
 	}
 	
-	public static void saveProfilesToFile(List<Profile> profiles) {
+	/**
+	 * Save a list of profiles to file.
+	 *
+	 * @param profiles Profiles to be saved to file
+	 */
+	public static void saveListOfProfilesToFile(List<Profile> profiles) {
 		try {
 			addTypesToGson();
 			FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
@@ -201,29 +208,27 @@ public final class Util {
 	}
 	
 	/**
-	 * Read in all auctions from database.
+	 * Read in all auctions from database that are active (on sale).
 	 */
-	public static void readInAllAuctions() {
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
-			
-			Auction[] fromJson = gson.fromJson(br, Auction[].class);
-			
-			ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-			
-			Feed feed = Feed.getNewInstance();
-			
-			//for each Auction only add it to the Feed if it is not completed
-			for (Auction auction : auctionArrayList) {
-				if (!auction.isCompleted()) {
-					feed.add(auction);
-				}
+	public static void readInActiveAuctions() {
+		Auction[] fromJson = readInAuctionFile();
+		
+		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+		
+		Feed feed = Feed.getNewInstance();
+		
+		//for each Auction only add it to the Feed if it is not completed
+		for (Auction auction : auctionArrayList) {
+			if (!auction.isCompleted()) {
+				feed.add(auction);
 			}
-			//Feed.getNewInstance().addAll(auctionArrayList);
-			//System.out.println(Feed.getInstance());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		}
+		//Feed.getNewInstance().addAll(auctionArrayList);
+		//System.out.println(Feed.getInstance());
+	}
+	
+	public static void addAuctionToDatabase() {
+	
 	}
 	
 	/**
