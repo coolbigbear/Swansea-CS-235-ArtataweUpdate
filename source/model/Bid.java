@@ -42,6 +42,8 @@ public final class Bid {
 		this.bidAmount = bidAmount;
 		this.dateTimePlaced = LocalDateTime.now();
 		this.bidder = Util.getCurrentUser().getUsername();
+
+		//TODO: Mike - Add bid to the list of bids for the auction
 	}
 	
 	/**
