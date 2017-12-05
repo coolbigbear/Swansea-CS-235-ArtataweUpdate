@@ -11,7 +11,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("sample.fxml"))));
         primaryStage.setTitle("Profile Image Canvas");
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.show();
     }
 
