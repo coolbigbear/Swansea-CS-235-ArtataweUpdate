@@ -1,1 +1,312 @@
-[{"username":"bigbear1","firstName":"***REMOVED***","lastName":"***REMOVED***","phoneNumber":"07856912862","addressLine1":"Some Address","addressLine2":"BitDifferent Address","city":"someCity","country":"UK, duh","postcode":"somePostcode","profileImagePath":"path","favouriteUsers":["bigbear1","bigbear2"],"wonAuctions":[],"completedAuctions":[],"currentlySelling":[],"allBidsPlaced":[],"lastLogInTime":{"date":{"year":2017,"month":12,"day":6},"time":{"hour":20,"minute":7,"second":6,"nano":199000000}}},{"username":"bigbear2","firstName":"James","lastName":"***REMOVED***","phoneNumber":"07856912862","addressLine1":"Some Address","addressLine2":"BitDifferent Address","city":"someCity","country":"UK, duh","postcode":"somePostcode","favouriteUsers":[],"wonAuctions":[],"completedAuctions":[],"currentlySelling":[],"allBidsPlaced":[],"lastLogInTime":{"date":{"year":2017,"month":12,"day":6},"time":{"hour":20,"minute":7,"second":6,"nano":302000000}}}]
+[
+  {
+    "username": "bigbear1",
+    "firstName": "***REMOVED***",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
+    "profileImagePath": "path",
+    "favouriteUsers": [
+      "bigbear2",
+      "fred",
+      "jkr",
+      "dva",
+      "S76",
+      "Reaper",
+      "funky",
+      "dancer",
+      "Linuz"
+    ],
+    "wonAuctions": [],
+    "completedAuctions": [],
+    "currentlySelling": [],
+    "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 21,
+        "minute": 32,
+        "second": 3,
+        "nano": 827000000
+      }
+    }
+  },
+  {
+    "username": "bigbear2",
+    "firstName": "***REMOVED***",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
+    "profileImagePath": "path",
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuctions": [],
+    "currentlySelling": [],
+    "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 21,
+        "minute": 32,
+        "second": 3,
+        "nano": 823000000
+      }
+    }
+  },
+  {
+    "username": "fred",
+    "firstName": "Fred",
+    "lastName": "Schumer",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "USA",
+    "postcode": "somePostcode",
+    "profileImagePath": "path",
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuctions": [],
+    "currentlySelling": [],
+    "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 21,
+        "minute": 32,
+        "second": 3,
+        "nano": 827000000
+      }
+    }
+  },
+  {
+    "username": "jkr",
+    "firstName": "John",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
+    "profileImagePath": "path",
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuctions": [],
+    "currentlySelling": [],
+    "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 21,
+        "minute": 32,
+        "second": 3,
+        "nano": 827000000
+      }
+    }
+  },
+  {
+    "username": "dva",
+    "firstName": "DVA",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
+    "profileImagePath": "path",
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuctions": [],
+    "currentlySelling": [],
+    "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 21,
+        "minute": 32,
+        "second": 3,
+        "nano": 827000000
+      }
+    }
+  },
+  {
+    "username": "S76",
+    "firstName": "Morrison",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
+    "profileImagePath": "path",
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuctions": [],
+    "currentlySelling": [],
+    "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 21,
+        "minute": 32,
+        "second": 3,
+        "nano": 827000000
+      }
+    }
+  },
+  {
+    "username": "Reaper",
+    "firstName": "Reaper",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
+    "profileImagePath": "path",
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuctions": [],
+    "currentlySelling": [],
+    "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 21,
+        "minute": 32,
+        "second": 3,
+        "nano": 827000000
+      }
+    }
+  },
+  {
+    "username": "funky",
+    "firstName": "Foo",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
+    "profileImagePath": "path",
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuctions": [],
+    "currentlySelling": [],
+    "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 21,
+        "minute": 32,
+        "second": 3,
+        "nano": 827000000
+      }
+    }
+  },
+  {
+    "username": "dancer",
+    "firstName": "Jackson",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
+    "profileImagePath": "path",
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuctions": [],
+    "currentlySelling": [],
+    "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 21,
+        "minute": 32,
+        "second": 3,
+        "nano": 827000000
+      }
+    }
+  },
+  {
+    "username": "Linuz",
+    "firstName": "Linus",
+    "lastName": "***REMOVED***",
+    "phoneNumber": "07856912862",
+    "addressLine1": "Some Address",
+    "addressLine2": "BitDifferent Address",
+    "city": "someCity",
+    "country": "UK, duh",
+    "postcode": "somePostcode",
+    "profileImagePath": "path",
+    "favouriteUsers": [],
+    "wonAuctions": [],
+    "completedAuctions": [],
+    "currentlySelling": [],
+    "allBidsPlaced": [],
+    "lastLogInTime": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 21,
+        "minute": 32,
+        "second": 3,
+        "nano": 827000000
+      }
+    }
+  }
+]

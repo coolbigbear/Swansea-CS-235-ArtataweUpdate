@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -75,17 +74,24 @@ public class HomeController implements Initializable {
     private void logoutMenuItemAction() {
 
     }
-
+    
+    
+    //Auctions which you have placed Bids on and also current Auctions
     @FXML
     private void bidsPlacedMenuItemAction() throws IOException {
+    	Feed feed = Feed.getInstance();
+    	Util.getActiveAuctions();
         setAuctionsCenter();
     }
 
+    //Auctions that you have won and you finished them
     @FXML
     private void bidsWonMenuItemAction() throws IOException {
         setAuctionsCenter();
     }
 
+    
+    //All Auctions which you have placed Bids on
     @FXML
     private void allBidsMenuItemAction() throws IOException {
         setAuctionsCenter();
