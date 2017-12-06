@@ -3,14 +3,11 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import model.Auction;
 import model.Feed;
 import model.Profile;
 import model.Util;
@@ -28,10 +25,11 @@ public class HomeController implements Initializable {
     private ImageView profileImageView;
     @FXML
     private BorderPane homeLayout;
+
     private Feed auctionsFeed;
     private ArrayList<Profile> favoriteUsers;
     private Profile selectedProfile;
-    private Auction selectedAuction;
+//    private Auction selectedAuction;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
