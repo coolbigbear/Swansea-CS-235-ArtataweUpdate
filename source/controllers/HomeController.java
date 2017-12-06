@@ -7,6 +7,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import model.*;
@@ -193,8 +194,9 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void createAuctionButtonAction() {
-
+    private void createAuctionButtonAction() throws IOException {
+        AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/auction_create_layout.fxml"));
+        homeLayout.setCenter(profileLayout);
     }
 
     private ArrayList<Bid> getAllBids() {
