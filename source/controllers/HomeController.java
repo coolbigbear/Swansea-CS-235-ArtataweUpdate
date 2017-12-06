@@ -105,6 +105,11 @@ public class HomeController implements Initializable {
         setAuctionsCenter();
     }
 
+    @FXML
+    private void createAuctionButtonAction() {
+
+    }
+
     private ScrollPane setAuctionsCenter() throws IOException {
         ScrollPane feedLayout = (ScrollPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
         homeLayout.setCenter(feedLayout);

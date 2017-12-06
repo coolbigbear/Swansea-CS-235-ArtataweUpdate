@@ -38,6 +38,7 @@
         <items>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                   <Button mnemonicParsing="false" onAction="#createAuctionButtonAction" text="CREATE AUCTION" />
                   <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction" text="Current auctions" />
                   <MenuButton mnemonicParsing="false" text="Buying">
                     <items>
