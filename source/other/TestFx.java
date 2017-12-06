@@ -122,8 +122,8 @@ public class TestFx extends Application {
 		
 		Auction a2 = new Auction(art2, profile2.getUsername(), 02, new ArrayList<>() , 20000.0, 15,
 				LocalDateTime.now(), 15, null, false, 0.0);
-		Auction a3 = Auction.createNewAuction(art1, p1.getUsername(), 20, 18000.0);
-		Auction a4 = new Auction(art2, p2.getUsername(), 02, new ArrayList<>() , 20000.0, 15,
+		Auction a3 = Auction.createNewAuction(art1, profile1.getUsername(), 20, 18000.0);
+		Auction a4 = new Auction(art2, profile2.getUsername(), 02, new ArrayList<>() , 20000.0, 15,
 				LocalDateTime.now(), 15, null, false, 0.0);
 
 		Util.saveListOfProfilesToFile(profiles);
@@ -151,12 +151,12 @@ public class TestFx extends Application {
 //
 //		Util.saveProfileToFile(p3);
 
-		Util.getActiveAuctions();
-
 //		//Test AuctionsID 100 times.
 //		for (int i=0; i<100; i++) {
 //			System.out.println(Util.getNewAuctionID());
 //		}
+		
+		Util.getActiveAuctions();
 
     	launch(args);
 	}
