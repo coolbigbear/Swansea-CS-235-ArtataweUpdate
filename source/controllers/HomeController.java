@@ -33,8 +33,13 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //auctionsFeed.addAll();
-        //favoriteUsers = new ArrayList<>();
+        Util.getActiveAuctions();
+        auctionsFeed = Feed.getInstance();
+        try {
+            favoriteUsers = populateFavoriteUsers();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         welcomeLabel.setText(Util.getCurrentUser().getFirstName() + " " + Util.getCurrentUser().getLastName());
         //setProfileImageView(Util.getCurrentUser().getProfileImagePath());
         try {
@@ -121,5 +126,13 @@ public class HomeController implements Initializable {
         BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
         homeLayout.setCenter(feedLayout);
         return feedLayout;
+    }
+
+    private ArrayList<Profile> populateFavoriteUsers() throws IOException {
+        ArrayList<Profile> profiles = new ArrayList<>();
+        for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
+            profiles.add(Util.getProfileByUsername(elem));
+        }
+        return profiles;
     }
 }
