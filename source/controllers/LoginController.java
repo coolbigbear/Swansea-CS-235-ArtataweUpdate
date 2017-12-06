@@ -1,11 +1,18 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Util;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -25,15 +32,20 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void loginButtonAction() {
+    private void loginButtonAction(ActionEvent e) throws IOException {
         if (validate(loginTextField.getText())) {
-            successfulLogin();
+            successfulLogin(e);
         }
     }
 
-    private void successfulLogin() {
+    private void successfulLogin(ActionEvent e) throws IOException {
         loginUserPrompt.setText("Welcome to Artatawe" + ", " + Util.getCurrentUser().getFirstName() + "!");
-
+        Parent root = FXMLLoader.load(getClass().getResource("/layouts/home_layout.fxml"));
+        Scene homeScene = new Scene(root);
+        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage.setScene(homeScene);
+        stage.setResizable(true);
+        stage.show();
     }
 
     private boolean validate(String input) {

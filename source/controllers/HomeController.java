@@ -1,13 +1,22 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import model.Feed;
+import model.Profile;
 import model.Util;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -16,11 +25,22 @@ public class HomeController implements Initializable {
     private Label welcomeLabel;
     @FXML
     private ImageView profileImageView;
+    @FXML
+    private BorderPane homeLayout;
+    private Feed auctionsFeed;
+    private ArrayList<Profile> favoriteUsers;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        welcomeLabel.setText(Util.getCurrentUser().getFirstName() + Util.getCurrentUser().getLastName());
-        setProfileImageView(Util.getCurrentUser().getProfileImagePath());
+        //auctionsFeed.addAll();
+        //favoriteUsers = new ArrayList<>();
+        welcomeLabel.setText(Util.getCurrentUser().getFirstName() + " " + Util.getCurrentUser().getLastName());
+        //setProfileImageView(Util.getCurrentUser().getProfileImagePath());
+        try {
+            setAuctionsCenter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setProfileImageView(String imagePath) {
@@ -33,13 +53,14 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void currentAuctionsButtonAction() {
-
+    private void currentAuctionsButtonAction() throws IOException {
+        setAuctionsCenter();
     }
 
     @FXML
-    private void myProfileMenuItemAction() {
-
+    private void myProfileMenuItemAction() throws IOException {
+        BorderPane profileLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/profile_layout.fxml"));
+        homeLayout.setCenter(profileLayout);
     }
 
     @FXML
@@ -48,32 +69,38 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void bidsPlacedMenuItemAction() {
-
+    private void bidsPlacedMenuItemAction() throws IOException {
+        setAuctionsCenter();
     }
 
     @FXML
-    private void bidsWonMenuItemAction() {
-
+    private void bidsWonMenuItemAction() throws IOException {
+        setAuctionsCenter();
     }
 
     @FXML
-    private void allBidsMenuItemAction() {
-
+    private void allBidsMenuItemAction() throws IOException {
+        setAuctionsCenter();
     }
 
     @FXML
-    private void currentlySellingMenuItemAction() {
-
+    private void currentlySellingMenuItemAction() throws IOException {
+        setAuctionsCenter();
     }
 
     @FXML
-    private void auctionsSoldMenuItemAction() {
-
+    private void auctionsSoldMenuItemAction() throws IOException {
+        setAuctionsCenter();
     }
 
     @FXML
-    private void allSellingSoldMenuItemAction() {
+    private void allSellingSoldMenuItemAction() throws IOException {
+        setAuctionsCenter();
+    }
 
+    private ScrollPane setAuctionsCenter() throws IOException {
+        ScrollPane feedLayout = (ScrollPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
+        homeLayout.setCenter(feedLayout);
+        return feedLayout;
     }
 }

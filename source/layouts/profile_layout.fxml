@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
+<BorderPane fx:id="profileLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
    <right>
       <ScrollPane prefHeight="576.0" prefWidth="273.0" BorderPane.alignment="CENTER">
         <content>
@@ -22,8 +22,8 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="profileImg" fitHeight="160.0" fitWidth="157.0" layoutX="31.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
-            <Button  fx:id="browseDefault" layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Browse Default" />
-            <Button  fx:id="createCustom" layoutX="33.0" layoutY="257.0" mnemonicParsing="false" onAction="#createCustomImg" prefHeight="31.0" prefWidth="157.0" text="Create Custom" />
+            <Button fx:id="browseDefault" layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Browse Default" />
+            <Button fx:id="createCustom" layoutX="33.0" layoutY="257.0" mnemonicParsing="false" onAction="#createCustomImg" prefHeight="31.0" prefWidth="157.0" text="Create Custom" />
             <Label fx:id="lastLogin" layoutX="33.0" layoutY="308.0" prefHeight="35.0" prefWidth="196.0" text="bigbear1" /> <!--"bigbear1" temp test method-->
             <GridPane layoutX="255.0" layoutY="73.0" prefHeight="368.0" prefWidth="443.0">
               <columnConstraints>
