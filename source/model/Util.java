@@ -312,7 +312,7 @@ public final class Util {
 			auctionID = Integer.valueOf(br.readLine());
 			int newID = auctionID++;
 			//fileWriter.write(newID);
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
