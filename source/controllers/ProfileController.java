@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.Profile;
 import model.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,30 +21,29 @@ public class ProfileController implements Initializable {
 
     @FXML
     private ImageView profileImg; //TODO Once a get has been made this should be used
-
     @FXML
     private Button browseDefault;
-
     @FXML
     private Button createCustom;
-
     @FXML
     private Label postCode;
-
     @FXML
     private Label contactNumber;
-
     @FXML
     private Label firstName;
-
     @FXML
     private Label lastName;
-
     @FXML
     private Label address;
-
     @FXML
     private Label lastLogin;
+    private Profile selectedProfile;
+
+    public void initProfile(Profile profile) {
+        selectedProfile = profile;
+        // MOVE STUFF TO LOAD HERE
+        setLastLogin();
+    }
 
     @FXML
     private void chooseProfileImg() {
@@ -56,7 +56,7 @@ public class ProfileController implements Initializable {
             getFirstName();
             getLastName();
             getPostCode();
-        }else{ //If validation doesn't work it sets both buttons to invisible for that profile
+        } else { //If validation doesn't work it sets both buttons to invisible for that profile
             browseDefault.setVisible(false);
             createCustom.setVisible(false);
         }
@@ -103,32 +103,32 @@ public class ProfileController implements Initializable {
     }*/
 
     private void setLastLogin() {
-        lastLogin.setText("Last Login: " + Util.getCurrentUser().getLastLogInTime());
+        lastLogin.setText("Last Login: " + selectedProfile.getLastLogInTime());
 
     }
 
     private void getFirstName(){
-        firstName.setText(Util.getCurrentUser().getFirstName());
+        firstName.setText(selectedProfile.getFirstName());
 
     }
 
     private void getLastName(){
-        lastName.setText(Util.getCurrentUser().getLastName());
+        lastName.setText(selectedProfile.getLastName());
 
     }
 
     private void getPostCode(){
-        postCode.setText(Util.getCurrentUser().getPostcode());
+        postCode.setText(selectedProfile.getPostcode());
 
     }
 
     private void getContactNumber(){
-        contactNumber.setText(Util.getCurrentUser().getPhoneNumber());
+        contactNumber.setText(selectedProfile.getPhoneNumber());
 
     }
 
     private void getAddress(){
-        address.setText(Util.getCurrentUser().getAddressLine1() + "\n" + Util.getCurrentUser().getAddressLine2());
+        address.setText(selectedProfile.getAddressLine1() + "\n" + selectedProfile.getAddressLine2());
 
     }
 

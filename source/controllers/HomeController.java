@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import model.Auction;
 import model.Feed;
 import model.Profile;
 import model.Util;
@@ -29,6 +30,8 @@ public class HomeController implements Initializable {
     private BorderPane homeLayout;
     private Feed auctionsFeed;
     private ArrayList<Profile> favoriteUsers;
+    private Profile selectedProfile;
+    private Auction selectedAuction;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,7 +62,13 @@ public class HomeController implements Initializable {
 
     @FXML
     private void myProfileMenuItemAction() throws IOException {
-        BorderPane profileLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/profile_layout.fxml"));
+//        BorderPane profileLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/profile_layout.fxml"));
+//        homeLayout.setCenter(profileLayout);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/layouts/profile_layout.fxml"));
+        BorderPane profileLayout = (BorderPane) loader.load();
+        ProfileController controller = loader.getController();
+        controller.initProfile(Util.getCurrentUser());
         homeLayout.setCenter(profileLayout);
     }
 
