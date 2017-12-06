@@ -12,7 +12,6 @@ public final class Util {
 	/*
 	 * Notes:
 	 *          Get all Auctions by a Profile
-	 *          Get new AuctionID
 	 */
 	
 	/**
@@ -76,15 +75,6 @@ public final class Util {
 		}
 		return found;
 	}
-
-//	private static void setCurrentUser(Profile profile) {
-//		currentUser = new Profile(profile.getUsername(), profile.getFirstName(), profile.getLastName(),
-//				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),
-//				profile.getCity(), profile.getCountry(), profile.getPostcode(), profile.getProfileImagePath(),
-//				profile.getFavouriteUsers(), profile.getWonAuctions(), profile.getCompletedAuctions(),
-//				profile.getCurrentlySelling(), profile.getNewAuctions(), profile.getAuctionsNewBids(),
-//				profile.getAllBidsPlaced(), profile.getLastLogInTime());
-//	}
 	
 	/**
 	 * Gets profile by username from database.
@@ -94,7 +84,7 @@ public final class Util {
 	 * @return the profile to be returned
 	 */
 	//Helper method, could be useful
-	public static Profile getProfileByUsername(String username) throws IOException {
+	public static Profile getProfileByUsername(String username) {
 		
 		Profile[] allProfiles = readInProfileFile();
 		for (Profile profile : allProfiles) {
@@ -172,7 +162,7 @@ public final class Util {
 	 *
 	 * @throws IOException the io exception
 	 */
-	public static void getSculptureAuctions() throws IOException {
+	public static void getSculptureAuctions() {
 		Auction[] fromJson = readInAuctionFile();
 		
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
@@ -194,7 +184,7 @@ public final class Util {
 	 *
 	 * @throws IOException the io exception
 	 */
-	public static void getPaintingAuctions() throws IOException {
+	public static void getPaintingAuctions() {
 		Auction[] fromJson = readInAuctionFile();
 		
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
@@ -328,7 +318,6 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	/**
 	 * Gets current user.

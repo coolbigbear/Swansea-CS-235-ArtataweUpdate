@@ -1,1 +1,80 @@
-[{"artwork":{"width":400,"height":400,"title":"Monalisa","description":"The most beautiful painting","creationDate":{"year":2017,"month":12,"day":6},"creatorName":"DaVinci","mainImagePath":"string","type":"Painting"},"sellerName":"bigbear1","auctionID":1,"bidList":[],"reservePrice":18000.0,"bidsAllowed":20,"dateTimePlaced":{"date":{"year":2017,"month":12,"day":6},"time":{"hour":19,"minute":47,"second":48,"nano":986000000}},"bidsLeft":20,"isCompleted":false,"highestPrice":0.0},{"artwork":{"width":400,"height":400,"depth":400,"mainMaterial":"Marble","additionalImagesPaths":[],"title":"Scream","description":"Can you hear the voices?","creationDate":{"year":2017,"month":12,"day":6},"creatorName":"James down the road","mainImagePath":"string","type":"Sculpture"},"sellerName":"bigbear2","auctionID":2,"bidList":[],"reservePrice":20000.0,"bidsAllowed":15,"dateTimePlaced":{"date":{"year":2017,"month":12,"day":6},"time":{"hour":19,"minute":47,"second":48,"nano":986000000}},"bidsLeft":15,"highestBidder":"bigbear1","isCompleted":false,"highestPrice":20500.0}]
+[
+  {
+    "artwork": {
+      "width": 400,
+      "height": 400,
+      "title": "Monalisa",
+      "description": "The most beautiful painting",
+      "creationDate": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "creatorName": "DaVinci",
+      "mainImagePath": "string",
+      "type": "Painting"
+    },
+    "sellerName": "bigbear1",
+    "auctionID": 101,
+    "bidList": [],
+    "reservePrice": 18000.0,
+    "bidsAllowed": 20,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 20,
+        "minute": 7,
+        "second": 6,
+        "nano": 265000000
+      }
+    },
+    "bidsLeft": 20,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "width": 400,
+      "height": 400,
+      "depth": 400,
+      "mainMaterial": "Marble",
+      "additionalImagesPaths": [],
+      "title": "Scream",
+      "description": "Can you hear the voices?",
+      "creationDate": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "creatorName": "James down the road",
+      "mainImagePath": "string",
+      "type": "Sculpture"
+    },
+    "sellerName": "bigbear2",
+    "auctionID": 2,
+    "bidList": [],
+    "reservePrice": 20000.0,
+    "bidsAllowed": 15,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 6
+      },
+      "time": {
+        "hour": 20,
+        "minute": 7,
+        "second": 6,
+        "nano": 265000000
+      }
+    },
+    "bidsLeft": 15,
+    "highestBidder": "bigbear1",
+    "isCompleted": false,
+    "highestPrice": 20500.0
+  }
+]

@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 
 // TODO: 04-Dec-17 Documentation!
-public abstract class  Artwork {
+public abstract class Artwork {
 	
 	protected String title;
 	protected StringBuilder description;
@@ -11,7 +11,7 @@ public abstract class  Artwork {
 	protected String creatorName;
 	protected String mainImagePath;
 	protected ArtworkType type;
-
+	
 	public Artwork(String title, StringBuilder description, LocalDate creationDate, String creatorName, String mainImagePath) {
 		this.title = title;
 		this.description = description;
@@ -19,9 +19,9 @@ public abstract class  Artwork {
 		this.creatorName = creatorName;
 		this.mainImagePath = mainImagePath;
 	}
-
+	
 	public abstract ArtworkType getType();
-
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}

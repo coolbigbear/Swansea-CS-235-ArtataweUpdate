@@ -139,14 +139,6 @@ public final class Profile {
 	public List<Auction> getCurrentlySelling() {
 		return this.currentlySelling;
 	}
-
-//	public List<Auction> getNewAuctions() {
-//		return this.newAuctions;
-//	}
-//
-//	public List<Auction> getAuctionsNewBids() {
-//		return this.auctionsNewBids;
-//	}
 	
 	public List<Bid> getAllBidsPlaced() {
 		return this.allBidsPlaced;
@@ -157,6 +149,7 @@ public final class Profile {
 	}
 	
 	//This will only be useful for creating new usernames!
+	
 	/**
 	 * Checks if the username entered consists of a valid string that includes a-z, A-Z, 0-9.
 	 * If username consists of something other it throws an exception.
@@ -189,7 +182,7 @@ public final class Profile {
 		return (obj instanceof Profile) && (obj.hashCode() == this.hashCode());
 	}
 	
-	//Implement this later!!!
+	//Implement this better later!!!
 	@Override
 	public String toString() {
 		return this.username;

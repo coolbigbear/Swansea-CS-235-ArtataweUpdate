@@ -1,7 +1,10 @@
 package test;
 
 import model.*;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -29,7 +32,7 @@ class ModelTests {
 		Profile currentUser = Profile.createNewProfile("BassHelal", "Bassam", "Helal",
 				"00974666999123", "University", "Lane", "Swansea", "United Kingdom",
 				"SA12PP", "path");
-		Util.setCurrentUser(currentUser); // TODO: 05-Dec-17 fix this!
+		Util.setCurrentUser(currentUser);
 	}
 	
 	@Nested

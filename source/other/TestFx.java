@@ -61,7 +61,7 @@ public class TestFx extends Application {
 		Artwork art2 = new Sculpture("Scream", new StringBuilder("Can you hear the voices?"), LocalDate.now(),
 				"James down the road", "string", 400, 400, 400, "Marble");
 
-		Auction a1 = new Auction(art1, p1.getUsername(), 01, 20, 18000.0);
+		Auction a1 = Auction.createNewAuction(art1, p1.getUsername(), 20, 18000.0);
 		Auction a2 = new Auction(art2, p2.getUsername(), 02, new ArrayList<>() , 20000.0, 15,
 				LocalDateTime.now(), 15, null, false, 0.0);
 
