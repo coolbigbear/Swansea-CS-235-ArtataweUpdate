@@ -15,6 +15,7 @@ public final class Util {
 	/*
 	 * Notes:
 	 *          Get all Auctions by a Profile
+	 *          Get new AuctionID
 	 */
 	
 	/**
@@ -65,12 +66,12 @@ public final class Util {
 	 */
 	public static boolean checkAndSetUser(String username) {
 		boolean found = false;
-
+		
 		Profile[] fromJson = readInProfileFile();
 		for (Profile profile : fromJson) {
 			//Read the variables required for constructor
 			String name = profile.getUsername();
-
+			
 			if (Objects.equals(name, username)) {
 				currentUser = profile;
 				found = true;
@@ -87,7 +88,7 @@ public final class Util {
 //				profile.getCurrentlySelling(), profile.getNewAuctions(), profile.getAuctionsNewBids(),
 //				profile.getAllBidsPlaced(), profile.getLastLogInTime());
 //	}
-
+	
 	/**
 	 * Gets profile by username from database.
 	 *
@@ -117,8 +118,8 @@ public final class Util {
 	 * @return the auction to be returned
 	 */
 	public static Auction getAuctionByAuctionID(Integer auctionID) throws IOException {
-
-        Auction auction = null;
+		
+		Auction auction = null;
 		Auction[] allAuctions = readInAuctionFile();
 		for (Auction auctions : allAuctions) {
 			Integer id = auctions.getAuctionID();
@@ -128,47 +129,47 @@ public final class Util {
 			}
 		}
 		if (auction == null) {
-		    throw new IOException();
-        } else {
-            return auction;
-        }
+			throw new IOException();
+		} else {
+			return auction;
+		}
 	}
-
-    /**
-     * Read in all auctions from database that are active (on sale).
-     */
-    public static void getActiveAuctions() {
-        Auction[] fromJson = readInAuctionFile();
-
-        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-
-        Feed feed = Feed.getNewInstance();
-
-        //for each Auction only add it to the Feed if it is not completed
-        for (Auction auction : auctionArrayList) {
-            if (!auction.isCompleted()) {
-                feed.add(auction);
-            }
-        }
-        //Feed.getNewInstance().addAll(auctionArrayList);
-        //System.out.println(Feed.getInstance());
-    }
-
-    public static void getActiveAuctionsByUsername(String username) {
-        Auction[] fromJson = readInAuctionFile();
-
-        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-
-        Feed feed = Feed.getNewInstance();
-
-        //for each Auction only add it to the Feed if its sold by the given user
-        for (Auction auction : auctionArrayList) {
-            if (auction.getSellerName().equals(username)) {
-                feed.add(auction);
-            }
-        }
-    }
-
+	
+	/**
+	 * Read in all auctions from database that are active (on sale).
+	 */
+	public static void getActiveAuctions() {
+		Auction[] fromJson = readInAuctionFile();
+		
+		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+		
+		Feed feed = Feed.getNewInstance();
+		
+		//for each Auction only add it to the Feed if it is not completed
+		for (Auction auction : auctionArrayList) {
+			if (!auction.isCompleted()) {
+				feed.add(auction);
+			}
+		}
+		//Feed.getNewInstance().addAll(auctionArrayList);
+		//System.out.println(Feed.getInstance());
+	}
+	
+	public static void getActiveAuctionsByUsername(String username) {
+		Auction[] fromJson = readInAuctionFile();
+		
+		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+		
+		Feed feed = Feed.getNewInstance();
+		
+		//for each Auction only add it to the Feed if its sold by the given user
+		for (Auction auction : auctionArrayList) {
+			if (auction.getSellerName().equals(username)) {
+				feed.add(auction);
+			}
+		}
+	}
+	
 	/**
 	 * Reads in only active sculpture auctions.
 	 *
@@ -176,21 +177,21 @@ public final class Util {
 	 */
 	public static void getSculptureAuctions() throws IOException {
 		Auction[] fromJson = readInAuctionFile();
-
+		
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-
+		
 		Feed feed = Feed.getNewInstance();
-
+		
 		//for each Auction only add it to the Feed if it is not completed
 		for (Auction auction : auctionArrayList) {
 			if (auction.getArtwork().type == ArtworkType.Sculpture && !auction.isCompleted()) {
-					feed.add(auction);
-				}
+				feed.add(auction);
+			}
 		}
 		//Feed.getNewInstance().addAll(auctionArrayList);
 		//System.out.println(Feed.getInstance());
 	}
-
+	
 	/**
 	 * Reads in only active painting auctions.
 	 *
@@ -198,11 +199,11 @@ public final class Util {
 	 */
 	public static void getPaintingAuctions() throws IOException {
 		Auction[] fromJson = readInAuctionFile();
-
+		
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-
+		
 		Feed feed = Feed.getNewInstance();
-
+		
 		//for each Auction only add it to the Feed if it is not completed
 		for (Auction auction : auctionArrayList) {
 			if (auction.getArtwork().type == ArtworkType.Painting && !auction.isCompleted()) {
@@ -288,22 +289,36 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
 	
 	/**
 	 * Add types to gson for artwork, sculpture and painting.
 	 */
-	public static Gson  addTypesToGson() {
+	public static Gson addTypesToGson() {
 		RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "type");
 		
 		artworkAdapterFactory.registerSubtype(Artwork.class);
 		artworkAdapterFactory.registerSubtype(Painting.class);
 		artworkAdapterFactory.registerSubtype(Sculpture.class);
-
+		
 		return new GsonBuilder()
 				.registerTypeAdapterFactory(artworkAdapterFactory)
 				.create();
 	}
+	
+	public static int getNewAuctionID() {
+		int auctionID = -1;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("JSON Files/AuctionID.txt"));
+			auctionID = Integer.valueOf(br.readLine());
+			int newID = auctionID++;
+			//fileWriter.write(newID);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return auctionID;
+	}
+	
 	
 	/**
 	 * Gets current user.
@@ -313,7 +328,7 @@ public final class Util {
 	public static Profile getCurrentUser() {
 		return currentUser;
 	}
-
+	
 	/**
 	 * Sets a new current user.
 	 *

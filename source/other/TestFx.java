@@ -69,6 +69,7 @@ public class TestFx extends Application {
 		Util.checkAndSetUser("bigbear1");
 
 		Bid b1 = new Bid(02,20500.0);
+		
 		a2.placeBid(b1);
 
 		auctions.add(a1);
@@ -88,7 +89,11 @@ public class TestFx extends Application {
 		Util.saveProfileToFile(p3);
 
 		Util.getActiveAuctions();
-
+		
+		System.out.println(Util.getNewAuctionID());
+		System.out.println(Util.getNewAuctionID());
+		System.out.println(Util.getNewAuctionID());
+		
 
     	launch(args);
 	}

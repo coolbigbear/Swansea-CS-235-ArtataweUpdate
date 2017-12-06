@@ -29,7 +29,7 @@ class ModelTests {
 		Profile currentUser = Profile.createNewProfile("BassHelal", "Bassam", "Helal",
 				"00974666999123", "University", "Lane", "Swansea", "United Kingdom",
 				"SA12PP", "path");
-		//Util.setCurrentUser(currentUser); // TODO: 05-Dec-17 fix this!
+		Util.setCurrentUser(currentUser); // TODO: 05-Dec-17 fix this!
 	}
 	
 	@Nested
@@ -264,7 +264,6 @@ class ModelTests {
 		
 	}
 	
-	@Disabled
 	@Nested
 	class BidTests {
 		
