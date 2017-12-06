@@ -9,10 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import model.Auction;
-import model.Feed;
-import model.Profile;
-import model.Util;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -84,40 +81,114 @@ public class HomeController implements Initializable {
 
     }
     
+    //----------------------Auctions Bids----------------------
     
     //Auctions which you have placed Bids on and also current Auctions
     @FXML
     private void bidsPlacedMenuItemAction() throws IOException {
-    	Feed feed = Feed.getInstance();
-    	Util.getActiveAuctions();
+    	ArrayList<Bid> bidList = getAllBids();
+	    Feed feed = Feed.getInstance();
+	
+	    for (Bid bid: bidList) {
+	    	Auction auction = Util.getAuctionByAuctionID(bid.getAuctionID());
+	    	
+		    if (bid.getBidderUsername().equals(Util.getCurrentUser().getUsername()) &&
+				    !auction.isCompleted()) {
+			    feed.add(auction);
+		    }
+	    }
+	    
+    	
         setAuctionsCenter();
     }
 
     //Auctions that you have won and you finished them
     @FXML
     private void bidsWonMenuItemAction() throws IOException {
-        setAuctionsCenter();
+	    ArrayList<Bid> bidList = getAllBids();
+	    Feed feed = Feed.getInstance();
+	
+	    for (Bid bid: bidList) {
+		    Auction auction = Util.getAuctionByAuctionID(bid.getAuctionID());
+		
+		    if (bid.getBidderUsername().equals(Util.getCurrentUser().getUsername()) &&
+				    auction.isCompleted() &&
+				    auction.getHighestBidder().equals(Util.getCurrentUser().getUsername())) {
+			    feed.add(auction);
+		    }
+	    }
+	    
+	    
+	    setAuctionsCenter();
     }
-
     
     //All Auctions which you have placed Bids on
     @FXML
     private void allBidsMenuItemAction() throws IOException {
+    	
+    	ArrayList<Bid> bidList = getAllBids();
+    	Feed feed = Feed.getInstance();
+	    
+	    for (Bid bid: bidList) {
+		    Auction auction = Util.getAuctionByAuctionID(bid.getAuctionID());
+	    	
+    		if (bid.getBidderUsername().equals(Util.getCurrentUser().getUsername())) {
+    			feed.add(auction);
+		    }
+	    }
+    	// How to fill up the Feed UI with the new contents of Feed?
         setAuctionsCenter();
     }
-
+    
+    //--------------------Auctions selling---------------------
+    
+    //All Auctions that you are currently selling
     @FXML
     private void currentlySellingMenuItemAction() throws IOException {
+    	Feed feed = Feed.getInstance();
+    	ArrayList<Auction> resultList = new ArrayList<>();
+    	
+    	for(Auction auction: feed) {
+    		if(!auction.isCompleted() &&
+				    auction.getSellerName().equals(Util.getCurrentUser().getUsername())) {
+    			resultList.add(auction);
+		    }
+	    }
+	    feed.updateWith(resultList);
+    	
         setAuctionsCenter();
     }
 
+    //All Auctions you have sold
     @FXML
     private void auctionsSoldMenuItemAction() throws IOException {
+	    Feed feed = Feed.getInstance();
+	    ArrayList<Auction> resultList = new ArrayList<>();
+	
+	    for(Auction auction: feed) {
+		    if(auction.isCompleted() &&
+				    auction.getSellerName().equals(Util.getCurrentUser().getUsername())) {
+			    resultList.add(auction);
+		    }
+	    }
+	    feed.updateWith(resultList);
+    	
         setAuctionsCenter();
     }
-
+    
+    //All Auctions you have sold and are still selling
     @FXML
     private void allSellingSoldMenuItemAction() throws IOException {
+	    Feed feed = Feed.getInstance();
+	    ArrayList<Auction> resultList = new ArrayList<>();
+	
+	    for(Auction auction: feed) {
+		    if(auction.getSellerName().equals(Util.getCurrentUser().getUsername())) {
+			    resultList.add(auction);
+		    }
+	    }
+	    feed.updateWith(resultList);
+	    
         setAuctionsCenter();
     }
 
@@ -126,6 +197,18 @@ public class HomeController implements Initializable {
 
     }
 
+    private ArrayList<Bid> getAllBids() {
+	
+	    Util.getActiveAuctions();
+	    Feed feed  = Feed.getInstance();
+	    ArrayList<Bid> bidList = new ArrayList<>();
+	    
+	    for (Auction auction: feed) {
+		    bidList.addAll(auction.getBidList());
+	    }
+	    return bidList;
+    }
+    
     private BorderPane setAuctionsCenter() throws IOException {
         BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
         homeLayout.setCenter(feedLayout);
