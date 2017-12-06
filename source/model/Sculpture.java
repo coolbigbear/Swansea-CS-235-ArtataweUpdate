@@ -25,6 +25,18 @@ public class Sculpture extends Artwork {
 		this.additionalImagesPaths = new ArrayList<>();
 	}
 	
+	public Sculpture(String title, StringBuilder description, LocalDate creationDate, String creatorName,
+	                 String mainImagePath, Integer width, Integer height, Integer depth, String mainMaterial,
+	                 String... additionalImagesPaths) {
+		super(title, description, creationDate, creatorName, mainImagePath);
+		this.width = width;
+		this.height = height;
+		this.depth = depth;
+		this.mainMaterial = mainMaterial;
+		this.type = ArtworkType.Sculpture;
+		this.additionalImagesPaths = Arrays.asList(additionalImagesPaths);
+	}
+	
 	public void addAdditionalImages(String... images) {
 		this.additionalImagesPaths.addAll(Arrays.asList(images));
 	}
