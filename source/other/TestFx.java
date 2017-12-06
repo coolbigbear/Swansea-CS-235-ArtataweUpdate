@@ -87,7 +87,7 @@ public class TestFx extends Application {
 
 		Util.saveProfileToFile(p3);
 
-		Util.readInActiveAuctions();
+		Util.getActiveAuctions();
 
 
     	launch(args);

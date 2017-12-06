@@ -14,7 +14,6 @@ public final class Util {
 	
 	/*
 	 * Notes:
-	 *          Filter by Artwork type
 	 *          Get all Auctions by a Profile
 	 */
 	
@@ -118,24 +117,64 @@ public final class Util {
 	 * @return the auction to be returned
 	 */
 	public static Auction getAuctionByAuctionID(Integer auctionID) throws IOException {
-		
+
+        Auction auction = null;
 		Auction[] allAuctions = readInAuctionFile();
-		for (Auction auction : allAuctions) {
-			Integer id = auction.getAuctionID();
+		for (Auction auctions : allAuctions) {
+			Integer id = auctions.getAuctionID();
 			
 			if (Objects.equals(id, auctionID)) {
-				return auction;
+				auction = auctions;
 			}
 		}
-		throw new ProfileNotFoundException("Profile not found!");
+		if (auction == null) {
+		    throw new IOException();
+        } else {
+            return auction;
+        }
 	}
+
+    /**
+     * Read in all auctions from database that are active (on sale).
+     */
+    public static void getActiveAuctions() {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        Feed feed = Feed.getNewInstance();
+
+        //for each Auction only add it to the Feed if it is not completed
+        for (Auction auction : auctionArrayList) {
+            if (!auction.isCompleted()) {
+                feed.add(auction);
+            }
+        }
+        //Feed.getNewInstance().addAll(auctionArrayList);
+        //System.out.println(Feed.getInstance());
+    }
+
+    public static void getActiveAuctionsByUsername(String username) {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        Feed feed = Feed.getNewInstance();
+
+        //for each Auction only add it to the Feed if its sold by the given user
+        for (Auction auction : auctionArrayList) {
+            if (auction.getSellerName().equals(username)) {
+                feed.add(auction);
+            }
+        }
+    }
 
 	/**
 	 * Reads in only active sculpture auctions.
 	 *
 	 * @throws IOException the io exception
 	 */
-	public static void readInSculptureAuctions() throws IOException {
+	public static void getSculptureAuctions() throws IOException {
 		Auction[] fromJson = readInAuctionFile();
 
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
@@ -157,7 +196,7 @@ public final class Util {
 	 *
 	 * @throws IOException the io exception
 	 */
-	public static void readInPaintingAuctions() throws IOException {
+	public static void getPaintingAuctions() throws IOException {
 		Auction[] fromJson = readInAuctionFile();
 
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
@@ -170,8 +209,6 @@ public final class Util {
 				feed.add(auction);
 			}
 		}
-		//Feed.getNewInstance().addAll(auctionArrayList);
-		//System.out.println(Feed.getInstance());
 	}
 	
 	/**
@@ -250,26 +287,6 @@ public final class Util {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * Read in all auctions from database that are active (on sale).
-	 */
-	public static void readInActiveAuctions() {
-		Auction[] fromJson = readInAuctionFile();
-		
-		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-		
-		Feed feed = Feed.getNewInstance();
-		
-		//for each Auction only add it to the Feed if it is not completed
-		for (Auction auction : auctionArrayList) {
-			if (!auction.isCompleted()) {
-				feed.add(auction);
-			}
-		}
-		//Feed.getNewInstance().addAll(auctionArrayList);
-		//System.out.println(Feed.getInstance());
 	}
 
 	
