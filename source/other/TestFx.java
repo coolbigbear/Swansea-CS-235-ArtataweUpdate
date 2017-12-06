@@ -122,6 +122,9 @@ public class TestFx extends Application {
 		
 		Auction a2 = new Auction(art2, profile2.getUsername(), 02, new ArrayList<>() , 20000.0, 15,
 				LocalDateTime.now(), 15, null, false, 0.0);
+		Auction a3 = Auction.createNewAuction(art1, p1.getUsername(), 20, 18000.0);
+		Auction a4 = new Auction(art2, p2.getUsername(), 02, new ArrayList<>() , 20000.0, 15,
+				LocalDateTime.now(), 15, null, false, 0.0);
 
 		Util.saveListOfProfilesToFile(profiles);
 		Util.checkAndSetUser("bigbear1");
@@ -132,6 +135,8 @@ public class TestFx extends Application {
 
 		auctions.add(a1);
 		auctions.add(a2);
+		auctions.add(a3);
+		auctions.add(a4);
 
 
 		//Json - Gson stuff

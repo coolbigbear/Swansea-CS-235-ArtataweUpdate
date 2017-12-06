@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="320.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layouts.testing">
+<AnchorPane prefHeight="320.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardController">
    <children>
-      <ImageView fitHeight="163.0" fitWidth="166.0" layoutX="31.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="230.0" layoutY="30.0" text="Title" />
-      <Label layoutX="215.0" layoutY="101.0" text="payment" />
+      <ImageView fx:id="cardAuctionImage" fitHeight="163.0" fitWidth="166.0" layoutX="31.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="titleCardAuctionLabel" layoutX="175.0" layoutY="30.0" text="Title" />
+      <Label fx:id="priceCardAuctionLabel" layoutX="215.0" layoutY="101.0" text="payment" />
       <GridPane layoutX="42.0" layoutY="193.0" prefHeight="92.0" prefWidth="232.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="80.0" />
@@ -25,10 +25,10 @@
          <children>
             <Label text="Artist" />
             <Label text="Creation date" GridPane.rowIndex="1" />
-            <Label text="dicaprio" GridPane.columnIndex="1" />
-            <Label text="1888" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="artistCardAuctionLabel" text="dicaprio" GridPane.columnIndex="1" />
+            <Label fx:id="creationDateCardAuctionLabel" text="1888" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Date placed" GridPane.rowIndex="2" />
-            <Label text="june 2017" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="datePlacedCardAuctionLabel" text="june 2017" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

@@ -25,7 +25,6 @@ public class LoginController implements Initializable {
     @FXML
     private Label loginUserPrompt;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
