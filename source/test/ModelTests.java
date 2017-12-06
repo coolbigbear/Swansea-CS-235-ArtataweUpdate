@@ -1,10 +1,7 @@
 package test;
 
 import model.*;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -267,6 +264,7 @@ class ModelTests {
 		
 	}
 	
+	@Disabled
 	@Nested
 	class BidTests {
 		
@@ -679,7 +677,7 @@ class ModelTests {
 			StringBuilder strings = new StringBuilder();
 			for (String string : stringFeed) {
 				strings.append(string);
-				strings.append(" ");
+				strings.append("\n\t\t");
 			}
 			
 			assertEquals("Feed: \n\tSize: 6\n\tContents: " + strings + "\n", stringFeed.toString());

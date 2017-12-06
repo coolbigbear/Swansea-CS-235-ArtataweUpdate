@@ -327,10 +327,17 @@ public final class Feed implements Iterable<Auction> {
 		return ((super.equals(obj) && (obj.hashCode() == this.hashCode())));
 	}
 	
-	//implement this later!!!
+	//implement this better later!!!
 	@Override
 	public String toString() {
-		return super.toString();
+		StringBuilder contents = new StringBuilder();
+		for (Auction auction: this.arrayList) {
+			contents.append(auction.toString());
+			contents.append("\n\t\t");
+		}
+		return "Feed: " + "\n" +
+				"\tSize: " + this.size() + "\n" +
+				"\tContents: " + contents + "\n";
 	}
 	
 	

@@ -167,7 +167,7 @@ public final class BHFeedString implements Iterable<String> {
 		StringBuilder contents = new StringBuilder();
 		for (String string: this.arrayList) {
 			contents.append(string);
-			contents.append(" ");
+			contents.append("\n\t\t");
 		}
 		return "Feed: " + "\n" +
 				"\tSize: " + this.size() + "\n" +
