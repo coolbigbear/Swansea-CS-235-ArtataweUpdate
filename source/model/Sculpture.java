@@ -21,7 +21,7 @@ public class Sculpture extends Artwork {
 		this.height = height;
 		this.depth = depth;
 		this.mainMaterial = mainMaterial;
-		this.type = ArtworkType.SCULPTURE;
+		this.type = ArtworkType.Sculpture;
 		this.additionalImagesPaths = new ArrayList<>();
 	}
 	
@@ -71,7 +71,7 @@ public class Sculpture extends Artwork {
 	
 	@Override
 	public ArtworkType getType() {
-		return ArtworkType.SCULPTURE;
+		return ArtworkType.Sculpture;
 	}
 	
 	@Override

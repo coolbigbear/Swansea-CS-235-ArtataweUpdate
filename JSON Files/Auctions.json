@@ -1,15 +1,18 @@
 [
   {
     "artwork": {
-      "type": "Painting",
+      "width": 400,
+      "height": 400,
       "title": "Monalisa",
       "description": "The most beautiful painting",
       "creationDate": {
         "year": 2017,
         "month": 12,
-        "day": 4
+        "day": 6
       },
-      "creatorName": "DaVinci"
+      "creatorName": "DaVinci",
+      "mainImagePath": "string",
+      "type": "Painting"
     },
     "seller": "bigbear1",
     "auctionID": 1,
@@ -20,13 +23,13 @@
       "date": {
         "year": 2017,
         "month": 12,
-        "day": 4
+        "day": 6
       },
       "time": {
-        "hour": 22,
-        "minute": 35,
-        "second": 30,
-        "nano": 836000000
+        "hour": 16,
+        "minute": 50,
+        "second": 55,
+        "nano": 263000000
       }
     },
     "bidsLeft": 20,
@@ -35,15 +38,21 @@
   },
   {
     "artwork": {
-      "type": "Painting",
+      "width": 400,
+      "height": 400,
+      "depth": 400,
+      "mainMaterial": "Marble",
+      "additionalImagesPaths": [],
       "title": "Scream",
       "description": "Can you hear the voices?",
       "creationDate": {
         "year": 2017,
         "month": 12,
-        "day": 4
+        "day": 6
       },
-      "creatorName": "James down the road"
+      "creatorName": "James down the road",
+      "mainImagePath": "string",
+      "type": "Sculpture"
     },
     "seller": "bigbear2",
     "auctionID": 2,
@@ -54,13 +63,13 @@
       "date": {
         "year": 2017,
         "month": 12,
-        "day": 4
+        "day": 6
       },
       "time": {
-        "hour": 22,
-        "minute": 35,
-        "second": 30,
-        "nano": 836000000
+        "hour": 16,
+        "minute": 50,
+        "second": 55,
+        "nano": 263000000
       }
     },
     "bidsLeft": 15,

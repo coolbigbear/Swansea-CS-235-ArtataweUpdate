@@ -13,12 +13,12 @@ public class Painting extends Artwork {
 		super(title, description, creationDate, creatorName, mainImagePath);
 		this.width = width;
 		this.height = height;
-		this.type = ArtworkType.PAINTING;
+		this.type = ArtworkType.Painting;
 	}
-	
+
 	@Override
 	public ArtworkType getType() {
-		return ArtworkType.PAINTING;
+		return ArtworkType.Painting;
 	}
 	
 	public void setWidth(Integer width) {

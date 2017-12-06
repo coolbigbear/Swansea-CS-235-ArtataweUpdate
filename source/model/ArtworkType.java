@@ -9,9 +9,9 @@ package model;
  * @see Artwork
  */
 public enum ArtworkType {
-	
-	PAINTING,
-	SCULPTURE;
+
+	Painting,
+	Sculpture;
 	
 	/**
 	 * Returns the String representation of an ArtworkType.
@@ -22,9 +22,9 @@ public enum ArtworkType {
 	 */
 	@Override
 	public String toString() {
-		if (this.equals(SCULPTURE)) {
+		if (this.equals(Sculpture)) {
 			return "Sculpture";
-		} else if (this.equals(PAINTING)) {
+		} else if (this.equals(Painting)) {
 			return "Painting";
 		} else throw new IllegalStateException("Artwork Type not defined");
 	}

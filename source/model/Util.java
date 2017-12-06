@@ -16,16 +16,13 @@ public final class Util {
 	 * Notes:
 	 *          Filter by Artwork type
 	 *          Get all Auctions by a Profile
-	 *          Get all new Auctions
-	 *          Get all Bids from an Auction
-	 *          Get highest Bidder and Bid of an Auction
 	 */
 	
 	/**
 	 * The current user who is signed in to the system.
 	 */
 	private static Profile currentUser;
-	private static Gson gson = new Gson();
+	private static Gson gson = addTypesToGson();
 	
 	/**
 	 * Reads in all profiles from database.
@@ -33,14 +30,16 @@ public final class Util {
 	 * @return List of Profiles read from database
 	 */
 	private static Profile[] readInProfileFile() {
+		Gson gson = new Gson();
+		Profile[] profiles = new Profile[0];
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Profiles.json"));
-			return gson.fromJson(br, Profile[].class);
+			profiles = gson.fromJson(br, Profile[].class);
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		throw new ProfileNotFoundException("Profile not found!");
+		return profiles;
 	}
 	
 	/**
@@ -49,14 +48,15 @@ public final class Util {
 	 * @return List of Auctions read from database
 	 */
 	private static Auction[] readInAuctionFile() {
+		Auction[] auctions = new Auction[0];
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
-			return gson.fromJson(br, Auction[].class);
+			auctions = gson.fromJson(br, Auction[].class);
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		throw new ProfileNotFoundException("Auction not found!");
+		return auctions;
 	}
 	
 	/**
@@ -64,21 +64,9 @@ public final class Util {
 	 *
 	 * @param username the username
 	 */
-	public static void readInLoggedInUser(String username) {
-		
-		Profile[] fromJson = readInProfileFile();
-		for (Profile profile : fromJson) {
-			//Read the variables required for constructor
-			String name = profile.getUsername();
-			
-			if (Objects.equals(name, username)) {
-				currentUser = profile;
-			}
-		}
-	}
-
 	public static boolean checkAndSetUser(String username) {
 		boolean found = false;
+
 		Profile[] fromJson = readInProfileFile();
 		for (Profile profile : fromJson) {
 			//Read the variables required for constructor
@@ -100,7 +88,7 @@ public final class Util {
 //				profile.getCurrentlySelling(), profile.getNewAuctions(), profile.getAuctionsNewBids(),
 //				profile.getAllBidsPlaced(), profile.getLastLogInTime());
 //	}
-	
+
 	/**
 	 * Gets profile by username from database.
 	 *
@@ -109,7 +97,7 @@ public final class Util {
 	 * @return the profile to be returned
 	 */
 	//Helper method, could be useful
-	public static Profile getProfileByUsername(String username) {
+	public static Profile getProfileByUsername(String username) throws IOException {
 		
 		Profile[] allProfiles = readInProfileFile();
 		for (Profile profile : allProfiles) {
@@ -129,7 +117,7 @@ public final class Util {
 	 *
 	 * @return the auction to be returned
 	 */
-	public static Auction getAuctionByAuctionID(Integer auctionID) {
+	public static Auction getAuctionByAuctionID(Integer auctionID) throws IOException {
 		
 		Auction[] allAuctions = readInAuctionFile();
 		for (Auction auction : allAuctions) {
@@ -141,6 +129,50 @@ public final class Util {
 		}
 		throw new ProfileNotFoundException("Profile not found!");
 	}
+
+	/**
+	 * Reads in only active sculpture auctions.
+	 *
+	 * @throws IOException the io exception
+	 */
+	public static void readInSculptureAuctions() throws IOException {
+		Auction[] fromJson = readInAuctionFile();
+
+		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+		Feed feed = Feed.getNewInstance();
+
+		//for each Auction only add it to the Feed if it is not completed
+		for (Auction auction : auctionArrayList) {
+			if (auction.getArtwork().type == ArtworkType.Sculpture && !auction.isCompleted()) {
+					feed.add(auction);
+				}
+		}
+		//Feed.getNewInstance().addAll(auctionArrayList);
+		//System.out.println(Feed.getInstance());
+	}
+
+	/**
+	 * Reads in only active painting auctions.
+	 *
+	 * @throws IOException the io exception
+	 */
+	public static void readInPaintingAuctions() throws IOException {
+		Auction[] fromJson = readInAuctionFile();
+
+		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+		Feed feed = Feed.getNewInstance();
+
+		//for each Auction only add it to the Feed if it is not completed
+		for (Auction auction : auctionArrayList) {
+			if (auction.getArtwork().type == ArtworkType.Painting && !auction.isCompleted()) {
+				feed.add(auction);
+			}
+		}
+		//Feed.getNewInstance().addAll(auctionArrayList);
+		//System.out.println(Feed.getInstance());
+	}
 	
 	/**
 	 * Saves a profile to file.
@@ -149,7 +181,6 @@ public final class Util {
 	 */
 	public static void saveProfileToFile(Profile profile) {
 		try {
-			addTypesToGson();
 			Profile[] temp = readInProfileFile();
 			String username = profile.getUsername();
 			for (int i = 0; i < temp.length; i++) {
@@ -172,8 +203,8 @@ public final class Util {
 	 * @param auction the auction
 	 */
 	public static void saveAuctionToFile(Auction auction) {
+		Gson gson = new Gson();
 		try {
-			addTypesToGson();
 			Auction[] temp = readInAuctionFile();
 			Integer auctionID = auction.getAuctionID();
 			for (int i = 0; i < temp.length; i++) {
@@ -196,8 +227,8 @@ public final class Util {
 	 * @param auctions Auctions to be saved to file
 	 */
 	public static void saveListOfAuctionsToFile(List<Auction> auctions) {
+		Gson gson = new Gson();
 		try {
-			addTypesToGson();
 			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
 			gson.toJson(auctions, fileWriter);
 			fileWriter.close();
@@ -213,7 +244,6 @@ public final class Util {
 	 */
 	public static void saveListOfProfilesToFile(List<Profile> profiles) {
 		try {
-			addTypesToGson();
 			FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
 			gson.toJson(profiles, fileWriter);
 			fileWriter.close();
@@ -241,22 +271,19 @@ public final class Util {
 		//Feed.getNewInstance().addAll(auctionArrayList);
 		//System.out.println(Feed.getInstance());
 	}
-	
-	public static void addAuctionToDatabase() {
-	
-	}
+
 	
 	/**
 	 * Add types to gson for artwork, sculpture and painting.
 	 */
-	public static void addTypesToGson() {
+	public static Gson  addTypesToGson() {
 		RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "type");
 		
 		artworkAdapterFactory.registerSubtype(Artwork.class);
-		artworkAdapterFactory.registerSubtype(Sculpture.class);
 		artworkAdapterFactory.registerSubtype(Painting.class);
-		
-		gson = new GsonBuilder()
+		artworkAdapterFactory.registerSubtype(Sculpture.class);
+
+		return new GsonBuilder()
 				.registerTypeAdapterFactory(artworkAdapterFactory)
 				.create();
 	}
@@ -268,5 +295,14 @@ public final class Util {
 	 */
 	public static Profile getCurrentUser() {
 		return currentUser;
+	}
+
+	/**
+	 * Sets a new current user.
+	 *
+	 * @param currentUser the new current user
+	 */
+	public static void setCurrentUser(Profile currentUser) {
+		Util.currentUser = currentUser;
 	}
 }

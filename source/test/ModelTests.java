@@ -41,8 +41,8 @@ class ModelTests {
 		@DisplayName("ArtworkType toString")
 		@Test
 		void testArtworkTypeToString() {
-			ArtworkType sculpture = ArtworkType.SCULPTURE;
-			ArtworkType painting = ArtworkType.PAINTING;
+			ArtworkType sculpture = ArtworkType.Sculpture;
+			ArtworkType painting = ArtworkType.Painting;
 			assertEquals("Sculpture", sculpture.toString());
 			assertEquals("Painting", painting.toString());
 		}
@@ -164,7 +164,7 @@ class ModelTests {
 		@Test
 		void testPaintingGetType() {
 			Artwork localPainting = new Painting("", new StringBuilder(""), LocalDate.now(), "", "path", 5, 5);
-			assertEquals(ArtworkType.PAINTING, localPainting.getType());
+			assertEquals(ArtworkType.Painting, localPainting.getType());
 		}
 		
 		@DisplayName("Sculpture Add Additional Images")
@@ -222,7 +222,7 @@ class ModelTests {
 		void testSculptureGetType() {
 			Artwork localSculpture = new Sculpture("", new StringBuilder(""), LocalDate.now(), "",
 					null, 5, 5, 5, "");
-			assertEquals(ArtworkType.SCULPTURE, localSculpture.getType());
+			assertEquals(ArtworkType.Sculpture, localSculpture.getType());
 		}
 		
 		@DisplayName("Sculpture Equals True")

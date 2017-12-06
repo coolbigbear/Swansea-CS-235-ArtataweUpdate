@@ -11,7 +11,7 @@ public abstract class  Artwork {
 	protected String creatorName;
 	protected String mainImagePath;
 	protected ArtworkType type;
-	
+
 	public Artwork(String title, StringBuilder description, LocalDate creationDate, String creatorName, String mainImagePath) {
 		this.title = title;
 		this.description = description;

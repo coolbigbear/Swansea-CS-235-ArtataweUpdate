@@ -58,15 +58,15 @@ public class TestFx extends Application {
 
 		Artwork art1 = new Painting("Monalisa", new StringBuilder("The most beautiful painting"), LocalDate.now(),
 				"DaVinci", "string", 400, 400);
-		Artwork art2 = new Painting("Scream", new StringBuilder("Can you hear the voices?"), LocalDate.now(),
-				"James down the road", "string", 400, 400);
+		Artwork art2 = new Sculpture("Scream", new StringBuilder("Can you hear the voices?"), LocalDate.now(),
+				"James down the road", "string", 400, 400, 400, "Marble");
 
 		Auction a1 = new Auction(art1, p1.getUsername(), 01, 20, 18000.0);
 		Auction a2 = new Auction(art2, p2.getUsername(), 02, new ArrayList<>() , 20000.0, 15,
 				LocalDateTime.now(), 15, null, false, 0.0);
 
 		Util.saveListOfProfilesToFile(profiles);
-		Util.readInLoggedInUser("bigbear1");
+		Util.checkAndSetUser("bigbear1");
 
 		Bid b1 = new Bid(02,20500.0);
 		a2.placeBid(b1);
@@ -77,8 +77,8 @@ public class TestFx extends Application {
 
 		//Json - Gson stuff
 
-
 		Util.saveListOfAuctionsToFile(auctions);
+
         Profile p3 = new Profile("bigbear2", "James", "***REMOVED***","07856912862",
                 "Some Address","BitDifferent Address","someCity","UK, duh",
 				"somePostcode", null, new ArrayList<String>(), new ArrayList<Auction>(),
@@ -90,7 +90,7 @@ public class TestFx extends Application {
 		Util.readInActiveAuctions();
 
 
-    	//launch(args);
+    	launch(args);
 	}
 	
 }
