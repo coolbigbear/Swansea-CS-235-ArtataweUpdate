@@ -21,7 +21,7 @@ import java.util.List;
 public final class Auction implements Comparable<Auction> {
 	
 	private final Artwork artwork;
-	private final String seller;
+	private final String sellerName;
 	private final Integer auctionID; //TODO: ***REMOVED***  Increment ID during new auction creation
 	private final List<Bid> bidList;
 	private final Double reservePrice;
@@ -32,18 +32,17 @@ public final class Auction implements Comparable<Auction> {
 	private Boolean isCompleted;
 	private Double highestPrice = 0.0;
 	
-	
 	/**
 	 * Constructs a new Auction, note that all the parameters are immutable
 	 *
 	 * @param artwork the Artwork that the Auction will be selling
-	 * @param seller the Profile representing the seller of the Auction
+	 * @param sellerName the Profile representing the sellerName of the Auction
 	 * @param bidsAllowed the number of Bids allowed before the Auction ends
 	 * @param reservePrice the minimum accepted price of a Bid
 	 */
-	public Auction(Artwork artwork, String seller, Integer auctionID, Integer bidsAllowed, Double reservePrice) {
+	public Auction(Artwork artwork, String sellerName, Integer auctionID, Integer bidsAllowed, Double reservePrice) {
 		this.artwork = artwork;
-		this.seller = seller;
+		this.sellerName = sellerName;
 		
 		// TODO: 29-Nov-17 Bassam Helal, ***REMOVED*** ***REMOVED*** change this to correspond to Database, it shouldn't be parameter
 		this.auctionID = auctionID;
@@ -62,11 +61,11 @@ public final class Auction implements Comparable<Auction> {
 	}
 	
 	
-	public Auction(Artwork artwork, String seller, Integer auctionID, List<Bid> bidList,
+	public Auction(Artwork artwork, String sellerName, Integer auctionID, List<Bid> bidList,
 	               Double reservePrice, Integer bidsAllowed, LocalDateTime dateTimePlaced,
 	               Integer bidsLeft, String highestBidder, Boolean isCompleted, Double highestPrice) {
 		this.artwork = artwork;
-		this.seller = seller;
+		this.sellerName = sellerName;
 		this.auctionID = auctionID;
 		this.bidList = bidList;
 		this.reservePrice = reservePrice;
@@ -116,8 +115,8 @@ public final class Auction implements Comparable<Auction> {
 		return this.artwork;
 	}
 	
-	public String getSeller() {
-		return this.seller;
+	public String getSellerName() {
+		return this.sellerName;
 	}
 	
 	public Integer getAuctionID() {

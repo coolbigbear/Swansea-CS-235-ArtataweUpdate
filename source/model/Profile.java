@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
-// TODO: Filter Auctions by type!
-
 public final class Profile {
 	
 	private final String username;
