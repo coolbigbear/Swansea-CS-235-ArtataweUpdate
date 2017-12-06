@@ -22,9 +22,10 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="profileImg" fitHeight="160.0" fitWidth="157.0" layoutX="31.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="favouriteUser" layoutX="33.0" layoutY="231.0" mnemonicParsing="false" onAction="#setFavouriteUser" prefHeight="31.0" prefWidth="157.0" text="Set Favourite User" />
             <Button fx:id="browseDefault" layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Browse Default" />
             <Button fx:id="createCustom" layoutX="33.0" layoutY="257.0" mnemonicParsing="false" onAction="#createCustomImg" prefHeight="31.0" prefWidth="157.0" text="Create Custom" />
-            <Label fx:id="lastLogin" layoutX="33.0" layoutY="308.0" prefHeight="35.0" prefWidth="196.0" text="bigbear1" /> <!--"bigbear1" temp test method-->
+            <Label fx:id="lastLogin" layoutX="33.0" layoutY="308.0" prefHeight="35.0" prefWidth="196.0" text="Last login" />
             <GridPane layoutX="255.0" layoutY="73.0" prefHeight="368.0" prefWidth="443.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -16,7 +16,7 @@ public final class Profile {
 	private final String city;
 	private final String country;
 	private final String postcode;
-	private final String profileImagePath;
+	private String profileImagePath;
 	private List<String> favouriteUsers;
 	private List<Auction> wonAuctions;
 	private List<Auction> completedAuctions;
@@ -118,6 +118,10 @@ public final class Profile {
 	
 	public String getPostcode() {
 		return this.postcode;
+	}
+
+	public void setProfileImagePath(String profileImg) {
+		this.profileImagePath = profileImg;
 	}
 	
 	public String getProfileImagePath() {
