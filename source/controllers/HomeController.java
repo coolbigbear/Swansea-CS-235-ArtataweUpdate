@@ -8,6 +8,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import model.Auction;
 import model.Feed;
 import model.Profile;
 import model.Util;
@@ -29,7 +30,7 @@ public class HomeController implements Initializable {
     private Feed auctionsFeed;
     private ArrayList<Profile> favoriteUsers;
     private Profile selectedProfile;
-//    private Auction selectedAuction;
+    private Auction selectedAuction;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,8 +111,8 @@ public class HomeController implements Initializable {
 
     }
 
-    private ScrollPane setAuctionsCenter() throws IOException {
-        ScrollPane feedLayout = (ScrollPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
+    private BorderPane setAuctionsCenter() throws IOException {
+        BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
         homeLayout.setCenter(feedLayout);
         return feedLayout;
     }
