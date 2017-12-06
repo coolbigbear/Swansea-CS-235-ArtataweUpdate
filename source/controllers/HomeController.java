@@ -3,10 +3,12 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import model.Auction;
 import model.Feed;
 import model.Profile;
@@ -25,7 +27,8 @@ public class HomeController implements Initializable {
     private ImageView profileImageView;
     @FXML
     private BorderPane homeLayout;
-
+    @FXML
+    private GridPane favoritesGridPane;
     private Feed auctionsFeed;
     private ArrayList<Profile> favoriteUsers;
     private Profile selectedProfile;
@@ -47,6 +50,7 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        populateFavoritesView();
     }
 
     private void setProfileImageView(String imagePath) {
@@ -134,5 +138,34 @@ public class HomeController implements Initializable {
             profiles.add(Util.getProfileByUsername(elem));
         }
         return profiles;
+    }
+
+
+
+    private void populateFavoritesView() {
+        //TODO ADD IMAGES
+        int IMAGE_COLUMN = 0;
+        int PROFILE_COLUMN = 1;
+        int row = 0;
+        Hyperlink favoriteUser;
+        favoritesGridPane.addRow(favoriteUsers.size());
+        for (Profile elem : favoriteUsers) {
+            favoriteUser = new Hyperlink();
+            favoriteUser.setText(elem.getUsername());
+            favoriteUser.setOnAction(event -> {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/layouts/profile_layout.fxml"));
+                try {
+                    BorderPane profileLayout = (BorderPane) loader.load();
+                    ProfileController controller = loader.getController();
+                    controller.initProfile(elem);
+                    homeLayout.setCenter(profileLayout);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            favoritesGridPane.add(favoriteUser,PROFILE_COLUMN,row);
+            row++;
+        }
     }
 }
