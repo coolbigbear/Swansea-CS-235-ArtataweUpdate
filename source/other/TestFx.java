@@ -89,11 +89,11 @@ public class TestFx extends Application {
 		Util.saveProfileToFile(p3);
 
 		Util.getActiveAuctions();
-		
-		System.out.println(Util.getNewAuctionID());
-		System.out.println(Util.getNewAuctionID());
-		System.out.println(Util.getNewAuctionID());
-		
+
+		//Test AuctionsID 100 times.
+		for (int i=0; i<100; i++) {
+			System.out.println(Util.getNewAuctionID());
+		}
 
     	launch(args);
 	}

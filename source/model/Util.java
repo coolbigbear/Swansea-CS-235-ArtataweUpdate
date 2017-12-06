@@ -5,10 +5,7 @@ import com.google.gson.GsonBuilder;
 import model.exception.ProfileNotFoundException;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public final class Util {
 	
@@ -307,16 +304,29 @@ public final class Util {
 	
 	public static int getNewAuctionID() {
 		int auctionID = -1;
+
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("JSON Files/AuctionID.txt"));
-			auctionID = Integer.valueOf(br.readLine());
-			int newID = auctionID++;
-			//fileWriter.write(newID);
-			
-		} catch (IOException e) {
+			Scanner scanner = new Scanner(new File("JSON Files/AuctionID.txt."));
+			auctionID = scanner.nextInt() ;
+			auctionID ++;
+			scanner.close();
+			saveNewAuctionID(auctionID);
+			return auctionID;
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		return auctionID;
+	}
+
+	private static void saveNewAuctionID(int auctionID) {
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(
+					"JSON Files/AuctionID.txt"));
+			writer.write(Integer.toString(auctionID));
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
