@@ -5,17 +5,13 @@ import com.google.gson.GsonBuilder;
 import model.exception.ProfileNotFoundException;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public final class Util {
 	
 	/*
 	 * Notes:
 	 *          Get all Auctions by a Profile
-	 *          Get new AuctionID
 	 */
 	
 	/**
@@ -79,15 +75,6 @@ public final class Util {
 		}
 		return found;
 	}
-
-//	private static void setCurrentUser(Profile profile) {
-//		currentUser = new Profile(profile.getUsername(), profile.getFirstName(), profile.getLastName(),
-//				profile.getPhoneNumber(), profile.getAddressLine1(), profile.getAddressLine2(),
-//				profile.getCity(), profile.getCountry(), profile.getPostcode(), profile.getProfileImagePath(),
-//				profile.getFavouriteUsers(), profile.getWonAuctions(), profile.getCompletedAuctions(),
-//				profile.getCurrentlySelling(), profile.getNewAuctions(), profile.getAuctionsNewBids(),
-//				profile.getAllBidsPlaced(), profile.getLastLogInTime());
-//	}
 	
 	/**
 	 * Gets profile by username from database.
@@ -97,7 +84,7 @@ public final class Util {
 	 * @return the profile to be returned
 	 */
 	//Helper method, could be useful
-	public static Profile getProfileByUsername(String username) throws IOException {
+	public static Profile getProfileByUsername(String username) {
 		
 		Profile[] allProfiles = readInProfileFile();
 		for (Profile profile : allProfiles) {
@@ -175,7 +162,7 @@ public final class Util {
 	 *
 	 * @throws IOException the io exception
 	 */
-	public static void getSculptureAuctions() throws IOException {
+	public static void getSculptureAuctions() {
 		Auction[] fromJson = readInAuctionFile();
 		
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
@@ -197,7 +184,7 @@ public final class Util {
 	 *
 	 * @throws IOException the io exception
 	 */
-	public static void getPaintingAuctions() throws IOException {
+	public static void getPaintingAuctions() {
 		Auction[] fromJson = readInAuctionFile();
 		
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
@@ -307,18 +294,30 @@ public final class Util {
 	
 	public static int getNewAuctionID() {
 		int auctionID = -1;
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("JSON Files/AuctionID.txt"));
-			auctionID = Integer.valueOf(br.readLine());
-			int newID = auctionID++;
-			//fileWriter.write(newID);
 
-		} catch (IOException e) {
+		try {
+			Scanner scanner = new Scanner(new File("JSON Files/AuctionID.txt."));
+			auctionID = scanner.nextInt() ;
+			auctionID ++;
+			scanner.close();
+			saveNewAuctionID(auctionID);
+			return auctionID;
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		return auctionID;
 	}
-	
+
+	private static void saveNewAuctionID(int auctionID) {
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(
+					"JSON Files/AuctionID.txt"));
+			writer.write(Integer.toString(auctionID));
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * Gets current user.

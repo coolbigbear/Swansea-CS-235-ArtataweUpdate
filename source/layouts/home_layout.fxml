@@ -1,80 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<BorderPane fx:id="homeLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
-   <top>
-      <AnchorPane prefHeight="107.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutY="1.0" prefHeight="107.0" prefWidth="292.0" text="Artatawe">
-               <font>
-                  <Font name="Bodoni MT" size="60.0" />
-               </font></Label>
-            <ImageView fx:id="profileImageView" fitHeight="90.0" fitWidth="90.0" layoutX="920.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
-            <MenuButton layoutX="797.0" layoutY="67.0" mnemonicParsing="false" text="Options">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#myProfileMenuItemAction" text="My Profile" />
-                <MenuItem mnemonicParsing="false" onAction="#logoutMenuItemAction" text="Logout" />
-              </items>
-            </MenuButton>
-            <Label fx:id="welcomeLabel" layoutX="797.0" layoutY="44.0" text="wilkommen" />
-         </children>
-      </AnchorPane>
-   </top>
-   <left>
-      <SplitPane dividerPositions="0.20770877944325483" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-        <items>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                   <Button mnemonicParsing="false" onAction="#createAuctionButtonAction" text="CREATE AUCTION" />
-                  <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction" text="Current auctions" />
-                  <MenuButton mnemonicParsing="false" text="Buying">
+<?import javafx.scene.layout.*?>
+<BorderPane fx:id="homeLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.HomeController">
+    <top>
+        <AnchorPane prefHeight="107.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="116.0" layoutY="43.0" text="artatawe"/>
+                <ImageView fx:id="profileImageView" fitHeight="90.0" fitWidth="90.0" layoutX="920.0" layoutY="13.0"
+                           pickOnBounds="true" preserveRatio="true"/>
+                <MenuButton layoutX="797.0" layoutY="67.0" mnemonicParsing="false" text="Options">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#bidsPlacedMenuItemAction" text="Bids placed" />
-                      <MenuItem mnemonicParsing="false" onAction="#bidsWonMenuItemAction" text="Bids won" />
-                      <MenuItem mnemonicParsing="false" onAction="#allBidsMenuItemAction" text="All bids" />
+                        <MenuItem mnemonicParsing="false" onAction="#myProfileMenuItemAction" text="My Profile"/>
+                        <MenuItem mnemonicParsing="false" onAction="#logoutMenuItemAction" text="Logout"/>
                     </items>
-                  </MenuButton>
-                  <MenuButton mnemonicParsing="false" text="Selling">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#currentlySellingMenuItemAction" text="Currently selling" />
-                      <MenuItem mnemonicParsing="false" onAction="#auctionsSoldMenuItemAction" text="Auctions sold" />
-                      <MenuItem mnemonicParsing="false" onAction="#allSellingSoldMenuItemAction" text="All selling/sold" />
-                    </items>
-                  </MenuButton>
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label text="FAVORITES" />
-                  <GridPane>
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="74.0" minWidth="10.0" prefWidth="55.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="103.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label text="Guy 1" GridPane.columnIndex="1" />
-                     </children>
-                  </GridPane>
-               </children>
-            </VBox>
-        </items>
-      </SplitPane>
-   </left>
+                </MenuButton>
+                <Label fx:id="welcomeLabel" layoutX="805.0" layoutY="43.0" text="wilkommen"/>
+            </children>
+        </AnchorPane>
+    </top>
+    <left>
+        <SplitPane dividerPositions="0.20770877944325483" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0"
+                   BorderPane.alignment="CENTER">
+            <items>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#createAuctionButtonAction" text="CREATE AUCTION"/>
+                        <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction"
+                                text="Current auctions"/>
+                        <MenuButton mnemonicParsing="false" text="Buying">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#bidsPlacedMenuItemAction"
+                                          text="Bids placed"/>
+                                <MenuItem mnemonicParsing="false" onAction="#bidsWonMenuItemAction" text="Bids won"/>
+                                <MenuItem mnemonicParsing="false" onAction="#allBidsMenuItemAction" text="All bids"/>
+                            </items>
+                        </MenuButton>
+                        <MenuButton mnemonicParsing="false" text="Selling">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#currentlySellingMenuItemAction"
+                                          text="Currently selling"/>
+                                <MenuItem mnemonicParsing="false" onAction="#auctionsSoldMenuItemAction"
+                                          text="Auctions sold"/>
+                                <MenuItem mnemonicParsing="false" onAction="#allSellingSoldMenuItemAction"
+                                          text="All selling/sold"/>
+                            </items>
+                        </MenuButton>
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label text="FAVORITES"/>
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="74.0" minWidth="10.0" prefWidth="55.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0"
+                                                   prefWidth="103.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true"/>
+                                <Label text="Guy 1" GridPane.columnIndex="1"/>
+                            </children>
+                        </GridPane>
+                    </children>
+                </VBox>
+            </items>
+        </SplitPane>
+    </left>
 </BorderPane>

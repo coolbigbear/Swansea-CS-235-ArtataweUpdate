@@ -19,10 +19,10 @@ import java.util.List;
  * @see Artwork
  */
 public final class Auction implements Comparable<Auction> {
-
+	
 	private final Artwork artwork;
 	private final String sellerName;
-	private final Integer auctionID; //TODO: ***REMOVED***  Increment ID during new auction creation
+	private final Integer auctionID;
 	private final List<Bid> bidList;
 	private final Double reservePrice;
 	private final Integer bidsAllowed;
@@ -31,7 +31,7 @@ public final class Auction implements Comparable<Auction> {
 	private String highestBidder;
 	private Boolean isCompleted;
 	private Double highestPrice = 0.0;
-
+	
 	/**
 	 * Constructs a new Auction, note that all the parameters are immutable
 	 *
@@ -40,12 +40,12 @@ public final class Auction implements Comparable<Auction> {
 	 * @param bidsAllowed the number of Bids allowed before the Auction ends
 	 * @param reservePrice the minimum accepted price of a Bid
 	 */
-	public Auction(Artwork artwork, String sellerName, Integer auctionID, Integer bidsAllowed, Double reservePrice) {
+	private Auction(Artwork artwork, String sellerName, Integer bidsAllowed, Double reservePrice) {
 		this.artwork = artwork;
 		this.sellerName = sellerName;
-
-		// TODO: 29-Nov-17 Bassam Helal, ***REMOVED*** ***REMOVED*** change this to correspond to Database, it shouldn't be parameter
-		this.auctionID = auctionID;
+		
+		
+		this.auctionID = Util.getNewAuctionID();
 		this.bidList = new ArrayList<>();
 		this.bidsLeft = bidsAllowed;
 		this.bidsAllowed = bidsAllowed;
@@ -53,14 +53,14 @@ public final class Auction implements Comparable<Auction> {
 		this.isCompleted = false;
 		this.dateTimePlaced = LocalDateTime.now();
 	}
-
+	
 	//factory
-	public static Auction createNewAuction(Artwork artwork, String seller, Integer auctionID,
+	public static Auction createNewAuction(Artwork artwork, String seller,
 	                                       Integer bidsAllowed, Double reservePrice) {
-		return new Auction(artwork, seller, auctionID, bidsAllowed, reservePrice);
+		return new Auction(artwork, seller, bidsAllowed, reservePrice);
 	}
-
-
+	
+	
 	public Auction(Artwork artwork, String sellerName, Integer auctionID, List<Bid> bidList,
 	               Double reservePrice, Integer bidsAllowed, LocalDateTime dateTimePlaced,
 	               Integer bidsLeft, String highestBidder, Boolean isCompleted, Double highestPrice) {
@@ -76,7 +76,9 @@ public final class Auction implements Comparable<Auction> {
 		this.isCompleted = isCompleted;
 		this.highestPrice = highestPrice;
 	}
-
+	
+	//consider void
+	//Throw different kinds of Exceptions depending on what reason the Bid could not be placed
 	public Boolean placeBid(Bid bid) {
 		if (validateBid(bid)) {
 			this.highestBidder = bid.getBidderUsername();
@@ -84,13 +86,13 @@ public final class Auction implements Comparable<Auction> {
 			return true;
 		} else throw new IllegalBidException("Invalid Bid!");
 	}
-
+	
 	private Boolean validateBid(Bid bid) {
 		return (checkIfNotHighestBidder(bid) &&
 				checkIfHigherThanReservePrice(bid) &&
 				checkIfHigherThanCurrentHighest(bid));
 	}
-
+	
 	private Boolean checkIfNotHighestBidder(Bid bid) {
 		if (this.highestBidder == null) {
 			return true;
@@ -98,11 +100,11 @@ public final class Auction implements Comparable<Auction> {
 			return (!bid.getBidderUsername().equals(this.highestBidder));
 		}
 	}
-
+	
 	private Boolean checkIfHigherThanReservePrice(Bid bid) {
 		return (bid.getBidAmount() >= this.reservePrice);
 	}
-
+	
 	private Boolean checkIfHigherThanCurrentHighest(Bid bid) {
 		if (this.highestPrice == null) {
 			return true;
@@ -110,66 +112,66 @@ public final class Auction implements Comparable<Auction> {
 			return (bid.getBidAmount() > this.highestPrice);
 		}
 	}
-
+	
 	public Artwork getArtwork() {
 		return this.artwork;
 	}
-
+	
 	public String getSellerName() {
 		return this.sellerName;
 	}
-
+	
 	public Integer getAuctionID() {
 		return this.auctionID;
 	}
-
+	
 	public List<Bid> getBidList() {
 		return this.bidList;
 	}
-
+	
 	public Integer getBidsLeft() {
 		return this.bidsLeft;
 	}
-
+	
 	public String getHighestBidder() {
 		return this.highestBidder;
 	}
-
+	
 	public Boolean isCompleted() {
 		return this.isCompleted;
 	}
-
+	
 	public Double getHighestPrice() {
 		return this.highestPrice;
 	}
-
+	
 	public Double getReservePrice() {
 		return this.reservePrice;
 	}
-
+	
 	public Integer getBidsAllowed() {
 		return this.bidsAllowed;
 	}
-
+	
 	public LocalDateTime getDateTimePlaced() {
 		return this.dateTimePlaced;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return this.dateTimePlaced.hashCode() + this.auctionID;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		return (obj instanceof Auction) && (obj.hashCode() == this.hashCode());
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Auction id: " + getAuctionID();
 	}
-
+	
 	@Override
 	public int compareTo(@NotNull Auction otherAuction) {
 		return this.getDateTimePlaced().compareTo(otherAuction.getDateTimePlaced());
