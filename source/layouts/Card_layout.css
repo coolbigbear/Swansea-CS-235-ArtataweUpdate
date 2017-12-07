@@ -1,0 +1,13 @@
+.root {
+    /*
+    Testing implementation across from desktop to laptop.
+     */
+    -fx-background-color: #FFFFFF;
+}
+
+.label{
+    -fx-font-family: "Calibri Light";
+    -fx-font-size: 64px;
+    -fx-text-fill: #000000;
+}
+
