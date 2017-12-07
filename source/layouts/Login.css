@@ -1,0 +1,25 @@
+.root {
+    /*
+    Testing implementation across from desktop to laptop.
+     */
+    -fx-background-color: #f0ffff;
+}
+
+.Label {
+    -fx-font-family: sans-serif;
+    -fx-font-size: 56px;
+}
+.form button {
+    -fx-font-family: sans-serif;
+    -fx-background-color: #4CAF50;
+    -fx-font-size: 14px;
+}
+.form button:hover {
+    -fx-background-color: #00ff00;
+}
+
+.text-field {
+    -fx-font-family: sans-serif;
+    -fx-background-color: #f2f2f2;
+    -fx-font-size: 14px;
+}

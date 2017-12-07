@@ -13,7 +13,9 @@ public class ArtataweMain extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/login_layout.fxml"));
         primaryStage.setTitle("Artatawe Login");
         primaryStage.setScene(new Scene(root));
+        root.getStylesheets().add(ArtataweMain.class.getResource("/layouts/login.css").toExternalForm());
         primaryStage.setResizable(false);
         primaryStage.show();
+
     }
 }
