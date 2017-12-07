@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="homeLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="1183.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
     <top>
@@ -78,17 +91,17 @@
       </AnchorPane>
     </top>
     <left>
-        <SplitPane dividerPositions="0.20770877944325483" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <SplitPane dividerPositions="0.2964352720450281" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
             <items>
                 <VBox prefHeight="200.0" prefWidth="100.0">
                     <children>
+                        <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction" prefHeight="31.0" prefWidth="180.0" text="Current auctions" />
                   <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" text="Create auction">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Sculpture" onAction="#createSculptureButtonAction"/>
-                      <MenuItem mnemonicParsing="false" text="Painting" onAction="#createPaintingButtonAction"/>
+                      <MenuItem mnemonicParsing="false" onAction="#createSculptureButtonAction" text="Sculpture" />
+                      <MenuItem mnemonicParsing="false" onAction="#createPaintingButtonAction" text="Painting" />
                     </items>
                   </MenuButton>
-                        <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction" prefHeight="31.0" prefWidth="180.0" text="Current auctions" />
                         <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="181.0" text="Buying">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#bidsPlacedMenuItemAction" text="Bids placed" />
@@ -103,11 +116,15 @@
                                 <MenuItem mnemonicParsing="false" onAction="#allSellingSoldMenuItemAction" text="All selling/sold" />
                             </items>
                         </MenuButton>
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="Bid History" />
                     </children>
                 </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Label text="FAVORITES" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="159.0" text="Favourite Users">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Label>
                         <GridPane fx:id="favoritesGridPane">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="74.0" minWidth="10.0" prefWidth="55.0" />
