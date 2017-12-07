@@ -6,21 +6,17 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
-         <Label layoutX="248.0" layoutY="192.0" prefHeight="137.0" prefWidth="256.0" text="Artatawe">
-            <font>
-               <Font size="61.0" />
-            </font>
-         </Label>
-         <TextField fx:id="loginTextField" layoutX="213.0" layoutY="376.0" prefHeight="31.0" prefWidth="214.0" promptText="Username" />
-         <Label fx:id="loginUserPrompt" layoutX="192.0" layoutY="329.0" prefHeight="33.0" prefWidth="257.0" />
-         <Button layoutX="264.0" layoutY="414.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="44.0" prefWidth="111.0" text="Login" />
-      <ImageView fitHeight="277.0" fitWidth="621.0" layoutX="74.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+         <Label fx:id="logintitle" layoutX="358.0" layoutY="67.0" prefHeight="137.0" prefWidth="264.0" text="Artatawe" textAlignment="CENTER">
+           </Label>
+         <TextField fx:id="loginTextField" alignment="CENTER" layoutX="381.0" layoutY="263.0" prefHeight="31.0" prefWidth="214.0" promptText="Username" />
+         <Label fx:id="loginUserPrompt" layoutX="391.0" layoutY="187.0" prefHeight="33.0" prefWidth="257.0" />
+         <Button layoutX="432.0" layoutY="308.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="44.0" prefWidth="111.0" text="Login" />
+      <ImageView fitHeight="480.0" fitWidth="332.0" layoutX="-3.0" layoutY="0.0" pickOnBounds="true">
          <image>
-            <Image url="@../other/meditation-2214532_1280.jpg" />
+            <Image url="@../../images/abstract-2501105_1920.jpg" />
          </image></ImageView>
    </children>
 </AnchorPane>
