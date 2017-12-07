@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AutionController">
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AuctionController">
    <children>
       <ImageView fitHeight="193.0" fitWidth="252.0" layoutX="83.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
       <HBox layoutX="92.0" layoutY="241.0" prefHeight="57.0" prefWidth="252.0">

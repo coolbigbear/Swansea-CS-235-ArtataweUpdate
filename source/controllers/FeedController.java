@@ -45,7 +45,7 @@ public class FeedController implements Initializable {
         for (Auction elem : feed) {
             loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/layouts/card_layout.fxml"));
-            cardLayout= (AnchorPane) loader.load();
+            cardLayout = (AnchorPane) loader.load();
             CardController controller = loader.getController();
             controller.getAuctionAndPopulate(elem);
             cardsGridPane.add(cardLayout,column,row);

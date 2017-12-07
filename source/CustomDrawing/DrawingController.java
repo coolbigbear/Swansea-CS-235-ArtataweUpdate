@@ -31,7 +31,7 @@ public class DrawingController {
         try{
             Image snapshot = canvas.snapshot(null, null);
             ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File
-                    ("Images\\ProfileImage.png"));
+                    ("images\\ProfileImage.png"));
         }catch(Exception e){
             System.out.println("Cannot save file!" + e);
         }
