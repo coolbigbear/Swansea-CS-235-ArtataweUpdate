@@ -1,1 +1,157 @@
-[{"artwork":{"width":400,"height":400,"title":"Monalisa","description":"The most beautiful painting","creationDate":{"year":2017,"month":12,"day":7},"creatorName":"DaVinci","mainImagePath":"string","type":"Painting"},"sellerName":"bigbear1","auctionID":314,"bidList":[],"reservePrice":18000.0,"bidsAllowed":20,"dateTimePlaced":{"date":{"year":2017,"month":12,"day":7},"time":{"hour":17,"minute":48,"second":31,"nano":223652900}},"bidsLeft":20,"isCompleted":false,"highestPrice":0.0},{"artwork":{"width":400,"height":400,"depth":400,"mainMaterial":"Marble","additionalImagesPaths":[],"title":"Scream","description":"Can you hear the voices?","creationDate":{"year":2017,"month":12,"day":7},"creatorName":"James down the road","mainImagePath":"string","type":"Sculpture"},"sellerName":"bigbear2","auctionID":2,"bidList":[],"reservePrice":20000.0,"bidsAllowed":15,"dateTimePlaced":{"date":{"year":2017,"month":12,"day":7},"time":{"hour":17,"minute":48,"second":31,"nano":223652900}},"bidsLeft":15,"highestBidder":"bigbear1","isCompleted":false,"highestPrice":20500.0},{"artwork":{"width":400,"height":400,"title":"Monalisa","description":"The most beautiful painting","creationDate":{"year":2017,"month":12,"day":7},"creatorName":"DaVinci","mainImagePath":"string","type":"Painting"},"sellerName":"bigbear1","auctionID":315,"bidList":[],"reservePrice":18000.0,"bidsAllowed":20,"dateTimePlaced":{"date":{"year":2017,"month":12,"day":7},"time":{"hour":17,"minute":48,"second":31,"nano":227162200}},"bidsLeft":20,"isCompleted":false,"highestPrice":0.0},{"artwork":{"width":400,"height":400,"depth":400,"mainMaterial":"Marble","additionalImagesPaths":[],"title":"Scream","description":"Can you hear the voices?","creationDate":{"year":2017,"month":12,"day":7},"creatorName":"James down the road","mainImagePath":"string","type":"Sculpture"},"sellerName":"bigbear2","auctionID":2,"bidList":[],"reservePrice":20000.0,"bidsAllowed":15,"dateTimePlaced":{"date":{"year":2017,"month":12,"day":7},"time":{"hour":17,"minute":48,"second":31,"nano":227162200}},"bidsLeft":15,"isCompleted":false,"highestPrice":0.0}]
+[
+  {
+    "artwork": {
+      "width": 400,
+      "height": 400,
+      "title": "Monalisa",
+      "description": "The most beautiful painting",
+      "creationDate": {
+        "year": 2017,
+        "month": 12,
+        "day": 7
+      },
+      "creatorName": "DaVinci",
+      "mainImagePath": "string",
+      "type": "Painting"
+    },
+    "sellerName": "bigbear",
+    "auctionID": 318,
+    "bidList": [],
+    "reservePrice": 18000.0,
+    "bidsAllowed": 1,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 7
+      },
+      "time": {
+        "hour": 19,
+        "minute": 39,
+        "second": 43,
+        "nano": 518000000
+      }
+    },
+    "bidsLeft": 1,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "width": 400,
+      "height": 400,
+      "depth": 400,
+      "mainMaterial": "Marble",
+      "additionalImagesPaths": [],
+      "title": "Scream",
+      "description": "Can you hear the voices? (Sculpture)",
+      "creationDate": {
+        "year": 2017,
+        "month": 12,
+        "day": 7
+      },
+      "creatorName": "James down the road",
+      "mainImagePath": "string",
+      "type": "Sculpture"
+    },
+    "sellerName": "BHelal",
+    "auctionID": 2,
+    "bidList": [],
+    "reservePrice": 20000.0,
+    "bidsAllowed": 15,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 7
+      },
+      "time": {
+        "hour": 19,
+        "minute": 39,
+        "second": 43,
+        "nano": 518000000
+      }
+    },
+    "bidsLeft": 0,
+    "highestBidder": "bigbear",
+    "isCompleted": true,
+    "highestPrice": 1400000.0
+  },
+  {
+    "artwork": {
+      "width": 400,
+      "height": 400,
+      "title": "Scream",
+      "description": "Can you hear the voices? (Painting)",
+      "creationDate": {
+        "year": 2017,
+        "month": 12,
+        "day": 7
+      },
+      "creatorName": "Philip down the road",
+      "mainImagePath": "string",
+      "type": "Painting"
+    },
+    "sellerName": "BKodomani",
+    "auctionID": 3,
+    "bidList": [],
+    "reservePrice": 20000.0,
+    "bidsAllowed": 15,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 7
+      },
+      "time": {
+        "hour": 19,
+        "minute": 39,
+        "second": 43,
+        "nano": 518000000
+      }
+    },
+    "bidsLeft": 15,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "width": 400,
+      "height": 400,
+      "depth": 400,
+      "mainMaterial": "Marble",
+      "additionalImagesPaths": [],
+      "title": "Cortana",
+      "description": "Blue AI Girl",
+      "creationDate": {
+        "year": 2017,
+        "month": 12,
+        "day": 7
+      },
+      "creatorName": "Masterchief",
+      "mainImagePath": "string",
+      "type": "Sculpture"
+    },
+    "sellerName": "BSampson",
+    "auctionID": 4,
+    "bidList": [],
+    "reservePrice": 20000.0,
+    "bidsAllowed": 15,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2017,
+        "month": 12,
+        "day": 7
+      },
+      "time": {
+        "hour": 19,
+        "minute": 39,
+        "second": 43,
+        "nano": 518000000
+      }
+    },
+    "bidsLeft": 15,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  }
+]

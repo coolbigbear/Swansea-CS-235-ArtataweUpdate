@@ -25,113 +25,356 @@ public class TestFx extends Application {
 
 		List<Profile> profiles = new ArrayList<>();
 		List<Auction> auctions = new ArrayList<>();
-		List<String> favourites = new ArrayList<>();
+		List<String> favouritesOfP1 = new ArrayList<>();
+		List<String> favouritesOfP2 = new ArrayList<>();
+		List<String> favouritesOfP3 = new ArrayList<>();
+		List<String> favouritesOfP4 = new ArrayList<>();
+		List<String> favouritesOfP5 = new ArrayList<>();
+		List<String> favouritesOfP6 = new ArrayList<>();
 		List<Bid> bids = new ArrayList<>();
-		
-		
-		Profile profile2 = new Profile("bigbear2", "***REMOVED***", "***REMOVED***","07856912862",
-                "Some Address","BitDifferent Address","someCity","UK, duh",
-				"somePostcode", "path",
-                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(),
-				LocalDateTime.now());
-		
-		Profile profile3 = new Profile("fred", "Fred", "Schumer","07856912862",
-				"Some Address","BitDifferent Address","someCity","USA",
-				"somePostcode", "path",
-				new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(),
-				LocalDateTime.now());
-		
-		Profile profile4 = new Profile("jkr", "John", "***REMOVED***","07856912862",
-				"Some Address","BitDifferent Address","someCity","UK, duh",
-				"somePostcode", "path",
-				new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(),
-				LocalDateTime.now());
-		
-		Profile profile5 = new Profile("dva", "DVA", "***REMOVED***","07856912862",
-				"Some Address","BitDifferent Address","someCity","UK, duh",
-				"somePostcode", "path",
-				new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(),
-				LocalDateTime.now());
-		
-		
-		Profile profile6 = new Profile("S76", "Morrison", "***REMOVED***","07856912862",
-				"Some Address","BitDifferent Address","someCity","UK, duh",
-				"somePostcode", "path",
-				new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(),
-				LocalDateTime.now());
-		
-		
-		Profile profile7 = new Profile("Reaper", "Reaper", "***REMOVED***","07856912862",
-				"Some Address","BitDifferent Address","someCity","UK, duh",
-				"somePostcode", "path",
-				new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(),
-				LocalDateTime.now());
-		
-		
-		Profile profile8 = new Profile("funky", "Foo", "***REMOVED***","07856912862",
-				"Some Address","BitDifferent Address","someCity","UK, duh",
-				"somePostcode", "path",
-				new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(),
-				LocalDateTime.now());
-		
-		
-		Profile profile9 = new Profile("dancer", "Jackson", "***REMOVED***","07856912862",
-				"Some Address","BitDifferent Address","someCity","UK, duh",
-				"somePostcode", "path",
-				new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(),
-				LocalDateTime.now());
-		
-		Profile profile10 = new Profile("Linuz", "Linus", "***REMOVED***","07856912862",
-				"Some Address","BitDifferent Address","someCity","UK, duh",
-				"somePostcode", "path",
-				new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>(),
-				LocalDateTime.now());
-		
-		favourites.add(profile2.getUsername());
-		favourites.add(profile3.getUsername());
-		favourites.add(profile4.getUsername());
-		favourites.add(profile5.getUsername());
-		favourites.add(profile6.getUsername());
-		favourites.add(profile7.getUsername());
-		favourites.add(profile8.getUsername());
-		favourites.add(profile9.getUsername());
-		favourites.add(profile10.getUsername());
-		
-		Profile profile1 = new Profile("bigbear1", "***REMOVED***", "***REMOVED***","07856912862",
-				"Some Address","BitDifferent Address","someCity","UK, duh",
-				"somePostcode","path", favourites, new ArrayList<>(), new ArrayList<>(),
-				new ArrayList<>(), new ArrayList<>(), LocalDateTime.now());
-		
-		profiles.add(profile1);
-		profiles.add(profile2);
-		profiles.add(profile3);
-		profiles.add(profile4);
-		profiles.add(profile5);
-		profiles.add(profile6);
-		profiles.add(profile7);
-		profiles.add(profile8);
-		profiles.add(profile9);
-		profiles.add(profile10);
 
-		Artwork art1 = new Painting("Monalisa", new StringBuilder("The most beautiful painting"), LocalDate.now(),
-				"DaVinci", "string", 400, 400);
-		Artwork art2 = new Sculpture("Scream", new StringBuilder("Can you hear the voices?"), LocalDate.now(),
-				"James down the road", "string", 400, 400, 400, "Marble");
 
-		Auction a1 = Auction.createNewAuction(art1, profile1.getUsername(), 20, 18000.0);
-		
-		Auction a2 = new Auction(art2, profile2.getUsername(), 02, new ArrayList<>() , 20000.0, 15,
-				LocalDateTime.now(), 15, null, false, 0.0);
-		Auction a3 = Auction.createNewAuction(art1, profile1.getUsername(), 20, 18000.0);
-		Auction a4 = new Auction(art2, profile2.getUsername(), 02, new ArrayList<>() , 20000.0, 15,
-				LocalDateTime.now(), 15, null, false, 0.0);
+		Profile p1 = new Profile("bigbear",
+				"***REMOVED***",
+				"***REMOVED***",
+				"07856912862",
+				"Some Address",
+				"BitDifferent Address",
+				"someCity",
+				"UK, duh",
+				"somePostcode",
+				"path",
+				favouritesOfP1,
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				LocalDateTime.now());
+
+		Profile p2 = new Profile("BHelal",
+				"Bassam",
+				"Helal",
+				"07586734981",
+				"Bassams Address",
+				"Bassams second address",
+				"Cairo",
+				"Egypt",
+				"Don't know egypt ostcodes",
+				"path",
+				favouritesOfP2,
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				LocalDateTime.now());
+
+		Profile p3 = new Profile("BKodomani",
+				"Bezhan",
+				"Kodomani",
+				"07928471824",
+				"Bezhans address",
+				"Bezhands second address",
+				"London?",
+				"United Kingdom",
+				"LO3 5PA",
+				"path",
+				favouritesOfP3,
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				LocalDateTime.now());
+
+		Profile p4 = new Profile("BSampson",
+				"Ben",
+				"Sampson",
+				"08475849381",
+				"Bens address",
+				"Bens second address",
+				"Manchester?",
+				"United Kingdom",
+				"MA2 5SE",
+				"path",
+				favouritesOfP4,
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				LocalDateTime.now());
+
+		Profile p5 = new Profile("IGarnev",
+				"Iliyan",
+				"Garnev",
+				"07829481742",
+				"Iliyans address",
+				"Iliyans second address",
+				"Sofia?",
+				"Bulgaria",
+				"Some bulgarian postcode",
+				"path",
+				favouritesOfP5,
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				LocalDateTime.now());
+
+		Profile p6 = new Profile("AWing",
+				"Alex",
+				"Wing",
+				"07234567891",
+				"Alexs address",
+				"Alexs second address",
+				"Swansea?",
+				"Wales",
+				"SA4 9TL",
+				"path",
+				favouritesOfP6,
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				LocalDateTime.now());
+
+
+		favouritesOfP1.add(p2.getUsername());
+		favouritesOfP1.add(p6.getUsername());
+
+		favouritesOfP2.add(p1.getUsername());
+		favouritesOfP2.add(p6.getUsername());
+		favouritesOfP2.add(p3.getUsername());
+		favouritesOfP2.add(p4.getUsername());
+
+		favouritesOfP4.add(p1.getUsername());
+		favouritesOfP4.add(p2.getUsername());
+
+		favouritesOfP5.add(p4.getUsername());
+
+		favouritesOfP6.add(p1.getUsername());
+		favouritesOfP6.add(p2.getUsername());
+		favouritesOfP6.add(p3.getUsername());
+		favouritesOfP6.add(p4.getUsername());
+		favouritesOfP6.add(p5.getUsername());
+
+
+		profiles.add(p1);
+		profiles.add(p2);
+		profiles.add(p3);
+		profiles.add(p4);
+		profiles.add(p5);
+		profiles.add(p6);
+
+		Artwork art1 = new Painting(
+				"Monalisa",
+				new StringBuilder("The most beautiful painting"),
+				LocalDate.now(),
+				"DaVinci",
+				"string",
+				400,
+				400);
+		Artwork art2 = new Sculpture(
+				"Scream",
+				new StringBuilder("Can you hear the voices? (Sculpture)"),
+				LocalDate.now(),
+				"James down the road",
+				"string",
+				400,
+				400,
+				400,
+				"Marble");
+		Artwork art3 = new Painting(
+				"Scream",
+				new StringBuilder("Can you hear the voices? (Painting)"),
+				LocalDate.now(),
+				"Philip down the road",
+				"string",
+				400,
+				400);
+		Artwork art4 = new Sculpture(
+				"Cortana",
+				new StringBuilder("Blue AI Girl"),
+				LocalDate.now(),
+				"Masterchief",
+				"string",
+				400,
+				400,
+				400,
+				"Marble");
+		Artwork art5 = new Painting(
+				"Spartan Army",
+				new StringBuilder("This is SPARTA!"),
+				LocalDate.now(),
+				"Me",
+				"string",
+				1000,
+				1000);
+		Artwork art6 = new Painting(
+				"The Starry Night",
+				new StringBuilder("Oil Canvas by the dude without the ear."),
+				LocalDate.now(),
+				"Vincent Van Gogh",
+				"string",
+				400,
+				400);
+		Artwork art7 = new Sculpture(
+				"Venus of Willendorf",
+				new StringBuilder("Figurine measuring just over four inches in height was discovered in Austria in 1908."),
+				LocalDate.now(),
+				"Some old bloke",
+				"string",
+				400,
+				400,
+				400,
+				"Wood");
+		Artwork art8 = new Painting(
+				"The last supper",
+				new StringBuilder("Our boi Jesus sitting with his mates around a table having time of his life"),
+				LocalDate.now(),
+				"That Assassin's creed bloke",
+				"string",
+				800,
+				800);
+		Artwork art9 = new Sculpture(
+				"Bust of Nefertiti",
+				new StringBuilder("Symbol of feminine beauty in Egypt"),
+				LocalDate.now(),
+				"Egypt bloke name Steve",
+				"string",
+				200,
+				200,
+				200,
+				"Stone");
+		Artwork art10 = new Painting(
+				"The Persistence of Memory",
+				new StringBuilder("Some melting clocks cuz it super hot"),
+				LocalDate.now(),
+				"Salvador Dali",
+				"string",
+				650,
+				650);
+
+		Auction a1 = Auction.createNewAuction(
+				art1,
+				p1.getUsername(),
+				01,
+				18000.0);
+		Auction a2 = new Auction(
+				art2,
+				p2.getUsername(),
+				02,
+				new ArrayList<>(),//slap in a bid war here
+				20000.0,
+				15,
+				LocalDateTime.now(),
+				0,
+				p1.getUsername(),
+				true,
+				1400000.0);
+		Auction a3 = new Auction(
+				art3,
+				p3.getUsername(),
+				03,
+				new ArrayList<>(),
+				20000.0,
+				15,
+				LocalDateTime.now(),
+				15,
+				null,
+				false,
+				0.0);
+		Auction a4 = new Auction(
+				art4,
+				p4.getUsername(),
+				04,
+				new ArrayList<>(),
+				20000.0,
+				15,
+				LocalDateTime.now(),
+				15,
+				null,
+				false,
+				0.0);
+		Auction a5 = new Auction(
+				art5,
+				p6.getUsername(),
+				05,
+				new ArrayList<>(),
+				20000.0,
+				15,
+				LocalDateTime.now(),
+				15,
+				null,
+				false,
+				0.0);
+		Auction a6 = new Auction(
+				art6,
+				p1.getUsername(),
+				06,
+				new ArrayList<>(),
+				20000.0,
+				15,
+				LocalDateTime.now(),
+				15,
+				null,
+				false,
+				0.0);
+		Auction a7 = new Auction(
+				art8,
+				p2.getUsername(),
+				07,
+				new ArrayList<>(),
+				20000.0,
+				15,
+				LocalDateTime.now(),
+				15,
+				null,
+				false,
+				0.0);
+		Auction a8 = new Auction(
+				art8,
+				p3.getUsername(),
+				8,
+				new ArrayList<>(),
+				20000.0,
+				15,
+				LocalDateTime.now(),
+				15,
+				null,
+				false,
+				0.0);
+		Auction a9 = new Auction(
+				art9,
+				p4.getUsername(),
+				9,
+				new ArrayList<>(),
+				20000.0,
+				15,
+				LocalDateTime.now(),
+				15,
+				null,
+				false,
+				0.0);
+		Auction a10 = new Auction(
+				art10,
+				p6.getUsername(),
+				10,
+				new ArrayList<>(),
+				20000.0,
+				15,
+				LocalDateTime.now(),
+				15,
+				null,
+				false,
+				0.0);
+
+
 
 		Util.saveListOfProfilesToFile(profiles);
-		Util.checkAndSetUser("bigbear1");
+		Util.checkAndSetUser("bigbear");
 
 		Bid b1 = new Bid(02,20500.0);
 		
-		a2.placeBid(b1);
+		//a2.placeBid(b1);
 
 		auctions.add(a1);
 		auctions.add(a2);
