@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAuctionController">
+<AnchorPane prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAuctionController">
     <children>
         <GridPane layoutX="14.0" layoutY="73.0" prefHeight="424.0" prefWidth="992.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="73.0">
             <columnConstraints>
@@ -56,15 +54,15 @@
                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="226.0" text="Browse photos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter reserve price..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
                 <Label prefHeight="66.0" prefWidth="496.0" text="Main material" GridPane.rowIndex="10" />
-            <Label prefHeight="66.0" prefWidth="496.0" text="Sculpture width" GridPane.rowIndex="8" />
-            <Label prefHeight="66.0" prefWidth="496.0" text="Sculpture width" GridPane.rowIndex="9" />
+            <Label prefHeight="66.0" prefWidth="496.0" text="Sculpture height" GridPane.rowIndex="8" />
+            <Label prefHeight="66.0" prefWidth="496.0" text="Sculpture depth" GridPane.rowIndex="9" />
             <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter height..." GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter depth..." GridPane.columnIndex="1" GridPane.rowIndex="9" />
             </children>
         </GridPane>
       <HBox layoutX="14.0" layoutY="14.0" prefHeight="56.0" prefWidth="496.0">
          <children>
-            <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sell sculpture:" wrappingWidth="462.6708984375">
+            <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create sculpture auction:" wrappingWidth="462.6708984375">
                <font>
                   <Font size="39.0" />
                </font>

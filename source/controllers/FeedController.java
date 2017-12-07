@@ -1,8 +1,11 @@
 package controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import model.Auction;
@@ -18,11 +21,17 @@ public class FeedController implements Initializable {
 
     @FXML
     private GridPane cardsGridPane;
+    @FXML
+    private ChoiceBox choiceBoxFilter;
+    ObservableList<String> choiceBoxList = FXCollections.observableArrayList("Show All", "Paintings", "Sculptures");
     private Feed feed;
     private ArrayList<AnchorPane> cards;
     private static int DEFAULT_NUMBER_OF_COLUMNS = 3;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        choiceBoxFilter.setItems(choiceBoxList);
+        choiceBoxFilter.setValue("Show All");
         feed = Feed.getInstance();
         modifyCardGrid();
         try {
