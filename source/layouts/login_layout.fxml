@@ -15,9 +15,9 @@
                <Font size="61.0" />
             </font>
          </Label>
-         <TextField fx:id="loginTextField" layoutX="212.0" layoutY="341.0" prefHeight="31.0" prefWidth="214.0" promptText="Username" />
-         <Label fx:id="loginUserPrompt" layoutX="376.0" layoutY="192.0" prefHeight="33.0" prefWidth="257.0" />
-         <Button layoutX="263.0" layoutY="385.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="44.0" prefWidth="111.0" text="Login" />
+         <TextField fx:id="loginTextField" layoutX="213.0" layoutY="376.0" prefHeight="31.0" prefWidth="214.0" promptText="Username" />
+         <Label fx:id="loginUserPrompt" layoutX="192.0" layoutY="329.0" prefHeight="33.0" prefWidth="257.0" />
+         <Button layoutX="264.0" layoutY="414.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="44.0" prefWidth="111.0" text="Login" />
       <ImageView fitHeight="277.0" fitWidth="621.0" layoutX="74.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../other/meditation-2214532_1280.jpg" />
