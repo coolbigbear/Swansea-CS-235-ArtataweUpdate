@@ -93,15 +93,25 @@
             </GridPane>
          </children>
       </VBox>
-      <HBox layoutX="434.0" layoutY="311.0" AnchorPane.bottomAnchor="206.0" AnchorPane.leftAnchor="434.0" AnchorPane.rightAnchor="386.0" AnchorPane.topAnchor="311.0">
+      <VBox layoutX="434.0" layoutY="311.0" prefHeight="227.0" prefWidth="391.0">
          <children>
             <Label layoutX="434.0" layoutY="311.0" text="Description">
                <HBox.margin>
                   <Insets right="30.0" />
                </HBox.margin>
             </Label>
-            <Label layoutX="539.0" layoutY="311.0" text="Descriptioning" />
+            <Label layoutX="540.0" layoutY="311.0" prefHeight="206.0" prefWidth="439.0" text="Descriptioning" />
          </children>
-      </HBox>
+      </VBox>
+      <ScrollPane layoutX="823.0" prefHeight="538.0" prefWidth="200.0">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
