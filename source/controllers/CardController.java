@@ -58,6 +58,6 @@ public class CardController implements Initializable {
         AnchorPane profileLayout = (AnchorPane) loader.load();
         AuctionController controller = loader.getController();
         controller.initAuction(currentAuction);
-        //homeLayout.setCenter(profileLayout);
+        Util.getHomeLayout().setCenter(profileLayout);
     }
 }

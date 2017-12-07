@@ -34,6 +34,8 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //TODO CHECK MY HOMELAYOUT IN UTIL
+        Util.setHomeLayout(homeLayout);
         Util.getActiveAuctions();
         auctionsFeed = Feed.getInstance();
         try {
