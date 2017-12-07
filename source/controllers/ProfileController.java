@@ -9,20 +9,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Profile;
 import model.Util;
-
-import java.awt.event.ActionEvent;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
 public class ProfileController implements Initializable {
 
-    @FXML
-    private AnchorPane anchorPane;
     @FXML
     private ImageView profileImg; //TODO Once a get has been made this should be used
     @FXML
@@ -50,6 +46,7 @@ public class ProfileController implements Initializable {
         selectedProfile = profile;
         if (validate(selectedProfile.getUsername())) {
             setLastLogin();
+            getProfileImg();
            // Image
             //setProfileImg(Stage stage);
 
@@ -77,7 +74,7 @@ public class ProfileController implements Initializable {
 
     private boolean validate(String string) {
         if (!validUser(string)) {
-            selectedProfile.checkUsername("User not found");
+            selectedProfile.checkUsername("");
             return false;
         } else {
             return true;
@@ -91,10 +88,17 @@ public class ProfileController implements Initializable {
     @FXML
     private void setFavouriteUser() {
 
+
     }
 
     @FXML
     private void chooseProfileImg() {
+
+
+
+/*        AnchorPane root = new AnchorPane();
+        ImageView background = new ImageView(new Image.setProfileImg(("images/ProfileImage.png")));
+        root.getChildren().add(background);*/
 
 /*        AnchorPane img = new AnchorPane();
         ImageView image = new ImageView(new Image(getClass().getResourceAsStream("\\images\\ProfileImage.png")));
@@ -158,6 +162,9 @@ public class ProfileController implements Initializable {
 
     private void setProfileImg( /*ImageView profileImg*/) {
 
+        Image image = new Image("\\images\\ProfileImage.png");
+        profileImg.setImage(image);
+
 
        /* String path = "\\images\\ProfileImage.png";
         //   String pathToOpen = "\\images\\ProfileImage.png";
@@ -203,6 +210,10 @@ public class ProfileController implements Initializable {
     }
 
    private void getProfileImg(){ //TODO: Wont take String as an image (profile)
+
+       profileImg.getImage();
+
+
        //profileImg.setImage(getProfileImg());
       // return profileImg.setImage(getProfileImg());
 //profileImg.setImage(selectedProfile.setProfileImagePath("\\images\\ProfileImage.png"));
