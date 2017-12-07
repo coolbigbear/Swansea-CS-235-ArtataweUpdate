@@ -196,8 +196,14 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void createAuctionButtonAction() throws IOException {
-        AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/auction_create_layout.fxml"));
+    private void createSculptureButtonAction() throws IOException {
+        AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/create_sculpture_layout.fxml"));
+        homeLayout.setCenter(profileLayout);
+    }
+
+    @FXML
+    private void createPaintingButtonAction() throws IOException {
+        AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/create_painting_layout.fxml"));
         homeLayout.setCenter(profileLayout);
     }
 

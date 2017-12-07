@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -15,7 +16,7 @@
 
 <AnchorPane prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAuctionController">
    <children>
-      <GridPane layoutX="14.0" layoutY="103.0" prefHeight="459.0" prefWidth="992.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="103.0">
+      <GridPane layoutX="14.0" layoutY="86.0" prefHeight="407.0" prefWidth="992.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="86.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -29,8 +30,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label prefHeight="66.0" prefWidth="496.0" text="Title of artwork" />
@@ -42,22 +42,29 @@
             <Label prefHeight="66.0" prefWidth="496.0" text="Number of bids allowed" GridPane.rowIndex="6" />
             <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter artowrk title..." GridPane.columnIndex="1" />
             <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter artwork creator..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField prefHeight="32.0" prefWidth="496.0" promptText="DD/MM/YYYY" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter main material..." GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter year of creation..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter bids..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label prefHeight="66.0" prefWidth="496.0" text="Dimensions" GridPane.rowIndex="7" />
-            <Label prefHeight="66.0" prefWidth="496.0" text="Choose additional photos" GridPane.rowIndex="9" />
-            <TextField prefHeight="32.0" prefWidth="496.0" promptText="Width/Height/Depth" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label prefHeight="66.0" prefWidth="496.0" text="Painting width" GridPane.rowIndex="7" />
+            <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter width..." GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Enter artwork description..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="226.0" text="Browse photos" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="226.0" text="Browse photos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter reserve price..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label prefHeight="66.0" prefWidth="496.0" text="Main material" GridPane.rowIndex="8" />
+            <TextField prefHeight="32.0" prefWidth="496.0" promptText="Enter height..." GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label prefHeight="66.0" prefWidth="496.0" text="Painting height" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <HBox layoutX="437.0" layoutY="28.0">
+      <HBox layoutX="14.0" layoutY="14.0" prefHeight="56.0" prefWidth="496.0" AnchorPane.bottomAnchor="468.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="513.0" AnchorPane.topAnchor="14.0">
          <children>
-            <ChoiceBox layoutX="437.0" layoutY="28.0" prefWidth="150.0" />
+            <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sell painting:" wrappingWidth="462.6708984375">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox layoutX="780.0" layoutY="493.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="17.0">
+         <children>
+            <Button layoutX="780.0" layoutY="493.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="226.0" text="Sell painting" />
          </children>
       </HBox>
    </children>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -33,7 +34,7 @@
             </HBox>
             <HBox layoutX="797.0" layoutY="13.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <VBox layoutX="773.0" layoutY="6.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="797.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="43.0">
+                  <VBox layoutX="773.0" layoutY="6.0" prefHeight="90.0" prefWidth="97.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="797.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="43.0">
                      <children>
                             <Label fx:id="welcomeLabel" layoutX="805.0" layoutY="43.0" text="wilkommen">
                            <opaqueInsets>
@@ -71,6 +72,9 @@
                </children>
             </HBox>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </AnchorPane>
     </top>
     <left>
@@ -78,16 +82,21 @@
             <items>
                 <VBox prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#createAuctionButtonAction" text="CREATE AUCTION" />
-                        <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction" text="Current auctions" />
-                        <MenuButton mnemonicParsing="false" text="Buying">
+                  <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" text="Create auction">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Sculpture" onAction="#createSculptureButtonAction"/>
+                      <MenuItem mnemonicParsing="false" text="Painting" onAction="#createPaintingButtonAction"/>
+                    </items>
+                  </MenuButton>
+                        <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction" prefHeight="31.0" prefWidth="180.0" text="Current auctions" />
+                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="181.0" text="Buying">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#bidsPlacedMenuItemAction" text="Bids placed" />
                                 <MenuItem mnemonicParsing="false" onAction="#bidsWonMenuItemAction" text="Bids won" />
                                 <MenuItem mnemonicParsing="false" onAction="#allBidsMenuItemAction" text="All bids" />
                             </items>
                         </MenuButton>
-                        <MenuButton mnemonicParsing="false" text="Selling">
+                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="184.0" text="Selling">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#currentlySellingMenuItemAction" text="Currently selling" />
                                 <MenuItem mnemonicParsing="false" onAction="#auctionsSoldMenuItemAction" text="Auctions sold" />
@@ -110,4 +119,7 @@
             </items>
         </SplitPane>
     </left>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
 </BorderPane>
