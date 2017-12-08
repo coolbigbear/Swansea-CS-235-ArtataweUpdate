@@ -3,6 +3,7 @@ package model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import model.exception.ProfileNotFoundException;
 
 import java.io.*;
@@ -20,6 +21,7 @@ public final class Util {
 	 */
 	private static Profile currentUser;
 	private static BorderPane homeLayout;
+	private static Stage mainStage;
 	private static Gson gson = addTypesToGson();
 	
 	/**
@@ -344,5 +346,11 @@ public final class Util {
 	}
 	public static void setHomeLayout(BorderPane borderPane) {
 		homeLayout = borderPane;
+	}
+	public static Stage getMainStage() {
+		return mainStage;
+	}
+	public static void setMainStage(Stage stage) {
+		mainStage = stage;
 	}
 }
