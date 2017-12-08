@@ -87,7 +87,6 @@ public final class Util {
 	 *
 	 * @return the profile to be returned
 	 */
-	//Helper method, could be useful
 	public static Profile getProfileByUsername(String username) {
 		
 		Profile[] allProfiles = readInProfileFile();
@@ -298,11 +297,11 @@ public final class Util {
 	
 	public static int getNewAuctionID() {
 		int auctionID = -1;
-
+		
 		try {
 			Scanner scanner = new Scanner(new File("JSON Files/AuctionID.txt."));
-			auctionID = scanner.nextInt() ;
-			auctionID ++;
+			auctionID = scanner.nextInt();
+			auctionID++;
 			scanner.close();
 			saveNewAuctionID(auctionID);
 			return auctionID;
@@ -311,7 +310,7 @@ public final class Util {
 		}
 		return auctionID;
 	}
-
+	
 	private static void saveNewAuctionID(int auctionID) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(
@@ -340,16 +339,19 @@ public final class Util {
 	public static void setCurrentUser(Profile currentUser) {
 		Util.currentUser = currentUser;
 	}
-
+	
 	public static BorderPane getHomeLayout() {
 		return homeLayout;
 	}
+	
 	public static void setHomeLayout(BorderPane borderPane) {
 		homeLayout = borderPane;
 	}
+	
 	public static Stage getMainStage() {
 		return mainStage;
 	}
+	
 	public static void setMainStage(Stage stage) {
 		mainStage = stage;
 	}

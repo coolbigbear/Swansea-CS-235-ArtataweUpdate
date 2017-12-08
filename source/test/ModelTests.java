@@ -268,6 +268,11 @@ class ModelTests {
 	}
 	
 	@Nested
+	class UITests {
+	
+	}
+	
+	@Nested
 	class BidTests {
 		
 		@DisplayName("Bid Main")

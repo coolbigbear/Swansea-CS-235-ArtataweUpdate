@@ -13,6 +13,7 @@ public class AuctionController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+    
     public void initAuction(Auction auction) {
         currentAuction = auction;
     }
