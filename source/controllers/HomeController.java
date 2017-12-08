@@ -46,6 +46,7 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
         try {
+            //TODO MORE WORK ON THAT DONT TOUCH - BEZHAN
             setProfileImageView(Util.getCurrentUser().getProfileImagePath());
         } catch (Exception e) {
             e.printStackTrace();

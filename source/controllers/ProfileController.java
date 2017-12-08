@@ -59,6 +59,7 @@ public class ProfileController implements Initializable {
         setUserSpecificButtons();
         setLabels();
         try {
+            //TODO MORE WORK ON THAT DONT TOUCH - BEZHAN
             setImage();
         } catch (Exception e) {
             e.printStackTrace();
