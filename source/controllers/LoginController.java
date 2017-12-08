@@ -51,15 +51,15 @@ public class LoginController implements Initializable {
 
     private boolean validate(String input) {
         if (!validCharacterInput(input)) {
-            loginUserPrompt.setText("Only alphanumerical values are allowed");
+            loginUserPrompt.setText("Only alphanumerical values are allowed!");
             return false;
         } else {
             if (!validLengthInput(input)) {
-                loginUserPrompt.setText("Username too long");
+                loginUserPrompt.setText("Username too long!");
                 return false;
             } else {
                 if (!validUser(input)) {
-                    loginUserPrompt.setText("User not found");
+                    loginUserPrompt.setText("User not found!");
                     return false;
                 } else {
                     return true;
