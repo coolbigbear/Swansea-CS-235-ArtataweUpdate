@@ -31,7 +31,16 @@ public class TestFx extends Application {
 		List<String> favouritesOfP4 = new ArrayList<>();
 		List<String> favouritesOfP5 = new ArrayList<>();
 		List<String> favouritesOfP6 = new ArrayList<>();
-		List<Bid> bids = new ArrayList<>();
+
+		List<Bid> bidsForAuction2 = new ArrayList<>();
+		List<Bid> bidsForAuction3 = new ArrayList<>();
+		List<Bid> bidsForAuction4 = new ArrayList<>();
+		List<Bid> bidsForAuction5 = new ArrayList<>();
+		List<Bid> bidsForAuction6 = new ArrayList<>();
+		List<Bid> bidsForAuction7 = new ArrayList<>();
+		List<Bid> bidsForAuction8 = new ArrayList<>();
+		List<Bid> bidsForAuction9 = new ArrayList<>();
+		List<Bid> bidsForAuction10 = new ArrayList<>();
 
 
 		Profile p1 = new Profile("bigbear",
@@ -253,6 +262,9 @@ public class TestFx extends Application {
 				650,
 				650);
 
+		/**
+		 * Auctions
+		 */
 		Auction a1 = Auction.createNewAuction(
 				art1,
 				p1.getUsername(),
@@ -262,7 +274,7 @@ public class TestFx extends Application {
 				art2,
 				p2.getUsername(),
 				02,
-				new ArrayList<>(),//slap in a bid war here
+				bidsForAuction2,//slap in a bid war here
 				20000.0,
 				15,
 				LocalDateTime.now(),
@@ -274,7 +286,7 @@ public class TestFx extends Application {
 				art3,
 				p3.getUsername(),
 				03,
-				new ArrayList<>(),
+				bidsForAuction3,
 				20000.0,
 				15,
 				LocalDateTime.now(),
@@ -286,7 +298,7 @@ public class TestFx extends Application {
 				art4,
 				p4.getUsername(),
 				04,
-				new ArrayList<>(),
+				bidsForAuction4,
 				20000.0,
 				15,
 				LocalDateTime.now(),
@@ -298,7 +310,7 @@ public class TestFx extends Application {
 				art5,
 				p6.getUsername(),
 				05,
-				new ArrayList<>(),
+				bidsForAuction5,
 				20000.0,
 				15,
 				LocalDateTime.now(),
@@ -310,7 +322,7 @@ public class TestFx extends Application {
 				art6,
 				p1.getUsername(),
 				06,
-				new ArrayList<>(),
+				bidsForAuction6,
 				20000.0,
 				15,
 				LocalDateTime.now(),
@@ -322,7 +334,7 @@ public class TestFx extends Application {
 				art8,
 				p2.getUsername(),
 				07,
-				new ArrayList<>(),
+				bidsForAuction7,
 				20000.0,
 				15,
 				LocalDateTime.now(),
@@ -334,7 +346,7 @@ public class TestFx extends Application {
 				art8,
 				p3.getUsername(),
 				8,
-				new ArrayList<>(),
+				bidsForAuction8,
 				20000.0,
 				15,
 				LocalDateTime.now(),
@@ -346,7 +358,7 @@ public class TestFx extends Application {
 				art9,
 				p4.getUsername(),
 				9,
-				new ArrayList<>(),
+				bidsForAuction9,
 				20000.0,
 				15,
 				LocalDateTime.now(),
@@ -358,7 +370,7 @@ public class TestFx extends Application {
 				art10,
 				p6.getUsername(),
 				10,
-				new ArrayList<>(),
+				bidsForAuction10,
 				20000.0,
 				15,
 				LocalDateTime.now(),
@@ -380,6 +392,12 @@ public class TestFx extends Application {
 		auctions.add(a2);
 		auctions.add(a3);
 		auctions.add(a4);
+		auctions.add(a5);
+		auctions.add(a6);
+		auctions.add(a7);
+		auctions.add(a8);
+		auctions.add(a9);
+		auctions.add(a10);
 
 
 		//Json - Gson stuff
