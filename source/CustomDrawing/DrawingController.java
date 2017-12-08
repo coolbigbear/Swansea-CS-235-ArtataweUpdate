@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.util.UUID;
 
 public class DrawingController {
 
@@ -31,11 +32,10 @@ public class DrawingController {
         try{
             Image snapshot = canvas.snapshot(null, null);
             ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File
-                    ("images\\ProfileImage.png"));
+                    (generateNameAndSetLocation()));
         }catch(Exception e){
             System.out.println("Cannot save file!" + e);
         }
-
     }
 
     public void onClear(){
@@ -56,6 +56,11 @@ public class DrawingController {
                 gc.fillRect(x, y, size, size);
             }
         });
+    }
+
+    private String generateNameAndSetLocation() {
+        String generatedString = UUID.randomUUID().toString();
+        return "images\\custom\\" + generatedString +".png";
     }
 
 }

@@ -55,6 +55,11 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void chooseProfileImg() {
+
+    }
+
+    @FXML
+    private void createCustomImg() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/CustomDrawing/sample.fxml"));
             Stage stage = new Stage();
@@ -63,11 +68,6 @@ public class ProfileController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void createCustomImg() {
-
     }
 
     @FXML
@@ -140,217 +140,5 @@ public class ProfileController implements Initializable {
     private boolean isSignedInUser() {
         return selectedProfile.getUsername().equalsIgnoreCase(Util.getCurrentUser().getUsername());
     }
-
-    //------------------------------------------------------------------------------------------------------------------
-//    public void initProfile(Profile profile) {
-//        selectedProfile = profile;
-//        System.out.println(selectedProfile.getUsername());
-//        if (validate(selectedProfile.getUsername())) {
-//            setLastLogin();
-//            getProfileImg();
-//           // Image
-//            //setProfileImg(Stage stage);
-//
-//            getAddress();
-//            getContactNumber();
-//            getFirstName();
-//            getLastName();
-//            getPostCode();
-//            favouriteUser.setVisible(false);
-//        } else { //If validation doesn't work it sets both buttons to invisible for that profile
-//            setLastLogin();
-//            getAddress();
-//            getContactNumber();
-//            getFirstName();
-//            getLastName();
-//            getPostCode();
-//            browseDefault.setVisible(false);
-//            createCustom.setVisible(false);
-//            favouriteUser.setVisible(true);
-//        }
-//    }
-//
-//    //TODO: Remove this temp method so it works when linked with Login Controller
-//    //Temp testing method. Uses lastLogin to read the username (bigbear1) to validate and test.
-//
-//    private boolean validate(String string) {
-//        if (!validUser(string)) {
-//            selectedProfile.checkUsername("");
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
-//
-//    private boolean validUser(String string) {
-//        return true;
-//    }
-//
-//    @FXML
-//    private void setFavouriteUser() {
-//
-//
-//    }
-//
-//    @FXML
-//    private void chooseProfileImg() {
-//
-//
-//
-///*        AnchorPane root = new AnchorPane();
-//        ImageView background = new ImageView(new Image.setProfileImg(("images/ProfileImage.png")));
-//        root.getChildren().add(background);*/
-//
-///*        AnchorPane img = new AnchorPane();
-//        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("\\images\\ProfileImage.png")));
-//        img.getChildren().add(image);
-//
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(img, 640, 480));
-//        stage.show();*/
-//
-////Loading image from URL
-////Image image = new Image(new FileInputStream("url for the image));
-//
-///*
-//        AnchorPane img = new AnchorPane();
-//        ImageView image = new ImageView(getClass().getResourceAsStream("\\images\\ProfileImage.png"));
-//        img.getChildren().add(image);
-//
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(img, 640, 480));
-//        stage.show();*/
-//
-//
-//       // Button button = new Button(" ",imageView);
-//   //    button.setOnAction(ev -> ().showDocument(pathToOpen));
-//
-//
-//
-//     /*  ImageView input = getClass().getResourceAsStream("\\images\\ProfileImage.png");
-//       Image image = new Image(input);
-//       ImageView profileImg = new ImageView(image);
-//        FlowPane root = new FlowPane();
-//        root.setPadding(new Insets(20));
-//
-//        root.getChildren().addAll(profileImg);
-//
-//        Stage stage = new Stage();
-//
-//        stage.setScene(new Scene(root));
-//       stage.show();
-//
-//*/
-//    }
-//
-//    @FXML
-//    private void createCustomImg() {
-//        try {
-//            Parent root = FXMLLoader.load(getClass().getResource("/CustomDrawing/sample.fxml"));
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(root));
-//            stage.show();
-//        } catch(Exception e){
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Override
-//    public void initialize(URL location, ResourceBundle resources) {
-//
-//
-//    }
-//
-//    private void setProfileImg( /*ImageView profileImg*/) {
-//
-//        Image image = new Image("\\images\\ProfileImage.png");
-//        profileImg.setImage(image);
-//
-//
-//       /* String path = "\\images\\ProfileImage.png";
-//        //   String pathToOpen = "\\images\\ProfileImage.png";
-//
-//        Image image = new Image(path);
-//        ImageView imageView = new ImageView(image);
-//*/
-//
-////
-////         AnchorPane img = new AnchorPane();
-////         Stage stage = new Stage();
-//
-//         //ImageView profileImg = new ImageView(new URL());
-////             @Override
-////             public int read() throws IOException {
-////                 return 0;
-////             }
-//        // })//getClass().getResourceAsStream("\\images\\ProfileImage.png")));
-//
-////         img.getChildren().add(profileImg);
-////         stage.setScene(new Scene(profileImg))/;
-////
-////       File file = niewew File("\\images\\ProfileImage.png");
-////        Image image = new Image(profileImg.setImage("\\images\\ProfileImage.png").toString());
-//      //  profileImg.setImage(image);
-//     //   Image img = new Image("\\images\\ProfileImage.png");
-//        //TODO: Might set profile from current path? Doesnt actually work/cant test due to no 'getter'
-//      /*  new img(getClass().getResource("Snake/Images/background_options.png"));*/
-//
-///*
-//        StackPane sp = new StackPane();
-//        Image img = new Image("\\images\\ProfileImage.png"); //TODO: Change this to a local path to save in src, images
-//        ImageView profileimg = new ImageView(img);
-//*/
-//
-//
-//    /*  Image img = new Image(imagePath);
-//        try {
-//            profileImg.setImage(img);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }*/
-//    }
-//
-//   private void getProfileImg(){ //TODO: Wont take String as an image (profile)
-//
-//       profileImg.getImage();
-//
-//
-//       //profileImg.setImage(getProfileImg());
-//      // return profileImg.setImage(getProfileImg());
-////profileImg.setImage(selectedProfile.setProfileImagePath("\\images\\ProfileImage.png"));
-//      //  profileImg.getImage(selectedProfile.getProfileImagePath());
-//    }
-//
-//    private void setLastLogin() {
-//        lastLogin.setText("Last Login: " + selectedProfile.getLastLogInTime());
-//
-//
-//    }
-//
-//    private void getFirstName(){
-//        firstName.setText(selectedProfile.getFirstName());
-//
-//    }
-//
-//    private void getLastName(){
-//        lastName.setText(selectedProfile.getLastName());
-//
-//    }
-//
-//    private void getPostCode(){
-//        postCode.setText(selectedProfile.getPostcode());
-//
-//    }
-//
-//    private void getContactNumber(){
-//        contactNumber.setText(selectedProfile.getPhoneNumber());
-//
-//    }
-//
-//    private void getAddress(){
-//        address.setText(selectedProfile.getAddressLine1() + "\n" + selectedProfile.getAddressLine2());
-//
-//    }
-//
 
 }
