@@ -58,7 +58,11 @@ public class ProfileController implements Initializable {
         selectedProfile = profile;
         setUserSpecificButtons();
         setLabels();
-        //setImage();
+        try {
+            setImage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

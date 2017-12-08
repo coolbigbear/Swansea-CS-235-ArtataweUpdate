@@ -45,8 +45,12 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            setProfileImageView(Util.getCurrentUser().getProfileImagePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         welcomeLabel.setText(Util.getCurrentUser().getLastName());
-        //setProfileImageView(Util.getCurrentUser().getProfileImagePath());
         try {
             setAuctionsCenter();
         } catch (IOException e) {

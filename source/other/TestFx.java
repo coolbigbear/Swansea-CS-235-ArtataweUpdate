@@ -52,7 +52,7 @@ public class TestFx extends Application {
 				"someCity",
 				"UK, duh",
 				"somePostcode",
-				"path",
+				"images/profile/male1.png",
 				favouritesOfP1,
 				new ArrayList<>(),
 				new ArrayList<>(),
