@@ -36,9 +36,17 @@ public class ProfileController implements Initializable {
     @FXML
     private Label lastName;
     @FXML
-    private Label address;
+    private Label addressLine1;
+    @FXML
+    private Label addressLine2;
+    @FXML
+    private Label city;
+    @FXML
+    private Label country;
     @FXML
     private Label lastLogin;
+    @FXML
+    private Label usernameLabelProfile;
     private Profile selectedProfile;
 
     @Override
@@ -97,11 +105,15 @@ public class ProfileController implements Initializable {
     }
 
     private void setLabels() {
+        usernameLabelProfile.setText(selectedProfile.getUsername());
         postCode.setText(selectedProfile.getPostcode());
         contactNumber.setText(selectedProfile.getPhoneNumber());
         firstName.setText(selectedProfile.getFirstName());
         lastName.setText(selectedProfile.getLastName());
-        address.setText(selectedProfile.getAddressLine1() + selectedProfile.getAddressLine2());
+        addressLine1.setText(selectedProfile.getAddressLine1());
+        addressLine2.setText(selectedProfile.getAddressLine1());
+        city.setText(selectedProfile.getCity());
+        country.setText(selectedProfile.getCountry());
         lastLogin.setText(selectedProfile.getLastLogInTime().getHour() + ":" + selectedProfile.getLastLogInTime().getMinute() +
                                 " " + selectedProfile.getLastLogInTime().getDayOfMonth() + "." + selectedProfile.getLastLogInTime().getMonthValue() +
                                     "." + selectedProfile.getLastLogInTime().getYear());
