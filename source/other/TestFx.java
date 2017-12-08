@@ -247,8 +247,8 @@ public class TestFx extends Application {
 				"Bust of Nefertiti",
 				new StringBuilder("Symbol of feminine beauty in Egypt"),
 				LocalDate.now(),
+				"YEAH",
 				"images/auctions/sculptures/sculpture2.png",
-				"string",
 				200,
 				200,
 				200,
@@ -257,8 +257,8 @@ public class TestFx extends Application {
 				"The Persistence of Memory",
 				new StringBuilder("Some melting clocks cuz it super hot"),
 				LocalDate.now(),
+				"My man",
 				"images/auctions/sculptures/sculpture3.png",
-				"string",
 				650,
 				650);
 
