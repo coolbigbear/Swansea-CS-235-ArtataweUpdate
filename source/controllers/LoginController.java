@@ -37,6 +37,11 @@ public class LoginController implements Initializable {
         }
     }
 
+    @FXML
+    private void registerButtonAction() {
+
+    }
+
     private void successfulLogin(ActionEvent e) throws IOException {
         loginUserPrompt.setText("Welcome to Artatawe" + ", " + Util.getCurrentUser().getFirstName() + "!");
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/home_layout.fxml"));
