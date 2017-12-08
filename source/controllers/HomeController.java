@@ -231,8 +231,17 @@ public class HomeController implements Initializable {
         int PROFILE_COLUMN = 1;
         int row = 0;
         Hyperlink favoriteUser;
+        ImageView profileImage;
         favoritesGridPane.addRow(favoriteUsers.size());
         for (Profile elem : favoriteUsers) {
+            profileImage = new ImageView();
+            try {
+                profileImage.setImage(new Image(elem.getProfileImagePath()));
+                profileImage.setFitHeight(20);
+                profileImage.setFitWidth(20);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             favoriteUser = new Hyperlink();
             favoriteUser.setText(elem.getUsername());
             favoriteUser.setOnAction(event -> {
@@ -248,7 +257,16 @@ public class HomeController implements Initializable {
                 }
             });
             favoritesGridPane.add(favoriteUser,PROFILE_COLUMN,row);
+            favoritesGridPane.add(profileImage,IMAGE_COLUMN,row);
             row++;
         }
+    }
+
+    private void populateFavoritesNames() {
+
+    }
+
+    private void populateFavoritesImages() {
+
     }
 }
