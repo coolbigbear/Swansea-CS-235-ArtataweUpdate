@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -8,8 +13,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="320.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardController">
+<AnchorPane prefHeight="320.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="321.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
       <ImageView fx:id="cardAuctionImage" fitHeight="163.0" fitWidth="166.0" layoutX="31.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="priceCardAuctionLabel" layoutX="215.0" layoutY="101.0" text="payment" />
       <GridPane layoutX="42.0" layoutY="193.0" prefHeight="92.0" prefWidth="232.0">
@@ -31,6 +37,6 @@
             <Label fx:id="datePlacedCardAuctionLabel" text="june 2017" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Hyperlink fx:id="titleCardAuctionHyperlink" layoutX="219.0" layoutY="30.0" onAction="#goToAuctionAction" text="title" />
+      <Hyperlink fx:id="titleCardAuctionHyperlink" alignment="CENTER" layoutX="14.0" onAction="#goToAuctionAction" prefHeight="28.0" prefWidth="272.0" text="title" />
    </children>
 </AnchorPane>
