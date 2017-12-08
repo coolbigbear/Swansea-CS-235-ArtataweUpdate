@@ -2,6 +2,7 @@ package model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.exception.ProfileNotFoundException;
@@ -23,6 +24,7 @@ public final class Util {
 	private static BorderPane homeLayout;
 	private static Stage mainStage;
 	private static Gson gson = addTypesToGson();
+	private static ImageView profileImage;
 	
 	/**
 	 * Reads in all profiles from database.
@@ -355,4 +357,13 @@ public final class Util {
 	public static void setMainStage(Stage stage) {
 		mainStage = stage;
 	}
+
+	public static void setProfileImage(ImageView imageView) {
+		profileImage = imageView;
+	}
+
+	public static ImageView getProfileImage() {
+		return profileImage;
+	}
+
 }
