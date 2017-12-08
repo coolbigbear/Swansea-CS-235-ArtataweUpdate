@@ -141,24 +141,6 @@ public class HomeController implements Initializable {
 	    setAuctionsCenter();
     }
 
-    //All Auctions which you have placed Bids on
-    @FXML
-    private void allBidsMenuItemAction() throws IOException {
-
-    	ArrayList<Bid> bidList = getAllBids();
-    	Feed feed = Feed.getInstance();
-
-	    for (Bid bid: bidList) {
-		    Auction auction = Util.getAuctionByAuctionID(bid.getAuctionID());
-
-    		if (bid.getBidderUsername().equals(Util.getCurrentUser().getUsername())) {
-    			feed.add(auction);
-		    }
-	    }
-    	// How to fill up the Feed UI with the new contents of Feed?
-        setAuctionsCenter();
-    }
-
     //--------------------Auctions selling---------------------
 
     //All Auctions that you are currently selling
@@ -187,22 +169,6 @@ public class HomeController implements Initializable {
 	    for(Auction auction: feed) {
 		    if(auction.isCompleted() &&
 				    auction.getSellerName().equals(Util.getCurrentUser().getUsername())) {
-			    resultList.add(auction);
-		    }
-	    }
-	    feed.updateWith(resultList);
-
-        setAuctionsCenter();
-    }
-
-    //All Auctions you have sold and are still selling
-    @FXML
-    private void allSellingSoldMenuItemAction() throws IOException {
-	    Feed feed = Feed.getInstance();
-	    ArrayList<Auction> resultList = new ArrayList<>();
-
-	    for(Auction auction: feed) {
-		    if(auction.getSellerName().equals(Util.getCurrentUser().getUsername())) {
 			    resultList.add(auction);
 		    }
 	    }

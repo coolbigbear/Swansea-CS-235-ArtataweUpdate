@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -16,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="homeLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="1183.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<BorderPane fx:id="homeLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="1183.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
     <top>
       <AnchorPane prefHeight="62.0" prefWidth="1024.0">
          <children>
@@ -89,27 +96,25 @@
                 <VBox prefHeight="200.0" prefWidth="100.0">
                     <children>
                         <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction" prefHeight="31.0" prefWidth="180.0" text="Current auctions" />
+                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="181.0" text="Buying">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#bidsPlacedMenuItemAction" text="Auctions bidding on" />
+                                <MenuItem mnemonicParsing="false" onAction="#bidsWonMenuItemAction" text="Auctions won" />
+                            </items>
+                        </MenuButton>
+                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="184.0" text="Selling">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#currentlySellingMenuItemAction" text="Auctions selling" />
+                                <MenuItem mnemonicParsing="false" onAction="#auctionsSoldMenuItemAction" text="Auctions sold" />
+                            </items>
+                        </MenuButton>
+                  <Button mnemonicParsing="false" onAction="#bidHistoryButtonAction" prefHeight="31.0" prefWidth="159.0" text="Bid History" />
                   <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" text="Create auction">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#createSculptureButtonAction" text="Sculpture" />
                       <MenuItem mnemonicParsing="false" onAction="#createPaintingButtonAction" text="Painting" />
                     </items>
                   </MenuButton>
-                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="181.0" text="Buying">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#bidsPlacedMenuItemAction" text="Bids placed" />
-                                <MenuItem mnemonicParsing="false" onAction="#bidsWonMenuItemAction" text="Bids won" />
-                                <MenuItem mnemonicParsing="false" onAction="#allBidsMenuItemAction" text="All bids" />
-                            </items>
-                        </MenuButton>
-                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="184.0" text="Selling">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#currentlySellingMenuItemAction" text="Currently selling" />
-                                <MenuItem mnemonicParsing="false" onAction="#auctionsSoldMenuItemAction" text="Auctions sold" />
-                                <MenuItem mnemonicParsing="false" onAction="#allSellingSoldMenuItemAction" text="All selling/sold" />
-                            </items>
-                        </MenuButton>
-                  <Button mnemonicParsing="false" onAction="#bidHistoryButtonAction" prefHeight="31.0" prefWidth="159.0" text="Bid History" />
                     </children>
                 </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0">
