@@ -268,125 +268,188 @@ public class TestFx extends Application {
 		Auction a1 = Auction.createNewAuction(
 				art1,
 				p1.getUsername(),
-				01,
+				1,
 				18000.0);
 		Auction a2 = new Auction(
 				art2,
 				p2.getUsername(),
-				02,
-				bidsForAuction2,//slap in a bid war here
+				2,
+				bidsForAuction2,
 				20000.0,
-				15,
+				6,
 				LocalDateTime.now(),
 				0,
 				p1.getUsername(),
 				true,
-				1400000.0);
+				7000000.0);
 		Auction a3 = new Auction(
 				art3,
 				p3.getUsername(),
-				03,
+				3,
 				bidsForAuction3,
 				20000.0,
 				15,
 				LocalDateTime.now(),
-				15,
-				null,
+				14,
+				p1.getUsername(),
 				false,
-				0.0);
+				25000.0);
 		Auction a4 = new Auction(
 				art4,
 				p4.getUsername(),
-				04,
+				4,
 				bidsForAuction4,
-				20000.0,
-				15,
+				100.0,
+				2,
 				LocalDateTime.now(),
-				15,
-				null,
+				1,
+				p6.getUsername(),
 				false,
-				0.0);
+				200.0);
 		Auction a5 = new Auction(
 				art5,
 				p6.getUsername(),
-				05,
+				5,
 				bidsForAuction5,
-				20000.0,
+				25.0,
 				15,
 				LocalDateTime.now(),
-				15,
-				null,
+				14,
+				p3.getUsername(),
 				false,
-				0.0);
+				50.0);
 		Auction a6 = new Auction(
 				art6,
 				p1.getUsername(),
-				06,
+				6,
 				bidsForAuction6,
-				20000.0,
-				15,
+				0.0,
+				5,
 				LocalDateTime.now(),
-				15,
-				null,
+				1,
+				p4.getUsername(),
 				false,
-				0.0);
+				111.0);
 		Auction a7 = new Auction(
 				art8,
 				p2.getUsername(),
-				07,
+				7,
 				bidsForAuction7,
-				20000.0,
-				15,
+				20.0,
+				8,
 				LocalDateTime.now(),
-				15,
-				null,
+				7,
+				p2.getUsername(),
 				false,
-				0.0);
+				37.0);
 		Auction a8 = new Auction(
 				art8,
 				p3.getUsername(),
 				8,
 				bidsForAuction8,
-				20000.0,
-				15,
+				348.0,
+				1,
 				LocalDateTime.now(),
-				15,
-				null,
-				false,
-				0.0);
+				0,
+				p1.getUsername(),
+				true,
+				350.0);
 		Auction a9 = new Auction(
 				art9,
 				p4.getUsername(),
 				9,
 				bidsForAuction9,
-				20000.0,
-				15,
+				23.33,
+				12,
 				LocalDateTime.now(),
-				15,
-				null,
+				11,
+				p3.getUsername(),
 				false,
-				0.0);
+				55.0);
 		Auction a10 = new Auction(
 				art10,
 				p6.getUsername(),
 				10,
 				bidsForAuction10,
-				20000.0,
-				15,
+				899.99,
+				4,
 				LocalDateTime.now(),
-				15,
-				null,
+				2,
+				p4.getUsername(),
 				false,
-				0.0);
+				1200.10);
 
 
 
 		Util.saveListOfProfilesToFile(profiles);
-		Util.checkAndSetUser("bigbear");
+		Util.checkAndSetUser("BHelal");
 
-		Bid b1 = new Bid(02,20500.0);
-		
-		//a2.placeBid(b1);
+		Bid b1 = new Bid(2,1000000.0);
+		Util.checkAndSetUser("bigbear");
+		Bid b2 = new Bid(2,2000000.0);
+		Util.checkAndSetUser("BHelal");
+		Bid b3 = new Bid(2,2500000.0);
+		Util.checkAndSetUser("bigbear");
+		Bid b4 = new Bid(2,3500000.0);
+		Util.checkAndSetUser("BHelal");
+		Bid b5 = new Bid(2,5000000.0);
+		Util.checkAndSetUser("bigbear");
+		Bid b6 = new Bid(2,7000000.0);
+
+		bidsForAuction2.add(b1);
+		bidsForAuction2.add(b2);
+		bidsForAuction2.add(b3);
+		bidsForAuction2.add(b4);
+		bidsForAuction2.add(b5);
+		bidsForAuction2.add(b6);
+
+		Bid b7 = new Bid(3,25000.0);
+		bidsForAuction3.add(b7);
+
+		Util.checkAndSetUser("AWing");
+		Bid b8 = new Bid(4,200.0);
+		bidsForAuction4.add(b8);
+
+		Util.checkAndSetUser("BKodomani");
+		Bid b9 = new Bid(5,50.0);
+		bidsForAuction5.add(b9);
+
+		Util.checkAndSetUser("BSampson");
+		Bid b10 = new Bid(6,10.0);
+		Util.checkAndSetUser("AWing");
+		Bid b110 = new Bid(6,50.0);
+		Util.checkAndSetUser("BSampson");
+		Bid b120 = new Bid(6,100.0);
+		Util.checkAndSetUser("AWing");
+		Bid b130 = new Bid(6,110.0);
+		Util.checkAndSetUser("BSampson");
+		Bid b140 = new Bid(6,111.0);
+
+		bidsForAuction6.add(b10);
+		bidsForAuction6.add(b110);
+		bidsForAuction6.add(b120);
+		bidsForAuction6.add(b130);
+		bidsForAuction6.add(b140);
+
+		Util.checkAndSetUser("BHelal");
+		Bid b11 = new Bid(7,37.0);
+		bidsForAuction7.add(b11);
+
+		Util.checkAndSetUser("bigbear");
+		Bid b12 = new Bid(8,350.0);
+		bidsForAuction8.add(b12);
+
+		Util.checkAndSetUser("BKodomani");
+		Bid b13 = new Bid(9,55.0);
+		bidsForAuction8.add(b13);
+
+		Util.checkAndSetUser("IGarnev");
+		Bid b14 = new Bid(10,1000.0);
+		Util.checkAndSetUser("BSampson");
+		Bid b15 = new Bid(10,1200.10);
+		bidsForAuction8.add(b14);
+		bidsForAuction8.add(b15);
+
 
 		auctions.add(a1);
 		auctions.add(a2);

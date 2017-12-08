@@ -83,6 +83,7 @@ public final class Auction implements Comparable<Auction> {
 		if (validateBid(bid)) {
 			this.highestBidder = bid.getBidderUsername();
 			this.highestPrice = bid.getBidAmount();
+			bidList.add(bid);
 			return true;
 		} else throw new IllegalBidException("Invalid Bid!");
 	}
