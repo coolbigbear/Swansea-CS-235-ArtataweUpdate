@@ -46,7 +46,6 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
         try {
-            //TODO MORE WORK ON THAT DONT TOUCH - BEZHAN
             setProfileImageView(Util.getCurrentUser().getProfileImagePath());
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,6 +63,7 @@ public class HomeController implements Initializable {
         Image img = new Image(imagePath);
         try {
             profileImageView.setImage(img);
+            Util.setProfileImage(profileImageView);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -226,7 +226,6 @@ public class HomeController implements Initializable {
 
 
     private void populateFavoritesView() {
-        //TODO ADD IMAGES
         int IMAGE_COLUMN = 0;
         int PROFILE_COLUMN = 1;
         int row = 0;
@@ -260,13 +259,5 @@ public class HomeController implements Initializable {
             favoritesGridPane.add(profileImage,IMAGE_COLUMN,row);
             row++;
         }
-    }
-
-    private void populateFavoritesNames() {
-
-    }
-
-    private void populateFavoritesImages() {
-
     }
 }

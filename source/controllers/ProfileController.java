@@ -1,6 +1,8 @@
 package controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -9,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Profile;
@@ -77,6 +80,7 @@ public class ProfileController implements Initializable {
         selectedProfile.setProfileImagePath(newPath);
         try {
             setImage();
+            Util.getProfileImage().setImage(new Image(newPath));
         } catch (Exception e) {
             e.printStackTrace();
         }
