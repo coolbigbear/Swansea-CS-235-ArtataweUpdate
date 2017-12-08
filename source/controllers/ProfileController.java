@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Profile;
 import model.Util;
@@ -59,7 +60,6 @@ public class ProfileController implements Initializable {
         setUserSpecificButtons();
         setLabels();
         try {
-            //TODO MORE WORK ON THAT DONT TOUCH - BEZHAN
             setImage();
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,7 +68,12 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void chooseProfileImg() {
-
+        //TODO NEEDS RESEARCH HOW TO GET OUR PATH
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(Util.getMainStage());
+        System.out.println(file.getPath());
     }
 
     @FXML
