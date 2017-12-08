@@ -35,5 +35,6 @@ public class CreateAuctionController {
 		Auction auction = Auction.createNewAuction(artwork, Util.getCurrentUser().getUsername(), 5, 5.00);
 		//Util.saveAuctionToFile(auction); // we can actually delegate this to where the method above is declared in
 		// Auction instead of here
-	}
+	});
+}
 }
