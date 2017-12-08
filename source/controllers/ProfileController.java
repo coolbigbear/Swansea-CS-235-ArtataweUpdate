@@ -68,12 +68,18 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void chooseProfileImg() {
-        //TODO NEEDS RESEARCH HOW TO GET OUR PATH
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(Util.getMainStage());
-        System.out.println(file.getPath());
+        String newPath = ourString(file.getPath());
+        //TODO NEEDS TO BE SAVED TO GSON
+        selectedProfile.setProfileImagePath(newPath);
+        try {
+            setImage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -161,6 +167,11 @@ public class ProfileController implements Initializable {
 
     private boolean isSignedInUser() {
         return selectedProfile.getUsername().equalsIgnoreCase(Util.getCurrentUser().getUsername());
+    }
+
+    private String ourString(String input) {
+        String newPath = input.substring(input.indexOf("images"));
+        return newPath.replaceAll("\\\\", "/");
     }
 
 }
