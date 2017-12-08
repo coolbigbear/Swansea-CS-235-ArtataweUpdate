@@ -30,17 +30,17 @@
                         <Insets bottom="25.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button fx:id="browseDefault" layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Browse Default">
+                  <Button fx:id="browseDefault" layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Change Image">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="createCustom" layoutX="33.0" layoutY="257.0" mnemonicParsing="false" onAction="#createCustomImg" prefHeight="31.0" prefWidth="157.0" text="Create Custom">
+                  <Button fx:id="createCustom" layoutX="33.0" layoutY="257.0" mnemonicParsing="false" onAction="#createCustomImg" prefHeight="31.0" prefWidth="157.0" text="Create Image">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
                   </Button>
-                   <Button fx:id="favouriteUser" layoutX="33.0" layoutY="231.0" mnemonicParsing="false" onAction="#setFavouriteUser" prefHeight="31.0" prefWidth="157.0" text="Set Favourite User">
+                   <Button fx:id="favouriteUser" layoutX="33.0" layoutY="231.0" mnemonicParsing="false" onAction="#setFavouriteUser" prefHeight="31.0" prefWidth="157.0" text="Add to favorites">
                        <VBox.margin>
                            <Insets bottom="25.0" />
                        </VBox.margin>
