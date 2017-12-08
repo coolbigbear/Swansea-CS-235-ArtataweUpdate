@@ -2,8 +2,14 @@ package model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controllers.ArtataweMain;
+import controllers.ProfileController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.exception.ProfileNotFoundException;
 
@@ -25,7 +31,7 @@ public final class Util {
 	private static Stage mainStage;
 	private static Gson gson = addTypesToGson();
 	private static ImageView profileImage;
-	
+	private static GridPane favoriteUsersGridPane;
 	/**
 	 * Reads in all profiles from database.
 	 *
@@ -364,6 +370,50 @@ public final class Util {
 
 	public static ImageView getProfileImage() {
 		return profileImage;
+	}
+
+	public static void setFavoriteUsersGridPane(GridPane gridPane) {
+		favoriteUsersGridPane = gridPane;
+	}
+
+	public static GridPane getFavoriteUsersGridPane() {
+		return favoriteUsersGridPane;
+	}
+
+	public static void dynamicFavoritesGridPane(GridPane gridPane, List<Profile> favorites) {
+		int IMAGE_COLUMN = 0;
+		int PROFILE_COLUMN = 1;
+		int row = 0;
+		Hyperlink favoriteUser;
+		ImageView profileImage;
+		gridPane.addRow(favorites.size());
+		for (Profile elem : favorites) {
+			profileImage = new ImageView();
+			try {
+				profileImage.setImage(new Image(elem.getProfileImagePath()));
+				profileImage.setFitHeight(20);
+				profileImage.setFitWidth(20);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			favoriteUser = new Hyperlink();
+			favoriteUser.setText(elem.getUsername());
+			favoriteUser.setOnAction(event -> {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(ArtataweMain.class.getResource("/layouts/profile_layout.fxml"));
+				try {
+					BorderPane profileLayout = (BorderPane) loader.load();
+					ProfileController controller = loader.getController();
+					controller.initProfile(elem);
+					Util.getHomeLayout().setCenter(profileLayout);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+			gridPane.add(favoriteUser,PROFILE_COLUMN,row);
+			gridPane.add(profileImage,IMAGE_COLUMN,row);
+			row++;
+		}
 	}
 
 }

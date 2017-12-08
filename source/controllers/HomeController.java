@@ -20,6 +20,7 @@ import model.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -40,11 +41,7 @@ public class HomeController implements Initializable {
         Util.setHomeLayout(homeLayout);
         Util.getActiveAuctions();
         auctionsFeed = Feed.getInstance();
-        try {
-            favoriteUsers = populateFavoriteUsers();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        favoriteUsers = populateFavoriteUsers();
         try {
             setProfileImageView(Util.getCurrentUser().getProfileImagePath());
         } catch (Exception e) {
@@ -216,7 +213,7 @@ public class HomeController implements Initializable {
         return feedLayout;
     }
 
-    private ArrayList<Profile> populateFavoriteUsers() throws IOException {
+    private ArrayList<Profile> populateFavoriteUsers() {
         ArrayList<Profile> profiles = new ArrayList<>();
         for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
             profiles.add(Util.getProfileByUsername(elem));
@@ -226,38 +223,7 @@ public class HomeController implements Initializable {
 
 
     private void populateFavoritesView() {
-        int IMAGE_COLUMN = 0;
-        int PROFILE_COLUMN = 1;
-        int row = 0;
-        Hyperlink favoriteUser;
-        ImageView profileImage;
-        favoritesGridPane.addRow(favoriteUsers.size());
-        for (Profile elem : favoriteUsers) {
-            profileImage = new ImageView();
-            try {
-                profileImage.setImage(new Image(elem.getProfileImagePath()));
-                profileImage.setFitHeight(20);
-                profileImage.setFitWidth(20);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            favoriteUser = new Hyperlink();
-            favoriteUser.setText(elem.getUsername());
-            favoriteUser.setOnAction(event -> {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/layouts/profile_layout.fxml"));
-                try {
-                    BorderPane profileLayout = (BorderPane) loader.load();
-                    ProfileController controller = loader.getController();
-                    controller.initProfile(elem);
-                    homeLayout.setCenter(profileLayout);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            favoritesGridPane.add(favoriteUser,PROFILE_COLUMN,row);
-            favoritesGridPane.add(profileImage,IMAGE_COLUMN,row);
-            row++;
-        }
+        Util.dynamicFavoritesGridPane(favoritesGridPane, favoriteUsers);
+        Util.setFavoriteUsersGridPane(favoritesGridPane);
     }
 }

@@ -12,13 +12,18 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Profile;
 import model.Util;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 
 public class ProfileController implements Initializable {
@@ -75,14 +80,16 @@ public class ProfileController implements Initializable {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(Util.getMainStage());
-        String newPath = ourString(file.getPath());
-        //TODO NEEDS TO BE SAVED TO GSON
-        selectedProfile.setProfileImagePath(newPath);
-        try {
-            setImage();
-            Util.getProfileImage().setImage(new Image(newPath));
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (file != null) {
+            String newPath = ourString(file.getPath());
+            //TODO NEEDS TO BE SAVED TO GSON
+            selectedProfile.setProfileImagePath(newPath);
+            try {
+                setImage();
+                Util.getProfileImage().setImage(new Image(newPath));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -100,6 +107,7 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void setFavouriteUser() {
+        int counter = Util.getCurrentUser().getFavouriteUsers().size();
         if (favouriteUser.getText().equalsIgnoreCase("Remove favorite")) {
             for (int i = 0; i < Util.getCurrentUser().getFavouriteUsers().size(); i++) {
                 if (Util.getCurrentUser().getFavouriteUsers().get(i).equalsIgnoreCase(selectedProfile.getUsername())) {
@@ -113,6 +121,7 @@ public class ProfileController implements Initializable {
             favouriteUser.setText("Remove favorite");
         }
     }
+
 
     private boolean isFavorited() {
         boolean favorite = false;
@@ -178,4 +187,17 @@ public class ProfileController implements Initializable {
         return newPath.replaceAll("\\\\", "/");
     }
 
+    private void deleteRow(GridPane grid, final int row) {
+        Set<Node> deleteNodes = new HashSet<>();
+        for (Node child : grid.getChildren()) {
+            Integer rowIndex = GridPane.getRowIndex(child);
+            int r = rowIndex == null ? 0 : rowIndex;
+            if (r > row) {
+                GridPane.setRowIndex(child, r-1);
+            } else if (r == row) {
+                deleteNodes.add(child);
+            }
+        }
+        grid.getChildren().removeAll(deleteNodes);
+    }
 }
