@@ -34,8 +34,6 @@ public class HomeController implements Initializable {
     private GridPane favoritesGridPane;
     private Feed auctionsFeed;
     private ArrayList<Profile> favoriteUsers;
-    private Profile selectedProfile;
-    private Auction selectedAuction;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
