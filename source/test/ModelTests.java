@@ -268,11 +268,6 @@ class ModelTests {
 	}
 	
 	@Nested
-	class UITests {
-	
-	}
-	
-	@Nested
 	class BidTests {
 		
 		@DisplayName("Bid Main")
@@ -314,7 +309,6 @@ class ModelTests {
 		
 	}
 	
-	//Profile and Auction and Feed need the Database to work first for them to test and work
 	@Nested
 	class AuctionTests {
 	

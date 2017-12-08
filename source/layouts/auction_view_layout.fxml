@@ -49,7 +49,7 @@
                         <Label fx:id="highestBidLabel" text="00.00" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                         <Label text="Place Bid" GridPane.rowIndex="3"/>
                         <Button fx:id="bidButton" mnemonicParsing="false" text="BID" GridPane.columnIndex="1"
-                                GridPane.rowIndex="4"/>
+                                GridPane.rowIndex="4" onAction="#bidOnAction"/>
                         <TextField fx:id="bidInputTextField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                     </children>
                 </GridPane>
@@ -58,7 +58,7 @@
         <VBox layoutX="556.0" layoutY="48.0" AnchorPane.bottomAnchor="281.0" AnchorPane.leftAnchor="556.0"
               AnchorPane.rightAnchor="267.0" AnchorPane.topAnchor="41.0">
             <children>
-                <Label layoutX="591.0" layoutY="48.0" text="Auction name">
+                <Label fx:id="auctionNameLabel" layoutX="591.0" layoutY="48.0" text="Auction name">
                     <VBox.margin>
                         <Insets bottom="75.0"/>
                     </VBox.margin>

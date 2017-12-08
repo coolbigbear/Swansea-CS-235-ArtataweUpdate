@@ -21,10 +21,13 @@ import java.util.ResourceBundle;
 public class AuctionController implements Initializable {
 	
 	
+
 	private Auction currentAuction;
 	private Artwork artwork;
 	private ArtworkType artworkType;
 	
+	@FXML
+	Label auctionNameLabel;
 	@FXML
 	Label sellerLabel;
 	@FXML
@@ -59,13 +62,36 @@ public class AuctionController implements Initializable {
 			e.printStackTrace();
 		}
 		
-		
 		generateAuctionLabels();
-		setBidOnClickListener();
 		generateArtworkLabels();
 	}
 	
+	// TODO: 08-Dec-17 Something isn't working here because I dind't fucking unit test it!!!
+	@FXML
+	private void bidOnAction() {
+		try {
+			Bid bid = new Bid(currentAuction.getAuctionID(), Double.valueOf(bidInputTextField.getText()));
+			currentAuction.placeBid(bid);
+			System.out.println("Bid accepted of amount " + bid.getBidAmount());
+		} catch (IllegalBidException exception) {
+			if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
+				setErrorInputTextField("Already highest bidder!");
+			}
+			if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE)) {
+				setErrorInputTextField("Lower than reserve price!");
+			}
+			if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST)) {
+				setErrorInputTextField("Lower than current highest!");
+			}
+			//If entered input is not a Number
+		} catch (NumberFormatException exception) {
+			setErrorInputTextField("Please enter a Number!");
+		}
+		// TODO: 08-Dec-17 Send the Bid to database
+	}
+	
 	private void generateAuctionLabels() {
+		auctionNameLabel.setText(artwork.getTitle());
 		sellerLabel.setText(currentAuction.getSellerName());
 		reservePriceLabel.setText(String.valueOf(currentAuction.getReservePrice()));
 		highestBidLabel.setText(String.valueOf(currentAuction.getHighestPrice()));
@@ -93,31 +119,6 @@ public class AuctionController implements Initializable {
 		descriptionLabel.setText(artwork.getDescription().toString());
 		creatorNameLabel.setText(artwork.getCreatorName());
 		creationYearLabel.setText(String.valueOf(artwork.getCreationDate().getYear()));
-	}
-	
-	// TODO: 08-Dec-17 Something isn't working here
-	private void setBidOnClickListener() {
-		bidButton.setOnAction(e -> {
-			try {
-				Bid bid = new Bid(currentAuction.getAuctionID(), Double.valueOf(bidInputTextField.getText()));
-				currentAuction.placeBid(bid);
-				System.out.println("Bid accepted of amount " + bid.getBidAmount());
-			} catch (IllegalBidException exception) {
-				if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
-					setErrorInputTextField("Already highest bidder!");
-				}
-				if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE)) {
-					setErrorInputTextField("Lower than reserve price!");
-				}
-				if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST)) {
-					setErrorInputTextField("Lower than current highest!");
-				}
-				//If entered input is not a Number
-			} catch (NumberFormatException exception) {
-				setErrorInputTextField("Please enter a Number!");
-			}
-		});
-		// TODO: 08-Dec-17 Send the Bid to database
 	}
 	
 	private void setErrorInputTextField(String message) {
