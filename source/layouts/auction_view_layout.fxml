@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.AuctionController">
+<AnchorPane prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AuctionController">
     <children>
         <VBox layoutX="79.0" layoutY="41.0" AnchorPane.leftAnchor="79.0" AnchorPane.topAnchor="41.0">
             <children>
@@ -48,7 +48,8 @@
                         <Label text="Highest Bid" GridPane.rowIndex="2"/>
                         <Label fx:id="highestBidLabel" text="00.00" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                         <Label text="Place Bid" GridPane.rowIndex="3"/>
-                        <Button fx:id="bidButton" mnemonicParsing="false" text="BID" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <Button fx:id="bidButton" mnemonicParsing="false" text="BID" GridPane.columnIndex="1"
+                                GridPane.rowIndex="4"/>
                         <TextField fx:id="bidInputTextField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                     </children>
                 </GridPane>
@@ -57,7 +58,7 @@
         <VBox layoutX="556.0" layoutY="48.0" AnchorPane.bottomAnchor="281.0" AnchorPane.leftAnchor="556.0"
               AnchorPane.rightAnchor="267.0" AnchorPane.topAnchor="41.0">
             <children>
-                <Label layoutX="591.0" layoutY="48.0" text="auction name">
+                <Label layoutX="591.0" layoutY="48.0" text="Auction name">
                     <VBox.margin>
                         <Insets bottom="75.0"/>
                     </VBox.margin>
@@ -77,12 +78,12 @@
                     <children>
                         <Label text="Creator"/>
                         <Label text="Creation year" GridPane.rowIndex="1"/>
-                        <Label text="Dimeonsions" GridPane.rowIndex="2"/>
-                        <Label text="Main material" GridPane.rowIndex="3"/>
-                        <Label text="davinci" GridPane.columnIndex="1"/>
-                        <Label text="1999" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                        <Label text="yes" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <Label text="no" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label text="Dimensions" GridPane.rowIndex="2"/>
+                        <Label fx:id="mainMaterialLabelConstant" text="Main Material" GridPane.rowIndex="3"/>
+                        <Label fx:id="creatorNameLabel" GridPane.columnIndex="1"/>
+                        <Label fx:id="creationYearLabel" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label fx:id="dimensionsLabel" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <Label fx:id="mainMaterialLabel" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                     </children>
                 </GridPane>
             </children>
@@ -94,7 +95,7 @@
                         <Insets right="30.0"/>
                     </HBox.margin>
                 </Label>
-                <Label layoutX="540.0" layoutY="311.0" prefHeight="206.0" prefWidth="439.0" text="Descriptioning"/>
+                <Label fx:id="descriptionLabel" layoutX="540.0" layoutY="311.0" prefHeight="206.0" prefWidth="439.0"/>
             </children>
         </VBox>
         <ScrollPane layoutX="823.0" prefHeight="538.0" prefWidth="200.0">

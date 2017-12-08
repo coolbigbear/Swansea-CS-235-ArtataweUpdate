@@ -10,9 +10,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-import model.Auction;
-import model.Bid;
-import model.Util;
+import model.*;
 import model.exception.IllegalBidException;
 
 import java.io.IOException;
@@ -21,6 +19,11 @@ import java.util.ResourceBundle;
 
 //TODO view users to the seller who have placed bids on the auction!!!!!!!!!!!!!!!
 public class AuctionController implements Initializable {
+	
+	
+	private Auction currentAuction;
+	private Artwork artwork;
+	private ArtworkType artworkType;
 	
 	@FXML
 	Label sellerLabel;
@@ -32,22 +35,34 @@ public class AuctionController implements Initializable {
 	Button bidButton;
 	@FXML
 	TextField bidInputTextField;
-	
-	private Auction currentAuction;
+	@FXML
+	Label descriptionLabel;
+	@FXML
+	Label creatorNameLabel;
+	@FXML
+	Label creationYearLabel;
+	@FXML
+	Label dimensionsLabel;
+	@FXML
+	Label mainMaterialLabel;
+	@FXML
+	Label mainMaterialLabelConstant;
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		//hardcoded Auction
+		//hardcoded Auction!
 		try {
-			currentAuction = Util.getAuctionByAuctionID(3);
+			initAuction(Util.getAuctionByAuctionID(3));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
+		
 		generateAuctionLabels();
 		setBidOnClickListener();
+		generateArtworkLabels();
 	}
 	
 	private void generateAuctionLabels() {
@@ -55,6 +70,29 @@ public class AuctionController implements Initializable {
 		reservePriceLabel.setText(String.valueOf(currentAuction.getReservePrice()));
 		highestBidLabel.setText(String.valueOf(currentAuction.getHighestPrice()));
 		bidInputTextField.setPromptText("Enter your bid amount...");
+	}
+	
+	private void generateArtworkLabels() {
+		if (artworkType.equals(ArtworkType.Painting)) {
+			generateGeneralArtworkLabels();
+			mainMaterialLabel.setVisible(false);
+			mainMaterialLabelConstant.setVisible(false);
+			dimensionsLabel.setText("Width: " + ((Painting) artwork).getWidth().toString() + " " +
+					"Height: " + ((Painting) artwork).getHeight().toString());
+		} else if (artworkType.equals(ArtworkType.Sculpture)) {
+			generateGeneralArtworkLabels();
+			dimensionsLabel.setText("Width: " + ((Sculpture) artwork).getWidth().toString() + " " +
+					"Height: " + ((Sculpture) artwork).getHeight().toString() + " " +
+					"Depth: " + ((Sculpture) artwork).getDepth().toString());
+			mainMaterialLabelConstant.setVisible(true);
+			mainMaterialLabel.setText(((Sculpture) artwork).getMainMaterial());
+		}
+	}
+	
+	private void generateGeneralArtworkLabels() {
+		descriptionLabel.setText(artwork.getDescription().toString());
+		creatorNameLabel.setText(artwork.getCreatorName());
+		creationYearLabel.setText(String.valueOf(artwork.getCreationDate().getYear()));
 	}
 	
 	// TODO: 08-Dec-17 Something isn't working here
@@ -91,5 +129,8 @@ public class AuctionController implements Initializable {
 	
 	public void initAuction(Auction auction) {
 		currentAuction = auction;
+		artwork = currentAuction.getArtwork();
+		artworkType = currentAuction.getArtwork().getType();
+		
 	}
 }
