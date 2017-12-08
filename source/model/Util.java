@@ -2,7 +2,15 @@ package model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controllers.ArtataweMain;
+import controllers.ProfileController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import model.exception.ProfileNotFoundException;
 
 import java.io.*;
@@ -20,8 +28,10 @@ public final class Util {
 	 */
 	private static Profile currentUser;
 	private static BorderPane homeLayout;
+	private static Stage mainStage;
 	private static Gson gson = addTypesToGson();
-	
+	private static ImageView profileImage;
+	private static GridPane favoriteUsersGridPane;
 	/**
 	 * Reads in all profiles from database.
 	 *
@@ -85,7 +95,6 @@ public final class Util {
 	 *
 	 * @return the profile to be returned
 	 */
-	//Helper method, could be useful
 	public static Profile getProfileByUsername(String username) {
 		
 		Profile[] allProfiles = readInProfileFile();
@@ -296,11 +305,11 @@ public final class Util {
 	
 	public static int getNewAuctionID() {
 		int auctionID = -1;
-
+		
 		try {
 			Scanner scanner = new Scanner(new File("JSON Files/AuctionID.txt."));
-			auctionID = scanner.nextInt() ;
-			auctionID ++;
+			auctionID = scanner.nextInt();
+			auctionID++;
 			scanner.close();
 			saveNewAuctionID(auctionID);
 			return auctionID;
@@ -309,7 +318,7 @@ public final class Util {
 		}
 		return auctionID;
 	}
-
+	
 	private static void saveNewAuctionID(int auctionID) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(
@@ -338,11 +347,73 @@ public final class Util {
 	public static void setCurrentUser(Profile currentUser) {
 		Util.currentUser = currentUser;
 	}
-
+	
 	public static BorderPane getHomeLayout() {
 		return homeLayout;
 	}
+	
 	public static void setHomeLayout(BorderPane borderPane) {
 		homeLayout = borderPane;
 	}
+	
+	public static Stage getMainStage() {
+		return mainStage;
+	}
+	
+	public static void setMainStage(Stage stage) {
+		mainStage = stage;
+	}
+
+	public static void setProfileImage(ImageView imageView) {
+		profileImage = imageView;
+	}
+
+	public static ImageView getProfileImage() {
+		return profileImage;
+	}
+
+	public static void setFavoriteUsersGridPane(GridPane gridPane) {
+		favoriteUsersGridPane = gridPane;
+	}
+
+	public static GridPane getFavoriteUsersGridPane() {
+		return favoriteUsersGridPane;
+	}
+
+	public static void dynamicFavoritesGridPane(GridPane gridPane, List<Profile> favorites) {
+		int IMAGE_COLUMN = 0;
+		int PROFILE_COLUMN = 1;
+		int row = 0;
+		Hyperlink favoriteUser;
+		ImageView profileImage;
+		gridPane.addRow(favorites.size());
+		for (Profile elem : favorites) {
+			profileImage = new ImageView();
+			try {
+				profileImage.setImage(new Image(elem.getProfileImagePath()));
+				profileImage.setFitHeight(20);
+				profileImage.setFitWidth(20);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			favoriteUser = new Hyperlink();
+			favoriteUser.setText(elem.getUsername());
+			favoriteUser.setOnAction(event -> {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(ArtataweMain.class.getResource("/layouts/profile_layout.fxml"));
+				try {
+					BorderPane profileLayout = (BorderPane) loader.load();
+					ProfileController controller = loader.getController();
+					controller.initProfile(elem);
+					Util.getHomeLayout().setCenter(profileLayout);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+			gridPane.add(favoriteUser,PROFILE_COLUMN,row);
+			gridPane.add(profileImage,IMAGE_COLUMN,row);
+			row++;
+		}
+	}
+
 }

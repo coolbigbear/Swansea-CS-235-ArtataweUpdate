@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -47,7 +48,7 @@ public class CardController implements Initializable {
         artistCardAuctionLabel.setText(currentAuction.getArtwork().getCreatorName());
         creationDateCardAuctionLabel.setText(String.valueOf(currentAuction.getArtwork().getCreationDate().getYear()));
         datePlacedCardAuctionLabel.setText(currentAuction.getDateTimePlaced().getDayOfMonth() + " " + currentAuction.getDateTimePlaced().getMonth().toString() + " " + currentAuction.getDateTimePlaced().getYear());
-        //add cardAuctionImage
+        setAuctionImage();
     }
 
     @FXML
@@ -59,5 +60,14 @@ public class CardController implements Initializable {
         AuctionController controller = loader.getController();
         controller.initAuction(currentAuction);
         Util.getHomeLayout().setCenter(profileLayout);
+    }
+
+    private void setAuctionImage() {
+        try {
+            cardAuctionImage.setImage(new Image(currentAuction.getArtwork().getMainImagePath()));
+        } catch (Exception e) {
+            System.out.println("NOT FOUND: " + currentAuction.getArtwork().getMainImagePath());
+            System.out.println(" ON: " + currentAuction.getArtwork().getTitle());
+        }
     }
 }

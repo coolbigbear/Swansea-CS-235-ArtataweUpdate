@@ -23,16 +23,15 @@ public class FeedController implements Initializable {
     private GridPane cardsGridPane;
     @FXML
     private ChoiceBox choiceBoxFilter;
-    ObservableList<String> choiceBoxList = FXCollections.observableArrayList("Show All", "Paintings", "Sculptures");
+    private ObservableList<String> choiceBoxList = FXCollections.observableArrayList("Show All", "Paintings", "Sculptures");
     private Feed feed;
-    private ArrayList<AnchorPane> cards;
-    private static int DEFAULT_NUMBER_OF_COLUMNS = 3;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         choiceBoxFilter.setItems(choiceBoxList);
         choiceBoxFilter.setValue("Show All");
         feed = Feed.getInstance();
+        System.out.println(feed.size());
         modifyCardGrid();
         try {
             populateCardGrid();
@@ -42,6 +41,7 @@ public class FeedController implements Initializable {
     }
 
     private void modifyCardGrid() {
+        final int DEFAULT_NUMBER_OF_COLUMNS = 3;
         int numberOfRows = (int) Math.ceil(feed.size()/DEFAULT_NUMBER_OF_COLUMNS);
         cardsGridPane.addRow(numberOfRows);
     }

@@ -57,6 +57,7 @@ public final class Auction implements Comparable<Auction> {
 	//factory
 	public static Auction createNewAuction(Artwork artwork, String seller,
 	                                       Integer bidsAllowed, Double reservePrice) {
+		// TODO: 08-Dec-17 Send the Auction to Database
 		return new Auction(artwork, seller, bidsAllowed, reservePrice);
 	}
 	
@@ -77,17 +78,27 @@ public final class Auction implements Comparable<Auction> {
 		this.highestPrice = highestPrice;
 	}
 	
-	//consider void
-	//Throw different kinds of Exceptions depending on what reason the Bid could not be placed
-	public Boolean placeBid(Bid bid) {
+	
+	public void placeBid(Bid bid) {
 		if (validateBid(bid)) {
 			this.highestBidder = bid.getBidderUsername();
 			this.highestPrice = bid.getBidAmount();
-			return true;
-		} else throw new IllegalBidException("Invalid Bid!");
+			bidList.add(bid);
+		} else throw new IllegalBidException("Illegal Bid!");
+		
 	}
 	
-	private Boolean validateBid(Bid bid) {
+	
+	private Boolean validateBid(Bid bid) throws IllegalBidException {
+		if (!checkIfNotHighestBidder(bid)) {
+			throw new IllegalBidException(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER);
+		}
+		if (!checkIfHigherThanReservePrice(bid)) {
+			throw new IllegalBidException(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE);
+		}
+		if (!checkIfHigherThanCurrentHighest(bid)) {
+			throw new IllegalBidException(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST);
+		}
 		return (checkIfNotHighestBidder(bid) &&
 				checkIfHigherThanReservePrice(bid) &&
 				checkIfHigherThanCurrentHighest(bid));

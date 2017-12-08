@@ -31,7 +31,16 @@ public class TestFx extends Application {
 		List<String> favouritesOfP4 = new ArrayList<>();
 		List<String> favouritesOfP5 = new ArrayList<>();
 		List<String> favouritesOfP6 = new ArrayList<>();
-		List<Bid> bids = new ArrayList<>();
+
+		List<Bid> bidsForAuction2 = new ArrayList<>();
+		List<Bid> bidsForAuction3 = new ArrayList<>();
+		List<Bid> bidsForAuction4 = new ArrayList<>();
+		List<Bid> bidsForAuction5 = new ArrayList<>();
+		List<Bid> bidsForAuction6 = new ArrayList<>();
+		List<Bid> bidsForAuction7 = new ArrayList<>();
+		List<Bid> bidsForAuction8 = new ArrayList<>();
+		List<Bid> bidsForAuction9 = new ArrayList<>();
+		List<Bid> bidsForAuction10 = new ArrayList<>();
 
 
 		Profile p1 = new Profile("bigbear",
@@ -43,7 +52,7 @@ public class TestFx extends Application {
 				"someCity",
 				"UK, duh",
 				"somePostcode",
-				"path",
+				"images/profile/male1.png",
 				favouritesOfP1,
 				new ArrayList<>(),
 				new ArrayList<>(),
@@ -60,7 +69,7 @@ public class TestFx extends Application {
 				"Cairo",
 				"Egypt",
 				"Don't know egypt ostcodes",
-				"path",
+				"images/profile/male2.png",
 				favouritesOfP2,
 				new ArrayList<>(),
 				new ArrayList<>(),
@@ -68,16 +77,16 @@ public class TestFx extends Application {
 				new ArrayList<>(),
 				LocalDateTime.now());
 
-		Profile p3 = new Profile("BKodomani",
+		Profile p3 = new Profile("shadowbez",
 				"Bezhan",
 				"Kodomani",
 				"07928471824",
-				"Bezhans address",
-				"Bezhands second address",
-				"London?",
-				"United Kingdom",
-				"LO3 5PA",
-				"path",
+				"Midia Enos 1",
+				"Ivan Dimitrov",
+				"Ruse",
+				"Bulgaria",
+				"7000",
+				"images/profile/male3.png",
 				favouritesOfP3,
 				new ArrayList<>(),
 				new ArrayList<>(),
@@ -94,7 +103,7 @@ public class TestFx extends Application {
 				"Manchester?",
 				"United Kingdom",
 				"MA2 5SE",
-				"path",
+				"images/profile/male4.png",
 				favouritesOfP4,
 				new ArrayList<>(),
 				new ArrayList<>(),
@@ -111,7 +120,7 @@ public class TestFx extends Application {
 				"Sofia?",
 				"Bulgaria",
 				"Some bulgarian postcode",
-				"path",
+				"images/profile/female1.png",
 				favouritesOfP5,
 				new ArrayList<>(),
 				new ArrayList<>(),
@@ -128,7 +137,7 @@ public class TestFx extends Application {
 				"Swansea?",
 				"Wales",
 				"SA4 9TL",
-				"path",
+				"images/profile/male5.png",
 				favouritesOfP6,
 				new ArrayList<>(),
 				new ArrayList<>(),
@@ -169,7 +178,7 @@ public class TestFx extends Application {
 				new StringBuilder("The most beautiful painting"),
 				LocalDate.now(),
 				"DaVinci",
-				"string",
+				"images/auctions/paintings/painting1.png",
 				400,
 				400);
 		Artwork art2 = new Sculpture(
@@ -177,7 +186,7 @@ public class TestFx extends Application {
 				new StringBuilder("Can you hear the voices? (Sculpture)"),
 				LocalDate.now(),
 				"James down the road",
-				"string",
+				"images/auctions/paintings/painting2.png",
 				400,
 				400,
 				400,
@@ -187,7 +196,7 @@ public class TestFx extends Application {
 				new StringBuilder("Can you hear the voices? (Painting)"),
 				LocalDate.now(),
 				"Philip down the road",
-				"string",
+				"images/auctions/paintings/painting3.png",
 				400,
 				400);
 		Artwork art4 = new Sculpture(
@@ -195,7 +204,7 @@ public class TestFx extends Application {
 				new StringBuilder("Blue AI Girl"),
 				LocalDate.now(),
 				"Masterchief",
-				"string",
+				"images/auctions/paintings/painting4.png",
 				400,
 				400,
 				400,
@@ -205,7 +214,7 @@ public class TestFx extends Application {
 				new StringBuilder("This is SPARTA!"),
 				LocalDate.now(),
 				"Me",
-				"string",
+				"images/auctions/paintings/painting5.png",
 				1000,
 				1000);
 		Artwork art6 = new Painting(
@@ -213,7 +222,7 @@ public class TestFx extends Application {
 				new StringBuilder("Oil Canvas by the dude without the ear."),
 				LocalDate.now(),
 				"Vincent Van Gogh",
-				"string",
+				"images/auctions/paintings/painting6.png",
 				400,
 				400);
 		Artwork art7 = new Sculpture(
@@ -221,7 +230,7 @@ public class TestFx extends Application {
 				new StringBuilder("Figurine measuring just over four inches in height was discovered in Austria in 1908."),
 				LocalDate.now(),
 				"Some old bloke",
-				"string",
+				"images/auctions/paintings/painting7.png",
 				400,
 				400,
 				400,
@@ -231,15 +240,15 @@ public class TestFx extends Application {
 				new StringBuilder("Our boi Jesus sitting with his mates around a table having time of his life"),
 				LocalDate.now(),
 				"That Assassin's creed bloke",
-				"string",
+				"images/auctions/sculptures/sculpture1.png",
 				800,
 				800);
 		Artwork art9 = new Sculpture(
 				"Bust of Nefertiti",
 				new StringBuilder("Symbol of feminine beauty in Egypt"),
 				LocalDate.now(),
-				"Egypt bloke name Steve",
-				"string",
+				"YEAH",
+				"images/auctions/sculptures/sculpture2.png",
 				200,
 				200,
 				200,
@@ -248,138 +257,210 @@ public class TestFx extends Application {
 				"The Persistence of Memory",
 				new StringBuilder("Some melting clocks cuz it super hot"),
 				LocalDate.now(),
-				"Salvador Dali",
-				"string",
+				"My man",
+				"images/auctions/sculptures/sculpture3.png",
 				650,
 				650);
 
+		/**
+		 * Auctions
+		 */
 		Auction a1 = Auction.createNewAuction(
 				art1,
 				p1.getUsername(),
-				01,
+				1,
 				18000.0);
 		Auction a2 = new Auction(
 				art2,
 				p2.getUsername(),
-				02,
-				new ArrayList<>(),//slap in a bid war here
+				2,
+				bidsForAuction2,
 				20000.0,
-				15,
+				6,
 				LocalDateTime.now(),
 				0,
 				p1.getUsername(),
 				true,
-				1400000.0);
+				7000000.0);
 		Auction a3 = new Auction(
 				art3,
 				p3.getUsername(),
-				03,
-				new ArrayList<>(),
+				3,
+				bidsForAuction3,
 				20000.0,
 				15,
 				LocalDateTime.now(),
-				15,
-				null,
+				14,
+				p1.getUsername(),
 				false,
-				0.0);
+				25000.0);
 		Auction a4 = new Auction(
 				art4,
 				p4.getUsername(),
-				04,
-				new ArrayList<>(),
-				20000.0,
-				15,
+				4,
+				bidsForAuction4,
+				100.0,
+				2,
 				LocalDateTime.now(),
-				15,
-				null,
+				1,
+				p6.getUsername(),
 				false,
-				0.0);
+				200.0);
 		Auction a5 = new Auction(
 				art5,
 				p6.getUsername(),
-				05,
-				new ArrayList<>(),
-				20000.0,
+				5,
+				bidsForAuction5,
+				25.0,
 				15,
 				LocalDateTime.now(),
-				15,
-				null,
+				14,
+				p3.getUsername(),
 				false,
-				0.0);
+				50.0);
 		Auction a6 = new Auction(
 				art6,
 				p1.getUsername(),
-				06,
-				new ArrayList<>(),
-				20000.0,
-				15,
+				6,
+				bidsForAuction6,
+				0.0,
+				5,
 				LocalDateTime.now(),
-				15,
-				null,
+				1,
+				p4.getUsername(),
 				false,
-				0.0);
+				111.0);
 		Auction a7 = new Auction(
 				art8,
 				p2.getUsername(),
-				07,
-				new ArrayList<>(),
-				20000.0,
-				15,
+				7,
+				bidsForAuction7,
+				20.0,
+				8,
 				LocalDateTime.now(),
-				15,
-				null,
+				7,
+				p2.getUsername(),
 				false,
-				0.0);
+				37.0);
 		Auction a8 = new Auction(
 				art8,
 				p3.getUsername(),
 				8,
-				new ArrayList<>(),
-				20000.0,
-				15,
+				bidsForAuction8,
+				348.0,
+				1,
 				LocalDateTime.now(),
-				15,
-				null,
-				false,
-				0.0);
+				0,
+				p1.getUsername(),
+				true,
+				350.0);
 		Auction a9 = new Auction(
 				art9,
 				p4.getUsername(),
 				9,
-				new ArrayList<>(),
-				20000.0,
-				15,
+				bidsForAuction9,
+				23.33,
+				12,
 				LocalDateTime.now(),
-				15,
-				null,
+				11,
+				p3.getUsername(),
 				false,
-				0.0);
+				55.0);
 		Auction a10 = new Auction(
 				art10,
 				p6.getUsername(),
 				10,
-				new ArrayList<>(),
-				20000.0,
-				15,
+				bidsForAuction10,
+				899.99,
+				4,
 				LocalDateTime.now(),
-				15,
-				null,
+				2,
+				p4.getUsername(),
 				false,
-				0.0);
+				1200.10);
 
 
 
 		Util.saveListOfProfilesToFile(profiles);
-		Util.checkAndSetUser("bigbear");
+		Util.checkAndSetUser("BHelal");
 
-		Bid b1 = new Bid(02,20500.0);
-		
-		//a2.placeBid(b1);
+		Bid b1 = new Bid(2,1000000.0);
+		Util.checkAndSetUser("bigbear");
+		Bid b2 = new Bid(2,2000000.0);
+		Util.checkAndSetUser("BHelal");
+		Bid b3 = new Bid(2,2500000.0);
+		Util.checkAndSetUser("bigbear");
+		Bid b4 = new Bid(2,3500000.0);
+		Util.checkAndSetUser("BHelal");
+		Bid b5 = new Bid(2,5000000.0);
+		Util.checkAndSetUser("bigbear");
+		Bid b6 = new Bid(2,7000000.0);
+
+		bidsForAuction2.add(b1);
+		bidsForAuction2.add(b2);
+		bidsForAuction2.add(b3);
+		bidsForAuction2.add(b4);
+		bidsForAuction2.add(b5);
+		bidsForAuction2.add(b6);
+
+		Bid b7 = new Bid(3,25000.0);
+		bidsForAuction3.add(b7);
+
+		Util.checkAndSetUser("AWing");
+		Bid b8 = new Bid(4,200.0);
+		bidsForAuction4.add(b8);
+
+		Util.checkAndSetUser("BKodomani");
+		Bid b9 = new Bid(5,50.0);
+		bidsForAuction5.add(b9);
+
+		Util.checkAndSetUser("BSampson");
+		Bid b10 = new Bid(6,10.0);
+		Util.checkAndSetUser("AWing");
+		Bid b110 = new Bid(6,50.0);
+		Util.checkAndSetUser("BSampson");
+		Bid b120 = new Bid(6,100.0);
+		Util.checkAndSetUser("AWing");
+		Bid b130 = new Bid(6,110.0);
+		Util.checkAndSetUser("BSampson");
+		Bid b140 = new Bid(6,111.0);
+
+		bidsForAuction6.add(b10);
+		bidsForAuction6.add(b110);
+		bidsForAuction6.add(b120);
+		bidsForAuction6.add(b130);
+		bidsForAuction6.add(b140);
+
+		Util.checkAndSetUser("BHelal");
+		Bid b11 = new Bid(7,37.0);
+		bidsForAuction7.add(b11);
+
+		Util.checkAndSetUser("bigbear");
+		Bid b12 = new Bid(8,350.0);
+		bidsForAuction8.add(b12);
+
+		Util.checkAndSetUser("BKodomani");
+		Bid b13 = new Bid(9,55.0);
+		bidsForAuction8.add(b13);
+
+		Util.checkAndSetUser("IGarnev");
+		Bid b14 = new Bid(10,1000.0);
+		Util.checkAndSetUser("BSampson");
+		Bid b15 = new Bid(10,1200.10);
+		bidsForAuction8.add(b14);
+		bidsForAuction8.add(b15);
+
 
 		auctions.add(a1);
 		auctions.add(a2);
 		auctions.add(a3);
 		auctions.add(a4);
+		auctions.add(a5);
+		auctions.add(a6);
+		auctions.add(a7);
+		auctions.add(a8);
+		auctions.add(a9);
+		auctions.add(a10);
 
 
 		//Json - Gson stuff
