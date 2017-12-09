@@ -12,7 +12,7 @@ public class ArtataweMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/login_layout.fxml"));
-        primaryStage.setTitle("Artatawe v0.1");
+        primaryStage.setTitle("Artatawe v1.1");
         primaryStage.setScene(new Scene(root));
         root.getStylesheets().add(ArtataweMain.class.getResource("/css/login.css").toExternalForm());
         primaryStage.setResizable(false);
