@@ -256,9 +256,9 @@ public class ProfileController implements Initializable {
             auctionLink.setText(elem.getArtwork().getTitle());
             auctionLink.setOnAction(event -> {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ArtataweMain.class.getResource("/layouts/auction_layout.fxml"));
+                loader.setLocation(getClass().getResource("/layouts/auction_view_layout.fxml"));
                 try {
-                    AnchorPane auctionLayout = (AnchorPane) loader.load();
+                    AnchorPane auctionLayout = loader.load();
                     AuctionController controller = loader.getController();
                     controller.initAuction(elem);
                     Util.getHomeLayout().setCenter(auctionLayout);
