@@ -14,9 +14,6 @@ import model.*;
 import model.exception.IllegalBidException;
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 //TODO view users to the seller who have placed bids on the auction!!!!!!!!!!!!!!!
@@ -54,27 +51,18 @@ public class AuctionController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		Auction auction = new Auction(
-				new Painting("Painting1", new StringBuilder("My Painting " +
-						"Description"), LocalDate.of(1950, 1, 1), "My Painting's Creator", "MyPaintingPath", 5, 5), "MyPaintingSeller", 420, new ArrayList<>(), 500.00, 6, LocalDateTime.now(),
-				5, "HighestBidder", false, 505.00);
-		
-		//hardcoded Auction!
-		
-		initAuction(auction);
-		
-		generateAuctionLabels();
-		generateArtworkLabels();
+	
 	}
 	
-	// TODO: 08-Dec-17 Something isn't working here I think it's because the passed in Auction is wrong
 	@FXML
 	private void bidOnAction() {
 		try {
 			Bid bid = new Bid(currentAuction.getAuctionID(), Double.valueOf(bidInputTextField.getText()));
 			currentAuction.placeBid(bid);
 			System.out.println("Bid accepted of amount " + bid.getBidAmount());
+			bidInputTextField.clear();
+			bidInputTextField.setPromptText("Bid Accepted!");
+			highestBidLabel.setText(bid.getBidAmount().toString());
 		} catch (IllegalBidException exception) {
 			if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
 				setErrorInputTextField("Already highest bidder!");
@@ -134,6 +122,9 @@ public class AuctionController implements Initializable {
 		currentAuction = auction;
 		artwork = currentAuction.getArtwork();
 		artworkType = currentAuction.getArtwork().getType();
+		
+		generateAuctionLabels();
+		generateArtworkLabels();
 		
 	}
 }
