@@ -11,7 +11,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import model.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -111,7 +110,7 @@ public class CreatePaintingController implements Initializable {
         }
 }
     @FXML
-    private void chooseMainPaintingImg() {
+    public void chooseMainPaintingImg() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
         fileChooser.getExtensionFilters().add(extFilter);
