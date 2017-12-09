@@ -59,10 +59,10 @@ public class AuctionController implements Initializable {
 		try {
 			Bid bid = new Bid(currentAuction.getAuctionID(), Double.valueOf(bidInputTextField.getText()));
 			currentAuction.placeBid(bid);
-			System.out.println("Bid accepted of amount " + bid.getBidAmount());
 			bidInputTextField.clear();
 			bidInputTextField.setPromptText("Bid Accepted!");
 			highestBidLabel.setText(bid.getBidAmount().toString());
+			Util.saveAuctionToFile(currentAuction);
 		} catch (IllegalBidException exception) {
 			if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
 				setErrorInputTextField("Already highest bidder!");
@@ -111,6 +111,7 @@ public class AuctionController implements Initializable {
 		creationYearLabel.setText(String.valueOf(artwork.getCreationDate()));
 	}
 	
+	// TODO: 09-Dec-17  Someone make the error look nicer than this shit!
 	private void setErrorInputTextField(String message) {
 		bidInputTextField.clear();
 		bidInputTextField.setBackground(new Background(new BackgroundFill(Color.CRIMSON, new CornerRadii(0d),
