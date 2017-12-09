@@ -14,6 +14,10 @@
     -fx-background-color: #FFFFFF;
 }
 
+#scrolling{
+    -fx-background-color: #cfdff9;
+}
+
 #currentlySellingAuctionsGridPane{
     -fc-background-colour: green;
 }

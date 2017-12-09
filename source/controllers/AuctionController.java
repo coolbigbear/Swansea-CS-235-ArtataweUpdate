@@ -16,7 +16,6 @@ import model.exception.IllegalBidException;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 //TODO view users to the seller who have placed bids on the auction!!!!!!!!!!!!!!!
@@ -136,8 +135,7 @@ public class AuctionController implements Initializable {
 			usersBidAuctionGridPane.setVisible(false);
 		}
 	}
-
-	//TODO CHECK IF THIS WORKS
+	
 	private void populateUsersBidPane() {
 		final int PROFILE_IMAGE_COLUMN = 0;
 		final int PROFILE_USERNAME_COLUMN = 1;
@@ -157,9 +155,17 @@ public class AuctionController implements Initializable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			
 			bidAmount = new Label();
+			System.out.println("£" + String.valueOf(elem.getBidAmount()));
 			bidAmount.setText("£" + String.valueOf(elem.getBidAmount()));
+			
+			
 			profileLink = new Hyperlink();
+			profileLink.setText(elem.getBidderUsername());
+			
+			
 			profileLink.setOnAction(event -> {
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(ArtataweMain.class.getResource("/layouts/profile_layout.fxml"));
@@ -172,9 +178,11 @@ public class AuctionController implements Initializable {
 					e.printStackTrace();
 				}
 			});
+			
 			usersBidAuctionGridPane.add(profileImage,PROFILE_IMAGE_COLUMN,row);
 			usersBidAuctionGridPane.add(profileLink,PROFILE_USERNAME_COLUMN,row);
 			usersBidAuctionGridPane.add(bidAmount,PROFILE_BID_AMOUNT_COLUMN,row);
+			
 			row++;
 		}
 	}

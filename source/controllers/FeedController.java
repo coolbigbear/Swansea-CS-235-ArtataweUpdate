@@ -9,12 +9,14 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import model.ArtworkType;
 import model.Auction;
 import model.Feed;
 import model.Util;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -51,17 +53,39 @@ public class FeedController implements Initializable {
 				switch (newValue.intValue()) {
 					case 0:
 						System.out.println("Show all");
-						Util.getActiveAuctions();
+						feed = Feed.getInstance();
+						ArrayList<Auction> resultList = new ArrayList<>();
+						for (Auction auction : feed) {
+							if (auction.getArtwork().getType().equals(ArtworkType.Sculpture) ||
+									auction.getArtwork().getType().equals(ArtworkType.Painting)) {
+								resultList.add(auction);
+							}
+						}
+						feed.updateWith(resultList);
 						setAuctionsCenter();
 						break;
 					case 1:
 						System.out.println("Paintings");
-						Util.getPaintingAuctions();
+						feed = Feed.getInstance();
+						resultList = new ArrayList<>();
+						for (Auction auction : feed) {
+							if (auction.getArtwork().getType().equals(ArtworkType.Painting)) {
+								resultList.add(auction);
+							}
+						}
+						feed.updateWith(resultList);
 						setAuctionsCenter();
 						break;
 					case 2:
 						System.out.println("Sculptures");
-						Util.getSculptureAuctions();
+						feed = Feed.getInstance();
+						resultList = new ArrayList<>();
+						for (Auction auction : feed) {
+							if (auction.getArtwork().getType().equals(ArtworkType.Sculpture)) {
+								resultList.add(auction);
+							}
+						}
+						feed.updateWith(resultList);
 						setAuctionsCenter();
 						break;
 				}
