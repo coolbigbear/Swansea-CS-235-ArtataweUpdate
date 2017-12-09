@@ -1,19 +1,22 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import model.*;
 import model.exception.IllegalBidException;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 //TODO view users to the seller who have placed bids on the auction!!!!!!!!!!!!!!!
@@ -22,32 +25,31 @@ public class AuctionController implements Initializable {
 	private Auction currentAuction;
 	private Artwork artwork;
 	private ArtworkType artworkType;
-	
+
 	@FXML
-	Label auctionNameLabel;
+	private Label auctionNameLabel;
 	@FXML
-	Label sellerLabel;
+	private Label sellerLabel;
 	@FXML
-	Label reservePriceLabel;
+	private Label reservePriceLabel;
 	@FXML
-	Label highestBidLabel;
+	private Label highestBidLabel;
 	@FXML
-	Button bidButton;
+	private TextField bidInputTextField;
 	@FXML
-	TextField bidInputTextField;
+	private Label descriptionLabel;
 	@FXML
-	Label descriptionLabel;
+	private Label creatorNameLabel;
 	@FXML
-	Label creatorNameLabel;
+	private Label creationYearLabel;
 	@FXML
-	Label creationYearLabel;
+	private Label dimensionsLabel;
 	@FXML
-	Label dimensionsLabel;
+	private Label mainMaterialLabel;
 	@FXML
-	Label mainMaterialLabel;
+	private Label mainMaterialLabelConstant;
 	@FXML
-	Label mainMaterialLabelConstant;
-	
+	private GridPane usersBidAuctionGridPane;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -126,6 +128,53 @@ public class AuctionController implements Initializable {
 		
 		generateAuctionLabels();
 		generateArtworkLabels();
-		
+		if (Util.getCurrentUser().getUsername().equalsIgnoreCase(currentAuction.getSellerName())) {
+			usersBidAuctionGridPane.setVisible(true);
+			populateUsersBidPane();
+		} else {
+			usersBidAuctionGridPane.setVisible(false);
+		}
+	}
+
+	//TODO CHECK IF THIS WORKS
+	private void populateUsersBidPane() {
+		final int PROFILE_IMAGE_COLUMN = 0;
+		final int PROFILE_USERNAME_COLUMN = 1;
+		final int PROFILE_BID_AMOUNT_COLUMN = 2;
+		final int PROFILE_IMAGE_SIZE = 20;
+		usersBidAuctionGridPane.addRow(currentAuction.getBidList().size());
+		int row = 0;
+		ImageView profileImage;
+		Hyperlink profileLink;
+		Label bidAmount;
+		for (Bid elem : currentAuction.getBidList()) {
+			profileImage = new ImageView();
+			profileImage.setFitHeight(PROFILE_IMAGE_SIZE);
+			profileImage.setFitWidth(PROFILE_IMAGE_SIZE);
+			try {
+				profileImage.setImage(new Image(Util.getProfileByUsername(elem.getBidderUsername()).getProfileImagePath()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			bidAmount = new Label();
+			bidAmount.setText("£" + String.valueOf(elem.getBidAmount()));
+			profileLink = new Hyperlink();
+			profileLink.setOnAction(event -> {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(ArtataweMain.class.getResource("/layouts/profile_layout.fxml"));
+				try {
+					BorderPane profileLayout = (BorderPane) loader.load();
+					ProfileController controller = loader.getController();
+					controller.initProfile(Util.getProfileByUsername(elem.getBidderUsername()));
+					Util.getHomeLayout().setCenter(profileLayout);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+			usersBidAuctionGridPane.add(profileImage,PROFILE_IMAGE_COLUMN,row);
+			usersBidAuctionGridPane.add(profileLink,PROFILE_USERNAME_COLUMN,row);
+			usersBidAuctionGridPane.add(bidAmount,PROFILE_BID_AMOUNT_COLUMN,row);
+			row++;
+		}
 	}
 }
