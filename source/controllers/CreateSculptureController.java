@@ -40,6 +40,10 @@ public class CreateSculptureController implements Initializable {
     private String yearOfCreationPulled;
     private String sculptureMaterialPulled;
     private String artImgPath;
+    private String image1;
+    private String image2;
+    private String image3;
+    private String image4;
 
     private Double reservePricePulled;
 
@@ -128,6 +132,39 @@ public class CreateSculptureController implements Initializable {
         File file = fileChooser.showOpenDialog(Util.getMainStage());
         if (file != null) {
             artImgPath = ourString(file.getPath());
+            imgChosen = true;
+        }
+    }
+
+    private void chooseAdditionalSculptureImg1() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(Util.getMainStage());
+        if (file != null) {
+            image1 = ourString(file.getPath());
+            imgChosen = true;
+        }
+    }
+
+    private void chooseAdditionalSculptureImg2() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(Util.getMainStage());
+        if (file != null) {
+            image2 = ourString(file.getPath());
+            imgChosen = true;
+        }
+    }
+
+    private void chooseAdditionalSculptureImg3() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(Util.getMainStage());
+        if (file != null) {
+            image3 = ourString(file.getPath());
             imgChosen = true;
         }
     }

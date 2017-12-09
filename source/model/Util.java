@@ -238,7 +238,6 @@ public final class Util {
 	 * @param auction the auction
 	 */
 	public static void saveAuctionToFile(Auction auction) {
-		Gson gson = new Gson();
 		try {
 			Auction[] temp = readInAuctionFile();
 			Integer auctionID = auction.getAuctionID();
