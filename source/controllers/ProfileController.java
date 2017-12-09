@@ -7,15 +7,20 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Auction;
 import model.Profile;
 import model.Util;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -53,6 +58,8 @@ public class ProfileController implements Initializable {
     private Label lastLogin;
     @FXML
     private Label usernameLabelProfile;
+    @FXML
+    private GridPane currentlySellingAuctionsGridPane;
     private Profile selectedProfile;
 
     @Override
@@ -69,6 +76,7 @@ public class ProfileController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        populateCurrentlySellingAuctions();
     }
 
     @FXML
@@ -216,5 +224,40 @@ public class ProfileController implements Initializable {
             profiles.add(Util.getProfileByUsername(elem));
         }
         return profiles;
+    }
+
+    private void populateCurrentlySellingAuctions() {
+        final int AUCTIONS_SELLING_COLUMN = 0;
+        final int AUCTIONS_PRICE_COLUMN = 1;
+        int row = 0;
+        System.out.println(selectedProfile.getCurrentlySelling().size());
+        currentlySellingAuctionsGridPane.addRow(selectedProfile.getCurrentlySelling().size());
+        Hyperlink auctionLink;
+        Label auctionPrice;
+        for (Auction elem : selectedProfile.getCurrentlySelling()) {
+            auctionPrice = new Label();
+            if (elem.getReservePrice() < elem.getHighestPrice()) {
+                auctionPrice.setText(String.valueOf(elem.getHighestPrice()));
+            } else {
+                auctionPrice.setText(String.valueOf(elem.getReservePrice()));
+            }
+            auctionLink = new Hyperlink();
+            auctionLink.setText(elem.getArtwork().getTitle());
+            auctionLink.setOnAction(event -> {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(ArtataweMain.class.getResource("/layouts/auction_layout.fxml"));
+                try {
+                    AnchorPane auctionLayout = (AnchorPane) loader.load();
+                    AuctionController controller = loader.getController();
+                    controller.initAuction(elem);
+                    Util.getHomeLayout().setCenter(auctionLayout);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            currentlySellingAuctionsGridPane.add(auctionLink,AUCTIONS_SELLING_COLUMN,row);
+            currentlySellingAuctionsGridPane.add(auctionPrice,AUCTIONS_PRICE_COLUMN,row);
+            row++;
+        }
     }
 }
