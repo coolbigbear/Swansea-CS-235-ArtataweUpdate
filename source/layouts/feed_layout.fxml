@@ -5,32 +5,34 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.*?>
-<BorderPane fx:id="feedLayout" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="1023.0"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.FeedController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane fx:id="feedLayout" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FeedController">
     <top>
         <AnchorPane prefHeight="28.0" prefWidth="1023.0" BorderPane.alignment="CENTER">
             <children>
                 <HBox layoutX="293.0" layoutY="8.0" prefHeight="32.0" prefWidth="730.0" AnchorPane.rightAnchor="0.0">
                     <children>
-                        <ChoiceBox fx:id="choiceBoxFilter" layoutX="308.0" layoutY="21.0" prefWidth="150.0"
-                                   value="Show All"/>
-                        <Button layoutX="464.0" layoutY="21.0" mnemonicParsing="false" prefWidth="79.0" text="Filter"/>
+                        <ChoiceBox fx:id="choiceBoxFilter" layoutX="308.0" layoutY="21.0" prefWidth="150.0" stylesheets="@../css/feed.css" value="Show All" />
+                        <Button layoutX="464.0" layoutY="21.0" mnemonicParsing="false" prefWidth="79.0" text="Filter" />
                     </children>
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                     <padding>
-                        <Insets left="500.0"/>
+                        <Insets left="500.0" />
                     </padding>
                     <HBox.margin>
-                        <Insets left="8.0"/>
+                        <Insets left="8.0" />
                     </HBox.margin>
                 </HBox>
                 <HBox layoutY="8.0" prefHeight="32.0" prefWidth="275.0">
                     <children>
-                        <TextField layoutX="14.0" layoutY="21.0" prefWidth="275.0" promptText="Search..."/>
+                        <TextField layoutX="14.0" layoutY="21.0" prefWidth="275.0" promptText="Search..." />
                     </children>
                 </HBox>
             </children>
@@ -39,13 +41,11 @@
     <center>
         <ScrollPane prefHeight="467.0" prefWidth="1023.0" BorderPane.alignment="CENTER">
             <content>
-                <GridPane fx:id="cardsGridPane" layoutX="3.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity"
-                          prefHeight="461.0" prefWidth="1024.0" AnchorPane.bottomAnchor="2.0"
-                          AnchorPane.topAnchor="3.0">
+                <GridPane fx:id="cardsGridPane" layoutX="3.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="461.0" prefWidth="1024.0" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="3.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                 </GridPane>
             </content>

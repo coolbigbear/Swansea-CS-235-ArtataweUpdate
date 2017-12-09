@@ -96,7 +96,7 @@
     <left>
         <SplitPane dividerPositions="0.2471042471042471" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
             <items>
-                <VBox prefHeight="200.0" prefWidth="100.0">
+                <VBox fx:id="buttonpane" prefHeight="200.0" prefWidth="100.0">
                     <children>
                         <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction" prefHeight="31.0" prefWidth="159.0" text="Current auctions" />
                         <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="158.0" text="Buying">
