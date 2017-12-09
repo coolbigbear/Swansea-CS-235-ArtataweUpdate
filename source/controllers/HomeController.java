@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -19,11 +20,14 @@ import model.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
-
-    @FXML
+	
+	@FXML
+	Button favouriteUsersAuctionsButton;
+	@FXML
     private Label welcomeLabel;
     @FXML
     private ImageView profileImageView;
@@ -34,9 +38,8 @@ public class HomeController implements Initializable {
     private Feed feed;
     private ArrayList<Profile> favoriteUsers;
     private ChoiceBox choiceBox;
-	
-	
-	// TODO: 09-Dec-17 The problem is because the Feed isn't updating with what's needed
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Util.setHomeLayout(homeLayout);
@@ -201,6 +204,28 @@ public class HomeController implements Initializable {
     private void bidHistoryButtonAction() throws IOException {
         AnchorPane bidHistory = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/bidhistory_layout.fxml"));
         homeLayout.setCenter(bidHistory);
+    }
+    
+    @FXML
+    private void favouriteUsersAuctionsButtonOnAction() {
+    	Util.getActiveAuctions();
+    	feed = Feed.getInstance();
+    	List<String> favouriteUsers = Util.getCurrentUser().getFavouriteUsers();
+    	ArrayList<Auction> resultList = new ArrayList<>();
+    	
+    	for (Auction auction: feed) {
+    		for (String user: favouriteUsers) {
+    			if (auction.getSellerName().equals(user)) {
+    				resultList.add(auction);
+			    }
+		    }
+	    }
+	    feed.updateWith(resultList);
+	    try {
+		    setAuctionsCenter();
+	    } catch (IOException e) {
+		    e.printStackTrace();
+	    }
     }
     
     private ArrayList<Bid> getAllBids() {
