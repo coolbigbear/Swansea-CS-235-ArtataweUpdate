@@ -204,6 +204,7 @@ public class HomeController implements Initializable {
 
     private BorderPane setAuctionsCenter() throws IOException {
         BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
+        feedLayout.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
         homeLayout.setCenter(feedLayout);
         return feedLayout;
     }

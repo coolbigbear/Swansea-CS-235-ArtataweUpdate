@@ -2,17 +2,17 @@
     /*
     Testing implementation across from desktop to laptop.
      */
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #cfdff9;
 }
 
 .label{
     -fx-font-family: "Calibri Light";
-    -fx-font-size: 64px;
+    -fx-font-size: 14px;
 }
 
-.label.loginUserPrompt {
+#logintitle {
     -fx-font-family: "Calibri Light";
-    -fx-font-size: 10px;
+    -fx-font-size: 64px;
 }
 .button {
     -fx-text-fill: white;

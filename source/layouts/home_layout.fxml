@@ -112,9 +112,9 @@
                   </MenuButton>
                     </children>
                 </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0">
+                <VBox fx:id="leftsidepane" prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="159.0" text="Favourite Users">
+                        <Label fx:id="Favusers" alignment="CENTER" prefHeight="21.0" prefWidth="159.0" text="Favourite Users">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
