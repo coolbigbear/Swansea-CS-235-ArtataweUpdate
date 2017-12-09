@@ -1,7 +1,5 @@
 package controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,31 +46,28 @@ public class FeedController implements Initializable {
 	}
 	
 	private void setChoiceBox() {
-		choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				try {
-					switch (newValue.intValue()) {
-						case 0:
-							System.out.println("Show all");
-							Util.getActiveAuctions();
-							setAuctionsCenter();
-							break;
-						case 1:
-							System.out.println("Paintings");
-							Util.getPaintingAuctions();
-							setAuctionsCenter();
-							break;
-						case 2:
-							System.out.println("Sculptures");
-							Util.getSculptureAuctions();
-							setAuctionsCenter();
-							break;
-						default:
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
+		choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+			try {
+				switch (newValue.intValue()) {
+					case 0:
+						System.out.println("Show all");
+						Util.getActiveAuctions();
+						setAuctionsCenter();
+						break;
+					case 1:
+						System.out.println("Paintings");
+						Util.getPaintingAuctions();
+						setAuctionsCenter();
+						break;
+					case 2:
+						System.out.println("Sculptures");
+						Util.getSculptureAuctions();
+						setAuctionsCenter();
+						break;
+					default:
 				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		});
 	}
