@@ -140,7 +140,7 @@ public class ProfileController implements Initializable {
         firstName.setText(selectedProfile.getFirstName());
         lastName.setText(selectedProfile.getLastName());
         addressLine1.setText(selectedProfile.getAddressLine1());
-        addressLine2.setText(selectedProfile.getAddressLine1());
+        addressLine2.setText(selectedProfile.getAddressLine2());
         city.setText(selectedProfile.getCity());
         country.setText(selectedProfile.getCountry());
         lastLogin.setText(selectedProfile.getLastLogInTime().getHour() + ":" + selectedProfile.getLastLogInTime().getMinute() +

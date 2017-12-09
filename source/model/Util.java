@@ -381,8 +381,9 @@ public final class Util {
 	}
 
 	public static void dynamicFavoritesGridPane(GridPane gridPane, List<Profile> favorites) {
-		int IMAGE_COLUMN = 0;
-		int PROFILE_COLUMN = 1;
+		final int IMAGE_COLUMN = 0;
+		final int PROFILE_COLUMN = 1;
+		final int FAVORITES_PROFILE_IMAGE = 20;
 		int row = 0;
 		Hyperlink favoriteUser;
 		ImageView profileImage;
@@ -391,8 +392,8 @@ public final class Util {
 			profileImage = new ImageView();
 			try {
 				profileImage.setImage(new Image(elem.getProfileImagePath()));
-				profileImage.setFitHeight(20);
-				profileImage.setFitWidth(20);
+				profileImage.setFitHeight(FAVORITES_PROFILE_IMAGE);
+				profileImage.setFitWidth(FAVORITES_PROFILE_IMAGE);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
