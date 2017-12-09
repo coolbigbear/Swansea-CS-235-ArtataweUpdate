@@ -165,13 +165,6 @@ public class TestFx extends Application {
         favouritesOfP6.add(p5.getUsername());
 
 
-        profiles.add(p1);
-        profiles.add(p2);
-        profiles.add(p3);
-        profiles.add(p4);
-        profiles.add(p5);
-        profiles.add(p6);
-
         Artwork art1 = new Painting(
                 "Monalisa",
                 new StringBuilder("The most beautiful painting"),
@@ -269,6 +262,7 @@ public class TestFx extends Application {
                 p1.getUsername(),
                 1,
                 18000.0);
+        p1.getCurrentlySelling().add(a1);
         Auction a2 = new Auction(
                 art2,
                 p2.getUsername(),
@@ -281,6 +275,8 @@ public class TestFx extends Application {
                 p1.getUsername(),
                 true,
                 7000000.0);
+        p2.getCompletedAuctions().add(a2);
+        p1.getWonAuctions().add(a2);
         Auction a3 = new Auction(
                 art3,
                 p3.getUsername(),
@@ -293,6 +289,7 @@ public class TestFx extends Application {
                 p1.getUsername(),
                 false,
                 25000.0);
+        p3.getCurrentlySelling().add(a3);
         Auction a4 = new Auction(
                 art4,
                 p4.getUsername(),
@@ -305,6 +302,7 @@ public class TestFx extends Application {
                 p6.getUsername(),
                 false,
                 200.0);
+        p4.getCurrentlySelling().add(a4);
         Auction a5 = new Auction(
                 art5,
                 p6.getUsername(),
@@ -317,6 +315,7 @@ public class TestFx extends Application {
                 p3.getUsername(),
                 false,
                 50.0);
+        p6.getCurrentlySelling().add(a5);
         Auction a6 = new Auction(
                 art6,
                 p1.getUsername(),
@@ -329,6 +328,7 @@ public class TestFx extends Application {
                 p4.getUsername(),
                 false,
                 111.0);
+        p1.getCurrentlySelling().add(a6);
         Auction a7 = new Auction(
                 art8,
                 p2.getUsername(),
@@ -341,6 +341,7 @@ public class TestFx extends Application {
                 p2.getUsername(),
                 false,
                 37.0);
+        p2.getCurrentlySelling().add(a7);
         Auction a8 = new Auction(
                 art8,
                 p3.getUsername(),
@@ -353,6 +354,8 @@ public class TestFx extends Application {
                 p1.getUsername(),
                 true,
                 350.0);
+        p1.getWonAuctions().add(a8);
+        p3.getCompletedAuctions().add(a8);
         Auction a9 = new Auction(
                 art9,
                 p4.getUsername(),
@@ -365,6 +368,7 @@ public class TestFx extends Application {
                 p3.getUsername(),
                 false,
                 55.0);
+        p4.getCurrentlySelling().add(a9);
         Auction a10 = new Auction(
                 art10,
                 p6.getUsername(),
@@ -377,24 +381,42 @@ public class TestFx extends Application {
                 p4.getUsername(),
                 false,
                 1200.10);
+        p6.getCurrentlySelling().add(a10);
 
-        p1.getCurrentlySelling().add(a1);
-        p1.getCurrentlySelling().add(a6);
+
+        profiles.add(p1);
+        profiles.add(p2);
+        profiles.add(p3);
+        profiles.add(p4);
+        profiles.add(p5);
+        profiles.add(p6);
 
         Util.saveListOfProfilesToFile(profiles);
-        Util.checkAndSetUser("BHelal");
 
+        Util.checkAndSetUser("BHelal");
         Bid b1 = new Bid(2, 1000000.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b1);
+        Util.saveProfileToFile(p2);
         Util.checkAndSetUser("bigbear");
         Bid b2 = new Bid(2, 2000000.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b2);
+        Util.saveProfileToFile(p1);
         Util.checkAndSetUser("BHelal");
         Bid b3 = new Bid(2, 2500000.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b3);
+        Util.saveProfileToFile(p2);
         Util.checkAndSetUser("bigbear");
         Bid b4 = new Bid(2, 3500000.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b4);
+        Util.saveProfileToFile(p1);
         Util.checkAndSetUser("BHelal");
         Bid b5 = new Bid(2, 5000000.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b5);
+        Util.saveProfileToFile(p2);
         Util.checkAndSetUser("bigbear");
         Bid b6 = new Bid(2, 7000000.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b6);
+        Util.saveProfileToFile(p1);
 
         bidsForAuction2.add(b1);
         bidsForAuction2.add(b2);
@@ -405,25 +427,41 @@ public class TestFx extends Application {
 
         Bid b7 = new Bid(3, 25000.0);
         bidsForAuction3.add(b7);
+        Util.getCurrentUser().getAllBidsPlaced().add(b7);
+        Util.saveProfileToFile(p1);
 
         Util.checkAndSetUser("AWing");
         Bid b8 = new Bid(4, 200.0);
         bidsForAuction4.add(b8);
+        Util.getCurrentUser().getAllBidsPlaced().add(b8);
+        Util.saveProfileToFile(p6);
 
         Util.checkAndSetUser("BKodomani");
         Bid b9 = new Bid(5, 50.0);
         bidsForAuction5.add(b9);
+        Util.getCurrentUser().getAllBidsPlaced().add(b9);
+        Util.saveProfileToFile(p3);
 
         Util.checkAndSetUser("BSampson");
         Bid b10 = new Bid(6, 10.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b10);
+        Util.saveProfileToFile(p4);
         Util.checkAndSetUser("AWing");
         Bid b110 = new Bid(6, 50.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b110);
+        Util.saveProfileToFile(p6);
         Util.checkAndSetUser("BSampson");
         Bid b120 = new Bid(6, 100.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b120);
+        Util.saveProfileToFile(p4);
         Util.checkAndSetUser("AWing");
         Bid b130 = new Bid(6, 110.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b130);
+        Util.saveProfileToFile(p6);
         Util.checkAndSetUser("BSampson");
         Bid b140 = new Bid(6, 111.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b140);
+        Util.saveProfileToFile(p4);
 
         bidsForAuction6.add(b10);
         bidsForAuction6.add(b110);
@@ -434,18 +472,28 @@ public class TestFx extends Application {
         Util.checkAndSetUser("bigbear");
         Bid b11 = new Bid(7, 37.0);
         bidsForAuction7.add(b11);
+        Util.getCurrentUser().getAllBidsPlaced().add(b11);
+        Util.saveProfileToFile(p2);
 
         Bid b12 = new Bid(8, 350.0);
         bidsForAuction8.add(b12);
+        Util.getCurrentUser().getAllBidsPlaced().add(b12);
+        Util.saveProfileToFile(p1);
 
         Util.checkAndSetUser("BKodomani");
         Bid b13 = new Bid(9, 55.0);
         bidsForAuction8.add(b13);
+        Util.getCurrentUser().getAllBidsPlaced().add(b13);
+        Util.saveProfileToFile(p3);
 
         Util.checkAndSetUser("IGarnev");
         Bid b14 = new Bid(10, 1000.0);
+        Util.getCurrentUser().getAllBidsPlaced().add(b14);
+        Util.saveProfileToFile(p5);
         Util.checkAndSetUser("BSampson");
         Bid b15 = new Bid(10, 1200.10);
+        Util.getCurrentUser().getAllBidsPlaced().add(b15);
+        Util.saveProfileToFile(p4);
         bidsForAuction8.add(b14);
         bidsForAuction8.add(b15);
 

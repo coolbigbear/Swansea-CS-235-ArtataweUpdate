@@ -95,10 +95,10 @@ public class HomeController implements Initializable {
         Stage stage = Util.getMainStage();
         stage.setScene(login);
         root.getStylesheets().add(ArtataweMain.class.getResource("/css/login.css").toExternalForm());
-        stage.setMinHeight(480);
-        stage.setMinWidth(640);
-        stage.setHeight(480);
-        stage.setWidth(640);
+        stage.setMinHeight(520);
+        stage.setMinWidth(655);
+        stage.setHeight(520);
+        stage.setWidth(655);
         stage.setResizable(false);
         stage.show();
     }
