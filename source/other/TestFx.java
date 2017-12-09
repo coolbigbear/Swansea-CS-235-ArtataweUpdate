@@ -378,6 +378,8 @@ public class TestFx extends Application {
                 false,
                 1200.10);
 
+        p1.getCurrentlySelling().add(a1);
+        p1.getCurrentlySelling().add(a6);
 
         Util.saveListOfProfilesToFile(profiles);
         Util.checkAndSetUser("BHelal");

@@ -38,7 +38,6 @@ public final class Util {
 	 * @return List of Profiles read from database
 	 */
 	private static Profile[] readInProfileFile() {
-		Gson gson = new Gson();
 		Profile[] profiles = new Profile[0];
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Profiles.json"));
