@@ -16,12 +16,13 @@
 
 <AnchorPane prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateSculptureController">
     <children>
-        <GridPane layoutX="14.0" layoutY="73.0" prefHeight="400.0" prefWidth="1004.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="73.0">
+        <GridPane layoutX="14.0" layoutY="73.0" prefHeight="400.0" prefWidth="1004.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="73.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -36,44 +37,92 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label prefHeight="66.0" prefWidth="496.0" text="Title of artwork" />
-                <Label prefHeight="66.0" prefWidth="496.0" text="Description of the artwork" GridPane.rowIndex="1" />
-                <Label prefHeight="66.0" prefWidth="496.0" text="Main photo of the artwork" GridPane.rowIndex="2" />
-                <Label prefHeight="66.0" prefWidth="496.0" text="Name of the creator" GridPane.rowIndex="3" />
-                <Label prefHeight="66.0" prefWidth="496.0" text="Year of creation" GridPane.rowIndex="4" />
-                <Label prefHeight="66.0" prefWidth="496.0" text="Reserve price" GridPane.rowIndex="5" />
-                <Label prefHeight="66.0" prefWidth="496.0" text="Number of bids allowed" GridPane.rowIndex="6" />
-                <Label prefHeight="66.0" prefWidth="496.0" text="Sculpture width" GridPane.rowIndex="7" />
-            <Label prefHeight="66.0" prefWidth="496.0" text="Sculpture height" GridPane.rowIndex="8" />
-            <Label prefHeight="66.0" prefWidth="496.0" text="Sculpture depth" GridPane.rowIndex="9" />
-                <Label prefHeight="66.0" prefWidth="496.0" text="Main material" GridPane.rowIndex="10" />
-                <Label prefHeight="66.0" prefWidth="496.0" text="Choose additional photos" GridPane.rowIndex="11" />
-                <TextField fx:id="artworkTitle" prefHeight="32.0" prefWidth="496.0" promptText="Enter artwork title..." GridPane.columnIndex="1" />
-                <TextArea fx:id="artworkDescription" prefHeight="200.0" prefWidth="200.0" promptText="Enter artwork description..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button fx:id="chooseMainSculptureImg" mnemonicParsing="false" prefHeight="31.0" prefWidth="226.0" text="Browse photos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField fx:id="creatorName" prefHeight="32.0" prefWidth="496.0" promptText="Enter artwork creator..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <TextField fx:id="yearOfCreation" prefHeight="32.0" prefWidth="496.0" promptText="Enter creation year..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <TextField fx:id="reservePrice" prefHeight="32.0" prefWidth="496.0" promptText="Enter reserve price..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <TextField fx:id="noOfBidsAllowed" prefHeight="32.0" prefWidth="496.0" promptText="Enter bids..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <TextField fx:id="sculptureWidth" prefHeight="32.0" prefWidth="496.0" promptText="Enter width..." GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="sculptureHeight" prefHeight="32.0" prefWidth="496.0" promptText="Enter height..." GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField fx:id="sculptureDepth" prefHeight="32.0" prefWidth="496.0" promptText="Enter depth..." GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                <TextField fx:id="sculptureMaterial" prefHeight="32.0" prefWidth="496.0" promptText="Enter main material..." GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Button fx:id="photo1" layoutX="506.0" layoutY="401.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Browse photo 1" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <Button fx:id="photo2" layoutX="506.0" layoutY="401.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="125.0" text="Browse photo 2" GridPane.columnIndex="1" GridPane.rowIndex="11">
+            <Label alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" text="Fields marked with * are mandatory" textFill="RED" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
-                  <Insets left="125.0" />
-               </GridPane.margin>
-            </Button>
-            <Button fx:id="photo3" layoutX="641.0" layoutY="378.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Browse photo 3" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <Label text="Title of artwork *" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
-                  <Insets left="251.0" />
-               </GridPane.margin>
-            </Button>
-                <Button fx:id="photo4" mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Browse photo 4" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <Label text="Description of the artwork *" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
-                  <Insets left="376.0" />
-               </GridPane.margin></Button>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <Label text="Main photo of the artwork *" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <Label text="Name of the creator *" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <Label text="Year of creation *" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <Label text="Reserve price *" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <Label text="Number of bids allowed *" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <Label text="Sculpture width *" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+            <Label text="Sculpture height *" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+            <Label text="Sculpture depth *" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <Label text="Main material *" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <Label text="Choose additional photos" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Label>
+                <TextField fx:id="artworkTitle" prefHeight="32.0" prefWidth="496.0" promptText="Enter artwork title..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextArea fx:id="artworkDescription" prefHeight="200.0" prefWidth="200.0" promptText="Enter artwork description..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button mnemonicParsing="false" onAction="#chooseImg" prefHeight="31.0" prefWidth="226.0" text="Browse photos" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="creatorName" prefHeight="32.0" prefWidth="496.0" promptText="Enter artwork creator..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField fx:id="yearOfCreation" prefHeight="32.0" prefWidth="496.0" promptText="Enter creation year..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <TextField fx:id="reservePrice" prefHeight="32.0" prefWidth="496.0" promptText="Enter reserve price..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <TextField fx:id="noOfBidsAllowed" prefHeight="32.0" prefWidth="496.0" promptText="Enter bids..." GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <TextField fx:id="sculptureWidth" prefHeight="32.0" prefWidth="496.0" promptText="Enter width..." GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="sculptureHeight" prefHeight="32.0" prefWidth="496.0" promptText="Enter height..." GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="sculptureDepth" prefHeight="32.0" prefWidth="496.0" promptText="Enter depth..." GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                <TextField fx:id="sculptureMaterial" prefHeight="32.0" prefWidth="496.0" promptText="Enter main material..." GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="12">
+               <children>
+                  <Button fx:id="photo1" mnemonicParsing="false" onAction="#imgButton1" prefHeight="31.0" prefWidth="124.0" text="Browse photo 1">
+                     <HBox.margin>
+                        <Insets right="2.5" />
+                     </HBox.margin></Button>
+                  <Button fx:id="photo2" mnemonicParsing="false" onAction="#imgButton2" prefHeight="31.0" prefWidth="124.0" text="Browse photo 2">
+                     <HBox.margin>
+                        <Insets right="2.5" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="photo3" layoutX="139.0" layoutY="10.0" mnemonicParsing="false" onAction="#imgButton3" prefHeight="31.0" prefWidth="124.0" text="Browse photo 3">
+                     <HBox.margin>
+                        <Insets right="2.5" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="photo4" layoutX="268.0" layoutY="10.0" mnemonicParsing="false" onAction="#imgButton4" prefHeight="31.0" prefWidth="124.0" text="Browse photo 4">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
             </children>
         </GridPane>
       <HBox layoutX="14.0" layoutY="14.0" prefHeight="56.0" prefWidth="496.0">
@@ -87,7 +136,10 @@
       </HBox>
         <VBox alignment="CENTER" layoutX="780.0" layoutY="469.0" prefHeight="52.0" prefWidth="496.0" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="16.0">
             <children>
-                <Label fx:id="errorLabel" alignment="CENTER" layoutX="876.0" layoutY="469.0" prefHeight="21.0" prefWidth="486.0" text="Label" textAlignment="CENTER" visible="false" />
+                <Label fx:id="errorLabel" alignment="CENTER" layoutX="876.0" layoutY="469.0" prefHeight="21.0" prefWidth="486.0" text="Label" textAlignment="CENTER" visible="false">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Label>
                 <Button fx:id="sellSculptureButton" layoutX="780.0" layoutY="493.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="226.0" text="Sell Sculpture" textAlignment="CENTER" />
             </children>
         </VBox>

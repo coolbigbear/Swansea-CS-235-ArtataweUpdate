@@ -13,6 +13,7 @@ import javafx.stage.FileChooser;
 import model.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.StreamCorruptedException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -31,7 +32,7 @@ public class CreateSculptureController implements Initializable {
     @FXML TextField noOfBidsAllowed;
     @FXML TextField yearOfCreation;
     @FXML TextField creatorName;
-    @FXML Button browseForMainPhoto;
+    @FXML Button chooseMainSculptureImg;
     @FXML Button sellSculptureButton;
 
     private String artworkTitlePulled;
@@ -61,9 +62,14 @@ public class CreateSculptureController implements Initializable {
         sellSculptureButton.setOnAction(e -> {
             if (getTextFieldValues()) {
                 if (imgChosen) {
-                    Artwork tempPainting = new Sculpture(artworkTitlePulled, new StringBuilder(descriptionPulled),
-                            yearOfCreationPulled, nameOfCreatorPulled, artImgPath, sculptureWidthPulled, sculptureHeightPulled,sculptureDepthPulled,sculptureMaterialPulled);
-
+                    Artwork tempPainting;
+                    if (pathsToImages.size()> 0) {
+                        tempPainting = new Sculpture(artworkTitlePulled, new StringBuilder(descriptionPulled),
+                                yearOfCreationPulled, nameOfCreatorPulled, artImgPath, sculptureWidthPulled, sculptureHeightPulled, sculptureDepthPulled, sculptureMaterialPulled,pathsToImages);
+                    } else {
+                        tempPainting = new Sculpture(artworkTitlePulled, new StringBuilder(descriptionPulled),
+                                yearOfCreationPulled, nameOfCreatorPulled, artImgPath, sculptureWidthPulled, sculptureHeightPulled, sculptureDepthPulled, sculptureMaterialPulled);
+                    }
                     Auction tempAuction = Auction.createNewAuction(tempPainting, Util.getCurrentUser().getUsername(), numberOfBidsAllowedPulled, reservePricePulled);
 
                     Feed.getInstance().add(tempAuction);
@@ -125,48 +131,52 @@ public class CreateSculptureController implements Initializable {
         }
     }
     @FXML
-    private void chooseMainSculptureImg() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(Util.getMainStage());
-        if (file != null) {
-            artImgPath = ourString(file.getPath());
+    private void chooseImg() {
+        String temp = chooseMainSculptureImg();
+        if (temp == null) {
+            errorLabel.setVisible(true);
+            errorLabel.setTextFill(Color.RED);
+            errorLabel.setText("Please choose a correct image!");
+        } else {
+            artImgPath = temp;
             imgChosen = true;
         }
     }
 
-    private void chooseAdditionalSculptureImg1() {
+    private String chooseMainSculptureImg() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(Util.getMainStage());
         if (file != null) {
-            image1 = ourString(file.getPath());
-            imgChosen = true;
+            return ourString(file.getPath());
+
         }
+        return null;
     }
 
-    private void chooseAdditionalSculptureImg2() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(Util.getMainStage());
-        if (file != null) {
-            image2 = ourString(file.getPath());
-            imgChosen = true;
-        }
+    @FXML
+    private void imgButton1() {
+        image1 = chooseMainSculptureImg();
+        pathsToImages.add(image1);
     }
 
-    private void chooseAdditionalSculptureImg3() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(Util.getMainStage());
-        if (file != null) {
-            image3 = ourString(file.getPath());
-            imgChosen = true;
-        }
+    @FXML
+    private void imgButton2() {
+        image2 = chooseMainSculptureImg();
+        pathsToImages.add(image2);
+    }
+
+    @FXML
+    private void imgButton3() {
+        image3 = chooseMainSculptureImg();
+        pathsToImages.add(image3);
+    }
+
+    @FXML
+    private void imgButton4() {
+        image4 = chooseMainSculptureImg();
+        pathsToImages.add(image4);
     }
 
     private String ourString(String input) {
