@@ -43,31 +43,43 @@
                         <Insets bottom="25.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button fx:id="browseDefault" layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Browse Images">
+                  <Button fx:id="chooseImage" layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Browse Images">
                      <VBox.margin>
                         <Insets bottom="10.0" left="25.0" />
                      </VBox.margin>
                   </Button>
-                  <MenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" text="Browse Default">
+                  <MenuButton fx:id="browseDefaultImage" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" text="Browse Default">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Image 1">
+                      <MenuItem mnemonicParsing="false" onAction="#setDefaultImage1" text="Image 1">
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/profile/male4.png" />
+                                 </image></ImageView>
                            </graphic>
                         </MenuItem>
-                      <MenuItem mnemonicParsing="false" text="Image 2">
+                      <MenuItem mnemonicParsing="false" onAction="#setDefaultImage2" text="Image 2">
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/profile/male3.png" />
+                                 </image></ImageView>
                            </graphic>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Image 3">
+                        <MenuItem mnemonicParsing="false" onAction="#setDefaultImage3" text="Image 3">
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/profile/female3.png" />
+                                 </image></ImageView>
                            </graphic>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Image 4">
+                        <MenuItem mnemonicParsing="false" onAction="#setDefaultImage4" text="Image 4">
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/profile/female5.png" />
+                                 </image></ImageView>
                            </graphic>
                         </MenuItem>
                     </items>
