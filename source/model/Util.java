@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import controllers.ArtataweMain;
 import controllers.ProfileController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,6 +33,7 @@ public final class Util {
 	private static Gson gson = addTypesToGson();
 	private static ImageView profileImage;
 	private static GridPane favoriteUsersGridPane;
+	private static ChoiceBox filterChoiceBox;
 	/**
 	 * Reads in all profiles from database.
 	 *
@@ -376,7 +378,15 @@ public final class Util {
 	public static GridPane getFavoriteUsersGridPane() {
 		return favoriteUsersGridPane;
 	}
-
+	
+	public static ChoiceBox getFilterChoiceBox() {
+		return filterChoiceBox;
+	}
+	
+	public static void setFilterChoiceBox(ChoiceBox choiceBox) {
+		filterChoiceBox = choiceBox;
+	}
+	
 	public static void dynamicFavoritesGridPane(GridPane gridPane, List<Profile> favorites) {
 		final int IMAGE_COLUMN = 0;
 		final int PROFILE_COLUMN = 1;

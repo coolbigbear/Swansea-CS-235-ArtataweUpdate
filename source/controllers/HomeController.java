@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,14 +31,17 @@ public class HomeController implements Initializable {
     private BorderPane homeLayout;
     @FXML
     private GridPane favoritesGridPane;
-    private Feed auctionsFeed;
+    private Feed feed;
     private ArrayList<Profile> favoriteUsers;
-
+    private ChoiceBox choiceBox;
+	
+	
+	// TODO: 09-Dec-17 The problem is because the Feed isn't updating with what's needed
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Util.setHomeLayout(homeLayout);
         Util.getActiveAuctions();
-        auctionsFeed = Feed.getInstance();
+        feed = Feed.getInstance();
         favoriteUsers = populateFavoriteUsers();
         try {
             setProfileImageView(Util.getCurrentUser().getProfileImagePath());
@@ -51,6 +55,7 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
         populateFavoritesView();
+        choiceBox = Util.getFilterChoiceBox();
     }
 
     private void setProfileImageView(String imagePath) {
@@ -65,7 +70,8 @@ public class HomeController implements Initializable {
 
     @FXML
     private void currentAuctionsButtonAction() throws IOException {
-        //TODO PROBLEM COMES FROM HERE
+    	Util.getActiveAuctions();
+    	feed = Feed.getInstance();
         setAuctionsCenter();
     }
 
@@ -103,17 +109,19 @@ public class HomeController implements Initializable {
     @FXML
     private void bidsPlacedMenuItemAction() throws IOException {
     	ArrayList<Bid> bidList = getAllBids();
-	    Feed feed = Feed.getInstance();
+    	Util.getActiveAuctions();
+	    feed = Feed.getInstance();
+	    ArrayList<Auction> resultList = new ArrayList<>();
 
 	    for (Bid bid: bidList) {
 	    	Auction auction = Util.getAuctionByAuctionID(bid.getAuctionID());
 
 		    if (bid.getBidderUsername().equals(Util.getCurrentUser().getUsername()) &&
 				    !auction.isCompleted()) {
-			    feed.add(auction);
+			    resultList.add(auction);
 		    }
 	    }
-
+	    feed.updateWith(resultList);
 
         setAuctionsCenter();
     }
@@ -122,7 +130,9 @@ public class HomeController implements Initializable {
     @FXML
     private void bidsWonMenuItemAction() throws IOException {
 	    ArrayList<Bid> bidList = getAllBids();
+	    Util.getActiveAuctions();
 	    Feed feed = Feed.getInstance();
+	    ArrayList<Auction> resultList = new ArrayList<>();
 
 	    for (Bid bid: bidList) {
 		    Auction auction = Util.getAuctionByAuctionID(bid.getAuctionID());
@@ -130,10 +140,10 @@ public class HomeController implements Initializable {
 		    if (bid.getBidderUsername().equals(Util.getCurrentUser().getUsername()) &&
 				    auction.isCompleted() &&
 				    auction.getHighestBidder().equals(Util.getCurrentUser().getUsername())) {
-			    feed.add(auction);
+			    resultList.add(auction);
 		    }
 	    }
-
+	    feed.updateWith(resultList);
 
 	    setAuctionsCenter();
     }
@@ -143,9 +153,10 @@ public class HomeController implements Initializable {
     //All Auctions that you are currently selling
     @FXML
     private void currentlySellingMenuItemAction() throws IOException {
-    	Feed feed = Feed.getInstance();
+    	Util.getActiveAuctions();
+    	feed = Feed.getInstance();
     	ArrayList<Auction> resultList = new ArrayList<>();
-
+    	
     	for(Auction auction: feed) {
     		if(!auction.isCompleted() &&
 				    auction.getSellerName().equals(Util.getCurrentUser().getUsername())) {
@@ -159,6 +170,7 @@ public class HomeController implements Initializable {
     //All Auctions you have sold
     @FXML
     private void auctionsSoldMenuItemAction() throws IOException {
+    	Util.getActiveAuctions();
 	    Feed feed = Feed.getInstance();
 	    ArrayList<Auction> resultList = new ArrayList<>();
 
@@ -190,7 +202,7 @@ public class HomeController implements Initializable {
         AnchorPane bidHistory = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/bidhistory_layout.fxml"));
         homeLayout.setCenter(bidHistory);
     }
-
+    
     private ArrayList<Bid> getAllBids() {
 	    Util.getActiveAuctions();
 	    Feed feed  = Feed.getInstance();
@@ -201,7 +213,7 @@ public class HomeController implements Initializable {
 	    }
 	    return bidList;
     }
-
+    
     private BorderPane setAuctionsCenter() throws IOException {
         BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
         feedLayout.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());

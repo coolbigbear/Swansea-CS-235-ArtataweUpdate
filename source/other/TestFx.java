@@ -431,11 +431,10 @@ public class TestFx extends Application {
         bidsForAuction6.add(b130);
         bidsForAuction6.add(b140);
 
-        Util.checkAndSetUser("BHelal");
+        Util.checkAndSetUser("bigbear");
         Bid b11 = new Bid(7, 37.0);
         bidsForAuction7.add(b11);
 
-        Util.checkAndSetUser("bigbear");
         Bid b12 = new Bid(8, 350.0);
         bidsForAuction8.add(b12);
 

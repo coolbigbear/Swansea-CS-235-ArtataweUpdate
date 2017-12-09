@@ -59,6 +59,8 @@ public class AuctionController implements Initializable {
 		try {
 			Bid bid = new Bid(currentAuction.getAuctionID(), Double.valueOf(bidInputTextField.getText()));
 			currentAuction.placeBid(bid);
+			
+			//Below will execute if the placing of the Bid was accepted
 			bidInputTextField.clear();
 			bidInputTextField.setPromptText("Bid Accepted!");
 			highestBidLabel.setText(bid.getBidAmount().toString());
@@ -77,7 +79,6 @@ public class AuctionController implements Initializable {
 		} catch (NumberFormatException exception) {
 			setErrorInputTextField("Please enter a Number!");
 		}
-		// TODO: 08-Dec-17 Send the Bid to database
 	}
 	
 	private void generateAuctionLabels() {
