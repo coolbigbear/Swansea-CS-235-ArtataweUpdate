@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import model.Auction;
 import model.Util;
 
@@ -46,7 +45,7 @@ public class CardController implements Initializable {
             priceCardAuctionLabel.setText(String.valueOf(currentAuction.getHighestPrice()));
         }
         artistCardAuctionLabel.setText(currentAuction.getArtwork().getCreatorName());
-        creationDateCardAuctionLabel.setText(String.valueOf(currentAuction.getArtwork().getCreationDate().getYear()));
+        creationDateCardAuctionLabel.setText(String.valueOf(currentAuction.getArtwork().getCreationDate()));
         datePlacedCardAuctionLabel.setText(currentAuction.getDateTimePlaced().getDayOfMonth() + " " + currentAuction.getDateTimePlaced().getMonth().toString() + " " + currentAuction.getDateTimePlaced().getYear());
         setAuctionImage();
     }

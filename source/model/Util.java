@@ -38,7 +38,6 @@ public final class Util {
 	 * @return List of Profiles read from database
 	 */
 	private static Profile[] readInProfileFile() {
-		Gson gson = new Gson();
 		Profile[] profiles = new Profile[0];
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Profiles.json"));
@@ -149,8 +148,6 @@ public final class Util {
 				feed.add(auction);
 			}
 		}
-		//Feed.getNewInstance().addAll(auctionArrayList);
-		//System.out.println(Feed.getInstance());
 	}
 	
 	public static void getActiveAuctionsByUsername(String username) {
@@ -263,7 +260,7 @@ public final class Util {
 	 * @param auctions Auctions to be saved to file
 	 */
 	public static void saveListOfAuctionsToFile(List<Auction> auctions) {
-		Gson gson = new Gson();
+		//Gson gson = new Gson();
 		try {
 			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
 			gson.toJson(auctions, fileWriter);
@@ -292,7 +289,7 @@ public final class Util {
 	 * Add types to gson for artwork, sculpture and painting.
 	 */
 	public static Gson addTypesToGson() {
-		RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "type");
+		RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "typeGSON");
 		
 		artworkAdapterFactory.registerSubtype(Artwork.class);
 		artworkAdapterFactory.registerSubtype(Painting.class);

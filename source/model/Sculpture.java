@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,8 +13,8 @@ public class Sculpture extends Artwork {
 	private String mainMaterial;
 	private List<String> additionalImagesPaths;
 	
-	public Sculpture(String title, StringBuilder description, LocalDate creationDate, String creatorName,
-	                 String mainImagePath, Integer width, Integer height, Integer depth, String mainMaterial) {
+	public Sculpture(String title, StringBuilder description, String creationDate, String creatorName,
+                     String mainImagePath, Integer width, Integer height, Integer depth, String mainMaterial) {
 		super(title, description, creationDate, creatorName, mainImagePath);
 		this.width = width;
 		this.height = height;
@@ -25,7 +24,7 @@ public class Sculpture extends Artwork {
 		this.additionalImagesPaths = new ArrayList<>();
 	}
 	
-	public Sculpture(String title, StringBuilder description, LocalDate creationDate, String creatorName,
+	public Sculpture(String title, StringBuilder description, String creationDate, String creatorName,
 	                 String mainImagePath, Integer width, Integer height, Integer depth, String mainMaterial,
 	                 String... additionalImagesPaths) {
 		super(title, description, creationDate, creatorName, mainImagePath);

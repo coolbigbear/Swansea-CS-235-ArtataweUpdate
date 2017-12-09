@@ -1,18 +1,16 @@
 package model;
 
-import java.time.LocalDate;
-
 // TODO: 04-Dec-17 Documentation!
 public abstract class Artwork {
 	
 	protected String title;
 	protected StringBuilder description;
-	protected LocalDate creationDate;
+	protected String creationDate;
 	protected String creatorName;
 	protected String mainImagePath;
 	protected ArtworkType type;
 	
-	public Artwork(String title, StringBuilder description, LocalDate creationDate, String creatorName, String mainImagePath) {
+	public Artwork(String title, StringBuilder description, String creationDate, String creatorName, String mainImagePath) {
 		this.title = title;
 		this.description = description;
 		this.creationDate = creationDate;
@@ -30,7 +28,7 @@ public abstract class Artwork {
 		this.description = description;
 	}
 	
-	public void setCreationDate(LocalDate creationDate) {
+	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
 	
@@ -50,7 +48,7 @@ public abstract class Artwork {
 		return this.description;
 	}
 	
-	public LocalDate getCreationDate() {
+	public String getCreationDate() {
 		return this.creationDate;
 	}
 	
