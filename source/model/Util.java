@@ -387,10 +387,10 @@ public final class Util {
 		gridPane.addRow(favorites.size());
 		for (Profile elem : favorites) {
 			profileImage = new ImageView();
+			profileImage.setFitHeight(FAVORITES_PROFILE_IMAGE);
+			profileImage.setFitWidth(FAVORITES_PROFILE_IMAGE);
 			try {
 				profileImage.setImage(new Image(elem.getProfileImagePath()));
-				profileImage.setFitHeight(FAVORITES_PROFILE_IMAGE);
-				profileImage.setFitWidth(FAVORITES_PROFILE_IMAGE);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
