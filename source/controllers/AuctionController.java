@@ -13,8 +13,10 @@ import javafx.scene.paint.Color;
 import model.*;
 import model.exception.IllegalBidException;
 
-import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 //TODO view users to the seller who have placed bids on the auction!!!!!!!!!!!!!!!
@@ -53,18 +55,20 @@ public class AuctionController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		Auction auction = new Auction(
+				new Painting("Painting1", new StringBuilder("My Painting " +
+						"Description"), LocalDate.of(1950, 1, 1), "My Painting's Creator", "MyPaintingPath", 5, 5), "MyPaintingSeller", 420, new ArrayList<>(), 500.00, 6, LocalDateTime.now(),
+				5, "HighestBidder", false, 505.00);
+		
 		//hardcoded Auction!
-		try {
-			initAuction(Util.getAuctionByAuctionID(3));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		initAuction(auction);
 		
 		generateAuctionLabels();
 		generateArtworkLabels();
 	}
 	
-	// TODO: 08-Dec-17 Something isn't working here because I dind't fucking unit test it!!!
+	// TODO: 08-Dec-17 Something isn't working here I think it's because the passed in Auction is wrong
 	@FXML
 	private void bidOnAction() {
 		try {
@@ -75,11 +79,11 @@ public class AuctionController implements Initializable {
 			if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
 				setErrorInputTextField("Already highest bidder!");
 			}
-			if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE)) {
-				setErrorInputTextField("Lower than reserve price!");
-			}
 			if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST)) {
 				setErrorInputTextField("Lower than current highest!");
+			}
+			if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE)) {
+				setErrorInputTextField("Lower than reserve price!");
 			}
 			//If entered input is not a Number
 		} catch (NumberFormatException exception) {
