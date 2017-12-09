@@ -30,6 +30,12 @@ public class TestFx extends Application {
         List<String> favouritesOfP4 = new ArrayList<>();
         List<String> favouritesOfP5 = new ArrayList<>();
         List<String> favouritesOfP6 = new ArrayList<>();
+        
+        Util.checkAndSetUser("bigbear");
+        
+        List<Bid> p1Bids = new ArrayList<>();
+        p1Bids.add(new Bid(2, 420d));
+        p1Bids.add(new Bid(5, 699d));
 
         List<Bid> bidsForAuction2 = new ArrayList<>();
         List<Bid> bidsForAuction3 = new ArrayList<>();
@@ -56,7 +62,7 @@ public class TestFx extends Application {
                 new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>(),
-                new ArrayList<>(),
+                p1Bids,
                 LocalDateTime.now());
 
         Profile p2 = new Profile("BHelal",

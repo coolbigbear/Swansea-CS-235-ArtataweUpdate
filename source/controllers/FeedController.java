@@ -64,7 +64,6 @@ public class FeedController implements Initializable {
 						Util.getSculptureAuctions();
 						setAuctionsCenter();
 						break;
-					default:
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

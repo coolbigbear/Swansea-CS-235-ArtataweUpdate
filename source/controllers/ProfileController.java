@@ -9,10 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -33,7 +33,9 @@ public class ProfileController implements Initializable {
     @FXML
     private ImageView profileImg;
     @FXML
-    private Button browseDefault;
+    private Button chooseImage;
+    @FXML
+    private MenuButton browseDefaultImage;
     @FXML
     private Button createCustom;
     @FXML
@@ -87,14 +89,8 @@ public class ProfileController implements Initializable {
         File file = fileChooser.showOpenDialog(Util.getMainStage());
         if (file != null) {
             String newPath = ourString(file.getPath());
-            //TODO NEEDS TO BE SAVED TO GSON
             selectedProfile.setProfileImagePath(newPath);
-            try {
-                setImage();
-                Util.getProfileImage().setImage(new Image(newPath));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settingImageAll(newPath);
         }
     }
 
@@ -117,7 +113,6 @@ public class ProfileController implements Initializable {
         if (favouriteUser.getText().equalsIgnoreCase("Remove favorite")) {
             for (int i = 0; i < Util.getCurrentUser().getFavouriteUsers().size(); i++) {
                 if (Util.getCurrentUser().getFavouriteUsers().get(i).equalsIgnoreCase(selectedProfile.getUsername())) {
-                    //TODO GSON NEEDS TO BE UPDATED!!!
                     Util.getCurrentUser().getFavouriteUsers().remove(i);
                 }
             }
@@ -126,19 +121,52 @@ public class ProfileController implements Initializable {
             }
             Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
             System.out.println("GRIDPANE ROWS: " + Util.getFavoriteUsersGridPane().getRowConstraints().toString());
+            Util.saveProfileToFile(selectedProfile);
             favouriteUser.setText("Add to favorites");
         } else {
-            //TODO GSON NEEDS TO BE UPDATED!!!
             Util.getCurrentUser().getFavouriteUsers().add(selectedProfile.getUsername());
             for (int i = counter -1; i >= 0; i--) {
                 deleteRow(Util.getFavoriteUsersGridPane(), i);
                 System.out.println("REMOVING" + i);
             }
             Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
+            Util.saveProfileToFile(selectedProfile);
             favouriteUser.setText("Remove favorite");
         }
     }
 
+    //TODO GSON NEEDS TO BE UPDATED
+    @FXML
+    private void setDefaultImage1() {
+        changeDefaultImage("images/profile/male4.png");
+    }
+    @FXML
+    private void setDefaultImage2() {
+        changeDefaultImage("images/profile/male3.png");
+    }
+    @FXML
+    private void setDefaultImage3() {
+        changeDefaultImage("images/profile/female3.png");
+    }
+    @FXML
+    private void setDefaultImage4() {
+        changeDefaultImage("images/profile/female2.png");
+    }
+
+    private void changeDefaultImage(String defImagePath) {
+        selectedProfile.setProfileImagePath(defImagePath);
+        settingImageAll(defImagePath);
+    }
+
+    private void settingImageAll(String path) {
+        try {
+            setImage();
+            Util.getProfileImage().setImage(new Image(path));
+            Util.saveProfileToFile(selectedProfile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private boolean isFavorited() {
         boolean favorite = false;
@@ -179,19 +207,23 @@ public class ProfileController implements Initializable {
 
     private void setUserSpecificButtons() {
         if (isSignedInUser()) {
-            browseDefault.setDisable(false);
+            chooseImage.setDisable(false);
             createCustom.setDisable(false);
             favouriteUser.setDisable(true);
-            browseDefault.setVisible(true);
+            browseDefaultImage.setDisable(false);
+            chooseImage.setVisible(true);
             createCustom.setVisible(true);
             favouriteUser.setVisible(false);
+            browseDefaultImage.setVisible(true);
         } else {
-            browseDefault.setDisable(true);
+            chooseImage.setDisable(true);
             createCustom.setDisable(true);
             favouriteUser.setDisable(false);
-            browseDefault.setVisible(false);
+            browseDefaultImage.setDisable(true);
+            chooseImage.setVisible(false);
             createCustom.setVisible(false);
             favouriteUser.setVisible(true);
+            browseDefaultImage.setDisable(false);
         }
     }
 
@@ -272,4 +304,5 @@ public class ProfileController implements Initializable {
             row++;
         }
     }
+
 }

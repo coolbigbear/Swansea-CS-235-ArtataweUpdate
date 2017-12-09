@@ -18,12 +18,14 @@ import java.util.ResourceBundle;
 
 public class BidHistoryController implements Initializable {
 	
-	private static final int GRID_ROWS = Util.getCurrentUser().getAllBidsPlaced().size();
+	private static int GRID_ROWS = Util.getCurrentUser().getAllBidsPlaced().size();
 	private static final int ID_COLUMN = 0;
 	private static final int NAME_COLUMN = 1;
 	private static final int BID_COLUMN = 2;
 	private static final int DATE_COLUMN = 3;
 	private static final int STATUS_COLUMN = 4;
+	private int currentRow = 0;
+	private List<Bid> bids = Util.getCurrentUser().getAllBidsPlaced();
 	
 	@FXML
 	private GridPane bidGridPane;
@@ -38,8 +40,6 @@ public class BidHistoryController implements Initializable {
 	}
 	
 	private void populateBidGridPane() throws IOException {
-		int currentRow = 0;
-		List<Bid> bids = Util.getCurrentUser().getAllBidsPlaced();
 		
 		bidGridPane.addRow(GRID_ROWS);
 		System.out.println("BID GRID ROWS: " + String.valueOf(GRID_ROWS));
@@ -59,9 +59,11 @@ public class BidHistoryController implements Initializable {
 			Label datePlaced = generateDatePlacedLabel(elem);
 			bidGridPane.add(datePlaced, DATE_COLUMN, currentRow);
 			
+			Label status = generateStatusLabel(elem);
+			
 			generateStatusLabel(elem);
 			
-			bidGridPane.add(datePlaced, STATUS_COLUMN, currentRow);
+			bidGridPane.add(status, STATUS_COLUMN, currentRow);
 			
 			currentRow++;
 		}
@@ -103,13 +105,14 @@ public class BidHistoryController implements Initializable {
 		return datePlaced;
 	}
 	
-	private void generateStatusLabel(Bid elem) {
+	private Label generateStatusLabel(Bid elem) {
 		Label status = new Label();
 		try {
 			status.setText(auctionStatus(Util.getAuctionByAuctionID(elem.getAuctionID())));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return status;
 	}
 	
 	private String auctionStatus(Auction auction) {

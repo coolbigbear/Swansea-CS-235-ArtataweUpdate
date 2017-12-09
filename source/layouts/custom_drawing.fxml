@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.layout.VBox?>
@@ -12,32 +16,35 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.CheckBox?>
 
-<BorderPane fx:controller="controllers.DrawingController"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth = "400" >
+<BorderPane prefHeight="400.0" prefWidth="400" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controllers.DrawingController">
 
     <top>
         <VBox>
-            <MenuBar>
-                <Menu text = "File">
-                    <MenuItem text = "Save" onAction="#onSave"/>
-                    <MenuItem text = "Clear" onAction="#onClear"/>
-                </Menu>
-            </MenuBar>
-
-            <ToolBar>
-                <HBox alignment="CENTER" spacing = "8">
-                    <ColorPicker fx:id = "colorPicker"/>
-                    <TextField fx:id = "brushSize" text = "10"/>
-                    <CheckBox fx:id = "ovalPaint" text = "Circle Brush"/>
+           <children>
+               <MenuBar>
+                  <menus>
+                      <Menu text="File">
+                         <items>
+                             <MenuItem onAction="#onSave" text="Save" />
+                             <MenuItem onAction="#onClear" text="Clear" />
+                         </items>
+                      </Menu>
+                  </menus>
+               </MenuBar>
+                <HBox alignment="CENTER" spacing="8">
+                   <children>
+                       <ColorPicker fx:id="colorPicker" />
+                       <TextField fx:id="brushSize" prefHeight="31.0" prefWidth="78.0" text="10" />
+                       <CheckBox fx:id="ovalPaint" text="Circle Brush" />
+                   </children>
 
                 </HBox>
-            </ToolBar>
+           </children>
         </VBox>
     </top>
 
     <center>
-        <Canvas fx:id = "canvas" width="400" height="400"/>
+        <Canvas fx:id="canvas" height="400" width="400" />
     </center>
 
 </BorderPane>
