@@ -43,14 +43,41 @@
                         <Insets bottom="25.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button fx:id="browseDefault" layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Change Image">
+                  <Button fx:id="browseDefault" layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Browse Images">
                      <VBox.margin>
-                        <Insets bottom="25.0" left="25.0" />
+                        <Insets bottom="10.0" left="25.0" />
                      </VBox.margin>
                   </Button>
+                  <MenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" text="Browse Default">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Image 1">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MenuItem>
+                      <MenuItem mnemonicParsing="false" text="Image 2">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="Image 3">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="Image 4">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MenuItem>
+                    </items>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="25.0" />
+                     </VBox.margin>
+                  </MenuButton>
                   <Button fx:id="createCustom" layoutX="33.0" layoutY="257.0" mnemonicParsing="false" onAction="#createCustomImg" prefHeight="31.0" prefWidth="157.0" text="Create Image">
                      <VBox.margin>
-                        <Insets bottom="25.0" left="25.0" />
+                        <Insets bottom="10.0" left="25.0" />
                      </VBox.margin>
                   </Button>
                    <Button fx:id="favouriteUser" layoutX="33.0" layoutY="231.0" mnemonicParsing="false" onAction="#setFavouriteUser" prefHeight="31.0" prefWidth="157.0" text="Add to favorites">
