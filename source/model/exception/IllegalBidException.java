@@ -4,6 +4,11 @@ public class IllegalBidException extends IllegalArgumentException{
 	
 	private IllegalBidType type;
 	
+	@Override
+	public String getMessage() {
+		return super.getMessage() + this.type;
+	}
+	
 	public IllegalBidException(String message) {
 		super(message);
 	}

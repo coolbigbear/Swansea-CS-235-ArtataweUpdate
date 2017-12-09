@@ -1,6 +1,7 @@
 package test;
 
 import model.*;
+import model.exception.IllegalBidException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -311,7 +312,72 @@ class ModelTests {
 	
 	@Nested
 	class AuctionTests {
-	
+		
+		Auction auction = new Auction(
+				new Painting("Painting1", new StringBuilder("My Painting " +
+						"Description"), LocalDate.of(1950, 1, 1), "My Painting's Creator", "MyPaintingPath", 5, 5), "MyPaintingSeller", 420, new ArrayList<>(), 500.00, 6, LocalDateTime.now(),
+				5, "HighestBidder", false, 505.00);
+		
+		Auction auction2 = new Auction(
+				new Painting("Painting1", new StringBuilder("My Painting " +
+						"Description"), LocalDate.of(1950, 1, 1), "My Painting's Creator", "MyPaintingPath", 5, 5), "MyPaintingSeller", 69, new ArrayList<>(), 500.00, 6, LocalDateTime.now(),
+				1, "HighestBidder", false, 505.00);
+		
+		@DisplayName("Auction new Bid lower than Reserve")
+		@Test
+		void testAuctionBidValidationLowerThanReserve() {
+			
+			assertThrows(IllegalBidException.class, () -> {
+				auction.placeBid(new Bid(420, 490.00));
+			});
+			
+			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
+				auction.placeBid(new Bid(420, 490.00));
+			}).getType();
+			
+			assertTrue(type.equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE));
+		}
+		
+		@DisplayName("Auction new Bid lower than Highest")
+		@Test
+		void testAuctionBidValidationLowerThanHighest() {
+			
+			assertThrows(IllegalBidException.class, () -> {
+				auction.placeBid(new Bid(420, 502.00));
+			});
+			
+			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
+				auction.placeBid(new Bid(420, 502.00));
+			}).getType();
+			
+			assertTrue(type.equals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST));
+		}
+		
+		@DisplayName("Auction new Bid already highest bidder")
+		@Test
+		void testAuctionBidValidationAlreadyHighestBidder() {
+			auction.placeBid(new Bid(420, 550.00));
+			
+			assertThrows(IllegalBidException.class, () -> {
+				auction.placeBid(new Bid(420, 600.00));
+			});
+			
+			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
+				auction.placeBid(new Bid(420, 600.00));
+			}).getType();
+			
+			assertTrue(type.equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER));
+		}
+		
+		@DisplayName("Auction new Bid accepted and is winner")
+		@Test
+		void testAuctionBidAcceptBid() {
+			auction2.placeBid(new Bid(69, 600.00));
+		    assertTrue(auction2.getHighestPrice().equals(600.00));
+		    assertTrue(auction2.getHighestBidder().equals("BassHelal"));
+		    assertTrue(auction2.getBidsLeft() == 0);
+		    assertTrue(auction2.isCompleted());
+		}
 	}
 	
 	@Nested

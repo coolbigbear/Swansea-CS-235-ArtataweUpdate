@@ -20,8 +20,6 @@ import java.util.ResourceBundle;
 //TODO view users to the seller who have placed bids on the auction!!!!!!!!!!!!!!!
 public class AuctionController implements Initializable {
 	
-	
-
 	private Auction currentAuction;
 	private Artwork artwork;
 	private ArtworkType artworkType;

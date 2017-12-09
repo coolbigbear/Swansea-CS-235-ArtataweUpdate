@@ -88,7 +88,7 @@ public class HomeController implements Initializable {
         Scene login = new Scene(root);
         Stage stage = Util.getMainStage();
         stage.setScene(login);
-        root.getStylesheets().add(ArtataweMain.class.getResource("/css/Login.css").toExternalForm());
+        root.getStylesheets().add(ArtataweMain.class.getResource("/css/login.css").toExternalForm());
         stage.setMinHeight(480);
         stage.setMinWidth(640);
         stage.setHeight(480);
@@ -217,8 +217,7 @@ public class HomeController implements Initializable {
         }
         return profiles;
     }
-
-
+    
     private void populateFavoritesView() {
         Util.dynamicFavoritesGridPane(favoritesGridPane, favoriteUsers);
         Util.setFavoriteUsersGridPane(favoritesGridPane);

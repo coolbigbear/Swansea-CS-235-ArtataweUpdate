@@ -61,7 +61,6 @@ public final class Auction implements Comparable<Auction> {
 		return new Auction(artwork, seller, bidsAllowed, reservePrice);
 	}
 	
-	
 	public Auction(Artwork artwork, String sellerName, Integer auctionID, List<Bid> bidList,
 	               Double reservePrice, Integer bidsAllowed, LocalDateTime dateTimePlaced,
 	               Integer bidsLeft, String highestBidder, Boolean isCompleted, Double highestPrice) {
@@ -78,16 +77,22 @@ public final class Auction implements Comparable<Auction> {
 		this.highestPrice = highestPrice;
 	}
 	
-	
 	public void placeBid(Bid bid) {
 		if (validateBid(bid)) {
 			this.highestBidder = bid.getBidderUsername();
 			this.highestPrice = bid.getBidAmount();
-			bidList.add(bid);
+			this.bidList.add(bid);
+			this.bidsLeft--;
+			updateIsCompleted();
 		} else throw new IllegalBidException("Illegal Bid!");
 		
 	}
 	
+	private void updateIsCompleted() {
+		if (this.bidsLeft == 0) {
+			this.isCompleted = true;
+		}
+	}
 	
 	private Boolean validateBid(Bid bid) throws IllegalBidException {
 		if (!checkIfNotHighestBidder(bid)) {
