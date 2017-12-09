@@ -89,14 +89,8 @@ public class ProfileController implements Initializable {
         File file = fileChooser.showOpenDialog(Util.getMainStage());
         if (file != null) {
             String newPath = ourString(file.getPath());
-            //TODO NEEDS TO BE SAVED TO GSON
             selectedProfile.setProfileImagePath(newPath);
-            try {
-                setImage();
-                Util.getProfileImage().setImage(new Image(newPath));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            settingImageAll(newPath);
         }
     }
 
@@ -119,7 +113,6 @@ public class ProfileController implements Initializable {
         if (favouriteUser.getText().equalsIgnoreCase("Remove favorite")) {
             for (int i = 0; i < Util.getCurrentUser().getFavouriteUsers().size(); i++) {
                 if (Util.getCurrentUser().getFavouriteUsers().get(i).equalsIgnoreCase(selectedProfile.getUsername())) {
-                    //TODO GSON NEEDS TO BE UPDATED!!!
                     Util.getCurrentUser().getFavouriteUsers().remove(i);
                 }
             }
@@ -128,15 +121,16 @@ public class ProfileController implements Initializable {
             }
             Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
             System.out.println("GRIDPANE ROWS: " + Util.getFavoriteUsersGridPane().getRowConstraints().toString());
+            Util.saveProfileToFile(selectedProfile);
             favouriteUser.setText("Add to favorites");
         } else {
-            //TODO GSON NEEDS TO BE UPDATED!!!
             Util.getCurrentUser().getFavouriteUsers().add(selectedProfile.getUsername());
             for (int i = counter -1; i >= 0; i--) {
                 deleteRow(Util.getFavoriteUsersGridPane(), i);
                 System.out.println("REMOVING" + i);
             }
             Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
+            Util.saveProfileToFile(selectedProfile);
             favouriteUser.setText("Remove favorite");
         }
     }
@@ -160,11 +154,15 @@ public class ProfileController implements Initializable {
     }
 
     private void changeDefaultImage(String defImagePath) {
-        //TODO ADD TO GSON
         selectedProfile.setProfileImagePath(defImagePath);
+        settingImageAll(defImagePath);
+    }
+
+    private void settingImageAll(String path) {
         try {
             setImage();
-            Util.getProfileImage().setImage(new Image(defImagePath));
+            Util.getProfileImage().setImage(new Image(path));
+            Util.saveProfileToFile(selectedProfile);
         } catch (Exception e) {
             e.printStackTrace();
         }

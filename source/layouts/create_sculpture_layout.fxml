@@ -50,7 +50,7 @@
                 <Label prefHeight="66.0" prefWidth="496.0" text="Choose additional photos" GridPane.rowIndex="11" />
                 <TextField fx:id="artworkTitle" prefHeight="32.0" prefWidth="496.0" promptText="Enter artwork title..." GridPane.columnIndex="1" />
                 <TextArea fx:id="artworkDescription" prefHeight="200.0" prefWidth="200.0" promptText="Enter artwork description..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button fx:id="browseForMainPhoto" mnemonicParsing="false" prefHeight="31.0" prefWidth="226.0" text="Browse photos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="chooseMainSculptureImg" mnemonicParsing="false" prefHeight="31.0" prefWidth="226.0" text="Browse photos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="creatorName" prefHeight="32.0" prefWidth="496.0" promptText="Enter artwork creator..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="yearOfCreation" prefHeight="32.0" prefWidth="496.0" promptText="Enter creation year..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <TextField fx:id="reservePrice" prefHeight="32.0" prefWidth="496.0" promptText="Enter reserve price..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
