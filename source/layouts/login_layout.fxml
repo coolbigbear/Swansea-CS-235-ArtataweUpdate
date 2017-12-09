@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -12,11 +7,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
          <Label fx:id="logintitle" layoutX="358.0" layoutY="67.0" prefHeight="137.0" prefWidth="264.0" text="Artatawe" textAlignment="CENTER">
            </Label>
-         <TextField fx:id="loginTextField" alignment="CENTER" layoutX="381.0" layoutY="263.0" prefHeight="31.0" prefWidth="214.0" promptText="Username" />
+         <TextField fx:id="loginTextField" alignment="CENTER" layoutX="381.0" layoutY="263.0" onAction="#loginButtonAction" prefHeight="31.0" prefWidth="214.0" promptText="Username" />
          <Label fx:id="loginUserPrompt" layoutX="391.0" layoutY="187.0" prefHeight="33.0" prefWidth="257.0" />
          <Button layoutX="432.0" layoutY="308.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="44.0" prefWidth="111.0" text="Login" />
       <ImageView fitHeight="480.0" fitWidth="332.0" layoutX="-3.0" layoutY="0.0" pickOnBounds="true">

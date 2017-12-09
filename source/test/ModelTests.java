@@ -328,11 +328,11 @@ class ModelTests {
 				auction.placeBid(new Bid(420, 490.00));
 			});
 			
-			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
-				auction.placeBid(new Bid(420, 490.00));
-			}).getType();
-			
-			assertTrue(type.equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE));
+//			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
+//				auction.placeBid(new Bid(420, 490.00));
+//			}).getType();
+//
+//			assertEquals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE, type);
 		}
 		
 		@DisplayName("Auction new Bid lower than Highest")
@@ -343,11 +343,12 @@ class ModelTests {
 				auction.placeBid(new Bid(420, 502.00));
 			});
 			
-			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
-				auction.placeBid(new Bid(420, 502.00));
-			}).getType();
+//			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
+//				auction.placeBid(new Bid(420, 490.00));
+//			}).getType();
+//
+//			assertEquals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST, type);
 			
-			assertTrue(type.equals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST));
 		}
 		
 		@DisplayName("Auction new Bid already highest bidder")
@@ -359,21 +360,22 @@ class ModelTests {
 				auction.placeBid(new Bid(420, 600.00));
 			});
 			
-			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
-				auction.placeBid(new Bid(420, 600.00));
-			}).getType();
+//			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
+//				auction.placeBid(new Bid(420, 490.00));
+//			}).getType();
+//
+//			assertEquals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER, type);
 			
-			assertTrue(type.equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER));
 		}
 		
 		@DisplayName("Auction new Bid accepted and is winner")
 		@Test
 		void testAuctionBidAcceptBid() {
 			auction2.placeBid(new Bid(69, 600.00));
-		    assertTrue(auction2.getHighestPrice().equals(600.00));
-		    assertTrue(auction2.getHighestBidder().equals("BassHelal"));
-		    assertTrue(auction2.getBidsLeft() == 0);
-		    assertTrue(auction2.isCompleted());
+			assertTrue(auction2.getHighestPrice().equals(600.00));
+			assertTrue(auction2.getHighestBidder().equals("BassHelal"));
+			assertTrue(auction2.getBidsLeft() == 0);
+			assertTrue(auction2.isCompleted());
 		}
 	}
 	

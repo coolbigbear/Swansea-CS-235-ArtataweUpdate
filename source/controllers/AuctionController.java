@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import model.*;
 import model.exception.IllegalBidException;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -52,34 +51,27 @@ public class AuctionController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		//hardcoded Auction!
-		try {
-			initAuction(Util.getAuctionByAuctionID(3));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		generateAuctionLabels();
-		generateArtworkLabels();
+	
 	}
 	
-	// TODO: 08-Dec-17 Something isn't working here because I dind't fucking unit test it!!!
 	@FXML
 	private void bidOnAction() {
 		try {
 			Bid bid = new Bid(currentAuction.getAuctionID(), Double.valueOf(bidInputTextField.getText()));
 			currentAuction.placeBid(bid);
-			System.out.println("Bid accepted of amount " + bid.getBidAmount());
+			bidInputTextField.clear();
+			bidInputTextField.setPromptText("Bid Accepted!");
+			highestBidLabel.setText(bid.getBidAmount().toString());
+			Util.saveAuctionToFile(currentAuction);
 		} catch (IllegalBidException exception) {
 			if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
 				setErrorInputTextField("Already highest bidder!");
 			}
-			if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE)) {
-				setErrorInputTextField("Lower than reserve price!");
-			}
 			if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST)) {
 				setErrorInputTextField("Lower than current highest!");
+			}
+			if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE)) {
+				setErrorInputTextField("Lower than reserve price!");
 			}
 			//If entered input is not a Number
 		} catch (NumberFormatException exception) {
@@ -119,6 +111,7 @@ public class AuctionController implements Initializable {
 		creationYearLabel.setText(String.valueOf(artwork.getCreationDate()));
 	}
 	
+	// TODO: 09-Dec-17  Someone make the error look nicer than this shit!
 	private void setErrorInputTextField(String message) {
 		bidInputTextField.clear();
 		bidInputTextField.setBackground(new Background(new BackgroundFill(Color.CRIMSON, new CornerRadii(0d),
@@ -130,6 +123,9 @@ public class AuctionController implements Initializable {
 		currentAuction = auction;
 		artwork = currentAuction.getArtwork();
 		artworkType = currentAuction.getArtwork().getType();
+		
+		generateAuctionLabels();
+		generateArtworkLabels();
 		
 	}
 }

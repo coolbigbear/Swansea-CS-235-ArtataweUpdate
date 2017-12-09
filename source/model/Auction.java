@@ -77,21 +77,14 @@ public final class Auction implements Comparable<Auction> {
 		this.highestPrice = highestPrice;
 	}
 	
-	public void placeBid(Bid bid) {
+	public void placeBid(Bid bid) throws IllegalBidException {
 		if (validateBid(bid)) {
 			this.highestBidder = bid.getBidderUsername();
 			this.highestPrice = bid.getBidAmount();
 			this.bidList.add(bid);
 			this.bidsLeft--;
 			updateIsCompleted();
-		} else throw new IllegalBidException("Illegal Bid!");
-		
-	}
-	
-	private void updateIsCompleted() {
-		if (this.bidsLeft == 0) {
-			this.isCompleted = true;
-		}
+		} else throw new IllegalBidException(IllegalBidException.IllegalBidType.UNEXPECTED_EXCEPTION);
 	}
 	
 	private Boolean validateBid(Bid bid) throws IllegalBidException {
@@ -103,29 +96,27 @@ public final class Auction implements Comparable<Auction> {
 		}
 		if (!checkIfHigherThanCurrentHighest(bid)) {
 			throw new IllegalBidException(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST);
-		}
+		} else
 		return (checkIfNotHighestBidder(bid) &&
 				checkIfHigherThanReservePrice(bid) &&
 				checkIfHigherThanCurrentHighest(bid));
 	}
 	
 	private Boolean checkIfNotHighestBidder(Bid bid) {
-		if (this.highestBidder == null) {
-			return true;
-		} else {
-			return (!bid.getBidderUsername().equals(this.highestBidder));
-		}
+		return (this.highestBidder == null || !bid.getBidderUsername().equals(this.highestBidder));
 	}
 	
 	private Boolean checkIfHigherThanReservePrice(Bid bid) {
-		return (bid.getBidAmount() >= this.reservePrice);
+		return (bid.getBidAmount() > this.reservePrice);
 	}
 	
 	private Boolean checkIfHigherThanCurrentHighest(Bid bid) {
-		if (this.highestPrice == null) {
-			return true;
-		} else {
-			return (bid.getBidAmount() > this.highestPrice);
+		return (this.highestPrice == null || bid.getBidAmount() > this.highestPrice);
+	}
+	
+	private void updateIsCompleted() {
+		if (this.bidsLeft == 0) {
+			this.isCompleted = true;
 		}
 	}
 	
