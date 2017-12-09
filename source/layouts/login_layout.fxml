@@ -21,7 +21,7 @@
          <Button layoutX="432.0" layoutY="308.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="44.0" prefWidth="111.0" text="Login" />
       <ImageView fitHeight="480.0" fitWidth="332.0" layoutX="-3.0" layoutY="0.0" pickOnBounds="true">
          <image>
-            <Image url="@../../images/abstract-2501105_1920.jpg" />
+            <Image url="@login.jpg" />
          </image></ImageView>
       <Button layoutX="417.0" layoutY="421.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
    </children>

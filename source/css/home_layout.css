@@ -14,3 +14,7 @@
 .button:hover {
     -fx-background-color: #6d6b6e;
 }
+
+.root {
+    -fx-background-color: #cfdff9;
+}
