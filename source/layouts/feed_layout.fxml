@@ -17,9 +17,9 @@
 
 <BorderPane fx:id="feedLayout" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FeedController">
    <top>
-      <AnchorPane prefHeight="53.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="12.0" prefWidth="1023.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox layoutX="294.0" layoutY="43.0" prefHeight="31.0" prefWidth="729.0" AnchorPane.rightAnchor="0.0">
+            <HBox layoutX="294.0" layoutY="12.0" prefHeight="31.0" prefWidth="729.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <ChoiceBox fx:id="choiceBoxFilter" layoutX="308.0" layoutY="21.0" prefWidth="150.0" value="Show All" />   
                   <Button layoutX="464.0" layoutY="21.0" mnemonicParsing="false" prefWidth="79.0" text="Filter" />
@@ -31,7 +31,7 @@
                   <Insets left="500.0" />
                </padding>
             </HBox>
-            <HBox layoutX="6.0" layoutY="43.0" prefHeight="32.0" prefWidth="275.0">
+            <HBox layoutX="6.0" layoutY="11.0" prefHeight="32.0" prefWidth="275.0">
                <children>
                   <TextField layoutX="14.0" layoutY="21.0" prefWidth="275.0" promptText="Search..." />
                </children>
@@ -40,7 +40,7 @@
       </AnchorPane>
    </top>
    <center>
-      <ScrollPane hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" pannable="true" prefHeight="467.0" prefWidth="1023.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+      <ScrollPane prefHeight="467.0" prefWidth="1023.0" BorderPane.alignment="CENTER">
         <content>
             <GridPane fx:id="cardsGridPane" layoutX="3.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="461.0" prefWidth="1024.0" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="3.0">
               <columnConstraints>
