@@ -14,6 +14,7 @@ import model.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -48,7 +49,7 @@ public class CreateSculptureController implements Initializable {
     private Integer sculptureDepthPulled;
 
     private Boolean imgChosen = false;
-    private Boolean additionalImages = false;
+    private ArrayList pathsToImages = new ArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
