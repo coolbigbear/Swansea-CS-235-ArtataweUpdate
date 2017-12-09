@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -17,17 +18,25 @@
                <children>
                       <Label layoutX="14.0" layoutY="13.0" prefHeight="83.0" prefWidth="623.0" text="ARTATAWE">
                      <font>
-                        <Font name="Bodoni MT Italic" size="52.0" />
+                        <Font name="Felix Titling" size="61.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="150.0" />
                      </HBox.margin>
-                     <effect>
-                        <DropShadow height="15.56" radius="6.3075" width="11.67" />
-                     </effect>
                      <padding>
                         <Insets left="10.0" />
                      </padding>
+                     <textFill>
+                        <RadialGradient centerY="0.08252427184466019" focusDistance="0.4878048780487805" radius="0.9634146341463414">
+                           <stops>
+                              <Stop color="YELLOW" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                     <effect>
+                        <DropShadow height="8.56" radius="5.335" width="14.78" />
+                     </effect>
                   </Label>
                </children>
             </HBox>
