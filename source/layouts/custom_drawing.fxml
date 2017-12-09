@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ColorPicker?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="400.0" prefWidth="400" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controllers.DrawingController">
-
+<BorderPane prefHeight="400.0" prefWidth="400" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DrawingController">
     <top>
         <VBox>
            <children>
@@ -26,25 +23,39 @@
                       <Menu text="File">
                          <items>
                              <MenuItem onAction="#onSave" text="Save" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
                              <MenuItem onAction="#onClear" text="Clear" />
                          </items>
                       </Menu>
                   </menus>
                </MenuBar>
-                <HBox alignment="CENTER" spacing="8">
+                <HBox alignment="CENTER" prefHeight="31.0" prefWidth="335.0" spacing="8">
                    <children>
-                       <ColorPicker fx:id="colorPicker" />
+                  <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="199.0" text="Choose drawing style">
+                     <items>
+                        <RadioMenuItem fx:id="freeDraw" mnemonicParsing="false" text="Free drawing">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="drawingShapes" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <RadioMenuItem fx:id="drawRectangle" mnemonicParsing="false" text="Draw rectangles" toggleGroup="$drawingShapes" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <RadioMenuItem fx:id="drawCircle" mnemonicParsing="false" text="Draw circles" toggleGroup="$drawingShapes" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <RadioMenuItem fx:id="drawLine" mnemonicParsing="false" text="Draw lines" toggleGroup="$drawingShapes" />
+                     </items>
+                  </MenuButton>
+                       <ColorPicker fx:id="colorPicker" prefHeight="31.0" prefWidth="104.0" />
                        <TextField fx:id="brushSize" prefHeight="31.0" prefWidth="78.0" text="10" />
-                       <CheckBox fx:id="ovalPaint" text="Circle Brush" />
                    </children>
 
                 </HBox>
            </children>
         </VBox>
     </top>
-
-    <center>
-        <Canvas fx:id="canvas" height="400" width="400" />
-    </center>
+   <right>
+        <Canvas fx:id="canvas" height="400" width="400" BorderPane.alignment="CENTER" />
+   </right>
 
 </BorderPane>
