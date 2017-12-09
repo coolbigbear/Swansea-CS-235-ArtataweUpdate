@@ -29,6 +29,7 @@ public final class Feed implements Iterable<Auction> {
 	
 	//The current Feed instance, may be null
 	private static Feed instance;
+	private static Feed sisterInstance;
 	
 	//The main data structure, an ArrayList
 	private ArrayList<Auction> arrayList;
@@ -317,6 +318,12 @@ public final class Feed implements Iterable<Auction> {
 		Collections.sort(this.arrayList);
 	}
 	
+	public static Feed createAndGetSisterFeed(Feed feedToCopy) {
+		sisterInstance = new Feed(feedToCopy.size());
+		sisterInstance.updateWith(feedToCopy.getAllAsArrayList());
+		return sisterInstance;
+	}
+	
 	@Override
 	public int hashCode() {
 		return arrayList.hashCode();
@@ -327,7 +334,6 @@ public final class Feed implements Iterable<Auction> {
 		return ((super.equals(obj) && (obj.hashCode() == this.hashCode())));
 	}
 	
-	//implement this better later!!!
 	@Override
 	public String toString() {
 		StringBuilder contents = new StringBuilder();
