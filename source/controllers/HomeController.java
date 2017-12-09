@@ -153,7 +153,6 @@ public class HomeController implements Initializable {
 		    }
 	    }
 	    feed.updateWith(resultList);
-
         setAuctionsCenter();
     }
 
@@ -193,7 +192,6 @@ public class HomeController implements Initializable {
     }
 
     private ArrayList<Bid> getAllBids() {
-
 	    Util.getActiveAuctions();
 	    Feed feed  = Feed.getInstance();
 	    ArrayList<Bid> bidList = new ArrayList<>();
@@ -217,7 +215,7 @@ public class HomeController implements Initializable {
         }
         return profiles;
     }
-    
+
     private void populateFavoritesView() {
         Util.dynamicFavoritesGridPane(favoritesGridPane, favoriteUsers);
         Util.setFavoriteUsersGridPane(favoritesGridPane);

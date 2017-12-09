@@ -17,6 +17,7 @@ import model.Profile;
 import model.Util;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -104,6 +105,7 @@ public class ProfileController implements Initializable {
     @FXML
     private void setFavouriteUser() {
         int counter = Util.getCurrentUser().getFavouriteUsers().size();
+        System.out.println("GRID ROWS:");
         if (favouriteUser.getText().equalsIgnoreCase("Remove favorite")) {
             for (int i = 0; i < Util.getCurrentUser().getFavouriteUsers().size(); i++) {
                 if (Util.getCurrentUser().getFavouriteUsers().get(i).equalsIgnoreCase(selectedProfile.getUsername())) {
@@ -111,9 +113,20 @@ public class ProfileController implements Initializable {
                     Util.getCurrentUser().getFavouriteUsers().remove(i);
                 }
             }
+            for (int i = counter -1; i >= 0; i--) {
+                deleteRow(Util.getFavoriteUsersGridPane(), i);
+            }
+            Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
+            System.out.println("GRIDPANE ROWS: " + Util.getFavoriteUsersGridPane().getRowConstraints().toString());
             favouriteUser.setText("Add to favorites");
         } else {
+            //TODO GSON NEEDS TO BE UPDATED!!!
             Util.getCurrentUser().getFavouriteUsers().add(selectedProfile.getUsername());
+            for (int i = counter -1; i >= 0; i--) {
+                deleteRow(Util.getFavoriteUsersGridPane(), i);
+                System.out.println("REMOVING" + i);
+            }
+            Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
             favouriteUser.setText("Remove favorite");
         }
     }
@@ -195,5 +208,13 @@ public class ProfileController implements Initializable {
             }
         }
         grid.getChildren().removeAll(deleteNodes);
+    }
+
+    private ArrayList<Profile> populateFavoriteUsers() {
+        ArrayList<Profile> profiles = new ArrayList<>();
+        for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
+            profiles.add(Util.getProfileByUsername(elem));
+        }
+        return profiles;
     }
 }
