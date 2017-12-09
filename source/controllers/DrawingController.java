@@ -1,4 +1,4 @@
-package CustomDrawing;
+package controllers;
 
 
 import javafx.embed.swing.SwingFXUtils;
