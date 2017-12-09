@@ -34,6 +34,7 @@ public final class Util {
 	private static ImageView profileImage;
 	private static GridPane favoriteUsersGridPane;
 	private static ChoiceBox filterChoiceBox;
+
 	/**
 	 * Reads in all profiles from database.
 	 *

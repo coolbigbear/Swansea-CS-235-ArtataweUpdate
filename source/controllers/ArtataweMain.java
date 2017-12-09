@@ -11,6 +11,7 @@ public class ArtataweMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Util.setMainStage(primaryStage);
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/login_layout.fxml"));
         primaryStage.setTitle("Artatawe v1.1");
         primaryStage.setScene(new Scene(root));
