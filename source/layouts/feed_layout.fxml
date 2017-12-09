@@ -40,7 +40,7 @@
       </AnchorPane>
    </top>
    <center>
-      <ScrollPane hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" pannable="true" prefHeight="467.0" prefWidth="1023.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+      <ScrollPane prefHeight="467.0" prefWidth="1023.0" BorderPane.alignment="CENTER">
         <content>
             <GridPane fx:id="cardsGridPane" layoutX="3.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="461.0" prefWidth="1024.0" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="3.0">
               <columnConstraints>
