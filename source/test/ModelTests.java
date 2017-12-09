@@ -51,7 +51,7 @@ class ModelTests {
 		@DisplayName("Artwork Title")
 		@Test
 		void testArtworkTitle() {
-			Artwork artwork = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507, 1, 1),
+			Artwork artwork = new Painting("Mona Lisa", new StringBuilder("Beautiful"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
 			artwork.setTitle("The other Lisa");
@@ -62,7 +62,7 @@ class ModelTests {
 		@DisplayName("Artwork Description")
 		@Test
 		void testArtworkDescription() {
-			Artwork artwork = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507, 1, 1),
+			Artwork artwork = new Painting("Mona Lisa", new StringBuilder("Beautiful"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
 			StringBuilder description = new StringBuilder("The Mona Lisa (/ˌmoʊnə ˈliːsə/; Italian: Monna Lisa [ˈmɔnna ˈliːza] " +
@@ -82,17 +82,17 @@ class ModelTests {
 		@DisplayName("Artwork CreationDate")
 		@Test
 		void testArtworkCreationDate() {
-			Artwork artwork = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507, 1, 1),
+			Artwork artwork = new Painting("Mona Lisa", new StringBuilder("Beautiful"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
-			artwork.setCreationDate(LocalDate.of(1970, Month.JANUARY, 1));
-			assertEquals(LocalDate.of(1970, 1, 1), artwork.getCreationDate());
+			artwork.setCreationDate("someDate");
+			assertEquals("someDate", artwork.getCreationDate());
 		}
 		
 		@DisplayName("Artwork CreatorName")
 		@Test
 		void testArtworkCreatorName() {
-			Artwork artwork = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507, 1, 1),
+			Artwork artwork = new Painting("Mona Lisa", new StringBuilder("Beautiful"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
 			artwork.setCreatorName("Chuck Norris");
@@ -103,7 +103,7 @@ class ModelTests {
 		@DisplayName("Artwork MainImagePath")
 		@Test
 		void testArtworkMainImagePath() {
-			Artwork artwork = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507, 1, 1),
+			Artwork artwork = new Painting("Mona Lisa", new StringBuilder("Beautiful"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
 			artwork.setMainImagePath("Finland");
@@ -114,7 +114,7 @@ class ModelTests {
 		@DisplayName("Painting Width & Height")
 		@Test
 		void testPaintingWidthAndHeight() {
-			Painting painting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507, 1, 1),
+			Painting painting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
 			painting.setHeight(50);
@@ -126,11 +126,10 @@ class ModelTests {
 		@DisplayName("Painting Equals True")
 		@Test
 		void testPaintingEqualsTrue() {
-			Painting painting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507, 1, 1),
+			Painting painting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
-			Painting anotherPainting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507,
-					1, 1),
+			Painting anotherPainting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
 			assertTrue(painting.hashCode() == anotherPainting.hashCode());
@@ -140,11 +139,10 @@ class ModelTests {
 		@DisplayName("Painting Equals False")
 		@Test
 		void testPaintingEqualsFalse() {
-			Painting painting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507, 1, 1),
+			Painting painting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
-			Painting anotherPainting = new Painting("Other Lisa", new StringBuilder("Ugly"), LocalDate.of(1507,
-					1, 1),
+			Painting anotherPainting = new Painting("Other Lisa", new StringBuilder("Ugly"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
 			assertFalse(painting.hashCode() == anotherPainting.hashCode());
@@ -154,24 +152,24 @@ class ModelTests {
 		@DisplayName("Painting toString")
 		@Test
 		void testPaintingToString() {
-			Painting painting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), LocalDate.of(1507, 1, 1),
+			Painting painting = new Painting("Mona Lisa", new StringBuilder("Beautiful"), "someDate",
 					"Leonardo DaVinci", "path", 5, 5);
 			
 			assertEquals("Painting: \n\tTitle: Mona Lisa\n\tCreator Name: Leonardo DaVinci\n\tCreation Date: " +
-					painting.getCreationDate().toString() + "\n\tWidth: 5\n\tHeight: 5\n", painting.toString());
+					painting.getCreationDate() + "\n\tWidth: 5\n\tHeight: 5\n", painting.toString());
 		}
 		
 		@DisplayName("Painting Type")
 		@Test
 		void testPaintingGetType() {
-			Artwork localPainting = new Painting("", new StringBuilder(""), LocalDate.now(), "", "path", 5, 5);
+			Artwork localPainting = new Painting("", new StringBuilder(""), "someDate", "", "path", 5, 5);
 			assertEquals(ArtworkType.Painting, localPainting.getType());
 		}
 		
 		@DisplayName("Sculpture Add Additional Images")
 		@Test
 		void testSculptureAddAdditionalImages() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), "someDate",
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			sculpture.addAdditionalImages("path1", "path2", "path3");
@@ -184,7 +182,7 @@ class ModelTests {
 		@DisplayName("Sculpture Set Additional Images")
 		@Test
 		void testSculptureSetAdditionalImages() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), "someDate",
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			List<String> list = new ArrayList<>(Arrays.asList("path1", "path2", "path3"));
@@ -197,7 +195,7 @@ class ModelTests {
 		@DisplayName("Sculpture Width, Height & Depth")
 		@Test
 		void testSculptureWidthHeightAndDepth() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), "someDate",
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			sculpture.setHeight(50);
@@ -211,7 +209,7 @@ class ModelTests {
 		@DisplayName("Sculpture Main Material")
 		@Test
 		void testSculptureMainMaterial() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), "someDate",
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			sculpture.setMainMaterial("Granite");
@@ -221,7 +219,7 @@ class ModelTests {
 		@DisplayName("Sculpture Type")
 		@Test
 		void testSculptureGetType() {
-			Artwork localSculpture = new Sculpture("", new StringBuilder(""), LocalDate.now(), "",
+			Artwork localSculpture = new Sculpture("", new StringBuilder(""), "someDate", "",
 					null, 5, 5, 5, "");
 			assertEquals(ArtworkType.Sculpture, localSculpture.getType());
 		}
@@ -229,11 +227,10 @@ class ModelTests {
 		@DisplayName("Sculpture Equals True")
 		@Test
 		void testSculptureEqualsTrue() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), "someDate",
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
-			Sculpture anotherSculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5,
-					5),
+			Sculpture anotherSculpture = new Sculpture("David", new StringBuilder("Majestic"), "someDate",
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			assertTrue(sculpture.hashCode() == anotherSculpture.hashCode());
@@ -243,11 +240,11 @@ class ModelTests {
 		@DisplayName("Sculpture Equals False")
 		@Test
 		void testSculptureEqualsFalse() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), "someDate",
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			Sculpture anotherSculpture = new Sculpture("Other David", new StringBuilder("Not so Majestic"),
-					LocalDate.of(1500, 5, 5), "Michelangelo",
+					"someDate", "Michelangelo",
 					"path", 5, 5, 10, "Marble");
 			
 			assertFalse(sculpture.hashCode() == anotherSculpture.hashCode());
@@ -257,7 +254,7 @@ class ModelTests {
 		@DisplayName("Sculpture toString")
 		@Test
 		void testSculptureToString() {
-			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), LocalDate.of(1500, 5, 5),
+			Sculpture sculpture = new Sculpture("David", new StringBuilder("Majestic"), "someDate",
 					"Michelangelo", "path", 5, 5, 10, "Marble");
 			
 			assertEquals("Sculpture: \n\tTitle: David\n\tCreator Name: Michelangelo\n\tCreation Date: " +
@@ -315,12 +312,12 @@ class ModelTests {
 		
 		Auction auction = new Auction(
 				new Painting("Painting1", new StringBuilder("My Painting " +
-						"Description"), LocalDate.of(1950, 1, 1), "My Painting's Creator", "MyPaintingPath", 5, 5), "MyPaintingSeller", 420, new ArrayList<>(), 500.00, 6, LocalDateTime.now(),
+						"Description"), "someDate", "My Painting's Creator", "MyPaintingPath", 5, 5), "MyPaintingSeller", 420, new ArrayList<>(), 500.00, 6, LocalDateTime.now(),
 				5, "HighestBidder", false, 505.00);
 		
 		Auction auction2 = new Auction(
 				new Painting("Painting1", new StringBuilder("My Painting " +
-						"Description"), LocalDate.of(1950, 1, 1), "My Painting's Creator", "MyPaintingPath", 5, 5), "MyPaintingSeller", 69, new ArrayList<>(), 500.00, 6, LocalDateTime.now(),
+						"Description"), "someDate", "My Painting's Creator", "MyPaintingPath", 5, 5), "MyPaintingSeller", 69, new ArrayList<>(), 500.00, 6, LocalDateTime.now(),
 				1, "HighestBidder", false, 505.00);
 		
 		@DisplayName("Auction new Bid lower than Reserve")

@@ -116,7 +116,7 @@ public class AuctionController implements Initializable {
 	private void generateGeneralArtworkLabels() {
 		descriptionLabel.setText(artwork.getDescription().toString());
 		creatorNameLabel.setText(artwork.getCreatorName());
-		creationYearLabel.setText(String.valueOf(artwork.getCreationDate().getYear()));
+		creationYearLabel.setText(String.valueOf(artwork.getCreationDate()));
 	}
 	
 	private void setErrorInputTextField(String message) {

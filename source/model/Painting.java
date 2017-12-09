@@ -1,14 +1,12 @@
 package model;
 
-import java.time.LocalDate;
-
 // TODO: 04-Dec-17 Documentation!
 public class Painting extends Artwork {
 	
 	private Integer width;
 	private Integer height;
 	
-	public Painting(String title, StringBuilder description, LocalDate creationDate,
+	public Painting(String title, StringBuilder description, String creationDate,
 	                String creatorName, String mainImagePath, Integer width, Integer height) {
 		super(title, description, creationDate, creatorName, mainImagePath);
 		this.width = width;
