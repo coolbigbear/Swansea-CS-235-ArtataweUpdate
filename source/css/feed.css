@@ -19,4 +19,9 @@
 .root   {
     -fx-background-color: #cfdff9;
     -fx-border-color: #cfdff9;
+
+}
+
+#scrollPane {
+    -fx-background-color: #cfdff9;
 }

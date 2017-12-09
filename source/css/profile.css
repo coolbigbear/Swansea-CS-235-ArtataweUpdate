@@ -2,7 +2,7 @@
     -fx-text-fill: white;
     -fx-font-family: "Calibri Light";
     -fx-font-weight: bold;
-    -fx-font-size: 16px;
+    -fx-font-size: 46px;
     -fx-background-color: linear-gradient(#D3D3D3, #9b9c9e);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-border-radius: 45px;
@@ -10,12 +10,15 @@
 .button:hover {
     -fx-background-color: #6d6b6e;
 }
-.root {
-    /*
-    Testing implementation across from desktop to laptop.
-     */
+#profileLayout{
     -fx-background-color: #FFFFFF;
 }
+
+#currentlySellingAuctionsGridPane{
+    -fc-background-colour: green;
+}
+
+
 
 .label{
     -fx-font-family: "Calibri Light";

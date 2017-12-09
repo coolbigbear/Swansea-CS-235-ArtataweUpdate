@@ -12,7 +12,8 @@
 
 #logintitle {
     -fx-font-family: "Calibri Light";
-    -fx-font-size: 64px;
+    -fx-font-size: 45px;
+    -fx-text-fill: black;
 }
 .button {
     -fx-text-fill: white;

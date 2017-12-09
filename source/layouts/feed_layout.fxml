@@ -43,7 +43,7 @@
       </AnchorPane>
    </top>
    <center>
-      <ScrollPane prefHeight="467.0" prefWidth="1023.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollPane" prefHeight="467.0" prefWidth="1023.0" BorderPane.alignment="CENTER">
         <content>
             <GridPane fx:id="cardsGridPane" layoutX="3.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="461.0" prefWidth="1024.0" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="3.0">
               <columnConstraints>
