@@ -29,6 +29,7 @@ public class FeedController implements Initializable {
 	private ObservableList<String> choiceBoxList = FXCollections.observableArrayList("Show All", "Paintings",
 			"Sculptures");
 	private Feed feed;
+	private Feed sisterFeed;
 	
 	
 	@Override
@@ -47,6 +48,7 @@ public class FeedController implements Initializable {
 		Util.setFilterChoiceBox(choiceBoxFilter);
 	}
 	
+	// TODO: 09-Dec-17 Bassam please fix this thing!!! Could be fixed by having Feed have a secret sister instance
 	private void setChoiceBox() {
 		choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
 			try {
@@ -54,6 +56,7 @@ public class FeedController implements Initializable {
 					case 0:
 						System.out.println("Show all");
 						feed = Feed.getInstance();
+						sisterFeed = Feed.createAndGetSisterFeed(feed);
 						ArrayList<Auction> resultList = new ArrayList<>();
 						for (Auction auction : feed) {
 							if (auction.getArtwork().getType().equals(ArtworkType.Sculpture) ||
@@ -61,33 +64,38 @@ public class FeedController implements Initializable {
 								resultList.add(auction);
 							}
 						}
-						feed.updateWith(resultList);
+						sisterFeed.updateWith(resultList);
 						setAuctionsCenter();
 						break;
+						
 					case 1:
 						System.out.println("Paintings");
 						feed = Feed.getInstance();
+						sisterFeed = Feed.createAndGetSisterFeed(feed);
 						resultList = new ArrayList<>();
 						for (Auction auction : feed) {
 							if (auction.getArtwork().getType().equals(ArtworkType.Painting)) {
 								resultList.add(auction);
 							}
 						}
-						feed.updateWith(resultList);
+						sisterFeed.updateWith(resultList);
 						setAuctionsCenter();
 						break;
+						
 					case 2:
 						System.out.println("Sculptures");
 						feed = Feed.getInstance();
+						sisterFeed = Feed.createAndGetSisterFeed(feed);
 						resultList = new ArrayList<>();
 						for (Auction auction : feed) {
 							if (auction.getArtwork().getType().equals(ArtworkType.Sculpture)) {
 								resultList.add(auction);
 							}
 						}
-						feed.updateWith(resultList);
+						sisterFeed.updateWith(resultList);
 						setAuctionsCenter();
 						break;
+						
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
