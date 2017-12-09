@@ -36,6 +36,7 @@ public class DrawingController {
         }catch(Exception e){
             System.out.println("Cannot save file!" + e);
         }
+        //TODO Set image and Close custom drawing window
     }
 
     public void onClear(){
@@ -51,16 +52,16 @@ public class DrawingController {
             double y = event.getY();
             gc.setFill(colorPicker.getValue());
             if(ovalPaint.isSelected()) {
-                gc.fillOval(x, y, size, size);
+                gc.fillOval(x, y, size/2, size/2);
             }else{
-                gc.fillRect(x, y, size, size);
+                gc.fillRect(x, y, size/2, size/2);
             }
         });
     }
 
     private String generateNameAndSetLocation() {
         String generatedString = UUID.randomUUID().toString();
-        return "images\\custom\\" + generatedString +".png";
+        return "source/images/custom/" + generatedString +".png";
     }
 
 }
