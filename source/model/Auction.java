@@ -43,8 +43,6 @@ public final class Auction implements Comparable<Auction> {
 	private Auction(Artwork artwork, String sellerName, Integer bidsAllowed, Double reservePrice) {
 		this.artwork = artwork;
 		this.sellerName = sellerName;
-		
-		
 		this.auctionID = Util.getNewAuctionID();
 		this.bidList = new ArrayList<>();
 		this.bidsLeft = bidsAllowed;
@@ -59,8 +57,10 @@ public final class Auction implements Comparable<Auction> {
 	                                       Integer bidsAllowed, Double reservePrice) {
 		// TODO: 08-Dec-17 Send the Auction to Database
 		Auction localAuction = new Auction(artwork, seller, bidsAllowed, reservePrice);
-		Util.getCurrentUser().getCurrentlySelling().add(localAuction);
-		
+		Util.getCurrentUser()
+		.getCurrentlySelling()
+				.add(localAuction);
+
 		return localAuction;
 	}
 	
