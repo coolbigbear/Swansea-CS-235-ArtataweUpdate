@@ -20,7 +20,7 @@
         <TextField fx:id="loginTextField" alignment="CENTER" layoutX="381.0" layoutY="263.0" onAction="#loginButtonAction" prefHeight="31.0" prefWidth="214.0" promptText="Username" />
         <Label fx:id="loginUserPrompt" layoutX="391.0" layoutY="187.0" prefHeight="33.0" prefWidth="257.0" />
         <Button layoutX="432.0" layoutY="308.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="44.0" prefWidth="111.0" text="Login" />
-        <Button layoutX="417.0" layoutY="421.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
+        <Button layoutX="451.0" layoutY="387.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
       <ImageView fitHeight="206.0" fitWidth="273.0" layoutX="347.0" layoutY="28.0" pickOnBounds="true">
          <image>
             <Image url="@../images/misc/logo.png" />
