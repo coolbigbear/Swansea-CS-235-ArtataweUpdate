@@ -227,14 +227,25 @@ public class ProfileController implements Initializable {
     }
 
     private void populateCurrentlySellingAuctions() {
-        final int AUCTIONS_SELLING_COLUMN = 0;
-        final int AUCTIONS_PRICE_COLUMN = 1;
+        final int AUCTIONS_IMAGE_COLUMN = 0;
+        final int AUCTIONS_SELLING_COLUMN = 1;
+        final int AUCTIONS_PRICE_COLUMN = 2;
+        final int AUCTIONS_IMAGE_SIZE = 20;
         int row = 0;
         System.out.println(selectedProfile.getCurrentlySelling().size());
         currentlySellingAuctionsGridPane.addRow(selectedProfile.getCurrentlySelling().size());
+        ImageView auctionImage;
         Hyperlink auctionLink;
         Label auctionPrice;
         for (Auction elem : selectedProfile.getCurrentlySelling()) {
+            auctionImage = new ImageView();
+            auctionImage.setFitHeight(AUCTIONS_IMAGE_SIZE);
+            auctionImage.setFitWidth(AUCTIONS_IMAGE_SIZE);
+            try {
+                auctionImage.setImage(new Image(elem.getArtwork().getMainImagePath()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             auctionPrice = new Label();
             if (elem.getReservePrice() < elem.getHighestPrice()) {
                 auctionPrice.setText(String.valueOf(elem.getHighestPrice()));
@@ -255,6 +266,7 @@ public class ProfileController implements Initializable {
                     e.printStackTrace();
                 }
             });
+            currentlySellingAuctionsGridPane.add(auctionImage,AUCTIONS_IMAGE_COLUMN,row);
             currentlySellingAuctionsGridPane.add(auctionLink,AUCTIONS_SELLING_COLUMN,row);
             currentlySellingAuctionsGridPane.add(auctionPrice,AUCTIONS_PRICE_COLUMN,row);
             row++;
