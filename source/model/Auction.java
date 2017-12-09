@@ -58,7 +58,10 @@ public final class Auction implements Comparable<Auction> {
 	public static Auction createNewAuction(Artwork artwork, String seller,
 	                                       Integer bidsAllowed, Double reservePrice) {
 		// TODO: 08-Dec-17 Send the Auction to Database
-		return new Auction(artwork, seller, bidsAllowed, reservePrice);
+		Auction localAuction = new Auction(artwork, seller, bidsAllowed, reservePrice);
+		Util.getCurrentUser().getCurrentlySelling().add(localAuction);
+		
+		return localAuction;
 	}
 	
 	public Auction(Artwork artwork, String sellerName, Integer auctionID, List<Bid> bidList,
