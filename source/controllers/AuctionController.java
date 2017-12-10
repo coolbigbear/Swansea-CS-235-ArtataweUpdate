@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,9 +15,7 @@ import model.exception.IllegalBidException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class AuctionController implements Initializable {
 
@@ -99,7 +96,7 @@ public class AuctionController implements Initializable {
 		sellerLink.setText(currentAuction.getSellerName());
 		reservePriceLabel.setText("£" + String.valueOf(currentAuction.getReservePrice()));
 		highestBidLabel.setText("£" + String.valueOf(currentAuction.getHighestPrice()));
-		bidInputTextField.setPromptText("Enter your bid amount...");
+		bidInputTextField.setPromptText("Enter bid amount");
 	}
 	
 	private void generateArtworkLabels() {
@@ -145,7 +142,7 @@ public class AuctionController implements Initializable {
 		}
 		generateAuctionLabels();
 		generateArtworkLabels();
-		disableSellerNodes();
+		setSellerSpecificNodes();
 	}
 	
 	private void populateUsersBidPane() {
@@ -221,7 +218,7 @@ public class AuctionController implements Initializable {
 		}
 	}
 
-	private void disableSellerNodes() {
+	private void setSellerSpecificNodes() {
 		if (Util.getCurrentUser().getUsername().equalsIgnoreCase(currentAuction.getSellerName())) {
 			viewAuctionScrollPane.setVisible(true);
 			usersBidAuctionGridPane.setVisible(true);
