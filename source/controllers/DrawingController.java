@@ -61,6 +61,8 @@ public class DrawingController {
 
 
     public void initialize() {
+        Stage stage = (Stage) colorPicker.getScene().getWindow();
+        stage.setResizable(false);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         canvas.setOnMouseDragged(event -> {
             if (freeDraw.isSelected()) {
