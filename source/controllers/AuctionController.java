@@ -458,18 +458,22 @@ public class AuctionController implements Initializable {
 	private void displayMainImage() {
 		mainArtworkImage.setImage(mainImage2.getImage());
 	}
+	
 	@FXML
 	private void displayOptionalImage1() {
 		mainArtworkImage.setImage(optionalImage1.getImage());
 	}
+	
 	@FXML
 	private void displayOptionalImage2() {
 		mainArtworkImage.setImage(optionalImage2.getImage());
 	}
+	
 	@FXML
 	private void displayOptionalImage3() {
 		mainArtworkImage.setImage(optionalImage3.getImage());
 	}
+	
 	@FXML
 	private void displayOptionalImage4() {
 		mainArtworkImage.setImage(optionalImage4.getImage());
