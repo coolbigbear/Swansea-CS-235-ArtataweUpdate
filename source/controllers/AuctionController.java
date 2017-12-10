@@ -59,6 +59,16 @@ public class AuctionController implements Initializable {
 	private Label errorMessageLabel;
 	@FXML
 	private Label placedBidsLabel;
+	@FXML
+	private ImageView mainArtworkImage;
+	@FXML
+	private ImageView optionalImage1;
+	@FXML
+	private ImageView optionalImage2;
+	@FXML
+	private ImageView optionalImage3;
+	@FXML
+	private ImageView optionalImage4;
 	private Auction currentAuction;
 	private Artwork artwork;
 	private ArtworkType artworkType;
@@ -164,6 +174,7 @@ public class AuctionController implements Initializable {
 		if (currentAuction.isCompleted() && (!currentAuction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()))) {
 			setViewerSpecificNodes();
 		}
+		setArtworkDisplayImages();
 	}
 	
 	private void populateUsersBidPane() {
@@ -365,5 +376,38 @@ public class AuctionController implements Initializable {
 		String s ="Congratulations, you have just won the auction! ";
 		alert.setContentText(s);
 		alert.show();
+	}
+
+	private void setArtworkDisplayImages() {
+		if (currentAuction.getArtwork() instanceof Painting) {
+			try {
+				mainArtworkImage.setImage(new Image(currentAuction.getArtwork().getMainImagePath()));
+			} catch (Exception e) {
+				System.out.println("Image not found");
+			}
+		} else {
+			mainArtworkImage.setImage(new Image(currentAuction.getArtwork().getMainImagePath()));
+			Sculpture p = (Sculpture) currentAuction.getArtwork();
+			try {
+				switch (p.getAdditionalImagesPaths().size()) {
+					case 0 :
+						break;
+					case 1:
+						optionalImage1.setImage((new Image(p.getAdditionalImagesPaths().get(0))));
+						break;
+					case 2:
+						optionalImage2.setImage((new Image(p.getAdditionalImagesPaths().get(1))));
+						break;
+					case 3:
+						optionalImage3.setImage((new Image(p.getAdditionalImagesPaths().get(2))));
+						break;
+					case 4:
+						optionalImage4.setImage((new Image(p.getAdditionalImagesPaths().get(3))));
+						break;
+				}
+			} catch (Exception e) {
+				System.out.println("Image not found");
+			}
+		}
 	}
 }

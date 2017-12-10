@@ -9,6 +9,8 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import model.Util;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -37,16 +39,18 @@ public class DrawingController {
     @FXML
     private RadioMenuItem drawLine;
 
+    private String customPath;
     public void onSave() {
         try {
             Image snapshot = canvas.snapshot(null, null);
             ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File
                     (generateNameAndSetLocation()));
+
+            Stage stage = (Stage) colorPicker.getScene().getWindow();
+            stage.close();
         } catch (Exception e) {
             System.out.println("Cannot save file!" + e);
         }
-        //TODO Set image and Close custom drawing window
-        //TODO ADD TO GSON
     }
 
     public void onClear() {
@@ -89,9 +93,9 @@ public class DrawingController {
         });
     }
 
-
     private String generateNameAndSetLocation() {
         String generatedString = UUID.randomUUID().toString();
+        customPath = "images/custom/" + generatedString + ".png";
         return "source/images/custom/" + generatedString + ".png";
     }
 
