@@ -85,10 +85,23 @@ public class AuctionController implements Initializable {
 				// Auction to the seller's completed Auctions list and remove it from his selling and then save all
 				// this to database
 				
-				Util.saveAuctionToFile(currentAuction);
-				if (currentAuction.getBidsLeft() == 0) {
+				if(currentAuction.isCompleted()) {
 					auctionWon();
+					Profile seller = Util.getProfileByUsername(currentAuction.getSellerName());
+					
+					//Updates the seller's selling and sold and the current user's won
+					seller.getCompletedAuctions().add(currentAuction);
+					seller.getCurrentlySelling().remove(currentAuction);
+					Util.getCurrentUser().getWonAuctions().add(currentAuction);
+					
+					//Saves everything to the database
+					Util.saveProfileToFile(seller);
+					Util.saveProfileToFile(Util.getCurrentUser());
 				}
+				
+				Util.saveAuctionToFile(currentAuction);
+				
+				
 			} catch (IllegalBidException exception) {
 				if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
 					errorMessageLabel.setText("Already highest bidder!");

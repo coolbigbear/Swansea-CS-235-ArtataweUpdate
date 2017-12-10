@@ -67,11 +67,12 @@ public final class Util {
 		}
 		return auctions;
 	}
-
+	
 	/**
 	 * Read in logged in user.
 	 *
 	 * @param username the username
+	 *
 	 * @return the boolean
 	 */
 	public static boolean checkAndSetUser(String username) {
@@ -89,11 +90,12 @@ public final class Util {
 		}
 		return found;
 	}
-
+	
 	/**
 	 * Gets profile by username from database.
 	 *
 	 * @param username the username
+	 *
 	 * @return the profile to be returned
 	 */
 	public static Profile getProfileByUsername(String username) {
@@ -108,12 +110,14 @@ public final class Util {
 		}
 		throw new ProfileNotFoundException("Profile not found!");
 	}
-
+	
 	/**
 	 * Gets Auction by auctionID from database.
 	 *
 	 * @param auctionID the ID of auction to be found
+	 *
 	 * @return the auction to be returned
+	 *
 	 * @throws IOException the io exception
 	 */
 	public static Auction getAuctionByAuctionID(Integer auctionID) throws IOException {
@@ -133,7 +137,7 @@ public final class Util {
 			return auction;
 		}
 	}
-
+	
 	/**
 	 * Read in all auctions from database that are active (on sale).
 	 */
@@ -151,7 +155,17 @@ public final class Util {
 			}
 		}
 	}
-
+	
+	public static void getAllAuctions() {
+		Auction[] fromJson = readInAuctionFile();
+		
+		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+		
+		Feed feed = Feed.getNewInstanceWithCapacity(auctionArrayList.size());
+		feed.updateWith(auctionArrayList);
+		
+	}
+	
 	/**
 	 * Gets active auctions by username.
 	 *
@@ -171,7 +185,7 @@ public final class Util {
 			}
 		}
 	}
-
+	
 	/**
 	 * Reads in only active sculpture auctions.
 	 *
@@ -193,7 +207,7 @@ public final class Util {
 		//Feed.getNewInstance().addAll(auctionArrayList);
 		//System.out.println(Feed.getInstance());
 	}
-
+	
 	/**
 	 * Reads in only active painting auctions.
 	 *
@@ -213,7 +227,7 @@ public final class Util {
 			}
 		}
 	}
-
+	
 	/**
 	 * Takes in a new profile and saves it to file.
 	 *
@@ -225,7 +239,7 @@ public final class Util {
 		tempList.add(profile);
 		saveListOfProfilesToFile(tempList);
 	}
-
+	
 	/**
 	 * Saves a profile to file.
 	 *
@@ -248,7 +262,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Saves a auction to file.
 	 *
@@ -271,7 +285,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Save a list of auctions to file.
 	 *
@@ -287,7 +301,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Save a list of profiles to file.
 	 *
@@ -302,7 +316,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Add types to gson for artwork, sculpture and painting.
 	 *
@@ -319,7 +333,7 @@ public final class Util {
 				.registerTypeAdapterFactory(artworkAdapterFactory)
 				.create();
 	}
-
+	
 	/**
 	 * Gets new auction id.
 	 *
@@ -351,7 +365,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Gets current user.
 	 *
@@ -360,7 +374,7 @@ public final class Util {
 	public static Profile getCurrentUser() {
 		return currentUser;
 	}
-
+	
 	/**
 	 * Sets a new current user.
 	 *
@@ -369,7 +383,7 @@ public final class Util {
 	public static void setCurrentUser(Profile currentUser) {
 		Util.currentUser = currentUser;
 	}
-
+	
 	/**
 	 * Gets home layout.
 	 *
@@ -378,7 +392,7 @@ public final class Util {
 	public static BorderPane getHomeLayout() {
 		return homeLayout;
 	}
-
+	
 	/**
 	 * Sets home layout.
 	 *
@@ -387,7 +401,7 @@ public final class Util {
 	public static void setHomeLayout(BorderPane borderPane) {
 		homeLayout = borderPane;
 	}
-
+	
 	/**
 	 * Gets main stage.
 	 *
@@ -396,7 +410,7 @@ public final class Util {
 	public static Stage getMainStage() {
 		return mainStage;
 	}
-
+	
 	/**
 	 * Sets main stage.
 	 *
@@ -405,7 +419,7 @@ public final class Util {
 	public static void setMainStage(Stage stage) {
 		mainStage = stage;
 	}
-
+	
 	/**
 	 * Sets profile image.
 	 *
@@ -414,7 +428,7 @@ public final class Util {
 	public static void setProfileImage(ImageView imageView) {
 		profileImage = imageView;
 	}
-
+	
 	/**
 	 * Gets profile image.
 	 *
@@ -423,7 +437,7 @@ public final class Util {
 	public static ImageView getProfileImage() {
 		return profileImage;
 	}
-
+	
 	/**
 	 * Sets favorite users grid pane.
 	 *
@@ -432,7 +446,7 @@ public final class Util {
 	public static void setFavoriteUsersGridPane(GridPane gridPane) {
 		favoriteUsersGridPane = gridPane;
 	}
-
+	
 	/**
 	 * Gets favorite users grid pane.
 	 *
@@ -441,7 +455,7 @@ public final class Util {
 	public static GridPane getFavoriteUsersGridPane() {
 		return favoriteUsersGridPane;
 	}
-
+	
 	/**
 	 * Gets filter choice box.
 	 *
@@ -450,7 +464,7 @@ public final class Util {
 	public static ChoiceBox getFilterChoiceBox() {
 		return filterChoiceBox;
 	}
-
+	
 	/**
 	 * Sets filter choice box.
 	 *
@@ -459,11 +473,11 @@ public final class Util {
 	public static void setFilterChoiceBox(ChoiceBox choiceBox) {
 		filterChoiceBox = choiceBox;
 	}
-
+	
 	/**
 	 * Dynamic favorites grid pane.
 	 *
-	 * @param gridPane  the grid pane
+	 * @param gridPane the grid pane
 	 * @param favorites the favorites
 	 */
 	public static void dynamicFavoritesGridPane(GridPane gridPane, List<Profile> favorites) {
@@ -497,17 +511,17 @@ public final class Util {
 					e.printStackTrace();
 				}
 			});
-			gridPane.add(favoriteUser,PROFILE_COLUMN,row);
-			gridPane.add(profileImage,IMAGE_COLUMN,row);
+			gridPane.add(favoriteUser, PROFILE_COLUMN, row);
+			gridPane.add(profileImage, IMAGE_COLUMN, row);
 			row++;
 		}
 	}
-
+	
 	/**
 	 * Delete grid row.
 	 *
 	 * @param grid the grid
-	 * @param row  the row
+	 * @param row the row
 	 */
 	public static void deleteGridRow(GridPane grid, final int row) {
 		Set<Node> deleteNodes = new HashSet<>();
@@ -515,7 +529,7 @@ public final class Util {
 			Integer rowIndex = GridPane.getRowIndex(child);
 			int r = rowIndex == null ? 0 : rowIndex;
 			if (r > row) {
-				GridPane.setRowIndex(child, r-1);
+				GridPane.setRowIndex(child, r - 1);
 			} else if (r == row) {
 				deleteNodes.add(child);
 			}
