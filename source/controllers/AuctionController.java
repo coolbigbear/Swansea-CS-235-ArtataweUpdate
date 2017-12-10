@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,12 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-//TODO view users to the seller who have placed bids on the auction!!!!!!!!!!!!!!!
 public class AuctionController implements Initializable {
-	
-	private Auction currentAuction;
-	private Artwork artwork;
-	private ArtworkType artworkType;
 
 	@FXML
 	private Label auctionNameLabel;
@@ -49,7 +45,12 @@ public class AuctionController implements Initializable {
 	private Label mainMaterialLabelConstant;
 	@FXML
 	private GridPane usersBidAuctionGridPane;
-	
+	@FXML
+	private ScrollPane viewAuctionScrollPane;
+	private Auction currentAuction;
+	private Artwork artwork;
+	private ArtworkType artworkType;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
@@ -140,12 +141,14 @@ public class AuctionController implements Initializable {
 		final int PROFILE_IMAGE_COLUMN = 0;
 		final int PROFILE_USERNAME_COLUMN = 1;
 		final int PROFILE_BID_AMOUNT_COLUMN = 2;
+		final int PROFILE_TIME_PLACED = 3;
 		final int PROFILE_IMAGE_SIZE = 20;
 		usersBidAuctionGridPane.addRow(currentAuction.getBidList().size());
-		int row = 0;
+		int row = 1;
 		ImageView profileImage;
 		Hyperlink profileLink;
 		Label bidAmount;
+		Label timePlaced;
 		for (Bid elem : currentAuction.getBidList()) {
 			profileImage = new ImageView();
 			profileImage.setFitHeight(PROFILE_IMAGE_SIZE);
@@ -178,11 +181,17 @@ public class AuctionController implements Initializable {
 					e.printStackTrace();
 				}
 			});
-			
+
+			timePlaced = new Label();
+			timePlaced.setText(elem.getDateTimePlaced().getHour() + ":" + + elem.getDateTimePlaced().getMinute() + " " +
+					elem.getDateTimePlaced().getDayOfMonth() + "." + elem.getDateTimePlaced().getMonthValue() + "." +
+					elem.getDateTimePlaced().getYear());
+
 			usersBidAuctionGridPane.add(profileImage,PROFILE_IMAGE_COLUMN,row);
 			usersBidAuctionGridPane.add(profileLink,PROFILE_USERNAME_COLUMN,row);
 			usersBidAuctionGridPane.add(bidAmount,PROFILE_BID_AMOUNT_COLUMN,row);
-			
+			usersBidAuctionGridPane.add(timePlaced,PROFILE_TIME_PLACED,row);
+
 			row++;
 		}
 	}

@@ -223,7 +223,7 @@ public class ProfileController implements Initializable {
             chooseImage.setVisible(false);
             createCustom.setVisible(false);
             favouriteUser.setVisible(true);
-            browseDefaultImage.setDisable(false);
+            browseDefaultImage.setVisible(false);
         }
     }
 

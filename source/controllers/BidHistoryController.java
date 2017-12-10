@@ -24,7 +24,7 @@ public class BidHistoryController implements Initializable {
 	private static final int BID_COLUMN = 2;
 	private static final int DATE_COLUMN = 3;
 	private static final int STATUS_COLUMN = 4;
-	private int currentRow = 0;
+	private int currentRow = 1;
 	private List<Bid> bids = Util.getCurrentUser().getAllBidsPlaced();
 	
 	@FXML
@@ -101,7 +101,9 @@ public class BidHistoryController implements Initializable {
 	
 	private Label generateDatePlacedLabel(Bid elem) {
 		Label datePlaced = new Label();
-		datePlaced.setText(elem.getDateTimePlaced().getDayOfMonth() + "." + elem.getDateTimePlaced().getMonthValue() + "." + elem.getDateTimePlaced().getYear());
+		datePlaced.setText(elem.getDateTimePlaced().getHour() + ":" + + elem.getDateTimePlaced().getMinute() + " " +
+				elem.getDateTimePlaced().getDayOfMonth() + "." + elem.getDateTimePlaced().getMonthValue() + "." +
+				elem.getDateTimePlaced().getYear());
 		return datePlaced;
 	}
 	
