@@ -55,6 +55,8 @@ public class AuctionController implements Initializable {
 	private Label placeBidLabel;
 	@FXML
 	private Button bidButton;
+	@FXML
+	private Label errorMessageLabel;
 	private Auction currentAuction;
 	private Artwork artwork;
 	private ArtworkType artworkType;
@@ -66,7 +68,6 @@ public class AuctionController implements Initializable {
 	
 	@FXML
 	private void bidOnAction() {
-		System.out.println("IS IT CORRECT: " + isTextFieldCorrect());
 		if (isTextFieldCorrect()) {
 			try {
 				Bid bid = new Bid(currentAuction.getAuctionID(), Double.valueOf(bidInputTextField.getText()));
@@ -74,18 +75,19 @@ public class AuctionController implements Initializable {
 
 				//Below will execute if the placing of the Bid was accepted
 				bidInputTextField.clear();
+				errorMessageLabel.setText("");
 				bidInputTextField.setPromptText("Bid Accepted!");
-				highestBidLabel.setText(bid.getBidAmount().toString());
+				highestBidLabel.setText("£" + bid.getBidAmount().toString());
 				Util.saveAuctionToFile(currentAuction);
 			} catch (IllegalBidException exception) {
 				if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
-					setErrorInputTextField("Already highest bidder!");
+					errorMessageLabel.setText("Already highest bidder!");
 				}
 				if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST)) {
-					setErrorInputTextField("Lower than current highest!");
+					errorMessageLabel.setText("Lower than highest bidder!");
 				}
 				if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE)) {
-					setErrorInputTextField("Lower than reserve price!");
+					errorMessageLabel.setText("Lower than reserve price!");
 				}
 				//If entered input is not a Number
 			} catch (NumberFormatException exception) {
@@ -308,9 +310,11 @@ public class AuctionController implements Initializable {
 			try {
 				return Double.parseDouble(bidInputTextField.getText()) < 2000000000;
 			} catch (NumberFormatException e) {
+				errorMessageLabel.setText("Bid is not numerical!");
 				return false;
 			}
 		} else {
+			errorMessageLabel.setText("Bid is too long!");
 			return false;
 		}
 	}
