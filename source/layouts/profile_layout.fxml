@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -17,13 +23,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="profileLayout" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538" prefWidth="1023" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
+<BorderPane fx:id="profileLayout" prefHeight="538" prefWidth="1023" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
     <right>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <VBox layoutY="39.0" prefHeight="538.0" prefWidth="185.0">
          <children>
-              <ScrollPane layoutY="39.0" prefHeight="492.0" prefWidth="200.0" style="-fx-border-color: grey;">
+            <AnchorPane prefHeight="30.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="28.0" prefWidth="199.0" text="Currently Selling" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+              <ScrollPane fitToWidth="true" layoutY="39.0" prefHeight="508.0" prefWidth="200.0" style="-fx-border-color: grey;">
                   <content>
-                      <GridPane fx:id="currentlySellingAuctionsGridPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="535.0" prefWidth="194.0" style="-fx-background-color: #cfdff9;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0">
+                      <GridPane fx:id="currentlySellingAuctionsGridPane" prefHeight="535.0" prefWidth="194.0" style="-fx-background-color: #cfdff9;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -39,16 +54,11 @@
                       </GridPane>
                   </content>
               </ScrollPane>
-            <Label layoutX="33.0" layoutY="10.0" text="Currently Selling">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Label>
          </children>
-      </AnchorPane>
+      </VBox>
     </right>
     <center>
-        <AnchorPane prefHeight="525.0" prefWidth="831.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="538.0" prefWidth="841.0" BorderPane.alignment="CENTER">
             <children>
                 <VBox layoutX="31.0" layoutY="34.0" AnchorPane.topAnchor="34.0">
                     <children>
@@ -129,7 +139,7 @@
                         </HBox>
                     </children>
                 </VBox> <!--"bigbear1" temp test method-->
-                <GridPane layoutX="255.0" layoutY="73.0" prefHeight="368.0" prefWidth="443.0" style="-fx-border-color: grey;" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="73.0">
+                <GridPane layoutX="255.0" layoutY="73.0" prefHeight="368.0" prefWidth="443.0" style="-fx-border-color: grey;" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="73.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
