@@ -80,6 +80,11 @@ public class AuctionController implements Initializable {
 				errorMessageLabel.setText("");
 				bidInputTextField.setPromptText("Bid Accepted!");
 				highestBidLabel.setText("£" + bid.getBidAmount().toString());
+				
+				//TODO If was the final Bid, inform user, add to won Auctions of the current user, and add this
+				// Auction to the seller's completed Auctions list and remove it from his selling and then save all
+				// this to database
+				
 				Util.saveAuctionToFile(currentAuction);
 				if (currentAuction.getBidsLeft() == 0) {
 					auctionWon();

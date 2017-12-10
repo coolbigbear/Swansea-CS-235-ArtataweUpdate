@@ -6,6 +6,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 import java.util.function.Consumer;
 
+/**
+ * Dummy class used to test Feed without the need for Auctions, do not use this!
+ * @see Feed
+ */
 public final class BHFeedString implements Iterable<String> {
 
 	//there's a difference between instance and arrayList

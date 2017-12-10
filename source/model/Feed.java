@@ -1,5 +1,7 @@
 package model;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -21,15 +23,15 @@ import java.util.function.Consumer;
  * Note that a Feed is iterable, meaning it can be used in a for each loop.
  *
  * @author Bassam Helal
- * @version 1.0
+ * @version 1.1
  * @see Auction
  * @see Iterable
+ * @see ArrayList
  */
 public final class Feed implements Iterable<Auction> {
 	
 	//The current Feed instance, may be null
-	private static Feed instance;
-	private static Feed sisterInstance;
+	@Nullable private static Feed instance;
 	
 	//The main data structure, an ArrayList
 	private ArrayList<Auction> arrayList;
@@ -38,7 +40,10 @@ public final class Feed implements Iterable<Auction> {
 	//this is only useful for guaranteeing no overhead with larger collections
 	private final static int DEFAULT_CAPACITY = 50;
 	
-	//Private because it's a singleton
+	/**
+	 * The only constructor to create a Feed, used by all the factory methods
+ 	 * @param capacity the initial capacity of the Feed to be returned
+	 */
 	private Feed(int capacity) {
 		arrayList = new ArrayList<>(capacity);
 	}
@@ -107,6 +112,7 @@ public final class Feed implements Iterable<Auction> {
 	 * Returns the Iterator of the Feed, an Iterator of type Auction
 	 *
 	 * @return the Iterator of type Auction
+	 * @see Iterable#iterator()
 	 */
 	@Override
 	public Iterator<Auction> iterator() {
@@ -117,6 +123,7 @@ public final class Feed implements Iterable<Auction> {
 	 * Would be used when calling a for each loop on a Feed
 	 *
 	 * @param action the action to take on the Iterator
+	 * @see Iterable#forEach(Consumer)
 	 */
 	@Override
 	public void forEach(Consumer action) {
@@ -313,21 +320,41 @@ public final class Feed implements Iterable<Auction> {
 		instance = null;
 	}
 	
-	//makes the current instance collections sorted, no return types required
+	/**
+	 * Sorts the current Feed instance.
+	 *
+	 * @see Collections#sort(List)
+	 */
 	public void sortByDate() {
 		Collections.sort(this.arrayList);
 	}
 	
+	/**
+	 * Gets the hashcode of the Feed.
+	 * @return the integer representing the hashcode of the Feed
+	 * @see Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		return arrayList.hashCode();
 	}
 	
+	/**
+	 * Checks whether this Feed is equal to the Feed passed in, this is only used as a utility and doesn't currently
+	 * have a sensible use.
+	 * @return true if they are equal and false otherwise
+	 * @see Object#equals(Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		return ((super.equals(obj) && (obj.hashCode() == this.hashCode())));
 	}
 	
+	/**
+	 * Returns a String representation of the Feed.
+	 * @return the String representation of the Feed
+	 * @see Object#toString()
+	 */
 	@Override
 	public String toString() {
 		StringBuilder contents = new StringBuilder();

@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
  * the Auction, this Bid will not exist on the Database.
  *
  * @author Bassam Helal
+ * @author ***REMOVED*** ***REMOVED***
  * @version 1.2
  * @see Auction
  */
@@ -85,6 +86,8 @@ public final class Bid {
 	 * and is used to check if two Bids are equal
 	 *
 	 * @return the int representing the hashcode of the Bid
+	 *
+	 * @see Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
@@ -98,6 +101,8 @@ public final class Bid {
 	 * @param obj the Object to check if it is equal to this current Bid
 	 *
 	 * @return true if they are exactly equal and false otherwise
+	 *
+	 * @see Object#hashCode()
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -108,6 +113,8 @@ public final class Bid {
 	 * Returns a String representation of the current Bid instance
 	 *
 	 * @return the String representation of the current Bid instance
+	 *
+	 * @see Object#toString()
 	 */
 	@Override
 	public String toString() {
