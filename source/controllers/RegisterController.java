@@ -103,7 +103,7 @@ public class RegisterController implements Initializable {
             Scene login = new Scene(root);
             Stage stage = Util.getMainStage();
             stage.setScene(login);
-            root.getStylesheets().add(ArtataweMain.class.getResource("/css/login.css").toExternalForm());
+            root.getStylesheets().add(Main.class.getResource("/css/login.css").toExternalForm());
             stage.setMinHeight(519);
             stage.setMinWidth(656);
             stage.setHeight(519);

@@ -109,8 +109,8 @@
                      </VBox.margin></Button>
                         <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="Buying">
                             <items>
-                                <MenuItem fx:id="bidsPlacedMenuItemAction" mnemonicParsing="false" onAction="#bidsPlacedMenuItemAction" text="Auctions bidding on" />
-                                <MenuItem fx:id="bidsWonMenuItemAction" mnemonicParsing="false" onAction="#bidsWonMenuItemAction" text="Auctions won" />
+                                <MenuItem fx:id="auctionsPlacedMenuItemAction" mnemonicParsing="false" onAction="#auctionsPlacedMenuItemAction" text="Auctions bidding on" />
+                                <MenuItem fx:id="auctionsWonMenuItemAction" mnemonicParsing="false" onAction="#auctionsWonMenuItemAction" text="Auctions won" />
                             </items>
                      <VBox.margin>
                         <Insets bottom="3.5" left="1.9" right="1.9" />

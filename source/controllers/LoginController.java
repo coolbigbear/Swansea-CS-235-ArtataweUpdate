@@ -40,7 +40,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void loginButtonAction(ActionEvent e) throws IOException {
+    private void loginButtonAction(ActionEvent e) throws IOException, InterruptedException {
         if (validate(loginTextField.getText())) {
             successfulLogin(e);
         }
@@ -50,11 +50,11 @@ public class LoginController implements Initializable {
     private void registerButtonAction(ActionEvent e) throws IOException {
         cycleImageThread.interrupt();
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/register_layout.fxml"));
-        //root.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
+        //root.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         Scene registerScene = new Scene(root);
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         stage.setScene(registerScene);
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.setMinWidth(680);
         stage.setMinHeight(468);
         stage.show();
@@ -64,7 +64,7 @@ public class LoginController implements Initializable {
         cycleImageThread.interrupt();
         loginUserPrompt.setText("Welcome to Artatawe" + ", " + Util.getCurrentUser().getFirstName() + "!");
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/home_layout.fxml"));
-        root.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
+        root.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         Scene homeScene = new Scene(root);
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         stage.setScene(homeScene);
@@ -74,12 +74,14 @@ public class LoginController implements Initializable {
         stage.show();
     }
 
-    private boolean validate(String input) {
+    private boolean validate(String input) throws InterruptedException {
         if (!validCharacterInput(input)) {
+            loginUserPrompt.setText("   ");
             loginUserPrompt.setText("Only alphanumerical values are allowed!");
             return false;
         } else {
             if (!validLengthInput(input)) {
+                loginUserPrompt.setText(" ");
                 loginUserPrompt.setText("Username too long!");
                 return false;
             } else {

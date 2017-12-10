@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="registerLayout" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
+<AnchorPane fx:id="registerLayout" stylesheets="@../css/register.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="468.0" prefWidth="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -82,22 +82,34 @@
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#setDefaultImage1" text="Image 1">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/profile/male4.png" />
+                           </image></ImageView>
                      </graphic>
                   </MenuItem>
                 <MenuItem mnemonicParsing="false" onAction="#setDefaultImage2" text="Image 2">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/profile/male3.png" />
+                           </image></ImageView>
                      </graphic>
                   </MenuItem>
                   <MenuItem mnemonicParsing="false" onAction="#setDefaultImage3" text="Image 3">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/profile/female3.png" />
+                           </image></ImageView>
                      </graphic>
                   </MenuItem>
                   <MenuItem mnemonicParsing="false" onAction="#setDefaultImage4" text="Image 3">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/profile/female5.png" />
+                           </image></ImageView>
                      </graphic>
                   </MenuItem>
               </items>

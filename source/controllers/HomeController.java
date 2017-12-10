@@ -75,8 +75,7 @@ public class HomeController implements Initializable {
     private void currentAuctionsButtonAction() throws IOException {
     	Util.getActiveAuctions();
     	feed = Feed.getInstance();
-        setAuctionsCenter();
-    }
+        setAuctionsCenter(); }
 
     @FXML
     private void myProfileMenuItemAction() throws IOException {
@@ -97,7 +96,7 @@ public class HomeController implements Initializable {
         Scene login = new Scene(root);
         Stage stage = Util.getMainStage();
         stage.setScene(login);
-        root.getStylesheets().add(ArtataweMain.class.getResource("/css/login.css").toExternalForm());
+        root.getStylesheets().add(Main.class.getResource("/css/login.css").toExternalForm());
         stage.setMinHeight(519);
         stage.setMinWidth(656);
         stage.setHeight(519);
@@ -111,9 +110,9 @@ public class HomeController implements Initializable {
 
     //Auctions which you have placed Bids on and also current Auctions
     @FXML
-    private void bidsPlacedMenuItemAction() throws IOException {
+    private void auctionsPlacedMenuItemAction() throws IOException {
     	ArrayList<Bid> bidList = getAllBids();
-    	Util.getActiveAuctions();
+    	Util.getAllAuctions();
 	    feed = Feed.getInstance();
 	    ArrayList<Auction> resultList = new ArrayList<>();
 
@@ -126,15 +125,14 @@ public class HomeController implements Initializable {
 		    }
 	    }
 	    feed.updateWith(resultList);
-
         setAuctionsCenter();
     }
 
     //Auctions that you have won and you finished them
     @FXML
-    private void bidsWonMenuItemAction() throws IOException {
+    private void auctionsWonMenuItemAction() throws IOException {
 	    ArrayList<Bid> bidList = getAllBids();
-	    Util.getActiveAuctions();
+	    Util.getAllAuctions();
 	    Feed feed = Feed.getInstance();
 	    ArrayList<Auction> resultList = new ArrayList<>();
 
@@ -143,12 +141,11 @@ public class HomeController implements Initializable {
 
 		    if (bid.getBidderUsername().equals(Util.getCurrentUser().getUsername()) &&
 				    auction.isCompleted() &&
-				    auction.getHighestBidder().equals(Util.getCurrentUser().getUsername())) {
+				    Util.getCurrentUser().getUsername().equals(auction.getHighestBidder())) {
 			    resultList.add(auction);
 		    }
 	    }
 	    feed.updateWith(resultList);
-
 	    setAuctionsCenter();
     }
 
@@ -174,7 +171,7 @@ public class HomeController implements Initializable {
     //All Auctions you have sold
     @FXML
     private void auctionsSoldMenuItemAction() throws IOException {
-    	Util.getActiveAuctions();
+    	Util.getAllAuctions();
 	    Feed feed = Feed.getInstance();
 	    ArrayList<Auction> resultList = new ArrayList<>();
 
@@ -185,7 +182,6 @@ public class HomeController implements Initializable {
 		    }
 	    }
 	    feed.updateWith(resultList);
-
         setAuctionsCenter();
     }
 
@@ -230,7 +226,7 @@ public class HomeController implements Initializable {
     }
     
     private ArrayList<Bid> getAllBids() {
-	    Util.getActiveAuctions();
+	    Util.getAllAuctions();
 	    Feed feed  = Feed.getInstance();
 	    ArrayList<Bid> bidList = new ArrayList<>();
 
@@ -242,7 +238,7 @@ public class HomeController implements Initializable {
     
     private BorderPane setAuctionsCenter() throws IOException {
         BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
-        feedLayout.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
+        feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         homeLayout.setCenter(feedLayout);
         return feedLayout;
     }

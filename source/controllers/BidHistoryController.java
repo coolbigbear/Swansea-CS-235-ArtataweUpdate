@@ -25,7 +25,7 @@ public class BidHistoryController implements Initializable {
 	private static final int DATE_COLUMN = 3;
 	private static final int STATUS_COLUMN = 4;
 	private int currentRow = 1;
-	private List<Bid> bids = Util.getCurrentUser().getAllBidsPlaced();
+	private List<Bid> bids;
 	
 	@FXML
 	private GridPane bidGridPane;
@@ -33,6 +33,7 @@ public class BidHistoryController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
+			bids = Util.getCurrentUser().getAllBidsPlaced();
 			populateBidGridPane();
 		} catch (IOException e) {
 			e.printStackTrace();

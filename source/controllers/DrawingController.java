@@ -2,13 +2,17 @@ package controllers;
 
 
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import model.Util;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Line;
 
@@ -46,11 +50,12 @@ public class DrawingController {
             Image snapshot = canvas.snapshot(null, null);
             ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File
                     (generateNameAndSetLocation()));
+
+            Stage stage = (Stage) colorPicker.getScene().getWindow();
+            stage.close();
         } catch (Exception e) {
             System.out.println("Cannot save file!" + e);
         }
-        //TODO Set image and Close custom drawing window
-        //TODO ADD TO GSON
     }
 
     public void onClear() {
@@ -87,6 +92,7 @@ public class DrawingController {
             }
         });
     }
+
 
     private String generateNameAndSetLocation() {
         String generatedString = UUID.randomUUID().toString();

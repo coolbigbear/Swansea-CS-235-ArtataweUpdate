@@ -2,20 +2,22 @@ package controllers;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Util;
 
-public class Main extends Application{
+public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../layouts/sample.fxml"))));
-        primaryStage.setTitle("Profile Image Canvas");
-        primaryStage.setResizable(true);
+    public void start(Stage primaryStage) throws Exception {
+        Util.setMainStage(primaryStage);
+        Parent root = FXMLLoader.load(getClass().getResource("/layouts/login_layout.fxml"));
+        primaryStage.setTitle("Artatawe v1.1");
+        primaryStage.setScene(new Scene(root));
+        root.getStylesheets().add(Main.class.getResource("/css/login.css").toExternalForm());
+        primaryStage.setResizable(false);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+        Util.setMainStage(primaryStage);
     }
 }
