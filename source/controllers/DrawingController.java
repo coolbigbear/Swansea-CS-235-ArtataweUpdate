@@ -88,8 +88,6 @@ public class DrawingController {
         });
     }
 
-
-
     private String generateNameAndSetLocation() {
         String generatedString = UUID.randomUUID().toString();
         return "source/images/custom/" + generatedString + ".png";
