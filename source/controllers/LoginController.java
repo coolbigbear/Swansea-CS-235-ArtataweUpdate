@@ -47,8 +47,17 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void registerButtonAction() {
+    private void registerButtonAction(ActionEvent e) throws IOException {
         cycleImageThread.interrupt();
+        Parent root = FXMLLoader.load(getClass().getResource("/layouts/register_layout.fxml"));
+        //root.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
+        Scene registerScene = new Scene(root);
+        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage.setScene(registerScene);
+        stage.setResizable(true);
+        stage.setMinWidth(680);
+        stage.setMinHeight(468);
+        stage.show();
     }
 
     private void successfulLogin(ActionEvent e) throws IOException {

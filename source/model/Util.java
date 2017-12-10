@@ -18,6 +18,9 @@ import model.exception.ProfileNotFoundException;
 import java.io.*;
 import java.util.*;
 
+/**
+ * The type Util.
+ */
 public final class Util {
 	
 	/*
@@ -209,6 +212,18 @@ public final class Util {
 				feed.add(auction);
 			}
 		}
+	}
+
+	/**
+	 * Takes in a new profile and saves it to file.
+	 *
+	 * @param profile to be added to the database.
+	 */
+	public static void saveNewProfileToFile(Profile profile) {
+		Profile[] temp = readInProfileFile();
+		List<Profile> tempList = new ArrayList<>(Arrays.asList(temp));
+		tempList.add(profile);
+		saveListOfProfilesToFile(tempList);
 	}
 	
 	/**

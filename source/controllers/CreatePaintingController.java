@@ -108,7 +108,8 @@ public class CreatePaintingController implements Initializable {
             errorLabel.setText("Please check all fields are filled in correctly!");
             return false;
         }
-}
+    }
+
     @FXML
     public void chooseMainPaintingImg() {
         FileChooser fileChooser = new FileChooser();
