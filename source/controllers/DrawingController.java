@@ -2,18 +2,20 @@ package controllers;
 
 
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import model.Util;
 
 import javax.imageio.ImageIO;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class DrawingController {
 
@@ -41,8 +43,18 @@ public class DrawingController {
     public void onSave() {
         try {
             Image snapshot = canvas.snapshot(null, null);
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File
-                    (generateNameAndSetLocation()));
+            File outputFile = new File(generateNameAndSetLocation());
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null),"png", outputFile);
+            String outputFileTurned = outputFile.toString().replace("\\","/");
+
+            TimeUnit.SECONDS.sleep(5);
+
+            Util.getCurrentUser().setProfileImagePath(outputFileTurned.substring(7));
+            Util.saveProfileToFile(Util.getCurrentUser());
+            Util.checkAndSetUser(Util.getCurrentUser().getUsername());
+
+            Stage stage = (Stage) colorPicker.getScene().getWindow();
+            stage.close();
         } catch (Exception e) {
             System.out.println("Cannot save file!" + e);
         }

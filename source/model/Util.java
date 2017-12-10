@@ -18,15 +18,7 @@ import model.exception.ProfileNotFoundException;
 import java.io.*;
 import java.util.*;
 
-/**
- * The type Util.
- */
 public final class Util {
-	
-	/*
-	 * Notes:
-	 *          Get all Auctions by a Profile
-	 */
 	
 	/**
 	 * The current user who is signed in to the system.
@@ -34,6 +26,9 @@ public final class Util {
 	private static Profile currentUser;
 	private static BorderPane homeLayout;
 	private static Stage mainStage;
+	/**
+	 * Creates a gson object and adds types from factory.
+	 */
 	private static Gson gson = addTypesToGson();
 	private static ImageView profileImage;
 	private static GridPane favoriteUsersGridPane;
@@ -72,18 +67,19 @@ public final class Util {
 		}
 		return auctions;
 	}
-	
+
 	/**
-	 * Read logged in user.
+	 * Read in logged in user.
 	 *
 	 * @param username the username
+	 * @return the boolean
 	 */
 	public static boolean checkAndSetUser(String username) {
 		boolean found = false;
 		
 		Profile[] fromJson = readInProfileFile();
 		for (Profile profile : fromJson) {
-			//Read the variables required for constructor
+			//Read the unique username for each user and see if it matches the one input
 			String name = profile.getUsername();
 			
 			if (Objects.equals(name, username)) {
@@ -93,12 +89,11 @@ public final class Util {
 		}
 		return found;
 	}
-	
+
 	/**
 	 * Gets profile by username from database.
 	 *
 	 * @param username the username
-	 *
 	 * @return the profile to be returned
 	 */
 	public static Profile getProfileByUsername(String username) {
@@ -113,13 +108,13 @@ public final class Util {
 		}
 		throw new ProfileNotFoundException("Profile not found!");
 	}
-	
+
 	/**
 	 * Gets Auction by auctionID from database.
 	 *
 	 * @param auctionID the ID of auction to be found
-	 *
 	 * @return the auction to be returned
+	 * @throws IOException the io exception
 	 */
 	public static Auction getAuctionByAuctionID(Integer auctionID) throws IOException {
 		
@@ -138,7 +133,7 @@ public final class Util {
 			return auction;
 		}
 	}
-	
+
 	/**
 	 * Read in all auctions from database that are active (on sale).
 	 */
@@ -156,7 +151,12 @@ public final class Util {
 			}
 		}
 	}
-	
+
+	/**
+	 * Gets active auctions by username.
+	 *
+	 * @param username the username
+	 */
 	public static void getActiveAuctionsByUsername(String username) {
 		Auction[] fromJson = readInAuctionFile();
 		
@@ -171,7 +171,7 @@ public final class Util {
 			}
 		}
 	}
-	
+
 	/**
 	 * Reads in only active sculpture auctions.
 	 *
@@ -193,7 +193,7 @@ public final class Util {
 		//Feed.getNewInstance().addAll(auctionArrayList);
 		//System.out.println(Feed.getInstance());
 	}
-	
+
 	/**
 	 * Reads in only active painting auctions.
 	 *
@@ -225,7 +225,7 @@ public final class Util {
 		tempList.add(profile);
 		saveListOfProfilesToFile(tempList);
 	}
-	
+
 	/**
 	 * Saves a profile to file.
 	 *
@@ -248,7 +248,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Saves a auction to file.
 	 *
@@ -271,7 +271,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Save a list of auctions to file.
 	 *
@@ -287,7 +287,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Save a list of profiles to file.
 	 *
@@ -302,9 +302,11 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Add types to gson for artwork, sculpture and painting.
+	 *
+	 * @return the gson
 	 */
 	public static Gson addTypesToGson() {
 		RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "typeGSON");
@@ -317,7 +319,12 @@ public final class Util {
 				.registerTypeAdapterFactory(artworkAdapterFactory)
 				.create();
 	}
-	
+
+	/**
+	 * Gets new auction id.
+	 *
+	 * @return the new auction id
+	 */
 	public static int getNewAuctionID() {
 		int auctionID = -1;
 		
@@ -344,7 +351,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Gets current user.
 	 *
@@ -353,7 +360,7 @@ public final class Util {
 	public static Profile getCurrentUser() {
 		return currentUser;
 	}
-	
+
 	/**
 	 * Sets a new current user.
 	 *
@@ -362,47 +369,103 @@ public final class Util {
 	public static void setCurrentUser(Profile currentUser) {
 		Util.currentUser = currentUser;
 	}
-	
+
+	/**
+	 * Gets home layout.
+	 *
+	 * @return the home layout
+	 */
 	public static BorderPane getHomeLayout() {
 		return homeLayout;
 	}
-	
+
+	/**
+	 * Sets home layout.
+	 *
+	 * @param borderPane the border pane
+	 */
 	public static void setHomeLayout(BorderPane borderPane) {
 		homeLayout = borderPane;
 	}
-	
+
+	/**
+	 * Gets main stage.
+	 *
+	 * @return the main stage
+	 */
 	public static Stage getMainStage() {
 		return mainStage;
 	}
-	
+
+	/**
+	 * Sets main stage.
+	 *
+	 * @param stage the stage
+	 */
 	public static void setMainStage(Stage stage) {
 		mainStage = stage;
 	}
 
+	/**
+	 * Sets profile image.
+	 *
+	 * @param imageView the image view
+	 */
 	public static void setProfileImage(ImageView imageView) {
 		profileImage = imageView;
 	}
 
+	/**
+	 * Gets profile image.
+	 *
+	 * @return the profile image
+	 */
 	public static ImageView getProfileImage() {
 		return profileImage;
 	}
 
+	/**
+	 * Sets favorite users grid pane.
+	 *
+	 * @param gridPane the grid pane
+	 */
 	public static void setFavoriteUsersGridPane(GridPane gridPane) {
 		favoriteUsersGridPane = gridPane;
 	}
 
+	/**
+	 * Gets favorite users grid pane.
+	 *
+	 * @return the favorite users grid pane
+	 */
 	public static GridPane getFavoriteUsersGridPane() {
 		return favoriteUsersGridPane;
 	}
-	
+
+	/**
+	 * Gets filter choice box.
+	 *
+	 * @return the filter choice box
+	 */
 	public static ChoiceBox getFilterChoiceBox() {
 		return filterChoiceBox;
 	}
-	
+
+	/**
+	 * Sets filter choice box.
+	 *
+	 * @param choiceBox the choice box
+	 */
 	public static void setFilterChoiceBox(ChoiceBox choiceBox) {
 		filterChoiceBox = choiceBox;
 	}
-	
+
+	/**
+	 * Dynamic favorites grid pane.
+	 *
+	 * @param gridPane  the grid pane
+	 * @param favorites the favorites
+	 */
 	public static void dynamicFavoritesGridPane(GridPane gridPane, List<Profile> favorites) {
 		final int IMAGE_COLUMN = 0;
 		final int PROFILE_COLUMN = 1;
@@ -440,6 +503,12 @@ public final class Util {
 		}
 	}
 
+	/**
+	 * Delete grid row.
+	 *
+	 * @param grid the grid
+	 * @param row  the row
+	 */
 	public static void deleteGridRow(GridPane grid, final int row) {
 		Set<Node> deleteNodes = new HashSet<>();
 		for (Node child : grid.getChildren()) {

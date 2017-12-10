@@ -82,22 +82,34 @@
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#setDefaultImage1" text="Image 1">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/profile/male4.png" />
+                           </image></ImageView>
                      </graphic>
                   </MenuItem>
                 <MenuItem mnemonicParsing="false" onAction="#setDefaultImage2" text="Image 2">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/profile/male3.png" />
+                           </image></ImageView>
                      </graphic>
                   </MenuItem>
                   <MenuItem mnemonicParsing="false" onAction="#setDefaultImage3" text="Image 3">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/profile/female3.png" />
+                           </image></ImageView>
                      </graphic>
                   </MenuItem>
                   <MenuItem mnemonicParsing="false" onAction="#setDefaultImage4" text="Image 3">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/profile/female5.png" />
+                           </image></ImageView>
                      </graphic>
                   </MenuItem>
               </items>
