@@ -184,7 +184,8 @@ public class AuctionController implements Initializable {
 		if (currentAuction.isCompleted() && (currentAuction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()))) {
 			setBuyerSpecificNodes();
 		}
-		if (currentAuction.isCompleted() && (!currentAuction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()))) {
+		if (currentAuction.isCompleted() && (!currentAuction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()))
+				&& (!currentAuction.getSellerName().equalsIgnoreCase(Util.getCurrentUser().getUsername()))) {
 			setViewerSpecificNodes();
 		}
 		setArtworkDisplayImages();
