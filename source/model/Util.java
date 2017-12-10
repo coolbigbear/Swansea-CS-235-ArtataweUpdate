@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import controllers.ArtataweMain;
 import controllers.ProfileController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
@@ -424,4 +425,17 @@ public final class Util {
 		}
 	}
 
+	public static void deleteGridRow(GridPane grid, final int row) {
+		Set<Node> deleteNodes = new HashSet<>();
+		for (Node child : grid.getChildren()) {
+			Integer rowIndex = GridPane.getRowIndex(child);
+			int r = rowIndex == null ? 0 : rowIndex;
+			if (r > row) {
+				GridPane.setRowIndex(child, r-1);
+			} else if (r == row) {
+				deleteNodes.add(child);
+			}
+		}
+		grid.getChildren().removeAll(deleteNodes);
+	}
 }

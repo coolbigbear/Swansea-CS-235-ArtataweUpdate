@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,7 +15,10 @@ import model.exception.IllegalBidException;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class AuctionController implements Initializable {
 
@@ -133,7 +137,12 @@ public class AuctionController implements Initializable {
 		currentAuction = auction;
 		artwork = currentAuction.getArtwork();
 		artworkType = currentAuction.getArtwork().getType();
-		
+
+		if (isFavorited()) {
+			addToFavoritesButton.setText("Remove favorite");
+		} else {
+			addToFavoritesButton.setText("Add to favorites");
+		}
 		generateAuctionLabels();
 		generateArtworkLabels();
 		disableSellerNodes();
@@ -252,6 +261,46 @@ public class AuctionController implements Initializable {
 
 	@FXML
 	private void addToFavoritesButtonAction() {
-
+		int counter = Util.getCurrentUser().getFavouriteUsers().size();
+		if (addToFavoritesButton.getText().equalsIgnoreCase("Remove favorite")) {
+			for (int i = 0; i < Util.getCurrentUser().getFavouriteUsers().size(); i++) {
+				if (Util.getCurrentUser().getFavouriteUsers().get(i).equalsIgnoreCase(currentAuction.getSellerName())) {
+					Util.getCurrentUser().getFavouriteUsers().remove(i);
+				}
+			}
+			for (int i = counter -1; i >= 0; i--) {
+				Util.deleteGridRow(Util.getFavoriteUsersGridPane(), i);
+			}
+			Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
+			Util.saveProfileToFile(Util.getCurrentUser());
+			addToFavoritesButton.setText("Add to favorites");
+		} else {
+			Util.getCurrentUser().getFavouriteUsers().add(currentAuction.getSellerName());
+			for (int i = counter -1; i >= 0; i--) {
+				Util.deleteGridRow(Util.getFavoriteUsersGridPane(), i);
+			}
+			Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
+			Util.saveProfileToFile(Util.getCurrentUser());
+			addToFavoritesButton.setText("Remove favorite");
+		}
 	}
+
+	private boolean isFavorited() {
+		boolean favorite = false;
+		for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
+			if (elem.equalsIgnoreCase(currentAuction.getSellerName())) {
+				favorite = true;
+			}
+		}
+		return favorite;
+	}
+
+	private ArrayList<Profile> populateFavoriteUsers() {
+		ArrayList<Profile> profiles = new ArrayList<>();
+		for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
+			profiles.add(Util.getProfileByUsername(elem));
+		}
+		return profiles;
+	}
+
 }

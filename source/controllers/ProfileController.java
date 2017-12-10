@@ -1,7 +1,6 @@
 package controllers;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -23,9 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 
 public class ProfileController implements Initializable {
@@ -117,7 +114,7 @@ public class ProfileController implements Initializable {
                 }
             }
             for (int i = counter -1; i >= 0; i--) {
-                deleteRow(Util.getFavoriteUsersGridPane(), i);
+                Util.deleteGridRow(Util.getFavoriteUsersGridPane(), i);
             }
             Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
             System.out.println("GRIDPANE ROWS: " + Util.getFavoriteUsersGridPane().getRowConstraints().toString());
@@ -126,7 +123,7 @@ public class ProfileController implements Initializable {
         } else {
             Util.getCurrentUser().getFavouriteUsers().add(selectedProfile.getUsername());
             for (int i = counter -1; i >= 0; i--) {
-                deleteRow(Util.getFavoriteUsersGridPane(), i);
+                Util.deleteGridRow(Util.getFavoriteUsersGridPane(), i);
                 System.out.println("REMOVING" + i);
             }
             Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
@@ -235,19 +232,6 @@ public class ProfileController implements Initializable {
         return newPath.replaceAll("\\\\", "/");
     }
 
-    private void deleteRow(GridPane grid, final int row) {
-        Set<Node> deleteNodes = new HashSet<>();
-        for (Node child : grid.getChildren()) {
-            Integer rowIndex = GridPane.getRowIndex(child);
-            int r = rowIndex == null ? 0 : rowIndex;
-            if (r > row) {
-                GridPane.setRowIndex(child, r-1);
-            } else if (r == row) {
-                deleteNodes.add(child);
-            }
-        }
-        grid.getChildren().removeAll(deleteNodes);
-    }
 
     private ArrayList<Profile> populateFavoriteUsers() {
         ArrayList<Profile> profiles = new ArrayList<>();
