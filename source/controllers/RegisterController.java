@@ -22,19 +22,58 @@ import java.util.regex.Pattern;
 
 public class RegisterController implements Initializable {
 
-    @FXML TextField username;
-    @FXML TextField firstName;
-    @FXML TextField lastName;
-    @FXML TextField contactNumber;
-    @FXML TextField addressLineOne;
-    @FXML TextField addressLineTwo;
-    @FXML TextField city;
-    @FXML TextField country;
-    @FXML TextField postCode;
-    @FXML Button backButton;
-    @FXML Button registerButton;
+    /**
+     *  Error label.
+     */
     @FXML Label errorLabel;
+    /**
+     * The Username.
+     */
+    @FXML TextField username;
+    /**
+     * The First name.
+     */
+    @FXML TextField firstName;
+    /**
+     * The Last name.
+     */
+    @FXML TextField lastName;
+    /**
+     * The Contact number.
+     */
+    @FXML TextField contactNumber;
+    /**
+     * Address line one.
+     */
+    @FXML TextField addressLineOne;
+    /**
+     * Address line two.
+     */
+    @FXML TextField addressLineTwo;
+    /**
+     * City.
+     */
+    @FXML TextField city;
+    /**
+     * Country.
+     */
+    @FXML TextField country;
+    /**
+     * Post code.
+     */
+    @FXML TextField postCode;
+    /**
+     * Back button.
+     */
+    @FXML Button backButton;
+    /**
+     * Register button.
+     */
+    @FXML Button registerButton;
 
+    /**
+     * Variables pulled from text fields.
+     */
     private String usernamePulled;
     private String firstNamePulled;
     private String lastNamePulled;
@@ -49,8 +88,15 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /**
+         * When register button is clicked
+         */
         registerButton.setOnAction(e -> {
+
+            //If all values entered correctly
             if(getTextFieldValues()) {
+
+                //If user chose an image (required)
                 if(choseImg) {
                     if (validCharacterInput(usernamePulled)) {
                         if (!Util.checkAndSetUser(usernamePulled)) {
