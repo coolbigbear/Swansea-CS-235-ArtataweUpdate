@@ -101,7 +101,7 @@ public final class Util {
 		Profile[] allProfiles = readInProfileFile();
 		for (Profile profile : allProfiles) {
 			String name = profile.getUsername();
-			//Read through all profiles and return the one
+			//Read through all profiles and return the one that matches the username input
 			if (Objects.equals(name, username)) {
 				return profile;
 			}
