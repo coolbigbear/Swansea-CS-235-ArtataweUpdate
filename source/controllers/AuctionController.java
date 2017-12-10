@@ -57,6 +57,8 @@ public class AuctionController implements Initializable {
 	private Button bidButton;
 	@FXML
 	private Label errorMessageLabel;
+	@FXML
+	private Label placedBidsLabel;
 	private Auction currentAuction;
 	private Artwork artwork;
 	private ArtworkType artworkType;
@@ -79,6 +81,9 @@ public class AuctionController implements Initializable {
 				bidInputTextField.setPromptText("Bid Accepted!");
 				highestBidLabel.setText("£" + bid.getBidAmount().toString());
 				Util.saveAuctionToFile(currentAuction);
+				if (currentAuction.getBidsLeft() == 0) {
+					auctionWon();
+				}
 			} catch (IllegalBidException exception) {
 				if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
 					errorMessageLabel.setText("Already highest bidder!");
@@ -148,6 +153,12 @@ public class AuctionController implements Initializable {
 		generateAuctionLabels();
 		generateArtworkLabels();
 		setSellerSpecificNodes();
+		if (currentAuction.isCompleted() && (currentAuction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()))) {
+			setBuyerSpecificNodes();
+		}
+		if (currentAuction.isCompleted() && (!currentAuction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()))) {
+			setViewerSpecificNodes();
+		}
 	}
 	
 	private void populateUsersBidPane() {
@@ -225,6 +236,7 @@ public class AuctionController implements Initializable {
 
 	private void setSellerSpecificNodes() {
 		if (Util.getCurrentUser().getUsername().equalsIgnoreCase(currentAuction.getSellerName())) {
+			placedBidsLabel.setText("Placed bids");
 			viewAuctionScrollPane.setVisible(true);
 			usersBidAuctionGridPane.setVisible(true);
 			populateUsersBidPane();
@@ -233,6 +245,9 @@ public class AuctionController implements Initializable {
 			bidsLeftLabel.setText("Bids left:");
 			sellingInfoGridPane.add(new Label(String.valueOf(currentAuction.getBidsLeft())), 1, 1);
 			placeBidLabel.setText("Highest bidder:");
+			if (currentAuction.isCompleted()) {
+				placeBidLabel.setText("Winner:");
+			}
 			bidInputTextField.setDisable(true);
 			bidInputTextField.setVisible(false);
 			bidButton.setDisable(true);
@@ -317,5 +332,33 @@ public class AuctionController implements Initializable {
 			errorMessageLabel.setText("Bid is too long!");
 			return false;
 		}
+	}
+
+	private void setBuyerSpecificNodes() {
+			placeBidLabel.setText("Winner:");
+			bidInputTextField.setDisable(true);
+			bidInputTextField.setVisible(false);
+			sellingInfoGridPane.add(new Label("YOU"), 1, 4);
+			bidButton.setVisible(false);
+			bidButton.setDisable(true);
+	}
+
+	private void setViewerSpecificNodes() {
+		placeBidLabel.setText("STATUS:");
+		bidInputTextField.setDisable(true);
+		bidInputTextField.setVisible(false);
+		sellingInfoGridPane.add(new Label("CLOSED"), 1, 4);
+		bidButton.setVisible(false);
+		bidButton.setDisable(true);
+	}
+
+	private void auctionWon() {
+		setBuyerSpecificNodes();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Message from Artatawe");
+		alert.setHeaderText(currentAuction.getArtwork().getTitle());
+		String s ="Congratulations, you have just won the auction! ";
+		alert.setContentText(s);
+		alert.show();
 	}
 }
