@@ -66,28 +66,31 @@ public class AuctionController implements Initializable {
 	
 	@FXML
 	private void bidOnAction() {
-		try {
-			Bid bid = new Bid(currentAuction.getAuctionID(), Double.valueOf(bidInputTextField.getText()));
-			currentAuction.placeBid(bid);
-			
-			//Below will execute if the placing of the Bid was accepted
-			bidInputTextField.clear();
-			bidInputTextField.setPromptText("Bid Accepted!");
-			highestBidLabel.setText(bid.getBidAmount().toString());
-			Util.saveAuctionToFile(currentAuction);
-		} catch (IllegalBidException exception) {
-			if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
-				setErrorInputTextField("Already highest bidder!");
+		System.out.println("IS IT CORRECT: " + isTextFieldCorrect());
+		if (isTextFieldCorrect()) {
+			try {
+				Bid bid = new Bid(currentAuction.getAuctionID(), Double.valueOf(bidInputTextField.getText()));
+				currentAuction.placeBid(bid);
+
+				//Below will execute if the placing of the Bid was accepted
+				bidInputTextField.clear();
+				bidInputTextField.setPromptText("Bid Accepted!");
+				highestBidLabel.setText(bid.getBidAmount().toString());
+				Util.saveAuctionToFile(currentAuction);
+			} catch (IllegalBidException exception) {
+				if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
+					setErrorInputTextField("Already highest bidder!");
+				}
+				if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST)) {
+					setErrorInputTextField("Lower than current highest!");
+				}
+				if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE)) {
+					setErrorInputTextField("Lower than reserve price!");
+				}
+				//If entered input is not a Number
+			} catch (NumberFormatException exception) {
+				setErrorInputTextField("Please enter a Number!");
 			}
-			if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST)) {
-				setErrorInputTextField("Lower than current highest!");
-			}
-			if (exception.getType().equals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE)) {
-				setErrorInputTextField("Lower than reserve price!");
-			}
-			//If entered input is not a Number
-		} catch (NumberFormatException exception) {
-			setErrorInputTextField("Please enter a Number!");
 		}
 	}
 	
@@ -300,4 +303,15 @@ public class AuctionController implements Initializable {
 		return profiles;
 	}
 
+	private boolean isTextFieldCorrect() {
+		if (bidInputTextField.getText().length() <= 10) {
+			try {
+				return Double.parseDouble(bidInputTextField.getText()) < 2000000000;
+			} catch (NumberFormatException e) {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 }
