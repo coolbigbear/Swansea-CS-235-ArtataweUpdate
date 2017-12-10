@@ -86,8 +86,6 @@ public class LoginController implements Initializable {
                 return false;
             } else {
                 if (!validUser(input)) {
-                    loginUserPrompt.setText(" ");
-                    Thread.sleep(500);
                     loginUserPrompt.setText("User not found!");
                     return false;
                 } else {
