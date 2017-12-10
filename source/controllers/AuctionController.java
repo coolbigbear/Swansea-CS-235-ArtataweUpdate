@@ -58,8 +58,6 @@ public class AuctionController implements Initializable {
 	@FXML
 	private Label errorMessageLabel;
 	@FXML
-	private Label placedBidsLabel;
-	@FXML
 	private ImageView mainArtworkImage;
 	@FXML
 	private ImageView optionalImage1;
@@ -269,7 +267,6 @@ public class AuctionController implements Initializable {
 
 	private void setSellerSpecificNodes() {
 		if (Util.getCurrentUser().getUsername().equalsIgnoreCase(currentAuction.getSellerName())) {
-			placedBidsLabel.setText("Placed bids");
 			viewAuctionScrollPane.setVisible(true);
 			usersBidAuctionGridPane.setVisible(true);
 			populateUsersBidPane();
