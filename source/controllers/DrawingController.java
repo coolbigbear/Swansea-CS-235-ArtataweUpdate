@@ -10,7 +10,6 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import model.Util;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -33,13 +32,15 @@ public class DrawingController {
     @FXML
     private RadioMenuItem drawRectangle;
 
-    @FXML
-    private RadioMenuItem drawCircle;
 
     @FXML
     private RadioMenuItem drawLine;
 
-    private String customPath;
+    private double xBegin;
+    private double xEnd;
+    private double yBegin;
+    private double yEnd;
+
     public void onSave() {
         try {
             Image snapshot = canvas.snapshot(null, null);
@@ -58,9 +59,9 @@ public class DrawingController {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
+
     public void initialize() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
         canvas.setOnMouseDragged(event -> {
             if (freeDraw.isSelected()) {
                 double size = Double.parseDouble(brushSize.getText());
@@ -68,35 +69,33 @@ public class DrawingController {
                 double y = event.getY();
                 gc.setFill(colorPicker.getValue());
                 gc.fillOval(x, y, size / 2, size / 2);
-            } else if (drawLine.isSelected()) { //TODO FIX LINE
-                double x = event.getX();
-                double y = event.getY();
-                gc.setFill(colorPicker.getValue());
-                gc.fillRect(x,y,30,30);
-                double x1 = event.getX();
-                double y1 = event.getY();
-                gc.lineTo(x1,y1);
             }
         });
-        canvas.setOnMouseClicked(event -> {
-            if (drawRectangle.isSelected()) {
-                double x = event.getX();
-                double y = event.getY();
+        canvas.setOnMousePressed(event -> {
+            xBegin = event.getX();
+            yBegin = event.getY();
+        });
+        canvas.setOnMouseReleased(event -> {
+            xEnd = event.getX();
+            yEnd = event.getY();
+            if(drawLine.isSelected()) {
                 gc.setFill(colorPicker.getValue());
-                gc.fillRect(x, y, 40, 40);
-            } else if (drawCircle.isSelected()) {
-                double x = event.getX();
-                double y = event.getY();
+                gc.setLineWidth(Double.parseDouble(brushSize.getText()));
+                gc.strokeLine(xBegin, yBegin, xEnd, yEnd);
+            }
+            if(drawRectangle.isSelected()){
+                double size = Double.parseDouble((brushSize.getText()));
                 gc.setFill(colorPicker.getValue());
-                gc.fillOval(x, y, 40, 40);
+                gc.strokeRect(xBegin, yBegin, size, size );
             }
         });
     }
 
+
     private String generateNameAndSetLocation() {
         String generatedString = UUID.randomUUID().toString();
-        customPath = "images/custom/" + generatedString + ".png";
         return "source/images/custom/" + generatedString + ".png";
     }
+
 
 }

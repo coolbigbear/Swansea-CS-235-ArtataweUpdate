@@ -39,9 +39,7 @@
                            </toggleGroup>
                         </RadioMenuItem>
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <RadioMenuItem fx:id="drawRectangle" mnemonicParsing="false" text="Draw rectangles" toggleGroup="$drawingShapes" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <RadioMenuItem fx:id="drawCircle" mnemonicParsing="false" text="Draw circles" toggleGroup="$drawingShapes" />
+                        <RadioMenuItem fx:id="drawRectangle" mnemonicParsing="false" text="Draw squares" toggleGroup="$drawingShapes" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <RadioMenuItem fx:id="drawLine" mnemonicParsing="false" text="Draw lines" toggleGroup="$drawingShapes" />
                      </items>
