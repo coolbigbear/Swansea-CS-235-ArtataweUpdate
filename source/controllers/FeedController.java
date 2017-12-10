@@ -29,7 +29,7 @@ public class FeedController implements Initializable {
 	private ObservableList<String> choiceBoxList = FXCollections.observableArrayList("Show All", "Paintings",
 			"Sculptures");
 	private Feed feed;
-	private Feed sisterFeed;
+	private ArrayList<Auction> currentlySelectedAuctions;
 	
 	
 	@Override
@@ -48,59 +48,75 @@ public class FeedController implements Initializable {
 		Util.setFilterChoiceBox(choiceBoxFilter);
 	}
 	
-	// TODO: 09-Dec-17 Bassam please fix this thing!!! Could be fixed by having Feed have a secret sister instance
+	// TODO: 09-Dec-17 Bassam please fix this thing!!!
 	private void setChoiceBox() {
-		choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-			try {
-				switch (newValue.intValue()) {
-					case 0:
-						System.out.println("Show all");
-						feed = Feed.getInstance();
-						sisterFeed = Feed.createAndGetSisterFeed(feed);
-						ArrayList<Auction> resultList = new ArrayList<>();
-						for (Auction auction : feed) {
-							if (auction.getArtwork().getType().equals(ArtworkType.Sculpture) ||
-									auction.getArtwork().getType().equals(ArtworkType.Painting)) {
-								resultList.add(auction);
-							}
+		
+		choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					try {
+						switch (newValue.intValue()) {
+							case 0:
+								filterAll();
+								break;
+							
+							case 1:
+								filterPaintings();
+								break;
+							
+							case 2:
+								filterSculptures();
+								break;
 						}
-						sisterFeed.updateWith(resultList);
-						setAuctionsCenter();
-						break;
-						
-					case 1:
-						System.out.println("Paintings");
-						feed = Feed.getInstance();
-						sisterFeed = Feed.createAndGetSisterFeed(feed);
-						resultList = new ArrayList<>();
-						for (Auction auction : feed) {
-							if (auction.getArtwork().getType().equals(ArtworkType.Painting)) {
-								resultList.add(auction);
-							}
-						}
-						sisterFeed.updateWith(resultList);
-						setAuctionsCenter();
-						break;
-						
-					case 2:
-						System.out.println("Sculptures");
-						feed = Feed.getInstance();
-						sisterFeed = Feed.createAndGetSisterFeed(feed);
-						resultList = new ArrayList<>();
-						for (Auction auction : feed) {
-							if (auction.getArtwork().getType().equals(ArtworkType.Sculpture)) {
-								resultList.add(auction);
-							}
-						}
-						sisterFeed.updateWith(resultList);
-						setAuctionsCenter();
-						break;
-						
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				});
+	}
+	
+	private void filterAll() throws IOException {
+		System.out.println("Show all: ");
+		ArrayList<Auction> resultList = new ArrayList<>();
+		Util.getActiveAuctions();
+		feed = Feed.getInstance();
+		for (Auction auction : feed) {
+			if (auction.getArtwork().getType().equals(ArtworkType.Sculpture) ||
+					auction.getArtwork().getType().equals(ArtworkType.Painting)) {
+				resultList.add(auction);
+				System.out.println("\t" + auction.getArtwork().getTitle());
 			}
-		});
+		}
+		feed.updateWith(resultList);
+		setAuctionsCenter();
+	}
+	
+	private void filterPaintings() throws IOException {
+		System.out.println("Paintings: ");
+		ArrayList<Auction> resultList = new ArrayList<>();
+		Util.getActiveAuctions();
+		feed = Feed.getInstance();
+		for (Auction auction : feed) {
+			if (auction.getArtwork().getType().equals(ArtworkType.Painting)) {
+				resultList.add(auction);
+				System.out.println("\t" + auction.getArtwork().getTitle());
+			}
+		}
+		feed.updateWith(resultList);
+		setAuctionsCenter();
+	}
+	
+	private void filterSculptures() throws IOException {
+		System.out.println("Sculptures: ");
+		ArrayList<Auction> resultList = new ArrayList<>();
+		Util.getActiveAuctions();
+		feed = Feed.getInstance();
+		for (Auction auction : feed) {
+			if (auction.getArtwork().getType().equals(ArtworkType.Sculpture)) {
+				resultList.add(auction);
+				System.out.println("\t" + auction.getArtwork().getTitle());
+			}
+		}
+		feed.updateWith(resultList);
+		setAuctionsCenter();
 	}
 	
 	private void modifyCardGrid() {
