@@ -135,7 +135,6 @@ public class ProfileController implements Initializable {
         }
     }
 
-    //TODO GSON NEEDS TO BE UPDATED
     @FXML
     private void setDefaultImage1() {
         changeDefaultImage("images/profile/male4.png");
@@ -263,7 +262,7 @@ public class ProfileController implements Initializable {
         final int AUCTIONS_SELLING_COLUMN = 1;
         final int AUCTIONS_PRICE_COLUMN = 2;
         final int AUCTIONS_IMAGE_SIZE = 20;
-        int row = 0;
+        int row = 1;
         System.out.println(selectedProfile.getCurrentlySelling().size());
         currentlySellingAuctionsGridPane.addRow(selectedProfile.getCurrentlySelling().size());
         ImageView auctionImage;
@@ -280,9 +279,9 @@ public class ProfileController implements Initializable {
             }
             auctionPrice = new Label();
             if (elem.getReservePrice() < elem.getHighestPrice()) {
-                auctionPrice.setText(String.valueOf(elem.getHighestPrice()));
+                auctionPrice.setText("£" + String.valueOf(elem.getHighestPrice()));
             } else {
-                auctionPrice.setText(String.valueOf(elem.getReservePrice()));
+                auctionPrice.setText("£" + String.valueOf(elem.getReservePrice()));
             }
             auctionLink = new Hyperlink();
             auctionLink.setText(elem.getArtwork().getTitle());

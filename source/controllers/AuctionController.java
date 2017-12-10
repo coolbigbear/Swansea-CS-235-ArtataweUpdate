@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -24,7 +21,7 @@ public class AuctionController implements Initializable {
 	@FXML
 	private Label auctionNameLabel;
 	@FXML
-	private Label sellerLabel;
+	private Hyperlink sellerLink;
 	@FXML
 	private Label reservePriceLabel;
 	@FXML
@@ -47,6 +44,16 @@ public class AuctionController implements Initializable {
 	private GridPane usersBidAuctionGridPane;
 	@FXML
 	private ScrollPane viewAuctionScrollPane;
+	@FXML
+	private Button addToFavoritesButton;
+	@FXML
+	private Label bidsLeftLabel;
+	@FXML
+	private GridPane sellingInfoGridPane;
+	@FXML
+	private Label placeBidLabel;
+	@FXML
+	private Button bidButton;
 	private Auction currentAuction;
 	private Artwork artwork;
 	private ArtworkType artworkType;
@@ -85,9 +92,9 @@ public class AuctionController implements Initializable {
 	
 	private void generateAuctionLabels() {
 		auctionNameLabel.setText(artwork.getTitle());
-		sellerLabel.setText(currentAuction.getSellerName());
-		reservePriceLabel.setText(String.valueOf(currentAuction.getReservePrice()));
-		highestBidLabel.setText(String.valueOf(currentAuction.getHighestPrice()));
+		sellerLink.setText(currentAuction.getSellerName());
+		reservePriceLabel.setText("£" + String.valueOf(currentAuction.getReservePrice()));
+		highestBidLabel.setText("£" + String.valueOf(currentAuction.getHighestPrice()));
 		bidInputTextField.setPromptText("Enter your bid amount...");
 	}
 	
@@ -129,14 +136,7 @@ public class AuctionController implements Initializable {
 		
 		generateAuctionLabels();
 		generateArtworkLabels();
-		if (Util.getCurrentUser().getUsername().equalsIgnoreCase(currentAuction.getSellerName())) {
-			viewAuctionScrollPane.setVisible(true);
-			usersBidAuctionGridPane.setVisible(true);
-			populateUsersBidPane();
-		} else {
-			usersBidAuctionGridPane.setVisible(false);
-			viewAuctionScrollPane.setVisible(false);
-		}
+		disableSellerNodes();
 	}
 	
 	private void populateUsersBidPane() {
@@ -196,5 +196,62 @@ public class AuctionController implements Initializable {
 
 			row++;
 		}
+	}
+
+	@FXML
+	private void sellerLinkAction() {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(ArtataweMain.class.getResource("/layouts/profile_layout.fxml"));
+		try {
+			BorderPane profileLayout = (BorderPane) loader.load();
+			ProfileController controller = loader.getController();
+			controller.initProfile(Util.getProfileByUsername(currentAuction.getSellerName()));
+			Util.getHomeLayout().setCenter(profileLayout);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void disableSellerNodes() {
+		if (Util.getCurrentUser().getUsername().equalsIgnoreCase(currentAuction.getSellerName())) {
+			viewAuctionScrollPane.setVisible(true);
+			usersBidAuctionGridPane.setVisible(true);
+			populateUsersBidPane();
+			addToFavoritesButton.setDisable(true);
+			addToFavoritesButton.setVisible(false);
+			bidsLeftLabel.setText("Bids left:");
+			sellingInfoGridPane.add(new Label(String.valueOf(currentAuction.getBidsLeft())), 1, 1);
+			placeBidLabel.setText("Highest bidder:");
+			bidInputTextField.setDisable(true);
+			bidInputTextField.setVisible(false);
+			bidButton.setDisable(true);
+			bidButton.setVisible(false);
+			if (currentAuction.getHighestBidder() != null) {
+				Hyperlink highestBidderProfile = new Hyperlink();
+				highestBidderProfile.setText(currentAuction.getHighestBidder());
+				highestBidderProfile.setOnAction(event -> {
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(ArtataweMain.class.getResource("/layouts/profile_layout.fxml"));
+					try {
+						BorderPane profileLayout = (BorderPane) loader.load();
+						ProfileController controller = loader.getController();
+						controller.initProfile(Util.getProfileByUsername(currentAuction.getHighestBidder()));
+						Util.getHomeLayout().setCenter(profileLayout);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				});
+				sellingInfoGridPane.add(highestBidderProfile, 1, 4);
+			}
+
+		} else {
+			usersBidAuctionGridPane.setVisible(false);
+			viewAuctionScrollPane.setVisible(false);
+		}
+	}
+
+	@FXML
+	private void addToFavoritesButtonAction() {
+
 	}
 }
