@@ -8,17 +8,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.control.*;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import model.Util;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Line;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.UUID;
 
@@ -43,7 +36,10 @@ public class DrawingController {
     @FXML
     private RadioMenuItem drawLine;
 
-    private double xbegin, xend, ybegin, yend;
+    private double xBegin;
+    private double xEnd;
+    private double yBegin;
+    private double yEnd;
 
     public void onSave() {
         try {
@@ -76,19 +72,21 @@ public class DrawingController {
             }
         });
         canvas.setOnMousePressed(event -> {
-            xbegin = event.getX();
-            ybegin = event.getY();
+            xBegin = event.getX();
+            yBegin = event.getY();
         });
         canvas.setOnMouseReleased(event -> {
-            xend = event.getX();
-            yend = event.getY();
+            xEnd = event.getX();
+            yEnd = event.getY();
             if(drawLine.isSelected()) {
+                gc.setFill(colorPicker.getValue());
                 gc.setLineWidth(Double.parseDouble(brushSize.getText()));
-                gc.strokeLine(xbegin, ybegin, xend, yend);
+                gc.strokeLine(xBegin, yBegin, xEnd, yEnd);
             }
             if(drawRectangle.isSelected()){
                 double size = Double.parseDouble((brushSize.getText()));
-                gc.strokeRect(xbegin,ybegin, size, size );
+                gc.setFill(colorPicker.getValue());
+                gc.strokeRect(xBegin, yBegin, size, size );
             }
         });
     }
