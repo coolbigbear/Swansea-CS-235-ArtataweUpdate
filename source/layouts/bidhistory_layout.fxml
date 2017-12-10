@@ -27,8 +27,8 @@
                      </rowConstraints>
                      <children>
                         <Label text="Auction ID:" />
-                        <Label text="Auctiont title:" GridPane.columnIndex="1" />
-                        <Label text="Auction price:" GridPane.columnIndex="2" />
+                        <Label text="Auction title:" GridPane.columnIndex="1" />
+                        <Label text="Auction price (£):" GridPane.columnIndex="2" />
                         <Label text="Time bid on:" GridPane.columnIndex="3" />
                         <Label text="Auction status:" GridPane.columnIndex="4" />
                      </children>
