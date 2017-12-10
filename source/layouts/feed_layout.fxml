@@ -17,14 +17,22 @@
             <children>
                 <HBox layoutX="293.0" layoutY="8.0" prefHeight="32.0" prefWidth="730.0" AnchorPane.rightAnchor="0.0">
                     <children>
-                        <ChoiceBox fx:id="choiceBoxFilter" layoutX="308.0" layoutY="21.0" prefWidth="150.0" stylesheets="@../css/feed.css" value="Show All" />
-                        <Button layoutX="464.0" layoutY="21.0" mnemonicParsing="false" prefWidth="79.0" text="Filter" />
+                        <ChoiceBox fx:id="choiceBoxFilter" layoutX="308.0" layoutY="21.0" prefHeight="31.0" prefWidth="150.0" stylesheets="@../css/feed.css" value="Show All">
+                            <HBox.margin>
+                                <Insets bottom="2.5" right="3.0" />
+                            </HBox.margin>
+                        </ChoiceBox>
+                        <Button layoutX="464.0" layoutY="21.0" mnemonicParsing="false" prefWidth="79.0" text="Filter">
+                            <HBox.margin>
+                                <Insets bottom="2.5" left="2.0" />
+                            </HBox.margin>
+                        </Button>
                     </children>
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
                     <padding>
-                        <Insets left="500.0" />
+                        <Insets left="493.0" />
                     </padding>
                     <HBox.margin>
                         <Insets left="8.0" />
@@ -32,7 +40,10 @@
                 </HBox>
                 <HBox layoutY="8.0" prefHeight="32.0" prefWidth="275.0">
                     <children>
-                        <TextField layoutX="14.0" layoutY="21.0" prefWidth="275.0" promptText="Search..." />
+                        <TextField layoutX="14.0" layoutY="21.0" prefWidth="275.0" promptText="Search...">
+                     <HBox.margin>
+                        <Insets bottom="2.5" left="2.5" top="6.0" />
+                     </HBox.margin></TextField>
                     </children>
                 </HBox>
             </children>
@@ -41,14 +52,23 @@
     <center>
         <ScrollPane prefHeight="467.0" prefWidth="1023.0" BorderPane.alignment="CENTER">
             <content>
-                <GridPane fx:id="cardsGridPane" layoutX="3.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="461.0" prefWidth="1024.0" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="3.0">
+                <GridPane fx:id="cardsGridPane" layoutX="3.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="461.0" prefWidth="1024.0" vgap="25.0" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="3.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+               <padding>
+                  <Insets bottom="25.0" left="57.0" top="25.0" />
+               </padding>
                 </GridPane>
             </content>
+         <BorderPane.margin>
+            <Insets left="2.5" top="3.0" />
+         </BorderPane.margin>
         </ScrollPane>
     </center>
 </BorderPane>

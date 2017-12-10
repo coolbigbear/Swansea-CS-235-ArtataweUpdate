@@ -21,6 +21,10 @@
     -fx-border-radius: 45px;
 }
 
+#choiceBoxFilter:hover{
+    -fx-background-color: #6d6b6e;
+}
+
 #feedLayout{
     -fx-background-color: #cfdff9;
     -fx-border-color: #cfdff9;

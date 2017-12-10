@@ -105,7 +105,9 @@
                   <Button fx:id="photo1" mnemonicParsing="false" onAction="#imgButton1" prefHeight="31.0" prefWidth="124.0" text="Browse photo 1">
                      <HBox.margin>
                         <Insets right="2.5" />
-                     </HBox.margin></Button>
+                     </HBox.margin>
+
+                  </Button>
                   <Button fx:id="photo2" mnemonicParsing="false" onAction="#imgButton2" prefHeight="31.0" prefWidth="124.0" text="Browse photo 2">
                      <HBox.margin>
                         <Insets right="2.5" />

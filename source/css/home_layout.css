@@ -20,8 +20,14 @@
     -fx-background-color: linear-gradient(#D3D3D3, #9b9c9e);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-border-radius: 45px;
+    -fx-content-display: center;
 }
+
 .button:hover {
+    -fx-background-color: #6d6b6e;
+}
+
+.menu-button:hover {
     -fx-background-color: #6d6b6e;
 }
 
