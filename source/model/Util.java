@@ -2,7 +2,7 @@ package model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import controllers.ArtataweMain;
+import controllers.Main;
 import controllers.ProfileController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -67,7 +67,7 @@ public final class Util {
 		}
 		return auctions;
 	}
-	
+
 	/**
 	 * Read in logged in user.
 	 *
@@ -90,7 +90,7 @@ public final class Util {
 		}
 		return found;
 	}
-	
+
 	/**
 	 * Gets profile by username from database.
 	 *
@@ -110,7 +110,7 @@ public final class Util {
 		}
 		throw new ProfileNotFoundException("Profile not found!");
 	}
-	
+
 	/**
 	 * Gets Auction by auctionID from database.
 	 *
@@ -137,7 +137,7 @@ public final class Util {
 			return auction;
 		}
 	}
-	
+
 	/**
 	 * Read in all auctions from database that are active (on sale).
 	 */
@@ -155,17 +155,17 @@ public final class Util {
 			}
 		}
 	}
-	
+
 	public static void getAllAuctions() {
 		Auction[] fromJson = readInAuctionFile();
-		
+
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-		
+
 		Feed feed = Feed.getNewInstanceWithCapacity(auctionArrayList.size());
 		feed.updateWith(auctionArrayList);
-		
+
 	}
-	
+
 	/**
 	 * Gets active auctions by username.
 	 *
@@ -185,11 +185,9 @@ public final class Util {
 			}
 		}
 	}
-	
+
 	/**
 	 * Reads in only active sculpture auctions.
-	 *
-	 * @throws IOException the io exception
 	 */
 	public static void getSculptureAuctions() {
 		Auction[] fromJson = readInAuctionFile();
@@ -204,14 +202,10 @@ public final class Util {
 				feed.add(auction);
 			}
 		}
-		//Feed.getNewInstance().addAll(auctionArrayList);
-		//System.out.println(Feed.getInstance());
 	}
-	
+
 	/**
 	 * Reads in only active painting auctions.
-	 *
-	 * @throws IOException the io exception
 	 */
 	public static void getPaintingAuctions() {
 		Auction[] fromJson = readInAuctionFile();
@@ -227,7 +221,7 @@ public final class Util {
 			}
 		}
 	}
-	
+
 	/**
 	 * Takes in a new profile and saves it to file.
 	 *
@@ -235,64 +229,55 @@ public final class Util {
 	 */
 	public static void saveNewProfileToFile(Profile profile) {
 		Profile[] temp = readInProfileFile();
+		//Read all profiles in from database
 		List<Profile> tempList = new ArrayList<>(Arrays.asList(temp));
+		//Add new profile to List and save the new list to database overwriting it
 		tempList.add(profile);
 		saveListOfProfilesToFile(tempList);
 	}
-	
+
 	/**
 	 * Saves a profile to file.
 	 *
 	 * @param profile the profile
 	 */
-	public static void saveProfileToFile(Profile profile) {
-		try {
-			Profile[] temp = readInProfileFile();
-			String username = profile.getUsername();
-			for (int i = 0; i < temp.length; i++) {
-				
-				if (Objects.equals(temp[i].getUsername(), username)) {
-					temp[i] = profile;
-				}
-			}
-			FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
-			gson.toJson(temp, fileWriter);
-			fileWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
+    public static void saveProfileToFile(Profile profile) {
+        Profile[] temp = readInProfileFile();
+        String username = profile.getUsername();
+        for (int i = 0; i < temp.length; i++) {
+            //For all profiles in database find the one that matches the username and overwrite it in list
+            if (Objects.equals(temp[i].getUsername(), username)) {
+                temp[i] = profile;
+            }
+        }
+        //Save new list to file overwriting previous
+        saveListOfProfilesToFile(Arrays.asList(temp));
+    }
+
 	/**
 	 * Saves a auction to file.
 	 *
 	 * @param auction the auction
 	 */
-	public static void saveAuctionToFile(Auction auction) {
-		try {
-			Auction[] temp = readInAuctionFile();
-			Integer auctionID = auction.getAuctionID();
-			for (int i = 0; i < temp.length; i++) {
-				
-				if (auctionID.equals(temp[i].getAuctionID())) {
-					temp[i] = auction;
-				}
-			}
-			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
-			gson.toJson(temp, fileWriter);
-			fileWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
+    public static void saveAuctionToFile(Auction auction) {
+        Auction[] temp = readInAuctionFile();
+        Integer auctionID = auction.getAuctionID();
+        for (int i = 0; i < temp.length; i++) {
+            //For all auctions in database find the one that matches the auctionID and overwrite it in list
+            if (auctionID.equals(temp[i].getAuctionID())) {
+                temp[i] = auction;
+            }
+        }
+        //Save new list to file overwriting previous
+        saveListOfAuctionsToFile(Arrays.asList(temp));
+    }
+
 	/**
 	 * Save a list of auctions to file.
 	 *
 	 * @param auctions Auctions to be saved to file
 	 */
 	public static void saveListOfAuctionsToFile(List<Auction> auctions) {
-		//Gson gson = new Gson();
 		try {
 			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
 			gson.toJson(auctions, fileWriter);
@@ -301,7 +286,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Save a list of profiles to file.
 	 *
@@ -316,11 +301,11 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Add types to gson for artwork, sculpture and painting.
 	 *
-	 * @return the gson
+	 * @return Gson with added types (need to differentiate when reading and saving)
 	 */
 	public static Gson addTypesToGson() {
 		RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "typeGSON");
@@ -333,9 +318,9 @@ public final class Util {
 				.registerTypeAdapterFactory(artworkAdapterFactory)
 				.create();
 	}
-	
+
 	/**
-	 * Gets new auction id.
+	 * Gets new auction id from file.
 	 *
 	 * @return the new auction id
 	 */
@@ -343,10 +328,15 @@ public final class Util {
 		int auctionID = -1;
 		
 		try {
+		    //Reads in auctionID from file
 			Scanner scanner = new Scanner(new File("JSON Files/AuctionID.txt."));
 			auctionID = scanner.nextInt();
+
+			//Adds one to auctionID to avoid conflicts
 			auctionID++;
 			scanner.close();
+
+			//Saves the new auctionID back to file
 			saveNewAuctionID(auctionID);
 			return auctionID;
 		} catch (FileNotFoundException e) {
@@ -354,7 +344,12 @@ public final class Util {
 		}
 		return auctionID;
 	}
-	
+
+    /**
+     * Saves new auctionID back to file
+     *
+     * @param auctionID to be saved to file
+     */
 	private static void saveNewAuctionID(int auctionID) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(
@@ -365,7 +360,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Gets current user.
 	 *
@@ -374,7 +369,7 @@ public final class Util {
 	public static Profile getCurrentUser() {
 		return currentUser;
 	}
-	
+
 	/**
 	 * Sets a new current user.
 	 *
@@ -383,7 +378,7 @@ public final class Util {
 	public static void setCurrentUser(Profile currentUser) {
 		Util.currentUser = currentUser;
 	}
-	
+
 	/**
 	 * Gets home layout.
 	 *
@@ -392,7 +387,7 @@ public final class Util {
 	public static BorderPane getHomeLayout() {
 		return homeLayout;
 	}
-	
+
 	/**
 	 * Sets home layout.
 	 *
@@ -401,7 +396,7 @@ public final class Util {
 	public static void setHomeLayout(BorderPane borderPane) {
 		homeLayout = borderPane;
 	}
-	
+
 	/**
 	 * Gets main stage.
 	 *
@@ -410,7 +405,7 @@ public final class Util {
 	public static Stage getMainStage() {
 		return mainStage;
 	}
-	
+
 	/**
 	 * Sets main stage.
 	 *
@@ -419,7 +414,7 @@ public final class Util {
 	public static void setMainStage(Stage stage) {
 		mainStage = stage;
 	}
-	
+
 	/**
 	 * Sets profile image.
 	 *
@@ -428,7 +423,7 @@ public final class Util {
 	public static void setProfileImage(ImageView imageView) {
 		profileImage = imageView;
 	}
-	
+
 	/**
 	 * Gets profile image.
 	 *
@@ -437,7 +432,7 @@ public final class Util {
 	public static ImageView getProfileImage() {
 		return profileImage;
 	}
-	
+
 	/**
 	 * Sets favorite users grid pane.
 	 *
@@ -446,7 +441,7 @@ public final class Util {
 	public static void setFavoriteUsersGridPane(GridPane gridPane) {
 		favoriteUsersGridPane = gridPane;
 	}
-	
+
 	/**
 	 * Gets favorite users grid pane.
 	 *
@@ -455,7 +450,7 @@ public final class Util {
 	public static GridPane getFavoriteUsersGridPane() {
 		return favoriteUsersGridPane;
 	}
-	
+
 	/**
 	 * Gets filter choice box.
 	 *
@@ -464,7 +459,7 @@ public final class Util {
 	public static ChoiceBox getFilterChoiceBox() {
 		return filterChoiceBox;
 	}
-	
+
 	/**
 	 * Sets filter choice box.
 	 *
@@ -473,7 +468,7 @@ public final class Util {
 	public static void setFilterChoiceBox(ChoiceBox choiceBox) {
 		filterChoiceBox = choiceBox;
 	}
-	
+
 	/**
 	 * Dynamic favorites grid pane.
 	 *
@@ -501,7 +496,7 @@ public final class Util {
 			favoriteUser.setText(elem.getUsername());
 			favoriteUser.setOnAction(event -> {
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(ArtataweMain.class.getResource("/layouts/profile_layout.fxml"));
+				loader.setLocation(Main.class.getResource("/layouts/profile_layout.fxml"));
 				try {
 					BorderPane profileLayout = (BorderPane) loader.load();
 					ProfileController controller = loader.getController();
@@ -516,7 +511,7 @@ public final class Util {
 			row++;
 		}
 	}
-	
+
 	/**
 	 * Delete grid row.
 	 *

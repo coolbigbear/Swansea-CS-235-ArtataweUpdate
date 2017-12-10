@@ -96,7 +96,7 @@ public class HomeController implements Initializable {
         Scene login = new Scene(root);
         Stage stage = Util.getMainStage();
         stage.setScene(login);
-        root.getStylesheets().add(ArtataweMain.class.getResource("/css/login.css").toExternalForm());
+        root.getStylesheets().add(Main.class.getResource("/css/login.css").toExternalForm());
         stage.setMinHeight(519);
         stage.setMinWidth(656);
         stage.setHeight(519);
@@ -238,7 +238,7 @@ public class HomeController implements Initializable {
     
     private BorderPane setAuctionsCenter() throws IOException {
         BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
-        feedLayout.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
+        feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         homeLayout.setCenter(feedLayout);
         return feedLayout;
     }

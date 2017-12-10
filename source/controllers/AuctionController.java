@@ -226,7 +226,7 @@ public class AuctionController implements Initializable {
 			
 			profileLink.setOnAction(event -> {
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(ArtataweMain.class.getResource("/layouts/profile_layout.fxml"));
+				loader.setLocation(Main.class.getResource("/layouts/profile_layout.fxml"));
 				try {
 					BorderPane profileLayout = (BorderPane) loader.load();
 					ProfileController controller = loader.getController();
@@ -254,7 +254,7 @@ public class AuctionController implements Initializable {
 	@FXML
 	private void sellerLinkAction() {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ArtataweMain.class.getResource("/layouts/profile_layout.fxml"));
+		loader.setLocation(Main.class.getResource("/layouts/profile_layout.fxml"));
 		try {
 			BorderPane profileLayout = (BorderPane) loader.load();
 			ProfileController controller = loader.getController();
@@ -288,7 +288,7 @@ public class AuctionController implements Initializable {
 				highestBidderProfile.setText(currentAuction.getHighestBidder());
 				highestBidderProfile.setOnAction(event -> {
 					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(ArtataweMain.class.getResource("/layouts/profile_layout.fxml"));
+					loader.setLocation(Main.class.getResource("/layouts/profile_layout.fxml"));
 					try {
 						BorderPane profileLayout = (BorderPane) loader.load();
 						ProfileController controller = loader.getController();

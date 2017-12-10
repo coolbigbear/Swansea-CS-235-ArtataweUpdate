@@ -148,7 +148,7 @@ public class FeedController implements Initializable {
 	
 	private void setAuctionsCenter() throws IOException {
 		BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
-		feedLayout.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
+		feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
 		Util.getHomeLayout().setCenter(feedLayout);
 	}
 }
