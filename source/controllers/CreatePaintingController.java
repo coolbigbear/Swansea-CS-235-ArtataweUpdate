@@ -19,18 +19,54 @@ import java.util.ResourceBundle;
 
 public class CreatePaintingController implements Initializable {
 
+    /**
+     * The Error label.
+     */
     @FXML Label errorLabel;
+    /**
+     * The Artwork description.
+     */
     @FXML TextArea artworkDescription;
+    /**
+     * The Artwork title.
+     */
     @FXML TextField artworkTitle;
+    /**
+     * The Painting height.
+     */
     @FXML TextField paintingHeight;
+    /**
+     * The Painting width.
+     */
     @FXML TextField paintingWidth;
+    /**
+     * The Reserve price.
+     */
     @FXML TextField reservePrice;
+    /**
+     * The No of bids allowed.
+     */
     @FXML TextField noOfBidsAllowed;
+    /**
+     * The Year of creation.
+     */
     @FXML TextField yearOfCreation;
+    /**
+     * The Creator name.
+     */
     @FXML TextField creatorName;
+    /**
+     * Browse for main photo button.
+     */
     @FXML Button browseForMainPhoto;
+    /**
+     * Sell painting button.
+     */
     @FXML Button sellPaintingButton;
 
+    /**
+     * Variables pulled from text fields.
+     */
     private String artworkTitlePulled;
     private String descriptionPulled;
     private String nameOfCreatorPulled;
@@ -43,30 +79,42 @@ public class CreatePaintingController implements Initializable {
     private Integer paintingWidthPulled;
     private Integer paintingHeightPulled;
 
+    //Boolean to check if user chose img.
     private Boolean imgChosen = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        /**
+         * When sell button is clicked
+         */
         sellPaintingButton.setOnAction(e -> {
+
+            //If all values entered correctly
             if (getTextFieldValues()) {
+
+                //If user chose an image (required)
                 if (imgChosen) {
+
+                    //Creates temporary auction to be added to database and feed
                     Artwork tempPainting = new Painting(artworkTitlePulled, new StringBuilder(descriptionPulled),
                             yearOfCreationPulled, nameOfCreatorPulled, artImgPath, paintingWidthPulled, paintingHeightPulled);
 
                     Auction tempAuction = Auction.createNewAuction(tempPainting, Util.getCurrentUser().getUsername(), numberOfBidsAllowedPulled, reservePricePulled);
 
+                    //Adds auction to feed
                     Feed.getInstance().add(tempAuction);
+                    //Adds auction to database
                     Util.saveListOfAuctionsToFile(Feed.getInstance().getAllAsArrayList());
 
-                    BorderPane feedLayout = null;
+                    //Load the homepage back up
                     try {
-                        feedLayout = FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
-                        feedLayout.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
+                        BorderPane feedLayout = FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
+                        feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
+                        Util.getHomeLayout().setCenter(feedLayout);
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
-                    Util.getHomeLayout().setCenter(feedLayout);
+                    //Error case if user didn't choose image
                 } else {
                     errorLabel.setVisible(true);
                     errorLabel.setTextFill(Color.RED);
@@ -75,7 +123,11 @@ public class CreatePaintingController implements Initializable {
             }
         });
     }
-
+    /**
+     * Checks if all fields are filled and correctly handled
+     *
+     * @return true if all handled correctly, false otherwise.
+     */
     private boolean getTextFieldValues() {
         try {
             artworkTitlePulled = artworkTitle.getText();
@@ -87,6 +139,9 @@ public class CreatePaintingController implements Initializable {
             paintingWidthPulled = Integer.parseInt(paintingWidth.getText());
             paintingHeightPulled = Integer.parseInt(paintingHeight.getText());
 
+            /**
+             * Checks if fields are not null
+             */
             if (artworkTitlePulled == null || Objects.equals(artworkTitlePulled, "")) {
                 throw new IllegalArgumentException();
             }
@@ -103,6 +158,7 @@ public class CreatePaintingController implements Initializable {
             }
 
         } catch (IllegalArgumentException t) {
+            //Displays error msg to user
             errorLabel.setVisible(true);
             errorLabel.setTextFill(Color.RED);
             errorLabel.setText("Please check all fields are filled in correctly!");
@@ -110,6 +166,12 @@ public class CreatePaintingController implements Initializable {
         }
     }
 
+
+    /**
+     * Opens file explorer to let user choose image to add
+     *
+     * @return Path to image
+     */
     @FXML
     public void chooseMainPaintingImg() {
         FileChooser fileChooser = new FileChooser();
@@ -122,6 +184,12 @@ public class CreatePaintingController implements Initializable {
         }
     }
 
+    /**
+     * Replaces characters because of escape characters
+     *
+     * @param input path to file
+     * @return new path with replaced characters
+     */
     private String ourString(String input) {
         String newPath = input.substring(input.indexOf("images"));
         return newPath.replaceAll("\\\\", "/");

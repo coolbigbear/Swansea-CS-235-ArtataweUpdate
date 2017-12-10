@@ -50,7 +50,7 @@ public class LoginController implements Initializable {
     private void registerButtonAction(ActionEvent e) throws IOException {
         cycleImageThread.interrupt();
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/register_layout.fxml"));
-        //root.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
+        //root.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         Scene registerScene = new Scene(root);
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         stage.setScene(registerScene);
@@ -64,7 +64,7 @@ public class LoginController implements Initializable {
         cycleImageThread.interrupt();
         loginUserPrompt.setText("Welcome to Artatawe" + ", " + Util.getCurrentUser().getFirstName() + "!");
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/home_layout.fxml"));
-        root.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
+        root.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         Scene homeScene = new Scene(root);
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         stage.setScene(homeScene);

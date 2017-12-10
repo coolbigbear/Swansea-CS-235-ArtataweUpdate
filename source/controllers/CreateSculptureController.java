@@ -11,9 +11,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import model.*;
+
 import java.io.File;
 import java.io.IOException;
-import java.io.StreamCorruptedException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -21,20 +21,62 @@ import java.util.ResourceBundle;
 
 public class CreateSculptureController implements Initializable {
 
+    /**
+     * The Error label.
+     */
     @FXML Label errorLabel;
+    /**
+     * The Artwork description.
+     */
     @FXML TextArea artworkDescription;
+    /**
+     * The Artwork title.
+     */
     @FXML TextField artworkTitle;
+    /**
+     * The Sculpture height.
+     */
     @FXML TextField sculptureHeight;
+    /**
+     * The Sculpture width.
+     */
     @FXML TextField sculptureWidth;
+    /**
+     * The Sculpture depth.
+     */
     @FXML TextField sculptureDepth;
+    /**
+     * The Sculpture material.
+     */
     @FXML TextField sculptureMaterial;
+    /**
+     * The Reserve price.
+     */
     @FXML TextField reservePrice;
+    /**
+     * The No of bids allowed.
+     */
     @FXML TextField noOfBidsAllowed;
+    /**
+     * The Year of creation.
+     */
     @FXML TextField yearOfCreation;
+    /**
+     * The Creator name.
+     */
     @FXML TextField creatorName;
+    /**
+     * The Choose main sculpture img.
+     */
     @FXML Button chooseMainSculptureImg;
+    /**
+     * The Sell sculpture button.
+     */
     @FXML Button sellSculptureButton;
 
+    /**
+     * Variables pulled from text fields.
+     */
     private String artworkTitlePulled;
     private String descriptionPulled;
     private String nameOfCreatorPulled;
@@ -53,36 +95,52 @@ public class CreateSculptureController implements Initializable {
     private Integer sculptureHeightPulled;
     private Integer sculptureDepthPulled;
 
+    //Boolean to check if user chose img.
     private Boolean imgChosen = false;
     private ArrayList pathsToImages = new ArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        /**
+         * When sell button is clicked
+         */
         sellSculptureButton.setOnAction(e -> {
+
+            //If all values entered correctly
             if (getTextFieldValues()) {
+
+                //If user chose an image (required)
                 if (imgChosen) {
                     Artwork tempPainting;
+
+                    //Since sculpture additional images are not required.
+                    // Check if user chose additional images and user appropriate constructor
                     if (pathsToImages.size()> 0) {
                         tempPainting = new Sculpture(artworkTitlePulled, new StringBuilder(descriptionPulled),
                                 yearOfCreationPulled, nameOfCreatorPulled, artImgPath, sculptureWidthPulled, sculptureHeightPulled, sculptureDepthPulled, sculptureMaterialPulled,pathsToImages);
                     } else {
+
+                        //User chose no additional images
                         tempPainting = new Sculpture(artworkTitlePulled, new StringBuilder(descriptionPulled),
                                 yearOfCreationPulled, nameOfCreatorPulled, artImgPath, sculptureWidthPulled, sculptureHeightPulled, sculptureDepthPulled, sculptureMaterialPulled);
                     }
+                    //Creates temporary auction to be added to database and feed
                     Auction tempAuction = Auction.createNewAuction(tempPainting, Util.getCurrentUser().getUsername(), numberOfBidsAllowedPulled, reservePricePulled);
 
+                    //Adds auction to feed
                     Feed.getInstance().add(tempAuction);
+                    //Adds auction to database
                     Util.saveListOfAuctionsToFile(Feed.getInstance().getAllAsArrayList());
 
-                    BorderPane feedLayout = null;
+                    //Load the homepage back up
                     try {
-                        feedLayout = FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
-                        feedLayout.getStylesheets().add(ArtataweMain.class.getResource("/css/home_layout.css").toExternalForm());
+                        BorderPane feedLayout = FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
+                        feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
+                        Util.getHomeLayout().setCenter(feedLayout);
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
-                    Util.getHomeLayout().setCenter(feedLayout);
+                    //Error case if user didn't choose image
                 } else {
                     errorLabel.setVisible(true);
                     errorLabel.setTextFill(Color.RED);
@@ -92,6 +150,11 @@ public class CreateSculptureController implements Initializable {
         });
     }
 
+    /**
+     * Checks if all fields are filled and correctly handled
+     *
+     * @return true if all handled correctly, false otherwise.
+     */
     private boolean getTextFieldValues() {
         try {
             artworkTitlePulled = artworkTitle.getText();
@@ -105,6 +168,9 @@ public class CreateSculptureController implements Initializable {
             sculptureHeightPulled = Integer.parseInt(sculptureHeight.getText());
             sculptureDepthPulled = Integer.parseInt(sculptureDepth.getText());
 
+            /**
+             * Checks if fields are not null
+             */
             if (artworkTitlePulled == null || Objects.equals(artworkTitlePulled, "")) {
                 throw new IllegalArgumentException();
             }
@@ -124,16 +190,22 @@ public class CreateSculptureController implements Initializable {
             }
 
         } catch (IllegalArgumentException t) {
+            //Displays error msg to user
             errorLabel.setVisible(true);
             errorLabel.setTextFill(Color.RED);
             errorLabel.setText("Please check all fields are filled in correctly!");
             return false;
         }
     }
+
+    /**
+     * Sets main image for sculpture shows error to user otherwise
+     */
     @FXML
     private void chooseImg() {
         String temp = chooseMainSculptureImg();
         if (temp == null) {
+            //Displays error msg
             errorLabel.setVisible(true);
             errorLabel.setTextFill(Color.RED);
             errorLabel.setText("Please choose a correct image!");
@@ -143,6 +215,11 @@ public class CreateSculptureController implements Initializable {
         }
     }
 
+    /**
+     * Opens file explorer to let user choose image to add
+     *
+     * @return Path to image
+     */
     private String chooseMainSculptureImg() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
@@ -155,6 +232,9 @@ public class CreateSculptureController implements Initializable {
         return null;
     }
 
+    /**
+     * Grabs additional images (up to 4)
+     */
     @FXML
     private void imgButton1() {
         image1 = chooseMainSculptureImg();
@@ -179,6 +259,12 @@ public class CreateSculptureController implements Initializable {
         pathsToImages.add(image4);
     }
 
+    /**
+     * Replaces characters because of escape characters
+     *
+     * @param input path to file
+     * @return new path with replaced characters
+     */
     private String ourString(String input) {
         String newPath = input.substring(input.indexOf("images"));
         return newPath.replaceAll("\\\\", "/");
