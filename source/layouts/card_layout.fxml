@@ -35,11 +35,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Artist" />
-            <Label text="Creation date" GridPane.rowIndex="1" />
+            <Label text="Artist:" />
+            <Label text="Creation time:" GridPane.rowIndex="1" />
             <Label fx:id="artistCardAuctionLabel" text="dicaprio" GridPane.columnIndex="1" />
             <Label fx:id="creationDateCardAuctionLabel" text="1888" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Date placed" GridPane.rowIndex="2" />
+            <Label text="Date placed:" GridPane.rowIndex="2" />
             <Label fx:id="datePlacedCardAuctionLabel" text="june 2017" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>

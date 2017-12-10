@@ -130,10 +130,12 @@ public class AuctionController implements Initializable {
 		generateAuctionLabels();
 		generateArtworkLabels();
 		if (Util.getCurrentUser().getUsername().equalsIgnoreCase(currentAuction.getSellerName())) {
+			viewAuctionScrollPane.setVisible(true);
 			usersBidAuctionGridPane.setVisible(true);
 			populateUsersBidPane();
 		} else {
 			usersBidAuctionGridPane.setVisible(false);
+			viewAuctionScrollPane.setVisible(false);
 		}
 	}
 	
