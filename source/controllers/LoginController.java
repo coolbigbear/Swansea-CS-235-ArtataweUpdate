@@ -54,7 +54,7 @@ public class LoginController implements Initializable {
         Scene registerScene = new Scene(root);
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         stage.setScene(registerScene);
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.setMinWidth(680);
         stage.setMinHeight(468);
         stage.show();
