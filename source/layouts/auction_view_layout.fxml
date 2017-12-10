@@ -21,7 +21,7 @@
             <children>
                 <VBox layoutX="79.0" layoutY="41.0">
                     <children>
-                        <ImageView fitHeight="193.0" fitWidth="252.0" layoutX="79.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="mainArtworkImage" fitHeight="193.0" fitWidth="252.0" layoutX="79.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                             <VBox.margin>
                                 <Insets bottom="20.0" />
                             </VBox.margin>
@@ -30,7 +30,10 @@
                 </VBox>
                 <HBox layoutX="79.0" layoutY="241.0" prefHeight="57.0" prefWidth="252.0">
                     <children>
-                        <ImageView fitHeight="57.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="optionalImage1" fitHeight="57.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="optionalImage2" fitHeight="57.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="optionalImage3" fitHeight="57.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="optionalImage4" fitHeight="57.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="20.0" />

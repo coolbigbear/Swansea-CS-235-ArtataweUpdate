@@ -72,6 +72,7 @@ public final class Util {
 	 * Read in logged in user.
 	 *
 	 * @param username the username
+	 *
 	 * @return the boolean
 	 */
 	public static boolean checkAndSetUser(String username) {
@@ -94,6 +95,7 @@ public final class Util {
 	 * Gets profile by username from database.
 	 *
 	 * @param username the username
+	 *
 	 * @return the profile to be returned
 	 */
 	public static Profile getProfileByUsername(String username) {
@@ -113,15 +115,18 @@ public final class Util {
 	 * Gets Auction by auctionID from database.
 	 *
 	 * @param auctionID the ID of auction to be found
+	 *
 	 * @return the auction to be returned
+	 *
 	 * @throws IOException the io exception
 	 */
 	public static Auction getAuctionByAuctionID(Integer auctionID) throws IOException {
+		
 		Auction auction = null;
 		Auction[] allAuctions = readInAuctionFile();
 		for (Auction auctions : allAuctions) {
 			Integer id = auctions.getAuctionID();
-			//Loop through all auctions checking ID against each one
+			
 			if (Objects.equals(id, auctionID)) {
 				auction = auctions;
 			}
@@ -149,6 +154,16 @@ public final class Util {
 				feed.add(auction);
 			}
 		}
+	}
+
+	public static void getAllAuctions() {
+		Auction[] fromJson = readInAuctionFile();
+
+		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+		Feed feed = Feed.getNewInstanceWithCapacity(auctionArrayList.size());
+		feed.updateWith(auctionArrayList);
+
 	}
 
 	/**
@@ -222,7 +237,7 @@ public final class Util {
 	}
 
 	/**
-	 * Saves any profile changes to database
+	 * Saves a profile to file.
 	 *
 	 * @param profile the profile
 	 */
@@ -240,7 +255,7 @@ public final class Util {
     }
 
 	/**
-	 * Saves any auction changes to file.
+	 * Saves a auction to file.
 	 *
 	 * @param auction the auction
 	 */
@@ -258,7 +273,7 @@ public final class Util {
     }
 
 	/**
-	 * Saves a list of auctions to file.
+	 * Save a list of auctions to file.
 	 *
 	 * @param auctions Auctions to be saved to file
 	 */
@@ -457,7 +472,7 @@ public final class Util {
 	/**
 	 * Dynamic favorites grid pane.
 	 *
-	 * @param gridPane  the grid pane
+	 * @param gridPane the grid pane
 	 * @param favorites the favorites
 	 */
 	public static void dynamicFavoritesGridPane(GridPane gridPane, List<Profile> favorites) {
@@ -491,8 +506,8 @@ public final class Util {
 					e.printStackTrace();
 				}
 			});
-			gridPane.add(favoriteUser,PROFILE_COLUMN,row);
-			gridPane.add(profileImage,IMAGE_COLUMN,row);
+			gridPane.add(favoriteUser, PROFILE_COLUMN, row);
+			gridPane.add(profileImage, IMAGE_COLUMN, row);
 			row++;
 		}
 	}
@@ -501,7 +516,7 @@ public final class Util {
 	 * Delete grid row.
 	 *
 	 * @param grid the grid
-	 * @param row  the row
+	 * @param row the row
 	 */
 	public static void deleteGridRow(GridPane grid, final int row) {
 		Set<Node> deleteNodes = new HashSet<>();
@@ -509,7 +524,7 @@ public final class Util {
 			Integer rowIndex = GridPane.getRowIndex(child);
 			int r = rowIndex == null ? 0 : rowIndex;
 			if (r > row) {
-				GridPane.setRowIndex(child, r-1);
+				GridPane.setRowIndex(child, r - 1);
 			} else if (r == row) {
 				deleteNodes.add(child);
 			}

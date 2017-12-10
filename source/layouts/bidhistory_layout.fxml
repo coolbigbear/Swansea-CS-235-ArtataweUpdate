@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,12 +27,18 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
                      </rowConstraints>
                      <children>
-                        <Label text="Auction ID:" />
-                        <Label text="Auction title:" GridPane.columnIndex="1" />
-                        <Label text="Auction price (£):" GridPane.columnIndex="2" />
-                        <Label text="Time bid on:" GridPane.columnIndex="3" />
-                        <Label text="Auction status:" GridPane.columnIndex="4" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="200.0" text="Auction ID:" textAlignment="CENTER">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets></Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="199.0" text="Auction title:" textAlignment="CENTER" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="198.0" text="Auction price (£):" GridPane.columnIndex="2" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="197.0" text="Time bid on:" GridPane.columnIndex="3" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="189.0" text="Auction status:" GridPane.columnIndex="4" />
                      </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </GridPane>
                </children>
             </AnchorPane>

@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -15,13 +10,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="feedLayout" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FeedController">
+<BorderPane fx:id="feedLayout" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FeedController">
     <top>
         <AnchorPane prefHeight="39.0" prefWidth="1023.0" BorderPane.alignment="CENTER">
             <children>
-                <HBox layoutX="293.0" layoutY="4.0" prefHeight="33.0" prefWidth="697.0" AnchorPane.rightAnchor="0.0">
+                <HBox layoutX="293.0" layoutY="4.0" prefHeight="33.0" prefWidth="739.0" AnchorPane.rightAnchor="0.0">
                     <children>
-                        <ChoiceBox fx:id="choiceBoxFilter" layoutX="308.0" layoutY="21.0" prefHeight="30.0" prefWidth="200.0" stylesheets="@../css/feed.css" value="Show All">
+                        <ChoiceBox fx:id="choiceBoxFilter" layoutX="308.0" layoutY="21.0" prefHeight="30.0" prefWidth="199.0" stylesheets="@../css/feed.css" value="Show All">
                             <HBox.margin>
                                 <Insets bottom="2.5" />
                             </HBox.margin>
