@@ -318,12 +318,6 @@ public final class Feed implements Iterable<Auction> {
 		Collections.sort(this.arrayList);
 	}
 	
-	public static Feed createAndGetSisterFeed(Feed feedToCopy) {
-		sisterInstance = new Feed(feedToCopy.size());
-		sisterInstance.updateWith(feedToCopy.getAllAsArrayList());
-		return sisterInstance;
-	}
-	
 	@Override
 	public int hashCode() {
 		return arrayList.hashCode();

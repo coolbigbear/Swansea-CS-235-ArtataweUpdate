@@ -328,11 +328,11 @@ class ModelTests {
 				auction.placeBid(new Bid(420, 490.00));
 			});
 			
-//			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
-//				auction.placeBid(new Bid(420, 490.00));
-//			}).getType();
-//
-//			assertEquals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE, type);
+			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
+				auction.placeBid(new Bid(420, 490.00));
+			}).getType();
+
+			assertEquals(IllegalBidException.IllegalBidType.LOWER_THAN_RESERVE_PRICE, type);
 		}
 		
 		@DisplayName("Auction new Bid lower than Highest")
@@ -343,11 +343,11 @@ class ModelTests {
 				auction.placeBid(new Bid(420, 502.00));
 			});
 			
-//			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
-//				auction.placeBid(new Bid(420, 490.00));
-//			}).getType();
-//
-//			assertEquals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST, type);
+			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
+				auction.placeBid(new Bid(420, 502.00));
+			}).getType();
+
+			assertEquals(IllegalBidException.IllegalBidType.LOWER_THAN_HIGHEST, type);
 			
 		}
 		
@@ -360,11 +360,11 @@ class ModelTests {
 				auction.placeBid(new Bid(420, 600.00));
 			});
 			
-//			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
-//				auction.placeBid(new Bid(420, 490.00));
-//			}).getType();
-//
-//			assertEquals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER, type);
+			IllegalBidException.IllegalBidType type = assertThrows(IllegalBidException.class, () -> {
+				auction.placeBid(new Bid(420, 700.00));
+			}).getType();
+
+			assertEquals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER, type);
 			
 		}
 		

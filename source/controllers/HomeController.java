@@ -75,8 +75,7 @@ public class HomeController implements Initializable {
     private void currentAuctionsButtonAction() throws IOException {
     	Util.getActiveAuctions();
     	feed = Feed.getInstance();
-        setAuctionsCenter();
-    }
+        setAuctionsCenter(); }
 
     @FXML
     private void myProfileMenuItemAction() throws IOException {
@@ -126,7 +125,6 @@ public class HomeController implements Initializable {
 		    }
 	    }
 	    feed.updateWith(resultList);
-
         setAuctionsCenter();
     }
 
@@ -148,7 +146,6 @@ public class HomeController implements Initializable {
 		    }
 	    }
 	    feed.updateWith(resultList);
-
 	    setAuctionsCenter();
     }
 
@@ -185,7 +182,6 @@ public class HomeController implements Initializable {
 		    }
 	    }
 	    feed.updateWith(resultList);
-
         setAuctionsCenter();
     }
 
