@@ -69,6 +69,8 @@ public class AuctionController implements Initializable {
 	private ImageView optionalImage3;
 	@FXML
 	private ImageView optionalImage4;
+	@FXML
+	private ImageView mainImage2;
 	private Auction currentAuction;
 	private Artwork artwork;
 	private ArtworkType artworkType;
@@ -397,6 +399,11 @@ public class AuctionController implements Initializable {
 		if (currentAuction.getArtwork() instanceof Painting) {
 			try {
 				mainArtworkImage.setImage(new Image(currentAuction.getArtwork().getMainImagePath()));
+				mainImage2.setVisible(false);
+				optionalImage1.setVisible(false);
+				optionalImage2.setVisible(false);
+				optionalImage3.setVisible(false);
+				optionalImage4.setVisible(false);
 			} catch (Exception e) {
 				System.out.println("Image not found");
 			}
@@ -406,17 +413,38 @@ public class AuctionController implements Initializable {
 			try {
 				switch (p.getAdditionalImagesPaths().size()) {
 					case 0 :
+						mainImage2.setVisible(false);
+						optionalImage1.setVisible(false);
+						optionalImage2.setVisible(false);
+						optionalImage3.setVisible(false);
+						optionalImage4.setVisible(false);
 						break;
 					case 1:
+						optionalImage2.setVisible(false);
+						optionalImage3.setVisible(false);
+						optionalImage4.setVisible(false);
+						mainImage2.setImage((new Image(p.getMainImagePath())));
 						optionalImage1.setImage((new Image(p.getAdditionalImagesPaths().get(0))));
 						break;
 					case 2:
+						optionalImage3.setVisible(false);
+						optionalImage4.setVisible(false);
+						mainImage2.setImage((new Image(p.getMainImagePath())));
+						optionalImage1.setImage((new Image(p.getAdditionalImagesPaths().get(0))));
 						optionalImage2.setImage((new Image(p.getAdditionalImagesPaths().get(1))));
 						break;
 					case 3:
+						optionalImage4.setVisible(false);
+						mainImage2.setImage((new Image(p.getMainImagePath())));
+						optionalImage1.setImage((new Image(p.getAdditionalImagesPaths().get(0))));
+						optionalImage2.setImage((new Image(p.getAdditionalImagesPaths().get(1))));
 						optionalImage3.setImage((new Image(p.getAdditionalImagesPaths().get(2))));
 						break;
 					case 4:
+						mainImage2.setImage((new Image(p.getMainImagePath())));
+						optionalImage1.setImage((new Image(p.getAdditionalImagesPaths().get(0))));
+						optionalImage2.setImage((new Image(p.getAdditionalImagesPaths().get(1))));
+						optionalImage3.setImage((new Image(p.getAdditionalImagesPaths().get(2))));
 						optionalImage4.setImage((new Image(p.getAdditionalImagesPaths().get(3))));
 						break;
 				}
@@ -424,5 +452,26 @@ public class AuctionController implements Initializable {
 				System.out.println("Image not found");
 			}
 		}
+	}
+	
+	@FXML
+	private void displayMainImage() {
+		mainArtworkImage.setImage(mainImage2.getImage());
+	}
+	@FXML
+	private void displayOptionalImage1() {
+		mainArtworkImage.setImage(optionalImage1.getImage());
+	}
+	@FXML
+	private void displayOptionalImage2() {
+		mainArtworkImage.setImage(optionalImage2.getImage());
+	}
+	@FXML
+	private void displayOptionalImage3() {
+		mainArtworkImage.setImage(optionalImage3.getImage());
+	}
+	@FXML
+	private void displayOptionalImage4() {
+		mainArtworkImage.setImage(optionalImage4.getImage());
 	}
 }
