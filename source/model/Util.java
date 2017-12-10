@@ -82,7 +82,7 @@ public final class Util {
 		for (Profile profile : fromJson) {
 			//Read the unique username for each user and see if it matches the one input
 			String name = profile.getUsername();
-			
+			//If database contains username return true.
 			if (Objects.equals(name, username)) {
 				currentUser = profile;
 				found = true;
@@ -103,7 +103,7 @@ public final class Util {
 		Profile[] allProfiles = readInProfileFile();
 		for (Profile profile : allProfiles) {
 			String name = profile.getUsername();
-			
+			//Read through all profiles and return the one that matches the username input
 			if (Objects.equals(name, username)) {
 				return profile;
 			}

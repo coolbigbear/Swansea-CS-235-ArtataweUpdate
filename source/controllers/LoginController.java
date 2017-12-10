@@ -40,7 +40,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void loginButtonAction(ActionEvent e) throws IOException {
+    private void loginButtonAction(ActionEvent e) throws IOException, InterruptedException {
         if (validate(loginTextField.getText())) {
             successfulLogin(e);
         }
@@ -74,16 +74,20 @@ public class LoginController implements Initializable {
         stage.show();
     }
 
-    private boolean validate(String input) {
+    private boolean validate(String input) throws InterruptedException {
         if (!validCharacterInput(input)) {
+            loginUserPrompt.setText("   ");
             loginUserPrompt.setText("Only alphanumerical values are allowed!");
             return false;
         } else {
             if (!validLengthInput(input)) {
+                loginUserPrompt.setText(" ");
                 loginUserPrompt.setText("Username too long!");
                 return false;
             } else {
                 if (!validUser(input)) {
+                    loginUserPrompt.setText(" ");
+                    Thread.sleep(500);
                     loginUserPrompt.setText("User not found!");
                     return false;
                 } else {

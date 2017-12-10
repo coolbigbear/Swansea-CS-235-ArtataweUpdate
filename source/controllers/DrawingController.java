@@ -15,7 +15,6 @@ import model.Util;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class DrawingController {
 
@@ -40,26 +39,18 @@ public class DrawingController {
     @FXML
     private RadioMenuItem drawLine;
 
+    private String customPath;
     public void onSave() {
         try {
             Image snapshot = canvas.snapshot(null, null);
-            File outputFile = new File(generateNameAndSetLocation());
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null),"png", outputFile);
-            String outputFileTurned = outputFile.toString().replace("\\","/");
-
-            TimeUnit.SECONDS.sleep(5);
-
-            Util.getCurrentUser().setProfileImagePath(outputFileTurned.substring(7));
-            Util.saveProfileToFile(Util.getCurrentUser());
-            Util.checkAndSetUser(Util.getCurrentUser().getUsername());
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File
+                    (generateNameAndSetLocation()));
 
             Stage stage = (Stage) colorPicker.getScene().getWindow();
             stage.close();
         } catch (Exception e) {
             System.out.println("Cannot save file!" + e);
         }
-        //TODO Set image and Close custom drawing window
-        //TODO ADD TO GSON
     }
 
     public void onClear() {
@@ -102,9 +93,9 @@ public class DrawingController {
         });
     }
 
-
     private String generateNameAndSetLocation() {
         String generatedString = UUID.randomUUID().toString();
+        customPath = "images/custom/" + generatedString + ".png";
         return "source/images/custom/" + generatedString + ".png";
     }
 
