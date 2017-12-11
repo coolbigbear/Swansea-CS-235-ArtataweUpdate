@@ -28,8 +28,8 @@ import java.util.ResourceBundle;
  * @see Initializable
  * @see Auction
  */
-public class AuctionController implements Initializable {
-	
+public class AuctionController {
+
 	@FXML
 	private Label auctionNameLabel;
 	@FXML
@@ -83,19 +83,38 @@ public class AuctionController implements Initializable {
 	private Auction currentAuction;
 	private Artwork artwork;
 	private ArtworkType artworkType;
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-	
+
+	//method which initializes auction, objects are being passed from one controller to another this way
+	public void initAuction(Auction auction) {
+		currentAuction = auction;
+		artwork = currentAuction.getArtwork();
+		artworkType = currentAuction.getArtwork().getType();
+
+		if (isFavorited()) {
+			addToFavoritesButton.setText("Remove favorite");
+		} else {
+			addToFavoritesButton.setText("Add to favorites");
+		}
+		generateAuctionLabels();
+		generateArtworkLabels();
+		setSellerSpecificNodes();
+		if (currentAuction.isCompleted() && (currentAuction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()))) {
+			setBuyerSpecificNodes();
+		}
+		if (currentAuction.isCompleted() && (!currentAuction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()))
+				&& (!currentAuction.getSellerName().equalsIgnoreCase(Util.getCurrentUser().getUsername()))) {
+			setViewerSpecificNodes();
+		}
+		setArtworkDisplayImages();
 	}
-	
+
 	@FXML
 	private void bidOnAction() {
 		if (isTextFieldCorrect()) {
 			try {
 				Bid bid = new Bid(currentAuction.getAuctionID(), Double.valueOf(bidInputTextField.getText()));
 				currentAuction.placeBid(bid);
-				
+
 				//Below will execute if the placing of the Bid was accepted
 				bidInputTextField.clear();
 				errorMessageLabel.setText("");
@@ -103,7 +122,7 @@ public class AuctionController implements Initializable {
 				highestBidLabel.setText("£" + bid.getBidAmount().toString());
 				Util.getCurrentUser().getAllBidsPlaced().add(bid);
 				
-				if (currentAuction.isCompleted()) {
+				if(currentAuction.isCompleted()) {
 					auctionWon();
 					Profile seller = Util.getProfileByUsername(currentAuction.getSellerName());
 					
@@ -137,7 +156,8 @@ public class AuctionController implements Initializable {
 			}
 		}
 	}
-	
+
+	//setting the labels of the layout
 	private void generateAuctionLabels() {
 		auctionNameLabel.setText(artwork.getTitle());
 		sellerLink.setText(currentAuction.getSellerName());
@@ -145,7 +165,8 @@ public class AuctionController implements Initializable {
 		highestBidLabel.setText("£" + String.valueOf(currentAuction.getHighestPrice()));
 		bidInputTextField.setPromptText("Enter bid amount");
 	}
-	
+
+	//generating artwork specific labels
 	private void generateArtworkLabels() {
 		if (artworkType.equals(ArtworkType.Painting)) {
 			generateGeneralArtworkLabels();
@@ -162,43 +183,23 @@ public class AuctionController implements Initializable {
 			mainMaterialLabel.setText(((Sculpture) artwork).getMainMaterial());
 		}
 	}
-	
+
+	//generating general artwork labels
 	private void generateGeneralArtworkLabels() {
 		descriptionLabel.setText(artwork.getDescription().toString());
 		creatorNameLabel.setText(artwork.getCreatorName());
 		creationYearLabel.setText(String.valueOf(artwork.getCreationDate()));
 	}
-	
+
+	//error text field settings
 	private void setErrorInputTextField(String message) {
 		bidInputTextField.clear();
 		bidInputTextField.setBackground(new Background(new BackgroundFill(Color.CRIMSON, new CornerRadii(0d),
 				new Insets(0))));
 		bidInputTextField.setPromptText(message);
 	}
-	
-	public void initAuction(Auction auction) {
-		currentAuction = auction;
-		artwork = currentAuction.getArtwork();
-		artworkType = currentAuction.getArtwork().getType();
-		
-		if (isFavorited()) {
-			addToFavoritesButton.setText("Remove favorite");
-		} else {
-			addToFavoritesButton.setText("Add to favorites");
-		}
-		generateAuctionLabels();
-		generateArtworkLabels();
-		setSellerSpecificNodes();
-		if (currentAuction.isCompleted() && (currentAuction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()))) {
-			setBuyerSpecificNodes();
-		}
-		if (currentAuction.isCompleted() && (!currentAuction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()))
-				&& (!currentAuction.getSellerName().equalsIgnoreCase(Util.getCurrentUser().getUsername()))) {
-			setViewerSpecificNodes();
-		}
-		setArtworkDisplayImages();
-	}
-	
+
+	//populates the dynamic users who have placed a bid on this auction, only the seller can see them
 	private void populateUsersBidPane() {
 		final int PROFILE_IMAGE_COLUMN = 0;
 		final int PROFILE_USERNAME_COLUMN = 1;
@@ -243,21 +244,21 @@ public class AuctionController implements Initializable {
 					e.printStackTrace();
 				}
 			});
-			
+
 			timePlaced = new Label();
 			timePlaced.setText(elem.getDateTimePlaced().getHour() + ":" + +elem.getDateTimePlaced().getMinute() + " " +
 					elem.getDateTimePlaced().getDayOfMonth() + "." + elem.getDateTimePlaced().getMonthValue() + "." +
 					elem.getDateTimePlaced().getYear());
-			
-			usersBidAuctionGridPane.add(profileImage, PROFILE_IMAGE_COLUMN, row);
-			usersBidAuctionGridPane.add(profileLink, PROFILE_USERNAME_COLUMN, row);
-			usersBidAuctionGridPane.add(bidAmount, PROFILE_BID_AMOUNT_COLUMN, row);
-			usersBidAuctionGridPane.add(timePlaced, PROFILE_TIME_PLACED, row);
-			
+
+			usersBidAuctionGridPane.add(profileImage,PROFILE_IMAGE_COLUMN,row);
+			usersBidAuctionGridPane.add(profileLink,PROFILE_USERNAME_COLUMN,row);
+			usersBidAuctionGridPane.add(bidAmount,PROFILE_BID_AMOUNT_COLUMN,row);
+			usersBidAuctionGridPane.add(timePlaced,PROFILE_TIME_PLACED,row);
+
 			row++;
 		}
 	}
-	
+
 	@FXML
 	private void sellerLinkAction() {
 		FXMLLoader loader = new FXMLLoader();
@@ -271,7 +272,8 @@ public class AuctionController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
+	//this method sets the specific seller nodes, displayed only for the seller
 	private void setSellerSpecificNodes() {
 		if (Util.getCurrentUser().getUsername().equalsIgnoreCase(currentAuction.getSellerName())) {
 			viewAuctionScrollPane.setVisible(true);
@@ -306,13 +308,13 @@ public class AuctionController implements Initializable {
 				});
 				sellingInfoGridPane.add(highestBidderProfile, 1, 4);
 			}
-			
+
 		} else {
 			usersBidAuctionGridPane.setVisible(false);
 			viewAuctionScrollPane.setVisible(false);
 		}
 	}
-	
+
 	@FXML
 	private void addToFavoritesButtonAction() {
 		int counter = Util.getCurrentUser().getFavouriteUsers().size();
@@ -338,7 +340,8 @@ public class AuctionController implements Initializable {
 			addToFavoritesButton.setText("Remove favorite");
 		}
 	}
-	
+
+	//helper method to check if a user is favorited
 	private boolean isFavorited() {
 		boolean favorite = false;
 		for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
@@ -348,7 +351,8 @@ public class AuctionController implements Initializable {
 		}
 		return favorite;
 	}
-	
+
+	//helper method to populate an arraylist of all favorite users of a profile
 	private ArrayList<Profile> populateFavoriteUsers() {
 		ArrayList<Profile> profiles = new ArrayList<>();
 		for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
@@ -356,7 +360,8 @@ public class AuctionController implements Initializable {
 		}
 		return profiles;
 	}
-	
+
+	//method to check for valid input from the text field
 	private boolean isTextFieldCorrect() {
 		if (bidInputTextField.getText().length() <= 10) {
 			try {
@@ -370,7 +375,8 @@ public class AuctionController implements Initializable {
 			return false;
 		}
 	}
-	
+
+	//method to set specific nodes only visible and usable to the buyer
 	private void setBuyerSpecificNodes() {
 		placeBidLabel.setText("Winner:");
 		bidInputTextField.setDisable(true);
@@ -379,7 +385,8 @@ public class AuctionController implements Initializable {
 		bidButton.setVisible(false);
 		bidButton.setDisable(true);
 	}
-	
+
+	//sets the nodes for a person who has not won the auction, but also is not the seller
 	private void setViewerSpecificNodes() {
 		placeBidLabel.setText("STATUS:");
 		bidInputTextField.setDisable(true);
@@ -388,7 +395,8 @@ public class AuctionController implements Initializable {
 		bidButton.setVisible(false);
 		bidButton.setDisable(true);
 	}
-	
+
+	//prompt to display to the user when he won the auction
 	private void auctionWon() {
 		setBuyerSpecificNodes();
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -398,7 +406,8 @@ public class AuctionController implements Initializable {
 		alert.setContentText(s);
 		alert.show();
 	}
-	
+
+	//dynamic displaying of the auctions
 	private void setArtworkDisplayImages() {
 		if (currentAuction.getArtwork() instanceof Painting) {
 			try {
@@ -416,7 +425,7 @@ public class AuctionController implements Initializable {
 			Sculpture p = (Sculpture) currentAuction.getArtwork();
 			try {
 				switch (p.getAdditionalImagesPaths().size()) {
-					case 0:
+					case 0 :
 						mainImage2.setVisible(false);
 						optionalImage1.setVisible(false);
 						optionalImage2.setVisible(false);
