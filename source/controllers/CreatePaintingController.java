@@ -196,8 +196,6 @@ public class CreatePaintingController implements Initializable {
 	
 	/**
 	 * Opens file explorer to let user choose image to add
-	 *
-	 * @return Path to image
 	 */
 	@FXML
 	public void chooseMainPaintingImg() {

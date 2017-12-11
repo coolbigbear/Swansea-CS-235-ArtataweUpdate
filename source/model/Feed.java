@@ -31,7 +31,8 @@ import java.util.function.Consumer;
 public final class Feed implements Iterable<Auction> {
 	
 	//The current Feed instance, may be null
-	@Nullable private static Feed instance;
+	@Nullable
+	private static Feed instance;
 	
 	//The main data structure, an ArrayList
 	private ArrayList<Auction> arrayList;
@@ -42,7 +43,8 @@ public final class Feed implements Iterable<Auction> {
 	
 	/**
 	 * The only constructor to create a Feed, used by all the factory methods
- 	 * @param capacity the initial capacity of the Feed to be returned
+	 *
+	 * @param capacity the initial capacity of the Feed to be returned
 	 */
 	private Feed(int capacity) {
 		arrayList = new ArrayList<>(capacity);
@@ -112,6 +114,7 @@ public final class Feed implements Iterable<Auction> {
 	 * Returns the Iterator of the Feed, an Iterator of type Auction
 	 *
 	 * @return the Iterator of type Auction
+	 *
 	 * @see Iterable#iterator()
 	 */
 	@Override
@@ -123,6 +126,7 @@ public final class Feed implements Iterable<Auction> {
 	 * Would be used when calling a for each loop on a Feed
 	 *
 	 * @param action the action to take on the Iterator
+	 *
 	 * @see Iterable#forEach(Consumer)
 	 */
 	@Override
@@ -239,6 +243,8 @@ public final class Feed implements Iterable<Auction> {
 	 * Updating means clearing the instance's contents and filling them with the parameter.
 	 *
 	 * @param auctions the Collection of Auctions to fill the Feed with
+	 *
+	 * @return the new Feed instance
 	 */
 	public Feed updateWith(Collection<Auction> auctions) {
 		if (instance == null) {
@@ -257,6 +263,8 @@ public final class Feed implements Iterable<Auction> {
 	 * Updating means clearing the instance's contents and filling them with the parameter.
 	 *
 	 * @param auctions the array or varargs Auctions to fill the Feed with
+	 *
+	 * @return the new Feed instance
 	 */
 	public Feed updateWith(Auction... auctions) {
 		if (instance == null) {
@@ -278,6 +286,8 @@ public final class Feed implements Iterable<Auction> {
 	 *
 	 * @param capacity the desired size of the Feed
 	 * @param auctions the Collection of Auctions to fill the Feed with
+	 *
+	 * @return the new Feed instance
 	 */
 	public Feed updateWithCapacity(int capacity, Collection<Auction> auctions) {
 		if (instance == null) {
@@ -299,6 +309,8 @@ public final class Feed implements Iterable<Auction> {
 	 *
 	 * @param capacity the desired size of the Feed
 	 * @param auctions the Array or varargs Auctions to fill the Feed with
+	 *
+	 * @return the new Feed instance
 	 */
 	public Feed updateWithCapacity(int capacity, Auction... auctions) {
 		if (instance == null) {
@@ -331,7 +343,9 @@ public final class Feed implements Iterable<Auction> {
 	
 	/**
 	 * Gets the hashcode of the Feed.
+	 *
 	 * @return the integer representing the hashcode of the Feed
+	 *
 	 * @see Object#hashCode()
 	 */
 	@Override
@@ -342,7 +356,9 @@ public final class Feed implements Iterable<Auction> {
 	/**
 	 * Checks whether this Feed is equal to the Feed passed in, this is only used as a utility and doesn't currently
 	 * have a sensible use.
+	 *
 	 * @return true if they are equal and false otherwise
+	 *
 	 * @see Object#equals(Object)
 	 */
 	@Override
@@ -352,13 +368,15 @@ public final class Feed implements Iterable<Auction> {
 	
 	/**
 	 * Returns a String representation of the Feed.
+	 *
 	 * @return the String representation of the Feed
+	 *
 	 * @see Object#toString()
 	 */
 	@Override
 	public String toString() {
 		StringBuilder contents = new StringBuilder();
-		for (Auction auction: this.arrayList) {
+		for (Auction auction : this.arrayList) {
 			contents.append(auction.toString());
 			contents.append("\n\t\t");
 		}

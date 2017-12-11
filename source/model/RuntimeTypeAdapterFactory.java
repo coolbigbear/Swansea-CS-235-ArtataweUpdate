@@ -37,6 +37,12 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
 	/**
 	 * Creates a new runtime type adapter using for {@code baseType} using {@code
 	 * typeFieldName} as the type field name. Type field names are case sensitive.
+	 *
+	 * @param baseType the base type
+	 * @param typeFieldName the type field name
+	 * @param <T> the generic type
+	 *
+	 * @return the new RuntimeAdapterFactory
 	 */
 	public static <T> RuntimeTypeAdapterFactory<T> of(Class<T> baseType, String typeFieldName) {
 		return new RuntimeTypeAdapterFactory<T>(baseType, typeFieldName);
@@ -45,6 +51,11 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
 	/**
 	 * Creates a new runtime type adapter for {@code baseType} using {@code "type"} as
 	 * the type field name.
+	 *
+	 * @param baseType the base type
+	 * @param <T> the generic type
+	 *
+	 * @return the new RuntimeAdapterFactory
 	 */
 	public static <T> RuntimeTypeAdapterFactory<T> of(Class<T> baseType) {
 		return new RuntimeTypeAdapterFactory<T>(baseType, "type");
@@ -53,6 +64,11 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
 	/**
 	 * Registers {@code type} identified by {@code label}. Labels are case
 	 * sensitive.
+	 *
+	 * @param type the type
+	 * @param label the String label
+	 *
+	 * @return the new RuntimeAdapterFactory
 	 *
 	 * @throws IllegalArgumentException if either {@code type} or {@code label}
 	 * 		have already been registered on this type adapter.
@@ -70,8 +86,13 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
 	}
 	
 	/**
+	 * /**
 	 * Registers {@code type} identified by its {@link Class#getSimpleName simple
 	 * name}. Labels are case sensitive.
+	 *
+	 * @param type the type
+	 *
+	 * @return the new RuntimeAdapterFactory
 	 *
 	 * @throws IllegalArgumentException if either {@code type} or its simple name
 	 * 		have already been registered on this type adapter.
@@ -80,6 +101,15 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
 		return registerSubtype(type, type.getSimpleName());
 	}
 	
+	/**
+	 * Creates a TypeAdapter
+	 *
+	 * @param gson the Gson
+	 * @param type the type
+	 * @param <R> the generic type
+	 *
+	 * @return the new TypeAdapter
+	 */
 	public <R> TypeAdapter<R> create(Gson gson, TypeToken<R> type) {
 		if (null == type || !baseType.isAssignableFrom(type.getRawType())) {
 			return null;
