@@ -19,18 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/**
- * The Controller for the Feed layout, this is in charge of <code>layouts.feed_layout.fxml</code>.
- *
- * This is the Controller and Layout pair in charge of generating and updating the Feed.
- *
- * @author Bezhan Kodomani
- * @author Bassam Helal
- * @version 1.6
- * @see Initializable
- * @see Feed
- * @see Auction
- */
+
 public class FeedController implements Initializable {
 	
 	@FXML
@@ -58,10 +47,10 @@ public class FeedController implements Initializable {
 		setChoiceBox();
 		Util.setFilterChoiceBox(choiceBoxFilter);
 	}
-
-	//method to set the choice box for filtering
+	
+	// TODO: 09-Dec-17 Bassam please fix this thing!!!
 	private void setChoiceBox() {
-		//This only filters the Active Auctions
+
 		choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					try {
@@ -69,11 +58,11 @@ public class FeedController implements Initializable {
 							case 0:
 								filterAll();
 								break;
-							
+
 							case 1:
 								filterPaintings();
 								break;
-							
+
 							case 2:
 								filterSculptures();
 								break;
@@ -83,7 +72,7 @@ public class FeedController implements Initializable {
 					}
 				});
 	}
-	//method to get all paintings and sculptures
+
 	private void filterAll() throws IOException {
 		System.out.println("Show all: ");
 		ArrayList<Auction> resultList = new ArrayList<>();
@@ -99,8 +88,7 @@ public class FeedController implements Initializable {
 		feed.updateWith(resultList);
 		setAuctionsCenter();
 	}
-
-	//method to filter only paintings
+	
 	private void filterPaintings() throws IOException {
 		System.out.println("Paintings: ");
 		ArrayList<Auction> resultList = new ArrayList<>();
@@ -115,8 +103,7 @@ public class FeedController implements Initializable {
 		feed.updateWith(resultList);
 		setAuctionsCenter();
 	}
-
-	//method to filter only sculptures
+	
 	private void filterSculptures() throws IOException {
 		System.out.println("Sculptures: ");
 		ArrayList<Auction> resultList = new ArrayList<>();
@@ -131,15 +118,13 @@ public class FeedController implements Initializable {
 		feed.updateWith(resultList);
 		setAuctionsCenter();
 	}
-
-	//method to generate the card grid accordingly
+	
 	private void modifyCardGrid() {
 		final int DEFAULT_NUMBER_OF_COLUMNS = 3;
 		int numberOfRows = (int) Math.ceil(feed.size() / DEFAULT_NUMBER_OF_COLUMNS);
 		cardsGridPane.addRow(numberOfRows);
 	}
-
-	//method to populate every single card in feed
+	
 	private void populateCardGrid() throws IOException {
 		FXMLLoader loader;
 		AnchorPane cardLayout;
@@ -160,8 +145,7 @@ public class FeedController implements Initializable {
 			}
 		}
 	}
-
-	//this method sets the feed layout into the centre of the main borderpane
+	
 	private void setAuctionsCenter() throws IOException {
 		BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
 		feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
