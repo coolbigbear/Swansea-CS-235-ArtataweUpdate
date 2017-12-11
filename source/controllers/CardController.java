@@ -23,11 +23,10 @@ import java.util.ResourceBundle;
  *
  * @author Bezhan Kodomani
  * @version 1.1
- * @see Initializable
  * @see Auction
  */
-public class CardController implements Initializable {
-	
+public class CardController {
+
 	@FXML
 	private Hyperlink titleCardAuctionHyperlink;
 	@FXML
@@ -40,14 +39,10 @@ public class CardController implements Initializable {
 	private Label datePlacedCardAuctionLabel;
 	@FXML
 	private ImageView cardAuctionImage;
-	
+
 	private Auction currentAuction;
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-	
-	}
-	
+
+
 	public void getAuctionAndPopulate(Auction auction) {
 		currentAuction = auction;
 		titleCardAuctionHyperlink.setText(currentAuction.getArtwork().getTitle());
@@ -61,7 +56,7 @@ public class CardController implements Initializable {
 		datePlacedCardAuctionLabel.setText(currentAuction.getDateTimePlaced().getDayOfMonth() + " " + currentAuction.getDateTimePlaced().getMonth().toString() + " " + currentAuction.getDateTimePlaced().getYear());
 		setAuctionImage();
 	}
-	
+
 	@FXML
 	private void goToAuctionAction() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -71,7 +66,7 @@ public class CardController implements Initializable {
 		controller.initAuction(currentAuction);
 		Util.getHomeLayout().setCenter(profileLayout);
 	}
-	
+
 	private void setAuctionImage() {
 		try {
 			cardAuctionImage.setImage(new Image(currentAuction.getArtwork().getMainImagePath()));

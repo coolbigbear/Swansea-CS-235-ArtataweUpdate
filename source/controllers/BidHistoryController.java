@@ -48,7 +48,8 @@ public class BidHistoryController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
+	//method to populate the whole bid history grid
 	private void populateBidGridPane() throws IOException {
 		
 		bidGridPane.addRow(GRID_ROWS);
@@ -78,13 +79,15 @@ public class BidHistoryController implements Initializable {
 			currentRow++;
 		}
 	}
-	
+
+	//helper method to get the auctionID
 	private Label generateAuctionIDLabel(Auction auction) {
 		Label auctionID = new Label();
 		auctionID.setText(String.valueOf(auction.getAuctionID()));
 		return auctionID;
 	}
-	
+
+	//helper method to get the name of the auction
 	private Hyperlink generateAuctionNameHyperLink(Auction auction, Bid elem) {
 		Hyperlink auctionName = new Hyperlink();
 		auctionName.setText(auction.getArtwork().getTitle());
@@ -102,13 +105,15 @@ public class BidHistoryController implements Initializable {
 		});
 		return auctionName;
 	}
-	
+
+	//helper method to get the bid amount on the specific auction
 	private Label generateBidAmountLabel(Bid elem) {
 		Label bidAmount = new Label();
 		bidAmount.setText(String.valueOf(elem.getBidAmount()));
 		return bidAmount;
 	}
-	
+
+	//helper method to get the date placed
 	private Label generateDatePlacedLabel(Bid elem) {
 		Label datePlaced = new Label();
 		datePlaced.setText(elem.getDateTimePlaced().getHour() + ":" + + elem.getDateTimePlaced().getMinute() + " " +
@@ -116,7 +121,8 @@ public class BidHistoryController implements Initializable {
 				elem.getDateTimePlaced().getYear());
 		return datePlaced;
 	}
-	
+
+	//helper method to generate the status of the auction
 	private Label generateStatusLabel(Bid elem) {
 		Label status = new Label();
 		try {
@@ -126,7 +132,8 @@ public class BidHistoryController implements Initializable {
 		}
 		return status;
 	}
-	
+
+	//helper method to display the appropriate status to the user
 	private String auctionStatus(Auction auction) {
 		String status = "";
 		if (auction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()) && auction.isCompleted()) {

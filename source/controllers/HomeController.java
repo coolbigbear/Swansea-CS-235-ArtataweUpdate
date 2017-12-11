@@ -72,7 +72,8 @@ public class HomeController implements Initializable {
 		populateFavoritesView();
 		choiceBox = Util.getFilterChoiceBox();
 	}
-	
+
+	//method to set the profile image on the top right corner
 	private void setProfileImageView(String imagePath) {
 		Image img = new Image(imagePath);
 		try {
@@ -239,7 +240,8 @@ public class HomeController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
+	//method to get all the bids from auctions
 	private ArrayList<Bid> getAllBids() {
 		Util.getAllAuctions();
 		Feed feed = Feed.getInstance();
@@ -250,14 +252,16 @@ public class HomeController implements Initializable {
 		}
 		return bidList;
 	}
-	
+
+	// method to set the centre to feed
 	private BorderPane setAuctionsCenter() throws IOException {
 		BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
 		feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
 		homeLayout.setCenter(feedLayout);
 		return feedLayout;
 	}
-	
+
+	//helper method to get all the favorite users of a profile
 	private ArrayList<Profile> populateFavoriteUsers() {
 		ArrayList<Profile> profiles = new ArrayList<>();
 		for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
@@ -265,7 +269,8 @@ public class HomeController implements Initializable {
 		}
 		return profiles;
 	}
-	
+
+	//method to populate the dynamic favorite bar on the left
 	private void populateFavoritesView() {
 		Util.dynamicFavoritesGridPane(favoritesGridPane, favoriteUsers);
 		Util.setFavoriteUsersGridPane(favoritesGridPane);
