@@ -52,7 +52,6 @@ public class CardController implements Initializable {
 
     @FXML
     private void goToAuctionAction() throws IOException {
-        //TODO NOT COMPLETED
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/layouts/auction_view_layout.fxml"));
         AnchorPane profileLayout = (AnchorPane) loader.load();

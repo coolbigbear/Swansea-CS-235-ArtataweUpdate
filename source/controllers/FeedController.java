@@ -48,9 +48,8 @@ public class FeedController implements Initializable {
 		Util.setFilterChoiceBox(choiceBoxFilter);
 	}
 	
-	// TODO: 09-Dec-17 Bassam please fix this thing!!!
 	private void setChoiceBox() {
-		
+		//This only filters the Active Auctions
 		choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					try {

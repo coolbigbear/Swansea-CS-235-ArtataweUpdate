@@ -154,7 +154,6 @@ public class RegisterController implements Initializable {
             stage.setMinWidth(656);
             stage.setHeight(519);
             stage.setWidth(656);
-            //TODO: Magic numbers - Mike
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {

@@ -92,10 +92,6 @@ public class AuctionController implements Initializable {
 				highestBidLabel.setText("£" + bid.getBidAmount().toString());
 				Util.getCurrentUser().getAllBidsPlaced().add(bid);
 				
-				//TODO If was the final Bid, inform user, add to won Auctions of the current user, and add this
-				// Auction to the seller's completed Auctions list and remove it from his selling and then save all
-				// this to database
-				
 				if(currentAuction.isCompleted()) {
 					auctionWon();
 					Profile seller = Util.getProfileByUsername(currentAuction.getSellerName());
