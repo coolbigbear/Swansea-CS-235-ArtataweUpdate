@@ -19,7 +19,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-
+/**
+ * The Controller for the Feed layout, this is in charge of <code>layouts.feed_layout.fxml</code>.
+ *
+ * This is the Controller and Layout pair in charge of generating and updating the Feed.
+ *
+ * @author Bezhan Kodomani
+ * @author Bassam Helal
+ * @version 1.6
+ * @see Initializable
+ * @see Feed
+ * @see Auction
+ */
 public class FeedController implements Initializable {
 	
 	@FXML

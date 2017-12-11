@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
+// TODO: 11-Dec-17 DOC!
 public final class Profile {
 	
 	private final String username;

@@ -15,87 +15,95 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.util.UUID;
 
+/**
+ * The Controller for the custom drawing, this is in charge of <code>layouts.custom_drawing.fxml</code>.
+ *
+ * This is the Controller and Layout pair in charge of the Custom Drawing Page
+ *
+ * @author Iliyan Garnev
+ * @version 1.1
+ */
 public class DrawingController {
-
-    @FXML
-    private Canvas canvas;
-
-    @FXML
-    private ColorPicker colorPicker;
-
-    @FXML
-    private TextField brushSize;
-
-    @FXML
-    private RadioMenuItem freeDraw;
-
-    @FXML
-    private RadioMenuItem drawRectangle;
-
-
-    @FXML
-    private RadioMenuItem drawLine;
-
-    private double xBegin;
-    private double xEnd;
-    private double yBegin;
-    private double yEnd;
-
-    public void onSave() {
-        try {
-            Image snapshot = canvas.snapshot(null, null);
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File
-                    (generateNameAndSetLocation()));
-
-            Stage stage = (Stage) colorPicker.getScene().getWindow();
-            stage.close();
-        } catch (Exception e) {
-            System.out.println("Cannot save file!" + e);
-        }
-    }
-
-    public void onClear() {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-    }
-
-
-    public void initialize() {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        canvas.setOnMouseDragged(event -> {
-            if (freeDraw.isSelected()) {
-                double size = Double.parseDouble(brushSize.getText());
-                double x = event.getX();
-                double y = event.getY();
-                gc.setFill(colorPicker.getValue());
-                gc.fillOval(x, y, size / 2, size / 2);
-            }
-        });
-        canvas.setOnMousePressed(event -> {
-            xBegin = event.getX();
-            yBegin = event.getY();
-        });
-        canvas.setOnMouseReleased(event -> {
-            xEnd = event.getX();
-            yEnd = event.getY();
-            if(drawLine.isSelected()) {
-                gc.setFill(colorPicker.getValue());
-                gc.setLineWidth(Double.parseDouble(brushSize.getText()));
-                gc.strokeLine(xBegin, yBegin, xEnd, yEnd);
-            }
-            if(drawRectangle.isSelected()){
-                double size = Double.parseDouble((brushSize.getText()));
-                gc.setFill(colorPicker.getValue());
-                gc.strokeRect(xBegin, yBegin, size, size );
-            }
-        });
-    }
-
-
-    private String generateNameAndSetLocation() {
-        String generatedString = UUID.randomUUID().toString();
-        return "source/images/custom/" + generatedString + ".png";
-    }
-
-
+	
+	@FXML
+	private Canvas canvas;
+	
+	@FXML
+	private ColorPicker colorPicker;
+	
+	@FXML
+	private TextField brushSize;
+	
+	@FXML
+	private RadioMenuItem freeDraw;
+	
+	@FXML
+	private RadioMenuItem drawRectangle;
+	
+	
+	@FXML
+	private RadioMenuItem drawLine;
+	
+	private double xBegin;
+	private double xEnd;
+	private double yBegin;
+	private double yEnd;
+	
+	public void onSave() {
+		try {
+			Image snapshot = canvas.snapshot(null, null);
+			ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File
+					(generateNameAndSetLocation()));
+			
+			Stage stage = (Stage) colorPicker.getScene().getWindow();
+			stage.close();
+		} catch (Exception e) {
+			System.out.println("Cannot save file!" + e);
+		}
+	}
+	
+	public void onClear() {
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+	}
+	
+	
+	public void initialize() {
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		canvas.setOnMouseDragged(event -> {
+			if (freeDraw.isSelected()) {
+				double size = Double.parseDouble(brushSize.getText());
+				double x = event.getX();
+				double y = event.getY();
+				gc.setFill(colorPicker.getValue());
+				gc.fillOval(x, y, size / 2, size / 2);
+			}
+		});
+		canvas.setOnMousePressed(event -> {
+			xBegin = event.getX();
+			yBegin = event.getY();
+		});
+		canvas.setOnMouseReleased(event -> {
+			xEnd = event.getX();
+			yEnd = event.getY();
+			if (drawLine.isSelected()) {
+				gc.setFill(colorPicker.getValue());
+				gc.setLineWidth(Double.parseDouble(brushSize.getText()));
+				gc.strokeLine(xBegin, yBegin, xEnd, yEnd);
+			}
+			if (drawRectangle.isSelected()) {
+				double size = Double.parseDouble((brushSize.getText()));
+				gc.setFill(colorPicker.getValue());
+				gc.strokeRect(xBegin, yBegin, size, size);
+			}
+		});
+	}
+	
+	
+	private String generateNameAndSetLocation() {
+		String generatedString = UUID.randomUUID().toString();
+		return "source/images/custom/" + generatedString + ".png";
+	}
+	
+	
 }

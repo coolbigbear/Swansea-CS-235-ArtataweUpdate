@@ -23,6 +23,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * The Controller for the home layout, this is in charge of <code>layouts.home_layout.fxml</code>.
+ *
+ * This is the Controller and Layout pair in charge of keeping the left and top bars persistent and are the basic
+ * containers of the whole program.
+ *
+ * @author Bezhan Kodomani
+ * @author Bassam Helal
+ * @author Iliyan Garnev
+ * @version 2.0
+ * @see Initializable
+ */
 public class HomeController implements Initializable {
 	
 	@FXML
@@ -141,7 +153,7 @@ public class HomeController implements Initializable {
 			Auction auction = Util.getAuctionByAuctionID(bid.getAuctionID());
 			
 			if (auction.isCompleted() &&
-							Util.getCurrentUser().getUsername().equals(auction.getHighestBidder())
+					Util.getCurrentUser().getUsername().equals(auction.getHighestBidder())
 					&& !resultList.contains(auction)) {
 				resultList.add(auction);
 			}

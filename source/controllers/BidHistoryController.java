@@ -15,7 +15,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
+/**
+ * The Controller for the bid history page, this is in charge of <code>layouts.bidhistory_layout.fxml</code>.
+ *
+ * This is the Controller and Layout pair in charge of showing and generating the Bid History page.
+ *
+ * @author Bezhan Kodomani
+ * @version 1.4
+ * @see Initializable
+ * @see Bid
+ */
 public class BidHistoryController implements Initializable {
 	
 	private static int GRID_ROWS = Util.getCurrentUser().getAllBidsPlaced().size();
