@@ -3,7 +3,7 @@ package model;
 /**
  * A Painting is a type of Artwork in the Artatawe system.
  *
- * A painting has all the attributes and behaviour of an Artwork and adds a width an a height,
+ * A Painting has all the attributes and behaviour of an Artwork and adds a width and a height,
  * both represented with Integers.
  *
  * @author Bassam Helal
