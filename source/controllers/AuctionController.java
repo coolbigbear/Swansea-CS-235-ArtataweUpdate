@@ -13,9 +13,7 @@ import model.*;
 import model.exception.IllegalBidException;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 /**
  * The Controller for the Auction layout, this is in charge of <code>layouts.auction_view_layout.fxml</code>.
