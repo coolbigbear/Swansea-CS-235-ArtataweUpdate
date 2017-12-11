@@ -253,6 +253,7 @@ public class ProfileController implements Initializable {
         Hyperlink auctionLink;
         Label auctionPrice;
         for (Auction elem : selectedProfile.getCurrentlySelling()) {
+            System.out.println("IN CURRENTLY SELLING");
             auctionImage = new ImageView();
             auctionImage.setFitHeight(AUCTIONS_IMAGE_SIZE);
             auctionImage.setFitWidth(AUCTIONS_IMAGE_SIZE);

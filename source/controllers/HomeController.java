@@ -109,10 +109,11 @@ public class HomeController implements Initializable {
 	
 	//----------------------Auctions Bids----------------------
 	
+	
 	//Auctions which you have placed Bids on and also current Auctions
 	@FXML
 	private void auctionsPlacedMenuItemAction() throws IOException {
-		ArrayList<Bid> bidList = getAllBids();
+		List<Bid> bidList = Util.getCurrentUser().getAllBidsPlaced();
 		Util.getAllAuctions();
 		feed = Feed.getInstance();
 		ArrayList<Auction> resultList = new ArrayList<>();
@@ -155,7 +156,7 @@ public class HomeController implements Initializable {
 	//All Auctions that you are currently selling
 	@FXML
 	private void currentlySellingMenuItemAction() throws IOException {
-		Util.getActiveAuctions();
+		Util.getAllAuctions();
 		feed = Feed.getInstance();
 		ArrayList<Auction> resultList = new ArrayList<>();
 		

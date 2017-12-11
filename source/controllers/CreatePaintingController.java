@@ -105,6 +105,9 @@ public class CreatePaintingController implements Initializable {
                     Feed.getInstance().add(tempAuction);
                     //Adds auction to database
                     Util.saveListOfAuctionsToFile(Feed.getInstance().getAllAsArrayList());
+                    
+                    
+                    Util.saveProfileToFile(Util.getCurrentUser());
 
                     //Load the homepage back up
                     try {

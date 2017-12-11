@@ -103,6 +103,7 @@ public class AuctionController implements Initializable {
 					//Updates the seller's selling and sold and the current user's won
 					seller.getCompletedAuctions().add(currentAuction);
 					seller.getCurrentlySelling().remove(currentAuction);
+					
 					Util.getCurrentUser().getWonAuctions().add(currentAuction);
 					
 					//Saves everything to the database
@@ -161,7 +162,6 @@ public class AuctionController implements Initializable {
 		creationYearLabel.setText(String.valueOf(artwork.getCreationDate()));
 	}
 	
-	// TODO: 09-Dec-17  Someone make the error look nicer than this shit!
 	private void setErrorInputTextField(String message) {
 		bidInputTextField.clear();
 		bidInputTextField.setBackground(new Background(new BackgroundFill(Color.CRIMSON, new CornerRadii(0d),
