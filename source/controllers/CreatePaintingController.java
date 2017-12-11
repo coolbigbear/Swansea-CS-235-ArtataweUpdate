@@ -180,7 +180,17 @@ public class CreatePaintingController implements Initializable {
 			}
 			if (yearOfCreationPulled == null || Objects.equals(yearOfCreationPulled, "")) {
 				throw new IllegalArgumentException();
-			} else {
+			}
+			if (numberOfBidsAllowedPulled<=0) {
+				throw new IllegalArgumentException();
+			}
+			if (reservePricePulled<=0) {
+				throw new IllegalArgumentException();
+			}
+			if (paintingHeightPulled<=0 || paintingWidthPulled <= 0) {
+				throw new IllegalArgumentException();
+			}
+			else {
 				return true;
 			}
 			

@@ -213,7 +213,17 @@ public class CreateSculptureController implements Initializable {
 			}
 			if (sculptureMaterialPulled == null || Objects.equals(sculptureMaterialPulled, "")) {
 				throw new IllegalArgumentException();
-			} else {
+			}
+			if (numberOfBidsAllowedPulled<=0) {
+				throw new IllegalArgumentException();
+			}
+			if (reservePricePulled<=0) {
+			throw new IllegalArgumentException();
+			}
+			if (sculptureDepthPulled<=0 || sculptureHeightPulled <= 0 || sculptureWidthPulled<=0) {
+				throw new IllegalArgumentException();
+			}
+			else {
 				return true;
 			}
 			
