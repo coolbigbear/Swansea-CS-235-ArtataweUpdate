@@ -23,7 +23,7 @@ import java.util.*;
  *
  * @author ***REMOVED*** ***REMOVED***
  * @author Bezhan Kodomani
- *  * @author Bassam Helal
+ * @author Bassam Helal
  * @version 2.0
  */
 public final class Util {
