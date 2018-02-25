@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -21,6 +22,8 @@ import java.util.ResourceBundle;
 
 public class FeedController implements Initializable {
 	
+	@FXML
+	private TextField searchTextField;
 	@FXML
 	private GridPane cardsGridPane;
 	@FXML
@@ -45,6 +48,10 @@ public class FeedController implements Initializable {
 		}
 		setChoiceBox();
 		Util.setFilterChoiceBox(choiceBoxFilter);
+	}
+	
+	private void search(String string) {
+	
 	}
 	
 	// TODO: 09-Dec-17 Bassam please fix this thing!!!
