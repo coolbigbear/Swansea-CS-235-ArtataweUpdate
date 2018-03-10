@@ -12,7 +12,9 @@ import java.util.ResourceBundle;
  * This is the Controller and Layout pair in charge of the page that the user will use to visualise a users
  * individual statistics for their artatawe account.
  *
- * @author Alex Wing, Bezhan Kodomani, Iliyan Garnev
+ * @author Alex Wing
+ * @author Bezhan Kodomani
+ * @author Iliyan Garnev
  * @version 0.2
  */
 public class DashboardController implements Initializable {
