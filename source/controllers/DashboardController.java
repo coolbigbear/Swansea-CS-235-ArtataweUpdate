@@ -11,6 +11,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -23,6 +24,8 @@ import javafx.stage.Stage;
 
 
 import javax.print.DocFlavor;
+import javax.swing.plaf.ColorUIResource;
+import javax.xml.soap.Text;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -48,6 +51,9 @@ public class DashboardController implements Initializable {
 	 */
 	@FXML
 	private ImageView profileImage;
+
+//	@FXML
+	//private Text title;
 
 	//@FXML
 	//private AreaChart profit;
