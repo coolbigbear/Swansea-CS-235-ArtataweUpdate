@@ -163,7 +163,40 @@ public final class Util {
 			}
 		}
 	}
-	
+
+	public static void getAuctionsByName(String search) {
+		Auction[] fromJson = readInAuctionFile();
+
+		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+		Feed feed = Feed.getNewInstance();
+
+		search = search.toLowerCase();
+
+		//for each Auction only add it to the Feed if it is not completed
+		for (Auction auction : auctionArrayList) {
+			if (!auction.isCompleted()) {
+				String nameLowerCase = auction.getArtwork().title.toLowerCase();
+				String descriptionLowerCase = auction.getArtwork().getDescription().toString().toLowerCase();
+				String creatorName = auction.getArtwork().getCreatorName().toLowerCase();
+				String creationDate = auction.getArtwork().getCreationDate().toLowerCase();
+				String userName = auction.getSellerName().toLowerCase();
+				search = search.trim();
+				if (nameLowerCase.contains(search)) {
+					feed.add(auction);
+				} else if (descriptionLowerCase.contains(search)) {
+					feed.add(auction);
+				} else if (creatorName.contains(search)) {
+					feed.add(auction);
+				} else if (creationDate.contains(search)) {
+					feed.add(auction);
+				} else if (userName.contains(search)) {
+					feed.add(auction);
+				}
+			}
+		}
+	}
+
 	public static void getAllAuctions() {
 		Auction[] fromJson = readInAuctionFile();
 		
