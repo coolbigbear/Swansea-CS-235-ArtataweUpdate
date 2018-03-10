@@ -33,7 +33,18 @@ public final class Profile {
 	private List<Auction> completedAuctions;
 	private List<Auction> currentlySelling;
 	private List<Bid> allBidsPlaced;
-	private LocalDateTime lastLogInTime;
+	private LocalDateTime lastLogInTime; // TODO not being saved when logging in
+	
+	/*
+	 * to get last log out time (time of last action) we do this:
+	 * read all the user's actions (bids and Auctions) get all their times and then get the latest one,
+	 * that's the time of last interest
+	 */
+	
+	// list of galleries
+	// list of flags for read/unread notifications??
+	// for notifications we can show the things happened (that matter to this user) since time of last interest (time
+	// of log-out)
 	
 	/**
 	 * Private constructor to be used only by the factory

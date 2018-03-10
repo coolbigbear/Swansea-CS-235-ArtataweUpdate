@@ -127,6 +127,11 @@
                      <VBox.margin>
                         <Insets bottom="3.5" left="1.9" right="1.9" />
                      </VBox.margin></Button>
+                  <Button mnemonicParsing="false" onAction="#ViewDashboardButtonAction" prefHeight="10.0" prefWidth="159.0" text="Dashboard">
+                     <VBox.margin>
+                        <Insets bottom="3.5" left="1.9" right="1.9" />
+                     </VBox.margin>
+                  </Button>
                     </children>
                <VBox.margin>
                   <Insets bottom="3.5" left="1.9" right="1.9" top="4.0" />
