@@ -56,6 +56,8 @@ public class AuctionController {
 	private ScrollPane viewAuctionScrollPane;
 	@FXML
 	private Button addToFavoritesButton;
+    @FXML
+    private Button addToGalleriesButton;
 	@FXML
 	private Label bidsLeftLabel;
 	@FXML
@@ -93,6 +95,11 @@ public class AuctionController {
 		} else {
 			addToFavoritesButton.setText("Add to favorites");
 		}
+		if (isGallery()) {
+		    addToGalleriesButton.setText("Remove from gallery");
+        } else {
+            addToGalleriesButton.setText("Add to gallery");
+        }
 		generateAuctionLabels();
 		generateArtworkLabels();
 		setSellerSpecificNodes();
@@ -338,6 +345,25 @@ public class AuctionController {
 			addToFavoritesButton.setText("Remove favorite");
 		}
 	}
+	@FXML   //TODO needs to be changed so it doesnt update the "FavouriteUsersGridPane"
+            //TODO needs to update the "gallery" feed only, not "FavouriteUsers"
+	private void addToGalleriesButtonAction() {
+		if (addToGalleriesButton.getText().equalsIgnoreCase("Remove from gallery")) {
+			for (int i = 0; i < Util.getCurrentUser().getUserGalleries().size(); i++) {
+				if (Util.getCurrentUser().getUserGalleries().get(i).getAuctionID().equals(currentAuction.getAuctionID())) {
+					Util.getCurrentUser().getUserGalleries().remove(i);
+				}
+			}
+			Util.saveProfileToFile(Util.getCurrentUser());
+            addToGalleriesButton.setText("Add to gallery");
+		} else {
+            Util.getCurrentUser().getUserGalleries().add(currentAuction);
+			Util.saveProfileToFile(Util.getCurrentUser());
+            addToGalleriesButton.setText("Remove from gallery");
+		}
+
+
+	}
 
 	//helper method to check if a user is favorited
 	private boolean isFavorited() {
@@ -349,6 +375,17 @@ public class AuctionController {
 		}
 		return favorite;
 	}
+
+	//helper method to check if the auction is in galleries
+	private boolean isGallery() {
+	    boolean gallery = false;
+        for (int i = 0; i < Util.getCurrentUser().getUserGalleries().size(); i++) {
+            if (Util.getCurrentUser().getUserGalleries().get(i).getAuctionID().equals(currentAuction.getAuctionID())) {
+                gallery = true;
+            }
+        }
+	    return gallery;
+    }
 
 	//helper method to populate an arraylist of all favorite users of a profile
 	private ArrayList<Profile> populateFavoriteUsers() {

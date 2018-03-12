@@ -39,6 +39,8 @@ public class HomeController implements Initializable {
 	
 	@FXML
 	Button favouriteUsersAuctionsButton;
+    @FXML
+    Button userGalleryButton;
 	@FXML
 	private Label welcomeLabel;
 	@FXML
@@ -238,6 +240,22 @@ public class HomeController implements Initializable {
 				}
 			}
 		}
+		feed.updateWith(resultList);
+		try {
+			setAuctionsCenter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	//TODO Create galleries button where it loads the galleries page like does for "favourite auctions"
+	@FXML
+	private void galleryButtonOnAction() throws IOException {
+		Util.getActiveAuctions();
+		feed = Feed.getInstance();
+		List<Auction> userGalleries = Util.getCurrentUser().getUserGalleries();
+		ArrayList<Auction> resultList = new ArrayList<>();
+
 		feed.updateWith(resultList);
 		try {
 			setAuctionsCenter();

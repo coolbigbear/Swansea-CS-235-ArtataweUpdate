@@ -29,6 +29,7 @@ public final class Profile {
 	private final String postcode;
 	private String profileImagePath;
 	private List<String> favouriteUsers;
+	private List<Auction> userGalleries; //TODO needs to be initialized so can add to galleries
 	private List<Auction> wonAuctions;
 	private List<Auction> completedAuctions;
 	private List<Auction> currentlySelling;
@@ -261,6 +262,10 @@ public final class Profile {
 	 */
 	public List<String> getFavouriteUsers() {
 		return this.favouriteUsers;
+	}
+
+	public List<Auction> getUserGalleries() {
+		return this.userGalleries;
 	}
 	
 	/**
