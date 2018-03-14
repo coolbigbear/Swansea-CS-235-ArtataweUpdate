@@ -51,16 +51,29 @@ public class DashboardController implements Initializable {
 
 		initBarChart(boughtAuctions, soldAuctions);
 		initPieChart(soldAuctions);
-		initLineChart(currentlySelling);
+		initLineChart(currentlySelling, soldAuctions);
 	}
 
-	private void initLineChart(List<Auction> currentlySelling) {
+	private void initLineChart(List<Auction> currentlySelling, List<Auction> soldAuctions) {
 		LocalDateTime today = LocalDateTime.now();
 		LocalDateTime sevenDaysEarlier = today.minusDays(7);
+
 		int[] countBidsOnDay = new int[7];
-		for (Auction elem : currentlySelling) {
+
+		ArrayList<Auction> myAuctions = new ArrayList<>();
+		myAuctions.addAll(currentlySelling);
+		myAuctions.addAll(soldAuctions);
+
+		for (Auction elem : myAuctions) {
+			System.out.println(elem.getArtwork().getTitle());
+		}
+
+		for (Auction elem : myAuctions) {
+			System.out.println("checking1");
 			for (Bid elem2 : elem.getBidList()) {
-				if (elem2.getDateTimePlaced().compareTo(sevenDaysEarlier) > 0) {
+				System.out.println("checking2");
+				if (elem2.getDateTimePlaced().isAfter(sevenDaysEarlier)) {
+					System.out.println("WE ARE IN");
 					switch (elem2.getDateTimePlaced().getDayOfWeek().getValue()) {
 						case 1 :
 							countBidsOnDay[0]++;
