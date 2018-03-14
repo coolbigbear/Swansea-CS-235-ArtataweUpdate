@@ -134,25 +134,21 @@ public class LoginController implements Initializable {
                     TimeUnit.MILLISECONDS.sleep(3000);
                     fadingOut(loginImages);
                     TimeUnit.MILLISECONDS.sleep(1000);
-                    System.out.println("IMAGE THREAD RUNNING");
                     loginImages.setImage(new Image("images/login/login2.png"));
                     fading(loginImages);
                     TimeUnit.MILLISECONDS.sleep(3000);
                     fadingOut(loginImages);
                     TimeUnit.MILLISECONDS.sleep(1000);
-                    System.out.println("IMAGE THREAD RUNNING");
                     loginImages.setImage(new Image("images/login/login3.png"));
                     fading(loginImages);
                     TimeUnit.MILLISECONDS.sleep(3000);
                     fadingOut(loginImages);
                     TimeUnit.MILLISECONDS.sleep(1000);
-                    System.out.println("IMAGE THREAD RUNNING");
                     loginImages.setImage(new Image("images/login/login4.png"));
                     fading(loginImages);
                     TimeUnit.MILLISECONDS.sleep(3000);
                     fadingOut(loginImages);
                     TimeUnit.MILLISECONDS.sleep(1000);
-                    System.out.println("IMAGE THREAD RUNNING");
                 }
             } catch (InterruptedException e) {
                 System.out.println("time unit interrupted");

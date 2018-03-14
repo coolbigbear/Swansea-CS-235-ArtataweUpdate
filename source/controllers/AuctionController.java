@@ -120,7 +120,7 @@ public class AuctionController {
 				highestBidLabel.setText("£" + bid.getBidAmount().toString());
 				Util.getCurrentUser().getAllBidsPlaced().add(bid);
 				
-				if(currentAuction.isCompleted()) {
+				if (currentAuction.isCompleted()) {
 					auctionWon();
 					Profile seller = Util.getProfileByUsername(currentAuction.getSellerName());
 					

@@ -1,5 +1,6 @@
 package controllers;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
@@ -33,10 +34,7 @@ public class DashboardController implements Initializable {
 	private LineChart<String, Number> lineChart;
 	@FXML
 	private BarChart<String, Number> barChart;
-	@FXML
-	private CategoryAxis xBarAxis;
-	@FXML
-	private NumberAxis yBarAxis;
+
 	private List<Auction> boughtAuctions;
 	private List<Auction> soldAuctions;
 	private List<Auction> currentlySelling;
@@ -59,22 +57,34 @@ public class DashboardController implements Initializable {
 		LocalDateTime sevenDaysEarlier = today.minusDays(7);
 
 		int[] countBidsOnDay = new int[7];
-
 		ArrayList<Auction> myAuctions = new ArrayList<>();
-		myAuctions.addAll(currentlySelling);
-		myAuctions.addAll(soldAuctions);
 
-		for (Auction elem : myAuctions) {
-			System.out.println(elem.getArtwork().getTitle());
+
+
+		//TODO currentlySelling list doesnt have a bid list on the auction
+		myAuctions.addAll(currentlySelling);
+
+		for (int i = 0; i < currentlySelling.size(); i++) {
+			System.out.println("num of bidders on " + currentlySelling.get(i).getArtwork().getTitle() + " " + currentlySelling.get(i).getBidList().size());
+//			for (int j = 0; j < currentlySelling.get(i).getBidList().size(); j++) {
+//				System.out.println(currentlySelling.get(i).getBidList().get(j));
+//			}
 		}
 
-		for (Auction elem : myAuctions) {
-			System.out.println("checking1");
-			for (Bid elem2 : elem.getBidList()) {
-				System.out.println("checking2");
-				if (elem2.getDateTimePlaced().isAfter(sevenDaysEarlier)) {
-					System.out.println("WE ARE IN");
-					switch (elem2.getDateTimePlaced().getDayOfWeek().getValue()) {
+
+
+		myAuctions.addAll(soldAuctions);
+
+		for (Auction auction : myAuctions) {
+
+//			System.out.println(auction.getArtwork().getTitle());
+
+			for (Bid bid : auction.getBidList()) {
+
+//				System.out.println(bid.getBidderUsername());
+
+				if (bid.getDateTimePlaced().isAfter(sevenDaysEarlier)) {
+					switch (bid.getDateTimePlaced().getDayOfWeek().getValue()) {
 						case 1 :
 							countBidsOnDay[0]++;
 							break;
@@ -100,7 +110,6 @@ public class DashboardController implements Initializable {
 				}
 			}
 		}
-
 
 		XYChart.Series series = new XYChart.Series();
 		series.getData().add(new XYChart.Data("Mon", countBidsOnDay[0]));
