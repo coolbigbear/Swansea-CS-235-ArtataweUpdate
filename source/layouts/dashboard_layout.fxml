@@ -6,22 +6,6 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.AreaChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
    <children>
@@ -63,7 +47,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <LineChart layoutX="396.0" layoutY="-4.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="598.0" AnchorPane.bottomAnchor="225.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="-4.0" GridPane.columnIndex="1">
+                  <LineChart fx:id="lineChart" layoutX="396.0" layoutY="-4.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="598.0" AnchorPane.bottomAnchor="225.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="-4.0" GridPane.columnIndex="1">
                     <xAxis>
                       <CategoryAxis label="Category for buying/selling" side="BOTTOM" />
                     </xAxis>
@@ -109,13 +93,13 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="???" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
-                        <PieChart prefHeight="229.0" prefWidth="371.0" title="Pie Chart" GridPane.columnIndex="1" />
-                        <BarChart title="Bar Chart" GridPane.columnIndex="2">
+                        <PieChart fx:id="pieChart" prefHeight="229.0" prefWidth="371.0" title="Pie Chart" GridPane.columnIndex="1" />
+                        <BarChart fx:id="barChart" title="Bar Chart" GridPane.columnIndex="2">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <CategoryAxis side="BOTTOM" fx:id="xBarAxis" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis side="LEFT" />
+                            <NumberAxis fx:id="yBarAxis" side="LEFT" />
                           </yAxis>
                         </BarChart>
                      </children>

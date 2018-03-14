@@ -41,6 +41,7 @@ public class LoginController implements Initializable {
     @FXML
     private ImageView loginImages;
     private Thread cycleImageThread;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cycleImageThread = new Thread(cycleImagesRunnable());
