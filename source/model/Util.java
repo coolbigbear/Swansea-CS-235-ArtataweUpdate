@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import model.exception.ProfileNotFoundException;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -162,6 +163,22 @@ public final class Util {
 				feed.add(auction);
 			}
 		}
+	}
+
+	public static List<Auction> getNewAuctionsSince(LocalDateTime time) {
+		Auction[] fromJson = readInAuctionFile();
+
+		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+		ArrayList<Auction> auctionsSinceTime = new ArrayList<>();
+
+		//for each Auction only add it if it is after time
+		for (Auction auction : auctionArrayList) {
+			if (auction.getDateTimePlaced().isAfter(time)) {
+				auctionsSinceTime.add(auction);
+			}
+		}
+		return auctionsSinceTime;
 	}
 
 	public static void getAuctionsByName(String search) {
