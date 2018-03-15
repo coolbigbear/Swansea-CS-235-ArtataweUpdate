@@ -1,19 +1,19 @@
 package controllers;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
-import javafx.scene.image.ImageView;
 import model.Auction;
 import model.Bid;
 import model.Painting;
 import model.Util;
 
+import java.awt.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.List;
 
 /**
  * The Controller for the Dashboard, this is in charge of <code>layouts.dashboard_layout.fxml</code>.
@@ -168,14 +168,19 @@ public class DashboardController implements Initializable {
 		XYChart.Series<String, Number> paintingsBought = new XYChart.Series();
 		XYChart.Series<String, Number> sculpturesBought = new XYChart.Series();
 
-		paintingsSold.getData().add(new XYChart.Data("?", moneyEarnedPaintings));
-		sculpturesSold.getData().add(new XYChart.Data("?", moneyEarnedSculptures));
-		paintingsBought.getData().add(new XYChart.Data("?", moneySpentPaintings));
-		sculpturesBought.getData().add(new XYChart.Data("?", moneySpentSculptures));
+
+		paintingsSold.getData().add(new XYChart.Data("", moneyEarnedPaintings));
+		sculpturesSold.getData().add(new XYChart.Data("", moneyEarnedSculptures));
+		paintingsBought.getData().add(new XYChart.Data("", moneySpentPaintings));
+		sculpturesBought.getData().add(new XYChart.Data("", moneySpentSculptures));
 		barChart.getData().add(paintingsSold);
 		barChart.getData().add(sculpturesSold);
 		barChart.getData().add(paintingsBought);
 		barChart.getData().add(sculpturesBought);
+		paintingsSold.setName("$ earned p");
+		sculpturesSold.setName("$ earned s");
+		paintingsBought.setName("$ spent p");
+		sculpturesBought.setName("$ spent s");
 	}
 }
 
