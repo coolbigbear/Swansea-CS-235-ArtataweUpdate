@@ -253,10 +253,9 @@ public class HomeController implements Initializable {
 	private void galleryButtonOnAction() throws IOException {
 		Util.getActiveAuctions();
 		feed = Feed.getInstance();
-		List<Auction> userGalleries = Util.getCurrentUser().getUserGalleries();
-		ArrayList<Auction> resultList = new ArrayList<>();
-
-		feed.updateWith(resultList);
+//		List<Auction> userGalleries = Util.getCurrentUser().getUserGalleries();
+//		ArrayList<Auction> resultList = new ArrayList<>();
+//		feed.updateWith(resultList);
 		try {
 			setAuctionsCenter();
 		} catch (IOException e) {
