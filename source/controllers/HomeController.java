@@ -211,7 +211,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	private void ViewDashboardButtonAction() throws IOException {
-		AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/view_dashboard.fxml"));
+		AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/dashboard_layout.fxml"));
 		homeLayout.setCenter(profileLayout);
 	}
 	@FXML
