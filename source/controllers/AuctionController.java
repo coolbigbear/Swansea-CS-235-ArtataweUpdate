@@ -95,11 +95,11 @@ public class AuctionController {
 		} else {
 			addToFavoritesButton.setText("Add to favorites");
 		}
-		if (isGallery()) {
-		    addToGalleriesButton.setText("Remove from gallery");
+/*		if (isGallery()) {
+		    addToGalleriesButton.setText("Remove from gallery"); //Changes the button text, removed to get cards working
         } else {
             addToGalleriesButton.setText("Add to gallery");
-        }
+        }*/
 		generateAuctionLabels();
 		generateArtworkLabels();
 		setSellerSpecificNodes();
@@ -357,7 +357,7 @@ public class AuctionController {
 			Util.saveProfileToFile(Util.getCurrentUser());
             addToGalleriesButton.setText("Add to gallery");
 		} else {
-            Util.getCurrentUser().getUserGalleries().add(currentAuction);
+            //Util.getCurrentUser().getUserGalleries().add(currentAuction);
 			Util.saveProfileToFile(Util.getCurrentUser());
             addToGalleriesButton.setText("Remove from gallery");
 		}
