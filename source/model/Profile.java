@@ -29,6 +29,7 @@ public final class Profile {
 	private final String postcode;
 	private String profileImagePath;
 	private List<String> favouriteUsers;
+	private List<Gallery> userGalleries;
 	private List<Auction> wonAuctions;
 	private List<Auction> completedAuctions;
 	private List<Auction> currentlySelling;
@@ -78,9 +79,10 @@ public final class Profile {
 		this.completedAuctions = new ArrayList<>();
 		this.currentlySelling = new ArrayList<>();
 		this.allBidsPlaced = new ArrayList<>();
+		this.userGalleries = new ArrayList<>();
 		this.lastLogInTime = LocalDateTime.now();
 	}
-	
+
 	/**
 	 * Constructs a new Profile instance to be used by the system memory, this is not the way to add new Profiles to
 	 * the system, instead use the factory method, this should only be used by the database
@@ -100,13 +102,14 @@ public final class Profile {
 	 * @param completedAuctions the List of Auctions representing the completed Auctions of the Profile
 	 * @param currentlySelling the List of Auctions representing the currently selling Auctions of the Profile
 	 * @param allBidsPlaced the List of Bids representing the Bids placed by the Profile
+	 * @param userGalleries the List of galleries that the user has
 	 * @param lastLogInTime the LocalDateTime representing the last log in time of the Profile
 	 */
 	public Profile(String username, String firstName, String lastName, String phoneNumber,
 	               String addressLine1, String addressLine2, String city, String country,
 	               String postcode, String profileImagePath, List<String> favouriteUsers,
 	               List<Auction> wonAuctions, List<Auction> completedAuctions,
-	               List<Auction> currentlySelling, List<Bid> allBidsPlaced, LocalDateTime lastLogInTime) {
+	               List<Auction> currentlySelling, List<Bid> allBidsPlaced, List<Gallery> userGalleries, LocalDateTime lastLogInTime) {
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -122,6 +125,7 @@ public final class Profile {
 		this.completedAuctions = completedAuctions;
 		this.currentlySelling = currentlySelling;
 		this.allBidsPlaced = allBidsPlaced;
+		this.userGalleries = userGalleries;
 		this.lastLogInTime = lastLogInTime;
 	}
 	
@@ -262,6 +266,10 @@ public final class Profile {
 	public List<String> getFavouriteUsers() {
 		return this.favouriteUsers;
 	}
+
+	public List<Gallery> getUserGalleries() {
+		return this.userGalleries;
+	}
 	
 	/**
 	 * Gets the List of Auctions the Profile has won
@@ -327,6 +335,19 @@ public final class Profile {
 			return true;
 		} else {
 			throw new InputMismatchException("Invalid username!");
+		}
+	}
+
+	public void addNewGallery(String nameOfGallery) {
+		ArrayList<Integer> listOfAuctionIDs = new ArrayList<>();
+		userGalleries.add(new Gallery(nameOfGallery, listOfAuctionIDs ));
+	}
+
+	public void removerGallery(int galleryID) {
+		for(Gallery e : userGalleries) {
+			if(e.getLocalID() == galleryID) {
+				userGalleries.remove(e);
+			}
 		}
 	}
 	
