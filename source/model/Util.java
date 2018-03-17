@@ -289,7 +289,6 @@ public final class Util {
         return result;
     }
 
-
     //-----------------------------------------------------------------------
 
     public static void getAuctionsByName(String search) {

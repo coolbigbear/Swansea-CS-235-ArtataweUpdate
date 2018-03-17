@@ -1,20 +1,15 @@
 package model;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 //TODO I think remove this. I'll have the algorithms here
 public class Notification {
 
-    //1. New artworks that are now on auction that were not on auction last time the user
-    //logged in
-    public List<Auction> getNewAuctionsSinceLastLogon() {
-        LocalDateTime lastActivityTime = getTimeOfInterest();
-        return Util.getNewAuctionsSince(lastActivityTime);
-    }
-
     // could go to Util
-    private LocalDateTime getTimeOfInterest() {
+    public static LocalDateTime getTimeOfInterest() {
         Profile user = Util.getCurrentUser();
         LocalDateTime timeOfInterest = user.getLastLogInTime();
 
@@ -32,30 +27,51 @@ public class Notification {
         return timeOfInterest;
     }
 
+    //1. New artworks that are now on auction that were not on auction last time the user
+    //logged in
+    public static List<Auction> getNewAuctionsSinceLastLogon() {
+        LocalDateTime lastActivityTime = getTimeOfInterest();
+        return Util.getNewAuctionsSince(lastActivityTime);
+    }
+
     //2. A user that is selling an artwork will be able to see new bids on the items since the
     //last time they logged in.
-    public List<Bid> getNewBidsSinceLastLogon() {
+    public static List<Bid> getNewBidsSinceLastLogon() {
         LocalDateTime lastActivityTime = getTimeOfInterest();
         return Util.getNewBidsOnCurrentUserSince(lastActivityTime);
     }
 
+    public static List<Auction> getNewBidsAuctionsSinceLastLogon() {
+        LocalDateTime lastActivityTime = getTimeOfInterest();
+
+        ArrayList<Auction> auctionsWithNewBids = new ArrayList<>();
+
+        for (Bid bid : Util.getNewBidsOnCurrentUserSince(lastActivityTime)) {
+            try {
+                auctionsWithNewBids.add(Util.getAuctionByAuctionID(bid.getAuctionID()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return auctionsWithNewBids;
+    }
 
     //3. Auctions that have been won / lost since the last login
     // New Auctions you have sold
-    public List<Auction> getAuctionsCurrentUserSoldSinceLastLogon() {
+    public static List<Auction> getAuctionsCurrentUserSoldSinceLastLogon() {
         LocalDateTime lastActivityTime = getTimeOfInterest();
         return Util.getAuctionsSoldSince(lastActivityTime);
     }
 
     // New Auctions you have lost
-    public List<Auction> getAuctionsCurrentUserLostSinceLastLogon() {
+    public static List<Auction> getAuctionsCurrentUserLostSinceLastLogon() {
         LocalDateTime lastActivityTime = getTimeOfInterest();
         return Util.getAuctionsLostSince(lastActivityTime);
     }
 
     //4. Active auctions that they have bid on that are coming to a close (i.e. approaching
     //their bid limit)
-    public List<Auction> getAuctionsComingToCloseSinceLastLogon() {
+    public static List<Auction> getAuctionsComingToCloseSinceLastLogon() {
         LocalDateTime lastActivityTime = getTimeOfInterest();
         return Util.getAuctionsComingToCloseSince(lastActivityTime);
     }
