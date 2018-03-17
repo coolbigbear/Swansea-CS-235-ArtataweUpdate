@@ -41,14 +41,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money Earned:" wrappingWidth="69.13671875" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money Spent:" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profit" GridPane.rowIndex="2" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money Earned :" wrappingWidth="69.13671875" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money Spent :" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profit :" GridPane.rowIndex="2" />
                         <Text fill="#0bd712" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
                         <Text fill="#fc0101" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Auctions Won" wrappingWidth="114.384765625" GridPane.rowIndex="3" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Amount of Bids" wrappingWidth="114.13671875" GridPane.rowIndex="4" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Auctions Won :" wrappingWidth="114.384765625" GridPane.rowIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Amount of Bids:" wrappingWidth="114.13671875" GridPane.rowIndex="4" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
@@ -83,7 +83,7 @@
                             <NumberAxis fx:id="yBarAxis" side="LEFT" />
                           </yAxis>
                         </BarChart>
-                        <PieChart title="Auctions Won/Lost" />
+                        <PieChart fx:id="wonLostPieChart" title="Auctions Won/Lost" />
                      </children>
                   </GridPane>
                </children>

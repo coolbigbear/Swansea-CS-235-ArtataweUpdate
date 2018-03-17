@@ -9,6 +9,7 @@ import model.Painting;
 import model.Util;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -34,6 +35,8 @@ public class DashboardController implements Initializable {
 	private LineChart<String, Number> lineChart;
 	@FXML
 	private BarChart<String, Number> barChart;
+	@FXML
+	private PieChart wonLostPieChart;
 
 	private List<Auction> boughtAuctions;
 	private List<Auction> soldAuctions;
@@ -50,6 +53,26 @@ public class DashboardController implements Initializable {
 		initBarChart(boughtAuctions, soldAuctions);
 		initPieChart(soldAuctions);
 		initLineChart(currentlySelling, soldAuctions);
+		try {
+			initPieChartWonLost(boughtAuctions, allBidsPlaced);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void initPieChartWonLost(List<Auction> boughtAuctions, List<Bid> allBidsPlaced) throws IOException {
+		Set<Auction> auctionsLost = new HashSet<>();
+
+		for (Bid elem : allBidsPlaced) {
+			if (Util.getAuctionByAuctionID(elem.getAuctionID()).isCompleted() &&
+					!Util.getAuctionByAuctionID(elem.getAuctionID()).getHighestBidder()
+							.equalsIgnoreCase(Util.getCurrentUser().getUsername())) {
+				auctionsLost.add(Util.getAuctionByAuctionID(elem.getAuctionID()));
+			}
+		}
+
+		wonLostPieChart.getData().add(new PieChart.Data("Won", boughtAuctions.size()));
+		wonLostPieChart.getData().add(new PieChart.Data("Lost", auctionsLost.size()));
 	}
 
 	private void initLineChart(List<Auction> currentlySelling, List<Auction> soldAuctions) {
@@ -58,8 +81,6 @@ public class DashboardController implements Initializable {
 
 		int[] countBidsOnDay = new int[7];
 		ArrayList<Auction> myAuctions = new ArrayList<>();
-
-
 
 		//TODO currentlySelling list doesnt have a bid list on the auction
 		myAuctions.addAll(currentlySelling);
@@ -131,7 +152,7 @@ public class DashboardController implements Initializable {
 
 		HashMap<String, Integer> usersCount = new HashMap<>();
 
-		for(String word: users) {
+		for (String word: users) {
 			Integer count = usersCount.get(word);
 			usersCount.put(word, (count == null) ? 1 : count+1);
 		}
@@ -177,10 +198,10 @@ public class DashboardController implements Initializable {
 		barChart.getData().add(sculpturesSold);
 		barChart.getData().add(paintingsBought);
 		barChart.getData().add(sculpturesBought);
-		paintingsSold.setName("$ earned p");
-		sculpturesSold.setName("$ earned s");
-		paintingsBought.setName("$ spent p");
-		sculpturesBought.setName("$ spent s");
+		paintingsSold.setName("£ earned p");
+		sculpturesSold.setName("£ earned s");
+		paintingsBought.setName("£ spent p");
+		sculpturesBought.setName("£ spent s");
 	}
 }
 
