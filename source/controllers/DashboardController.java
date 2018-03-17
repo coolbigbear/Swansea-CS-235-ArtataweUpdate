@@ -48,6 +48,13 @@ public class DashboardController implements Initializable {
 		boughtAuctions = Util.getCurrentUser().getWonAuctions();
 		soldAuctions = Util.getCurrentUser().getCompletedAuctions();
 		allBidsPlaced = Util.getCurrentUser().getAllBidsPlaced();
+		for (Bid elem : allBidsPlaced) {
+			try {
+				System.out.println(Util.getAuctionByAuctionID(elem.getAuctionID()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		currentlySelling = Util.getCurrentUser().getCurrentlySelling();
 
 		initBarChart(boughtAuctions, soldAuctions);
@@ -64,12 +71,17 @@ public class DashboardController implements Initializable {
 		Set<Auction> auctionsLost = new HashSet<>();
 
 		for (Bid elem : allBidsPlaced) {
+			System.out.println(Util.getAuctionByAuctionID(elem.getAuctionID()).isCompleted());
+			System.out.println(Util.getAuctionByAuctionID(elem.getAuctionID()).getHighestBidder());
 			if (Util.getAuctionByAuctionID(elem.getAuctionID()).isCompleted() &&
 					!Util.getAuctionByAuctionID(elem.getAuctionID()).getHighestBidder()
 							.equalsIgnoreCase(Util.getCurrentUser().getUsername())) {
+				System.out.println(elem.getAuctionID());
 				auctionsLost.add(Util.getAuctionByAuctionID(elem.getAuctionID()));
 			}
 		}
+
+
 
 		wonLostPieChart.getData().add(new PieChart.Data("Won", boughtAuctions.size()));
 		wonLostPieChart.getData().add(new PieChart.Data("Lost", auctionsLost.size()));
