@@ -15,9 +15,21 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.exception.ProfileNotFoundException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.Set;
 
 /**
  * A Utility class used mostly for reading and writing to the JSON database but also to send receive global Objects.
@@ -28,7 +40,7 @@ import java.util.*;
  * @version 2.0
  */
 public final class Util {
-	
+
 	/**
 	 * The current user who is signed in to the system.
 	 */
@@ -42,7 +54,7 @@ public final class Util {
 	private static ImageView profileImage;
 	private static GridPane favoriteUsersGridPane;
 	private static ChoiceBox filterChoiceBox;
-	
+
 	/**
 	 * Reads in all profiles from database.
 	 *
@@ -53,13 +65,13 @@ public final class Util {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Profiles.json"));
 			profiles = gson.fromJson(br, Profile[].class);
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		return profiles;
 	}
-	
+
 	/**
 	 * Reads in all auctions from database.
 	 *
@@ -70,13 +82,13 @@ public final class Util {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
 			auctions = gson.fromJson(br, Auction[].class);
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		return auctions;
 	}
-	
+
 	/**
 	 * Read in logged in user.
 	 *
@@ -86,7 +98,7 @@ public final class Util {
 	 */
 	public static boolean checkAndSetUser(String username) {
 		boolean found = false;
-		
+
 		Profile[] fromJson = readInProfileFile();
 		for (Profile profile : fromJson) {
 			//Read the unique username for each user and see if it matches the one input
@@ -99,7 +111,7 @@ public final class Util {
 		}
 		return found;
 	}
-	
+
 	/**
 	 * Gets profile by username from database.
 	 *
@@ -108,7 +120,7 @@ public final class Util {
 	 * @return the profile to be returned
 	 */
 	public static Profile getProfileByUsername(String username) {
-		
+
 		Profile[] allProfiles = readInProfileFile();
 		for (Profile profile : allProfiles) {
 			String name = profile.getUsername();
@@ -119,7 +131,7 @@ public final class Util {
 		}
 		throw new ProfileNotFoundException("Profile not found!");
 	}
-	
+
 	/**
 	 * Gets Auction by auctionID from database.
 	 *
@@ -130,12 +142,12 @@ public final class Util {
 	 * @throws IOException the io exception
 	 */
 	public static Auction getAuctionByAuctionID(Integer auctionID) throws IOException {
-		
+
 		Auction auction = null;
 		Auction[] allAuctions = readInAuctionFile();
 		for (Auction auctions : allAuctions) {
 			Integer id = auctions.getAuctionID();
-			
+
 			if (Objects.equals(id, auctionID)) {
 				auction = auctions;
 			}
@@ -146,17 +158,17 @@ public final class Util {
 			return auction;
 		}
 	}
-	
+
 	/**
 	 * Read in all auctions from database that are active (on sale).
 	 */
 	public static void getActiveAuctions() {
 		Auction[] fromJson = readInAuctionFile();
-		
+
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-		
+
 		Feed feed = Feed.getNewInstance();
-		
+
 		//for each Auction only add it to the Feed if it is not completed
 		for (Auction auction : auctionArrayList) {
 			if (!auction.isCompleted()) {
@@ -165,21 +177,79 @@ public final class Util {
 		}
 	}
 
-	public static List<Auction> getNewAuctionsSince(LocalDateTime time) {
-		Auction[] fromJson = readInAuctionFile();
+	//BASSAM NOTIFICATIONS
+	//----------------------------------------------------------------------
 
-		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+    public static List<Auction> getNewAuctionsSince(LocalDateTime time) {
+        Auction[] fromJson = readInAuctionFile();
 
-		ArrayList<Auction> auctionsSinceTime = new ArrayList<>();
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 
-		//for each Auction only add it if it is after time
-		for (Auction auction : auctionArrayList) {
-			if (auction.getDateTimePlaced().isAfter(time)) {
-				auctionsSinceTime.add(auction);
-			}
-		}
-		return auctionsSinceTime;
-	}
+        ArrayList<Auction> auctionsSinceTime = new ArrayList<>();
+
+        //for each Auction only add it if it is after time
+        for (Auction auction : auctionArrayList) {
+            if (auction.getDateTimePlaced().isAfter(time)) {
+                auctionsSinceTime.add(auction);
+            }
+        }
+        return auctionsSinceTime;
+    }
+
+    public static List<Bid> getNewBidsOnCurrentUserSince(LocalDateTime time) {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        ArrayList<Bid> bidsSinceTime = new ArrayList<>();
+
+        for (Auction auction : auctionArrayList) {
+            if (auction.getSellerName().equals(getCurrentUser().getUsername())) {
+
+                for (Bid bid : auction.getBidList()) {
+                    if (bid.getDateTimePlaced().isAfter(time)) {
+                        bidsSinceTime.add(bid);
+                    }
+
+                }
+            }
+
+        }
+        return bidsSinceTime;
+    }
+
+    public static List<Auction> getAuctionsWonSince(LocalDateTime time) {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        ArrayList<Auction> auctionsWonSinceTime = new ArrayList<>();
+
+        for (Auction auction : auctionArrayList) {
+            if (auction.isCompleted() &&
+                    getLastBid(auction.getBidList()).getDateTimePlaced().isAfter(time)){
+                auctionsWonSinceTime.add(auction);
+            }
+        }
+        return auctionsWonSinceTime;
+    }
+
+    private static Bid getLastBid(List<Bid> bids) {
+	    LocalDateTime time = LocalDateTime.MIN;
+	    Bid result = null;
+
+	    for (Bid bid : bids) {
+	        if (bid.getDateTimePlaced().isAfter(time)){
+	            result = bid;
+	            time = bid.getDateTimePlaced();
+            }
+        }
+        return result;
+    }
+
+
+
+	//-----------------------------------------------------------------------
 
 	public static void getAuctionsByName(String search) {
 		Auction[] fromJson = readInAuctionFile();
@@ -216,14 +286,14 @@ public final class Util {
 
 	public static void getAllAuctions() {
 		Auction[] fromJson = readInAuctionFile();
-		
+
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-		
+
 		Feed feed = Feed.getNewInstanceWithCapacity(auctionArrayList.size());
 		feed.updateWith(auctionArrayList);
-		
+
 	}
-	
+
 	/**
 	 * Gets active auctions by username.
 	 *
@@ -231,11 +301,11 @@ public final class Util {
 	 */
 	public static void getActiveAuctionsByUsername(String username) {
 		Auction[] fromJson = readInAuctionFile();
-		
+
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-		
+
 		Feed feed = Feed.getNewInstance();
-		
+
 		//for each Auction only add it to the Feed if its sold by the given user
 		for (Auction auction : auctionArrayList) {
 			if (auction.getSellerName().equals(username)) {
@@ -243,17 +313,17 @@ public final class Util {
 			}
 		}
 	}
-	
+
 	/**
 	 * Reads in only active sculpture auctions.
 	 */
 	public static void getSculptureAuctions() {
 		Auction[] fromJson = readInAuctionFile();
-		
+
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-		
+
 		Feed feed = Feed.getNewInstance();
-		
+
 		//for each Auction only add it to the Feed if it is not completed
 		for (Auction auction : auctionArrayList) {
 			if (auction.getArtwork().type == ArtworkType.Sculpture && !auction.isCompleted()) {
@@ -261,17 +331,17 @@ public final class Util {
 			}
 		}
 	}
-	
+
 	/**
 	 * Reads in only active painting auctions.
 	 */
 	public static void getPaintingAuctions() {
 		Auction[] fromJson = readInAuctionFile();
-		
+
 		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-		
+
 		Feed feed = Feed.getNewInstance();
-		
+
 		//for each Auction only add it to the Feed if it is not completed
 		for (Auction auction : auctionArrayList) {
 			if (auction.getArtwork().type == ArtworkType.Painting && !auction.isCompleted()) {
@@ -279,7 +349,7 @@ public final class Util {
 			}
 		}
 	}
-	
+
 	/**
 	 * Takes in a new profile and saves it to file.
 	 *
@@ -293,7 +363,7 @@ public final class Util {
 		tempList.add(profile);
 		saveListOfProfilesToFile(tempList);
 	}
-	
+
 	/**
 	 * Saves a profile to file.
 	 *
@@ -311,7 +381,7 @@ public final class Util {
 		//Save new list to file overwriting previous
 		saveListOfProfilesToFile(Arrays.asList(temp));
 	}
-	
+
 	/**
 	 * Saves a auction to file.
 	 *
@@ -329,7 +399,7 @@ public final class Util {
 		//Save new list to file overwriting previous
 		saveListOfAuctionsToFile(Arrays.asList(temp));
 	}
-	
+
 	/**
 	 * Save a list of auctions to file.
 	 *
@@ -344,7 +414,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Save a list of profiles to file.
 	 *
@@ -359,7 +429,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Add types to gson for artwork, sculpture and painting.
 	 *
@@ -367,16 +437,16 @@ public final class Util {
 	 */
 	public static Gson addTypesToGson() {
 		RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "typeGSON");
-		
+
 		artworkAdapterFactory.registerSubtype(Artwork.class);
 		artworkAdapterFactory.registerSubtype(Painting.class);
 		artworkAdapterFactory.registerSubtype(Sculpture.class);
-		
+
 		return new GsonBuilder()
 				.registerTypeAdapterFactory(artworkAdapterFactory)
 				.create();
 	}
-	
+
 	/**
 	 * Gets new auction id from file.
 	 *
@@ -384,16 +454,16 @@ public final class Util {
 	 */
 	public static int getNewAuctionID() {
 		int auctionID = -1;
-		
+
 		try {
 			//Reads in auctionID from file
 			Scanner scanner = new Scanner(new File("JSON Files/AuctionID.txt."));
 			auctionID = scanner.nextInt();
-			
+
 			//Adds one to auctionID to avoid conflicts
 			auctionID++;
 			scanner.close();
-			
+
 			//Saves the new auctionID back to file
 			saveNewAuctionID(auctionID);
 			return auctionID;
@@ -402,7 +472,7 @@ public final class Util {
 		}
 		return auctionID;
 	}
-	
+
 	/**
 	 * Saves new auctionID back to file
 	 *
@@ -418,7 +488,7 @@ public final class Util {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Gets current user.
 	 *
@@ -427,7 +497,7 @@ public final class Util {
 	public static Profile getCurrentUser() {
 		return currentUser;
 	}
-	
+
 	/**
 	 * Sets a new current user.
 	 *
@@ -436,7 +506,7 @@ public final class Util {
 	public static void setCurrentUser(Profile currentUser) {
 		Util.currentUser = currentUser;
 	}
-	
+
 	/**
 	 * Gets home layout.
 	 *
@@ -445,7 +515,7 @@ public final class Util {
 	public static BorderPane getHomeLayout() {
 		return homeLayout;
 	}
-	
+
 	/**
 	 * Sets home layout.
 	 *
@@ -454,7 +524,7 @@ public final class Util {
 	public static void setHomeLayout(BorderPane borderPane) {
 		homeLayout = borderPane;
 	}
-	
+
 	/**
 	 * Gets main stage.
 	 *
@@ -463,7 +533,7 @@ public final class Util {
 	public static Stage getMainStage() {
 		return mainStage;
 	}
-	
+
 	/**
 	 * Sets main stage.
 	 *
@@ -472,7 +542,7 @@ public final class Util {
 	public static void setMainStage(Stage stage) {
 		mainStage = stage;
 	}
-	
+
 	/**
 	 * Sets profile image.
 	 *
@@ -481,7 +551,7 @@ public final class Util {
 	public static void setProfileImage(ImageView imageView) {
 		profileImage = imageView;
 	}
-	
+
 	/**
 	 * Gets profile image.
 	 *
@@ -490,7 +560,7 @@ public final class Util {
 	public static ImageView getProfileImage() {
 		return profileImage;
 	}
-	
+
 	/**
 	 * Sets favorite users grid pane.
 	 *
@@ -499,7 +569,7 @@ public final class Util {
 	public static void setFavoriteUsersGridPane(GridPane gridPane) {
 		favoriteUsersGridPane = gridPane;
 	}
-	
+
 	/**
 	 * Gets favorite users grid pane.
 	 *
@@ -508,7 +578,7 @@ public final class Util {
 	public static GridPane getFavoriteUsersGridPane() {
 		return favoriteUsersGridPane;
 	}
-	
+
 	/**
 	 * Gets filter choice box.
 	 *
@@ -517,7 +587,7 @@ public final class Util {
 	public static ChoiceBox getFilterChoiceBox() {
 		return filterChoiceBox;
 	}
-	
+
 	/**
 	 * Sets filter choice box.
 	 *
@@ -526,7 +596,7 @@ public final class Util {
 	public static void setFilterChoiceBox(ChoiceBox choiceBox) {
 		filterChoiceBox = choiceBox;
 	}
-	
+
 	/**
 	 * Dynamic favorites grid pane.
 	 *
@@ -569,7 +639,7 @@ public final class Util {
 			row++;
 		}
 	}
-	
+
 	/**
 	 * Delete grid row.
 	 *
