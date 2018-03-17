@@ -11,11 +11,9 @@ import model.Bid;
 import model.Painting;
 import model.Util;
 
-import javax.xml.soap.Text;
 import javafx.scene.control.Label;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.List;
@@ -42,15 +40,15 @@ public class DashboardController implements Initializable {
 	@FXML
 	private PieChart wonLostPieChart;
 	@FXML
-	private Label moneyearned;
+	private Label moneyEarned;
 	@FXML
-	private Label moneyspent;
+	private Label moneySpent;
 	@FXML
 	private Label profit;
 	@FXML
 	private Label auctionsWon;
 	@FXML
-	private Label totalbids;
+	private Label totalBids;
 	@FXML
 	private ImageView dashboardProfileImage;
 
@@ -88,11 +86,11 @@ public class DashboardController implements Initializable {
 		initBarChart(boughtAuctions, soldAuctions);
 		initPieChart(soldAuctions);
 		initLineChart(currentlySelling, soldAuctions);
-		totalbids.setText(String.valueOf(allBidsPlaced.size()));
+		totalBids.setText(String.valueOf(allBidsPlaced.size()));
 		auctionsWon.setText(String.valueOf(boughtAuctions.size()));
 		profit.setText("£" + String.valueOf(profitTotal));
-		moneyspent.setText("£" +String.valueOf(moneySpent));
-		moneyearned.setText("£" +String.valueOf(moneyEarned));
+		this.moneySpent.setText("£" +String.valueOf(moneySpent));
+		this.moneyEarned.setText("£" +String.valueOf(moneyEarned));
 
 		if (profitTotal == 0) {
 			profit.setTextFill(Color.BLACK);

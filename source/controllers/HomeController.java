@@ -49,6 +49,11 @@ public class HomeController implements Initializable {
 	private GridPane favoritesGridPane;
 	@FXML
 	private Feed feed;
+	@FXML
+	private MenuButton notificationsMenuButton;
+	@FXML
+	private Label notificationsNumberLabel;
+
 	private ArrayList<Profile> favoriteUsers;
 	private ChoiceBox choiceBox;
 
@@ -71,6 +76,12 @@ public class HomeController implements Initializable {
 		}
 		populateFavoritesView();
 		choiceBox = Util.getFilterChoiceBox();
+		initNotifications();
+	}
+
+	private void initNotifications() {
+		notificationsNumberLabel.setText("0");
+
 	}
 
 	//method to set the profile image on the top right corner
