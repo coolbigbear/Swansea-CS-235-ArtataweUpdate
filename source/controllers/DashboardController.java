@@ -3,6 +3,7 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
+import javafx.scene.paint.Color;
 import model.Auction;
 import model.Bid;
 import model.Painting;
@@ -94,9 +95,19 @@ public class DashboardController implements Initializable {
 		initLineChart(currentlySelling, soldAuctions);
 		totalbids.setText(String.valueOf(allBidsPlaced.size()));
 		auctionsWon.setText(String.valueOf(boughtAuctions.size()));
-		profit.setText(String.valueOf(profitTotal));
-		moneyspent.setText(String.valueOf(moneySpent));
-		moneyearned.setText(String.valueOf(moneyEarned));
+		profit.setText("£" + String.valueOf(profitTotal));
+		moneyspent.setText("£" +String.valueOf(moneySpent));
+		moneyearned.setText("£" +String.valueOf(moneyEarned));
+
+		if (profitTotal == 0) {
+			profit.setTextFill(Color.BLACK);
+		}
+		else if (profitTotal > 0) {
+			profit.setTextFill(Color.GREEN);
+		}
+		else if (profitTotal < 0) {
+			profit.setTextFill(Color.RED);
+		}
 
 		try {
 			initPieChartWonLost(boughtAuctions, allBidsPlaced);
