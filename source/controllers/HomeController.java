@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class HomeController implements Initializable {
 	@FXML
 	Button favouriteUsersAuctionsButton;
     @FXML
-    Button userGalleryButton;
+	MenuButton getGalleries;
 	@FXML
 	private Label welcomeLabel;
 	@FXML
@@ -76,6 +77,7 @@ public class HomeController implements Initializable {
 		}
 		populateFavoritesView();
 		choiceBox = Util.getFilterChoiceBox();
+		getGalleries();
 		initNotifications();
 	}
 
@@ -83,6 +85,34 @@ public class HomeController implements Initializable {
 		notificationsNumberLabel.setText("0");
 
 	}
+
+	//TODO Bezhan; need to add a force refresh method, using "util"?  This is as when you make a new gallery, it doesnt
+    //TODO ~ update on the drop down menu on the home page. This will also need to be implemented for the "AuctionController"
+    //TODO ~ to update that once a new gallery has been made.
+    private void getGalleries() {
+        feed = Feed.getInstance();
+        for (Gallery elem : Util.getCurrentUser().getUserGalleries()) {
+            MenuItem item = new MenuItem();
+            item.setText(elem.getGalleryName());
+            getGalleries.getItems().add(item);
+            item.setOnAction(e -> {
+                ArrayList<Auction> auctions = new ArrayList<>();
+                for (Integer i : elem.getListOfAuctionIDs()) {
+                    try {
+                        auctions.add(Util.getAuctionByAuctionID(i));
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                feed.updateWith(auctions);
+                try {
+                    setAuctionsCenter();
+                } catch (IOException e2) {
+                    e2.printStackTrace();
+                }
+            });
+        }
+    }
 
 	//method to set the profile image on the top right corner
 	private void setProfileImageView(String imagePath) {
@@ -250,21 +280,6 @@ public class HomeController implements Initializable {
 			}
 		}
 		feed.updateWith(resultList);
-		try {
-			setAuctionsCenter();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	//TODO Create galleries button where it loads the galleries page like does for "favourite auctions"
-	@FXML
-	private void galleryButtonOnAction() throws IOException {
-		Util.getActiveAuctions();
-		feed = Feed.getInstance();
-//		List<Auction> userGalleries = Util.getCurrentUser().getUserGalleries();
-//		ArrayList<Auction> resultList = new ArrayList<>();
-//		feed.updateWith(resultList);
 		try {
 			setAuctionsCenter();
 		} catch (IOException e) {

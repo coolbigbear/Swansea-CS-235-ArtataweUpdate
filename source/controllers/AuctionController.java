@@ -143,7 +143,11 @@ public class AuctionController {
 		for (Gallery elem : Util.getCurrentUser().getUserGalleries()) {
 			MenuItem item = new MenuItem();
 			item.setText(elem.getGalleryName());
-			item.setOnAction(e -> elem.getListOfAuctionIDs().add(currentAuction.getAuctionID()));
+			item.setOnAction(e -> {
+				if (!elem.getListOfAuctionIDs().contains(currentAuction.getAuctionID())){
+					elem.getListOfAuctionIDs().add(currentAuction.getAuctionID());
+				}
+			});
 			addToGalleryMenuButton.getItems().add(item);
 		}
 	}
