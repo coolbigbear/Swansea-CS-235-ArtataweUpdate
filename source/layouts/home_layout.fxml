@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="homeLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="1183.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<BorderPane fx:id="homeLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="1183.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
     <top>
         <AnchorPane prefHeight="113.0" prefWidth="1183.0">
             <children>
@@ -74,6 +75,30 @@
                         </HBox>
                     </children>
                 </HBox>
+            <HBox alignment="TOP_RIGHT" layoutX="702.0" layoutY="7.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane>
+                     <children>
+                        <ImageView fitHeight="39.0" fitWidth="34.0" layoutX="130.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/misc/bell-1096280_960_720.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="154.0" layoutY="4.0" text="10+" textFill="#ff0101" wrapText="true">
+                           <font>
+                              <Font name="Bookman Old Style Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <SplitMenuButton layoutY="54.0" mnemonicParsing="false" text="SplitMenuButton">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                          </items>
+                        </SplitMenuButton>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
             </children>
             <opaqueInsets>
                 <Insets />
