@@ -123,8 +123,7 @@ public class HomeController implements Initializable {
         //TODO change this to be Bids not Auctions
         if (!Notification.getNewBidsAuctionsSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
-            item.setText(Notification.getNewBidsAuctionsSinceLastLogon().size() + " New Bids Auctions since Last " +
-                    "logon");
+            item.setText(Notification.getNewBidsAuctionsSinceLastLogon().size() + " new bids on auctions");
 
             item.setOnAction(onClick -> {
                 feed.updateWith(Notification.getNewBidsAuctionsSinceLastLogon());
@@ -142,9 +141,7 @@ public class HomeController implements Initializable {
     private void getAuctionsCurrentUserSoldSinceLastLogon() {
         if (!Notification.getAuctionsCurrentUserSoldSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
-            item.setText(Notification.getAuctionsCurrentUserSoldSinceLastLogon().size() + " New Auctions sold since " +
-                    "Last " +
-                    "logon");
+            item.setText(Notification.getAuctionsCurrentUserSoldSinceLastLogon().size() + " new sold auctions");
 
             item.setOnAction(onClick -> {
                 feed.updateWith(Notification.getAuctionsCurrentUserSoldSinceLastLogon());
@@ -162,8 +159,7 @@ public class HomeController implements Initializable {
     private void getAuctionsCurrentUserLostSinceLastLogon() {
         if (!Notification.getAuctionsCurrentUserLostSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
-            item.setText(Notification.getAuctionsCurrentUserLostSinceLastLogon().size() + " Auctions lost since Last " +
-                    "logon");
+            item.setText(Notification.getAuctionsCurrentUserLostSinceLastLogon().size() + " lost auctions");
 
             item.setOnAction(onClick -> {
                 feed.updateWith(Notification.getAuctionsCurrentUserLostSinceLastLogon());
@@ -181,9 +177,7 @@ public class HomeController implements Initializable {
     private void getAuctionsComingToCloseSinceLastLogon() {
         if (!Notification.getAuctionsComingToCloseSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
-            item.setText(Notification.getAuctionsComingToCloseSinceLastLogon().size() + " Auctions comeing to " +
-                    "close since Last " +
-                    "logon");
+            item.setText(Notification.getAuctionsComingToCloseSinceLastLogon().size() + " closing auctions");
 
             item.setOnAction(onClick -> {
                 feed.updateWith(Notification.getAuctionsComingToCloseSinceLastLogon());
