@@ -417,7 +417,7 @@ public class AuctionController {
 		placeBidLabel.setText("Winner:");
 		bidInputTextField.setDisable(true);
 		bidInputTextField.setVisible(false);
-		sellingInfoGridPane.add(new Label("YOU"), 1, 4);
+		sellingInfoGridPane.add(new Label("YOU"), 1, 5);
 		bidButton.setVisible(false);
 		bidButton.setDisable(true);
 	}

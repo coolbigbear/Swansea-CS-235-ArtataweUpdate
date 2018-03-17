@@ -185,7 +185,7 @@
                            </padding>
                         </Label>
                         <Hyperlink fx:id="sellerLink" alignment="CENTER" contentDisplay="CENTER" onAction="#sellerLinkAction" textAlignment="CENTER" GridPane.columnIndex="1" />
-                        <Label fx:id="errorMessageLabel" prefHeight="17.0" prefWidth="164.0" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="errorMessageLabel" prefHeight="17.0" prefWidth="164.0" textFill="RED" GridPane.rowIndex="6" />
                         <Label fx:id="bidsLeftLabel" alignment="TOP_RIGHT" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="16.0" />
