@@ -20,6 +20,7 @@ import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -97,8 +98,6 @@ public class HomeController implements Initializable {
         getAuctionsCurrentUserSoldSinceLastLogon();
         getAuctionsCurrentUserLostSinceLastLogon();
         getAuctionsComingToCloseSinceLastLogon();
-
-
     }
 
     private void getNewAuctionsSinceLastLogon() {
@@ -114,24 +113,17 @@ public class HomeController implements Initializable {
                     e.printStackTrace();
                 }
             });
-
             notificationsMenuButton.getItems().add(item);
         }
     }
 
     private void getNewBidsSinceLastLogon() {
-        //TODO change this to be Bids not Auctions
         if (!Notification.getNewBidsAuctionsSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
             item.setText(Notification.getNewBidsAuctionsSinceLastLogon().size() + " new bids on auctions");
 
             item.setOnAction(onClick -> {
-                feed.updateWith(Notification.getNewBidsAuctionsSinceLastLogon());
-                try {
-                    setAuctionsCenter();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+				notificationPopUps();
             });
 
             notificationsMenuButton.getItems().add(item);
@@ -191,6 +183,44 @@ public class HomeController implements Initializable {
             notificationsMenuButton.getItems().add(item);
         }
     }
+
+    private void notificationPopUps() {
+		ArrayList<Bid> bids = (ArrayList<Bid>) Notification.getNewBidsSinceLastLogon();
+		List<String> choices = new ArrayList<>();
+		choices.add("");
+		for (Bid elem : bids) {
+			try {
+				choices.add(elem.getBidderUsername() + " " + Util.getAuctionByAuctionID(elem.getAuctionID()).getArtwork().getTitle());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		ChoiceDialog<String> dialog = new ChoiceDialog<>("", choices);
+		dialog.setTitle("New bids");
+		dialog.setHeaderText("Choose a bid to view");
+
+		Optional<String> result = dialog.showAndWait();
+		if (result.isPresent()) {
+			if (!result.get().equalsIgnoreCase("")) {
+				for (int i = 0; i < choices.size(); i++) {
+					if (choices.get(i).equalsIgnoreCase(result.get())) {
+						try {
+							Auction auction = Util.getAuctionByAuctionID(bids.get(i - 1).getAuctionID());
+							FXMLLoader loader = new FXMLLoader();
+							loader.setLocation(getClass().getResource("/layouts/auction_view_layout.fxml"));
+							AnchorPane auctionLayout = loader.load();
+							AuctionController controller = loader.getController();
+							controller.initAuction(auction);
+							Util.getHomeLayout().setCenter(auctionLayout);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}
+	}
 
 	//method to set the profile image on the top right corner
 	private void setProfileImageView(String imagePath) {
