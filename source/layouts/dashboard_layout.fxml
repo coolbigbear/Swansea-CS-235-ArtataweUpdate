@@ -83,7 +83,7 @@
                             <NumberAxis fx:id="yBarAxis" side="LEFT" />
                           </yAxis>
                         </BarChart>
-                        <PieChart title="Auctions Won/Lost" />
+                        <PieChart fx:id="wonLostPieChart" title="Auctions Won/Lost" />
                      </children>
                   </GridPane>
                </children>
