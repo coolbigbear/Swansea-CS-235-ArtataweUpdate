@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -54,6 +56,44 @@ public final class Util {
     private static ImageView profileImage;
     private static GridPane favoriteUsersGridPane;
     private static ChoiceBox filterChoiceBox;
+    private static MenuButton galleryMenuButton;
+
+    public static void getGalleriesDynamic(MenuButton galleryMenuButton) {
+        galleryMenuButton.getItems().clear();
+        for (Gallery elem : Util.getCurrentUser().getUserGalleries()) {
+            MenuItem item = new MenuItem();
+            item.setText(elem.getGalleryName());
+            galleryMenuButton.getItems().add(item);
+            item.setOnAction(e -> {
+                ArrayList<Auction> auctions = new ArrayList<>();
+                for (Integer i : elem.getListOfAuctionIDs()) {
+                    try {
+                        auctions.add(Util.getAuctionByAuctionID(i));
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                Feed.getInstance().updateWith(auctions);
+                try {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(Main.class.getResource("/layouts/feed_layout.fxml"));
+                    BorderPane feedLayout = (BorderPane) loader.load();
+                    feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
+                    homeLayout.setCenter(feedLayout);
+                } catch (IOException e2) {
+                    e2.printStackTrace();
+                }
+            });
+        }
+    }
+
+    public static void setGalleryMenuButton(MenuButton menuButton) {
+        galleryMenuButton = menuButton;
+    }
+
+    public static MenuButton getGalleryMenuButton() {
+        return galleryMenuButton;
+    }
 
     /**
      * Reads in all profiles from database.

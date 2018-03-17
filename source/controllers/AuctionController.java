@@ -97,11 +97,6 @@ public class AuctionController {
 		} else {
 			addToFavoritesButton.setText("Add to favorites");
 		}
-//		if (isGallery()) {
-//		    addToGalleryMenuButton.setText("Remove from gallery");
-//        } else {
-//            addToGalleryMenuButton.setText("Add to gallery");
-//        }
 		generateAuctionLabels();
 		generateArtworkLabels();
 		setSellerSpecificNodes();
@@ -134,18 +129,27 @@ public class AuctionController {
 			ArrayList<Integer> auctions = new ArrayList<>();
 			auctions.add(currentAuction.getAuctionID());
 			Gallery gallery = new Gallery(galleryName, auctions);
+			// update home controller
 			Util.getCurrentUser().getUserGalleries().add(gallery);
 			Util.saveProfileToFile(Util.getCurrentUser());
+			Util.getGalleriesDynamic(Util.getGalleryMenuButton());
+			initAddToGalleries();
 		}
 	}
 
 	private void initAddToGalleries() {
+		addToGalleryMenuButton.getItems().clear();
+		MenuItem staticMenuItem = new MenuItem();
+		staticMenuItem.setText("Create new gallery");
+		staticMenuItem.setOnAction(e -> createNewGalleryAction());
+		addToGalleryMenuButton.getItems().add(staticMenuItem);
 		for (Gallery elem : Util.getCurrentUser().getUserGalleries()) {
 			MenuItem item = new MenuItem();
 			item.setText(elem.getGalleryName());
 			item.setOnAction(e -> {
-				if (!elem.getListOfAuctionIDs().contains(currentAuction.getAuctionID())){
+				if (!elem.getListOfAuctionIDs().contains(currentAuction.getAuctionID())) {
 					elem.getListOfAuctionIDs().add(currentAuction.getAuctionID());
+					Util.saveProfileToFile(Util.getCurrentUser());
 				}
 			});
 			addToGalleryMenuButton.getItems().add(item);
@@ -352,7 +356,7 @@ public class AuctionController {
 						e.printStackTrace();
 					}
 				});
-				sellingInfoGridPane.add(highestBidderProfile, 1, 4);
+				sellingInfoGridPane.add(highestBidderProfile, 1, 5);
 			}
 
 		} else {
@@ -386,25 +390,6 @@ public class AuctionController {
 			addToFavoritesButton.setText("Remove favorite");
 		}
 	}
-	@FXML   //TODO needs to be changed so it doesnt update the "FavouriteUsersGridPane"
-            //TODO needs to update the "gallery" feed only, not "FavouriteUsers"
-	private void addToGalleriesButtonAction() {
-		if (addToGalleryMenuButton.getText().equalsIgnoreCase("Remove from gallery")) {
-			for (int i = 0; i < Util.getCurrentUser().getUserGalleries().size(); i++) {
-//				if (Util.getCurrentUser().getUserGalleries().get(i).getAuctionID().equals(currentAuction.getAuctionID())) {
-//					Util.getCurrentUser().getUserGalleries().remove(i);
-//				}
-			}
-			Util.saveProfileToFile(Util.getCurrentUser());
-            addToGalleryMenuButton.setText("Add to gallery");
-		} else {
-//            Util.getCurrentUser().getUserGalleries().add(currentAuction);
-//			Util.saveProfileToFile(Util.getCurrentUser());
-            addToGalleryMenuButton.setText("Remove from gallery");
-		}
-
-
-	}
 
 	//helper method to check if a user is favorited
 	private boolean isFavorited() {
@@ -416,17 +401,6 @@ public class AuctionController {
 		}
 		return favorite;
 	}
-
-	//helper method to check if the auction is in galleries
-//	private boolean isGallery() {
-//	    boolean gallery = false;
-//        for (int i = 0; i < Util.getCurrentUser().getUserGalleries().size(); i++) {
-//            if (Util.getCurrentUser().getUserGalleries().get(i).getAuctionID().equals(currentAuction.getAuctionID())) {
-//                gallery = true;
-//            }
-//        }
-//	    return gallery;
-//    }
 
 	//helper method to populate an arraylist of all favorite users of a profile
 	private ArrayList<Profile> populateFavoriteUsers() {
