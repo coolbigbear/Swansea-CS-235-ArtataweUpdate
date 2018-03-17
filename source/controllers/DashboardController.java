@@ -98,9 +98,6 @@ public class DashboardController implements Initializable {
 		moneyspent.setText(String.valueOf(moneySpent));
 		moneyearned.setText(String.valueOf(moneyEarned));
 
-
-
-
 		try {
 			initPieChartWonLost(boughtAuctions, allBidsPlaced);
 		} catch (IOException e) {
@@ -194,6 +191,7 @@ public class DashboardController implements Initializable {
 		series.getData().add(new XYChart.Data("Sat", countBidsOnDay[5]));
 		series.getData().add(new XYChart.Data("Sun", countBidsOnDay[6]));
 		lineChart.getData().add(series);
+		lineChart.legendVisibleProperty().setValue(false);
 	}
 
 	private void initPieChart(List<Auction> soldAuctions) {

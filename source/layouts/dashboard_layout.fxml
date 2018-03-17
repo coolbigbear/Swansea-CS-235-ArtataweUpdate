@@ -43,7 +43,7 @@
                     </rowConstraints>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money Earned :" wrappingWidth="69.13671875" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money Spent :" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profit:" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money Balance :" GridPane.rowIndex="2" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Auctions Won :" wrappingWidth="114.384765625" GridPane.rowIndex="3" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Amount of Bids:" wrappingWidth="114.13671875" GridPane.rowIndex="4" />
