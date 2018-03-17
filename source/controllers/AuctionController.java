@@ -95,11 +95,11 @@ public class AuctionController {
 		} else {
 			addToFavoritesButton.setText("Add to favorites");
 		}
-/*		if (isGallery()) {
-		    addToGalleriesButton.setText("Remove from gallery"); //Changes the button text, removed to get cards working
-        } else {
-            addToGalleriesButton.setText("Add to gallery");
-        }*/
+//		if (isGallery()) {
+//		    addToGalleriesButton.setText("Remove from gallery");
+//        } else {
+//            addToGalleriesButton.setText("Add to gallery");
+//        }
 		generateAuctionLabels();
 		generateArtworkLabels();
 		setSellerSpecificNodes();
@@ -127,7 +127,7 @@ public class AuctionController {
 				highestBidLabel.setText("£" + bid.getBidAmount().toString());
 				Util.getCurrentUser().getAllBidsPlaced().add(bid);
 				
-				if(currentAuction.isCompleted()) {
+				if (currentAuction.isCompleted()) {
 					auctionWon();
 					Profile seller = Util.getProfileByUsername(currentAuction.getSellerName());
 					
@@ -141,7 +141,7 @@ public class AuctionController {
 					Util.saveProfileToFile(seller);
 					Util.saveProfileToFile(Util.getCurrentUser());
 				}
-				
+				//TODO @Basammy boi pls find the seller and their currently selling and then add this bid there
 				Util.saveAuctionToFile(currentAuction);
 				
 				
@@ -350,15 +350,15 @@ public class AuctionController {
 	private void addToGalleriesButtonAction() {
 		if (addToGalleriesButton.getText().equalsIgnoreCase("Remove from gallery")) {
 			for (int i = 0; i < Util.getCurrentUser().getUserGalleries().size(); i++) {
-				if (Util.getCurrentUser().getUserGalleries().get(i).getAuctionID().equals(currentAuction.getAuctionID())) {
-					Util.getCurrentUser().getUserGalleries().remove(i);
-				}
+//				if (Util.getCurrentUser().getUserGalleries().get(i).getAuctionID().equals(currentAuction.getAuctionID())) {
+//					Util.getCurrentUser().getUserGalleries().remove(i);
+//				}
 			}
 			Util.saveProfileToFile(Util.getCurrentUser());
             addToGalleriesButton.setText("Add to gallery");
 		} else {
-            //Util.getCurrentUser().getUserGalleries().add(currentAuction);
-			Util.saveProfileToFile(Util.getCurrentUser());
+//            Util.getCurrentUser().getUserGalleries().add(currentAuction);
+//			Util.saveProfileToFile(Util.getCurrentUser());
             addToGalleriesButton.setText("Remove from gallery");
 		}
 
@@ -377,15 +377,15 @@ public class AuctionController {
 	}
 
 	//helper method to check if the auction is in galleries
-	private boolean isGallery() {
-	    boolean gallery = false;
-        for (int i = 0; i < Util.getCurrentUser().getUserGalleries().size(); i++) {
-            if (Util.getCurrentUser().getUserGalleries().get(i).getAuctionID().equals(currentAuction.getAuctionID())) {
-                gallery = true;
-            }
-        }
-	    return gallery;
-    }
+//	private boolean isGallery() {
+//	    boolean gallery = false;
+//        for (int i = 0; i < Util.getCurrentUser().getUserGalleries().size(); i++) {
+//            if (Util.getCurrentUser().getUserGalleries().get(i).getAuctionID().equals(currentAuction.getAuctionID())) {
+//                gallery = true;
+//            }
+//        }
+//	    return gallery;
+//    }
 
 	//helper method to populate an arraylist of all favorite users of a profile
 	private ArrayList<Profile> populateFavoriteUsers() {

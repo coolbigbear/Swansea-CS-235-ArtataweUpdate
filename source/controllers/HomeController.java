@@ -211,7 +211,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	private void ViewDashboardButtonAction() throws IOException {
-		AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/view_dashboard.fxml"));
+		AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/dashboard_layout.fxml"));
 		homeLayout.setCenter(profileLayout);
 	}
 	@FXML
@@ -253,10 +253,9 @@ public class HomeController implements Initializable {
 	private void galleryButtonOnAction() throws IOException {
 		Util.getActiveAuctions();
 		feed = Feed.getInstance();
-		List<Auction> userGalleries = Util.getCurrentUser().getUserGalleries();
-		ArrayList<Auction> resultList = new ArrayList<>();
-
-		feed.updateWith(resultList);
+//		List<Auction> userGalleries = Util.getCurrentUser().getUserGalleries();
+//		ArrayList<Auction> resultList = new ArrayList<>();
+//		feed.updateWith(resultList);
 		try {
 			setAuctionsCenter();
 		} catch (IOException e) {
