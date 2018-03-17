@@ -8,7 +8,9 @@ import model.Bid;
 import model.Painting;
 import model.Util;
 
+import javax.xml.soap.Text;
 import java.awt.*;
+import javafx.scene.control.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -37,11 +39,26 @@ public class DashboardController implements Initializable {
 	private BarChart<String, Number> barChart;
 	@FXML
 	private PieChart wonLostPieChart;
+	@FXML
+	private Label moneyearned;
+	@FXML
+	private Label moneyspent;
+	@FXML
+	private Label profit;
+	@FXML
+	private Label auctionsWon;
+	@FXML
+	private Label totalbids;
+
+
+
+
 
 	private List<Auction> boughtAuctions;
 	private List<Auction> soldAuctions;
 	private List<Auction> currentlySelling;
 	private List<Bid> allBidsPlaced;
+	private double profitTotal;
 
 
 	public void initialize(URL location, ResourceBundle resources) {
@@ -57,9 +74,33 @@ public class DashboardController implements Initializable {
 		}
 		currentlySelling = Util.getCurrentUser().getCurrentlySelling();
 
+
+		double moneySpent = 0;
+		for (Auction elem : boughtAuctions) {
+			moneySpent = moneySpent + (int) (double) elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
+		}
+
+		double moneyEarned = 0;
+		for (Auction elem : soldAuctions) {
+			if (elem.getArtwork() instanceof Painting) {
+				moneyEarned = moneyEarned +  (int) (double) elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
+			}
+		}
+
+		profitTotal = moneyEarned - moneySpent;
+
 		initBarChart(boughtAuctions, soldAuctions);
 		initPieChart(soldAuctions);
 		initLineChart(currentlySelling, soldAuctions);
+		totalbids.setText(String.valueOf(allBidsPlaced.size()));
+		auctionsWon.setText(String.valueOf(boughtAuctions.size()));
+		profit.setText(String.valueOf(profitTotal));
+		moneyspent.setText(String.valueOf(moneySpent));
+		moneyearned.setText(String.valueOf(moneyEarned));
+
+
+
+
 		try {
 			initPieChartWonLost(boughtAuctions, allBidsPlaced);
 		} catch (IOException e) {

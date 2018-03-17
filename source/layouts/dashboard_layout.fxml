@@ -44,14 +44,14 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money Earned :" wrappingWidth="69.13671875" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money Spent :" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profit :" GridPane.rowIndex="2" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money Balance :" GridPane.rowIndex="2" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Auctions Won :" wrappingWidth="114.384765625" GridPane.rowIndex="3" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Amount of Bids:" wrappingWidth="114.13671875" GridPane.rowIndex="4" />
-                        <Label text="Label" GridPane.columnIndex="1" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="moneyearned" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="moneyspent" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="profit" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="auctionsWon" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="totalbids" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <LineChart fx:id="lineChart" layoutX="396.0" layoutY="-4.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="598.0" AnchorPane.bottomAnchor="225.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="-4.0" GridPane.columnIndex="1">
