@@ -2,7 +2,11 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.*;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -11,12 +15,15 @@ import model.Bid;
 import model.Painting;
 import model.Util;
 
-import javafx.scene.control.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.ResourceBundle;
+import java.util.Set;
 
 /**
  * The Controller for the Dashboard, this is in charge of <code>layouts.dashboard_layout.fxml</code>.
@@ -114,16 +121,18 @@ public class DashboardController implements Initializable {
 	private void initPieChartWonLost(List<Auction> boughtAuctions, List<Bid> allBidsPlaced) throws IOException {
 		Set<Auction> auctionsLost = new HashSet<>();
 
-		for (Bid elem : allBidsPlaced) {
-			System.out.println(Util.getAuctionByAuctionID(elem.getAuctionID()).isCompleted());
-			System.out.println(Util.getAuctionByAuctionID(elem.getAuctionID()).getHighestBidder());
-			if (Util.getAuctionByAuctionID(elem.getAuctionID()).isCompleted() &&
-					!Util.getAuctionByAuctionID(elem.getAuctionID()).getHighestBidder()
-							.equalsIgnoreCase(Util.getCurrentUser().getUsername())) {
-				System.out.println(elem.getAuctionID());
-				auctionsLost.add(Util.getAuctionByAuctionID(elem.getAuctionID()));
-			}
-		}
+        for (Bid elem : allBidsPlaced) {
+            //TODO null stuff here!
+            if (Util.getAuctionByAuctionID(elem.getAuctionID()).isCompleted() &&
+                    !Util.getAuctionByAuctionID(elem.getAuctionID()).getHighestBidder()
+                            .equalsIgnoreCase(Util.getCurrentUser().getUsername())) {
+//				System.out.println(elem.getAuctionID());
+                auctionsLost.add(Util.getAuctionByAuctionID(elem.getAuctionID()));
+            }
+
+//			System.out.println(Util.getAuctionByAuctionID(elem.getAuctionID()).isCompleted());
+//			System.out.println(Util.getAuctionByAuctionID(elem.getAuctionID()).getHighestBidder());
+        }
 
 
 

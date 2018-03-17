@@ -259,6 +259,8 @@ public final class Util {
 
         for (Auction auction : auctionArrayList) {
             if (!auction.isCompleted() &&
+                    !auction.getBidList().isEmpty() &&
+                    !auction.getHighestBidder().equals(getCurrentUser().getUsername())&&
                     auction.getBidsLeft() <= 2 &&
                     hasUserBiddedOnAuction(getCurrentUser(), auction)) {
                 auctionsComingToClose.add(auction);
