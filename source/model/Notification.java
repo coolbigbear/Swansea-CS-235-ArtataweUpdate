@@ -9,12 +9,11 @@ public class Notification {
     //1. New artworks that are now on auction that were not on auction last time the user
     //logged in
     public List<Auction> getNewAuctionsSinceLastLogon() {
-        // get time of last logon
         LocalDateTime lastActivityTime = getTimeOfInterest();
-        // get auctions that have a time placed later than the last logon time
         return Util.getNewAuctionsSince(lastActivityTime);
     }
 
+    // could go to Util
     private LocalDateTime getTimeOfInterest() {
         Profile user = Util.getCurrentUser();
         LocalDateTime timeOfInterest = user.getLastLogInTime();
@@ -33,5 +32,7 @@ public class Notification {
         return timeOfInterest;
     }
 
+    //2. A user that is selling an artwork will be able to see new bids on the items since the
+    //last time they logged in.
 
 }
