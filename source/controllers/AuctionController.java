@@ -14,6 +14,8 @@ import model.exception.IllegalBidException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * The Controller for the Auction layout, this is in charge of <code>layouts.auction_view_layout.fxml</code>.
@@ -57,7 +59,7 @@ public class AuctionController {
 	@FXML
 	private Button addToFavoritesButton;
     @FXML
-    private Button addToGalleriesButton;
+    private MenuButton addToGalleryMenuButton;
 	@FXML
 	private Label bidsLeftLabel;
 	@FXML
@@ -96,9 +98,9 @@ public class AuctionController {
 			addToFavoritesButton.setText("Add to favorites");
 		}
 //		if (isGallery()) {
-//		    addToGalleriesButton.setText("Remove from gallery");
+//		    addToGalleryMenuButton.setText("Remove from gallery");
 //        } else {
-//            addToGalleriesButton.setText("Add to gallery");
+//            addToGalleryMenuButton.setText("Add to gallery");
 //        }
 		generateAuctionLabels();
 		generateArtworkLabels();
@@ -111,6 +113,39 @@ public class AuctionController {
 			setViewerSpecificNodes();
 		}
 		setArtworkDisplayImages();
+		initAddToGalleries();
+	}
+
+	@FXML
+	private void refreshGalleriesAction() {
+		initAddToGalleries();
+	}
+
+	@FXML
+	private void createNewGalleryAction() {
+		TextInputDialog dialog = new TextInputDialog("");
+		dialog.setTitle("Galleries");
+		dialog.setHeaderText("Create a new gallery");
+		dialog.setContentText("Please enter the gallery's name");
+
+		Optional<String> result = dialog.showAndWait();
+		if (result.isPresent()){
+			String galleryName = result.get();
+			ArrayList<Integer> auctions = new ArrayList<>();
+			auctions.add(currentAuction.getAuctionID());
+			Gallery gallery = new Gallery(galleryName, auctions);
+			Util.getCurrentUser().getUserGalleries().add(gallery);
+			Util.saveProfileToFile(Util.getCurrentUser());
+		}
+	}
+
+	private void initAddToGalleries() {
+		for (Gallery elem : Util.getCurrentUser().getUserGalleries()) {
+			MenuItem item = new MenuItem();
+			item.setText(elem.getGalleryName());
+			item.setOnAction(e -> elem.getListOfAuctionIDs().add(currentAuction.getAuctionID()));
+			addToGalleryMenuButton.getItems().add(item);
+		}
 	}
 
 	@FXML
@@ -349,18 +384,18 @@ public class AuctionController {
 	@FXML   //TODO needs to be changed so it doesnt update the "FavouriteUsersGridPane"
             //TODO needs to update the "gallery" feed only, not "FavouriteUsers"
 	private void addToGalleriesButtonAction() {
-		if (addToGalleriesButton.getText().equalsIgnoreCase("Remove from gallery")) {
+		if (addToGalleryMenuButton.getText().equalsIgnoreCase("Remove from gallery")) {
 			for (int i = 0; i < Util.getCurrentUser().getUserGalleries().size(); i++) {
 //				if (Util.getCurrentUser().getUserGalleries().get(i).getAuctionID().equals(currentAuction.getAuctionID())) {
 //					Util.getCurrentUser().getUserGalleries().remove(i);
 //				}
 			}
 			Util.saveProfileToFile(Util.getCurrentUser());
-            addToGalleriesButton.setText("Add to gallery");
+            addToGalleryMenuButton.setText("Add to gallery");
 		} else {
 //            Util.getCurrentUser().getUserGalleries().add(currentAuction);
 //			Util.saveProfileToFile(Util.getCurrentUser());
-            addToGalleriesButton.setText("Remove from gallery");
+            addToGalleryMenuButton.setText("Remove from gallery");
 		}
 
 
