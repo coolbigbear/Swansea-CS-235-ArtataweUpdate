@@ -41,9 +41,24 @@ public class Notification {
 
 
     //3. Auctions that have been won / lost since the last login
-    public List<Auction> getAuctionsWonSinceLastLogon() {
+    // New Auctions you have sold
+    public List<Auction> getAuctionsCurrentUserSoldSinceLastLogon() {
         LocalDateTime lastActivityTime = getTimeOfInterest();
-        return null;
-//TODO
+        return Util.getAuctionsSoldSince(lastActivityTime);
     }
+
+    // New Auctions you have lost
+    public List<Auction> getAuctionsCurrentUserLostSinceLastLogon() {
+        LocalDateTime lastActivityTime = getTimeOfInterest();
+        return Util.getAuctionsLostSince(lastActivityTime);
+    }
+
+    //4. Active auctions that they have bid on that are coming to a close (i.e. approaching
+    //their bid limit)
+    public List<Auction> getAuctionsComingToCloseSinceLastLogon() {
+        LocalDateTime lastActivityTime = getTimeOfInterest();
+        return Util.getAuctionsComingToCloseSince(lastActivityTime);
+    }
+
+
 }

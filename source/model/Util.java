@@ -41,144 +41,140 @@ import java.util.Set;
  */
 public final class Util {
 
-	/**
-	 * The current user who is signed in to the system.
-	 */
-	private static Profile currentUser;
-	private static BorderPane homeLayout;
-	private static Stage mainStage;
-	/**
-	 * Creates a gson object and adds types from factory.
-	 */
-	private static Gson gson = addTypesToGson();
-	private static ImageView profileImage;
-	private static GridPane favoriteUsersGridPane;
-	private static ChoiceBox filterChoiceBox;
+    /**
+     * The current user who is signed in to the system.
+     */
+    private static Profile currentUser;
+    private static BorderPane homeLayout;
+    private static Stage mainStage;
+    /**
+     * Creates a gson object and adds types from factory.
+     */
+    private static Gson gson = addTypesToGson();
+    private static ImageView profileImage;
+    private static GridPane favoriteUsersGridPane;
+    private static ChoiceBox filterChoiceBox;
 
-	/**
-	 * Reads in all profiles from database.
-	 *
-	 * @return List of Profiles read from database
-	 */
-	private static Profile[] readInProfileFile() {
-		Profile[] profiles = new Profile[0];
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Profiles.json"));
-			profiles = gson.fromJson(br, Profile[].class);
+    /**
+     * Reads in all profiles from database.
+     *
+     * @return List of Profiles read from database
+     */
+    private static Profile[] readInProfileFile() {
+        Profile[] profiles = new Profile[0];
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("JSON Files/Profiles.json"));
+            profiles = gson.fromJson(br, Profile[].class);
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return profiles;
-	}
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return profiles;
+    }
 
-	/**
-	 * Reads in all auctions from database.
-	 *
-	 * @return List of Auctions read from database
-	 */
-	private static Auction[] readInAuctionFile() {
-		Auction[] auctions = new Auction[0];
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
-			auctions = gson.fromJson(br, Auction[].class);
+    /**
+     * Reads in all auctions from database.
+     *
+     * @return List of Auctions read from database
+     */
+    private static Auction[] readInAuctionFile() {
+        Auction[] auctions = new Auction[0];
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("JSON Files/Auctions.json"));
+            auctions = gson.fromJson(br, Auction[].class);
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return auctions;
-	}
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return auctions;
+    }
 
-	/**
-	 * Read in logged in user.
-	 *
-	 * @param username the username
-	 *
-	 * @return the boolean
-	 */
-	public static boolean checkAndSetUser(String username) {
-		boolean found = false;
+    /**
+     * Read in logged in user.
+     *
+     * @param username the username
+     * @return the boolean
+     */
+    public static boolean checkAndSetUser(String username) {
+        boolean found = false;
 
-		Profile[] fromJson = readInProfileFile();
-		for (Profile profile : fromJson) {
-			//Read the unique username for each user and see if it matches the one input
-			String name = profile.getUsername();
-			//If database contains username return true.
-			if (Objects.equals(name, username)) {
-				currentUser = profile;
-				found = true;
-			}
-		}
-		return found;
-	}
+        Profile[] fromJson = readInProfileFile();
+        for (Profile profile : fromJson) {
+            //Read the unique username for each user and see if it matches the one input
+            String name = profile.getUsername();
+            //If database contains username return true.
+            if (Objects.equals(name, username)) {
+                currentUser = profile;
+                found = true;
+            }
+        }
+        return found;
+    }
 
-	/**
-	 * Gets profile by username from database.
-	 *
-	 * @param username the username
-	 *
-	 * @return the profile to be returned
-	 */
-	public static Profile getProfileByUsername(String username) {
+    /**
+     * Gets profile by username from database.
+     *
+     * @param username the username
+     * @return the profile to be returned
+     */
+    public static Profile getProfileByUsername(String username) {
 
-		Profile[] allProfiles = readInProfileFile();
-		for (Profile profile : allProfiles) {
-			String name = profile.getUsername();
-			//Read through all profiles and return the one that matches the username input
-			if (Objects.equals(name, username)) {
-				return profile;
-			}
-		}
-		throw new ProfileNotFoundException("Profile not found!");
-	}
+        Profile[] allProfiles = readInProfileFile();
+        for (Profile profile : allProfiles) {
+            String name = profile.getUsername();
+            //Read through all profiles and return the one that matches the username input
+            if (Objects.equals(name, username)) {
+                return profile;
+            }
+        }
+        throw new ProfileNotFoundException("Profile not found!");
+    }
 
-	/**
-	 * Gets Auction by auctionID from database.
-	 *
-	 * @param auctionID the ID of auction to be found
-	 *
-	 * @return the auction to be returned
-	 *
-	 * @throws IOException the io exception
-	 */
-	public static Auction getAuctionByAuctionID(Integer auctionID) throws IOException {
+    /**
+     * Gets Auction by auctionID from database.
+     *
+     * @param auctionID the ID of auction to be found
+     * @return the auction to be returned
+     * @throws IOException the io exception
+     */
+    public static Auction getAuctionByAuctionID(Integer auctionID) throws IOException {
 
-		Auction auction = null;
-		Auction[] allAuctions = readInAuctionFile();
-		for (Auction auctions : allAuctions) {
-			Integer id = auctions.getAuctionID();
+        Auction auction = null;
+        Auction[] allAuctions = readInAuctionFile();
+        for (Auction auctions : allAuctions) {
+            Integer id = auctions.getAuctionID();
 
-			if (Objects.equals(id, auctionID)) {
-				auction = auctions;
-			}
-		}
-		if (auction == null) {
-			throw new IOException();
-		} else {
-			return auction;
-		}
-	}
+            if (Objects.equals(id, auctionID)) {
+                auction = auctions;
+            }
+        }
+        if (auction == null) {
+            throw new IOException();
+        } else {
+            return auction;
+        }
+    }
 
-	/**
-	 * Read in all auctions from database that are active (on sale).
-	 */
-	public static void getActiveAuctions() {
-		Auction[] fromJson = readInAuctionFile();
+    /**
+     * Read in all auctions from database that are active (on sale).
+     */
+    public static void getActiveAuctions() {
+        Auction[] fromJson = readInAuctionFile();
 
-		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 
-		Feed feed = Feed.getNewInstance();
+        Feed feed = Feed.getNewInstance();
 
-		//for each Auction only add it to the Feed if it is not completed
-		for (Auction auction : auctionArrayList) {
-			if (!auction.isCompleted()) {
-				feed.add(auction);
-			}
-		}
-	}
+        //for each Auction only add it to the Feed if it is not completed
+        for (Auction auction : auctionArrayList) {
+            if (!auction.isCompleted()) {
+                feed.add(auction);
+            }
+        }
+    }
 
-	//BASSAM NOTIFICATIONS
-	//----------------------------------------------------------------------
+    //BASSAM NOTIFICATIONS
+    //----------------------------------------------------------------------
 
     public static List<Auction> getNewAuctionsSince(LocalDateTime time) {
         Auction[] fromJson = readInAuctionFile();
@@ -218,445 +214,490 @@ public final class Util {
         return bidsSinceTime;
     }
 
-    public static List<Auction> getAuctionsWonSince(LocalDateTime time) {
+    public static List<Auction> getAuctionsSoldSince(LocalDateTime time) {
         Auction[] fromJson = readInAuctionFile();
 
         ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 
-        ArrayList<Auction> auctionsWonSinceTime = new ArrayList<>();
+        ArrayList<Auction> auctionsSoldSinceTime = new ArrayList<>();
 
         for (Auction auction : auctionArrayList) {
             if (auction.isCompleted() &&
-                    getLastBid(auction.getBidList()).getDateTimePlaced().isAfter(time)){
-                auctionsWonSinceTime.add(auction);
+                    auction.getSellerName().equals(getCurrentUser().getUsername()) &&
+                    getLastBid(auction.getBidList()).getDateTimePlaced().isAfter(time)) {
+                auctionsSoldSinceTime.add(auction);
             }
         }
-        return auctionsWonSinceTime;
+        return auctionsSoldSinceTime;
+    }
+
+    public static List<Auction> getAuctionsLostSince(LocalDateTime time) {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        ArrayList<Auction> auctionsSoldSinceTime = new ArrayList<>();
+
+        for (Auction auction : auctionArrayList) {
+            if (auction.isCompleted() &&
+                    hasUserBiddedOnAuction(getCurrentUser(), auction) &&
+                    !auction.getHighestBidder().equals(getCurrentUser().getUsername()) &&
+                    getLastBid(auction.getBidList()).getDateTimePlaced().isAfter(time)) {
+
+                auctionsSoldSinceTime.add(auction);
+            }
+        }
+        return auctionsSoldSinceTime;
+    }
+
+    public static List<Auction> getAuctionsComingToCloseSince(LocalDateTime time) {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        ArrayList<Auction> auctionsComingToClose = new ArrayList<>();
+
+        for (Auction auction : auctionArrayList) {
+            if (!auction.isCompleted() &&
+                    auction.getBidsLeft() <= 2 &&
+                    hasUserBiddedOnAuction(getCurrentUser(), auction)) {
+                auctionsComingToClose.add(auction);
+            }
+        }
+        return auctionsComingToClose;
+    }
+
+    private static Boolean hasUserBiddedOnAuction(Profile user, Auction auction) {
+        for (Bid bid : auction.getBidList()) {
+            if (bid.getBidderUsername().equals(user.getUsername())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static Bid getLastBid(List<Bid> bids) {
-	    LocalDateTime time = LocalDateTime.MIN;
-	    Bid result = null;
+        LocalDateTime time = LocalDateTime.MIN;
+        Bid result = null;
 
-	    for (Bid bid : bids) {
-	        if (bid.getDateTimePlaced().isAfter(time)){
-	            result = bid;
-	            time = bid.getDateTimePlaced();
+        for (Bid bid : bids) {
+            if (bid.getDateTimePlaced().isAfter(time)) {
+                result = bid;
+                time = bid.getDateTimePlaced();
             }
         }
         return result;
     }
 
 
+    //-----------------------------------------------------------------------
 
-	//-----------------------------------------------------------------------
+    public static void getAuctionsByName(String search) {
+        Auction[] fromJson = readInAuctionFile();
 
-	public static void getAuctionsByName(String search) {
-		Auction[] fromJson = readInAuctionFile();
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 
-		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+        Feed feed = Feed.getNewInstance();
 
-		Feed feed = Feed.getNewInstance();
+        search = search.toLowerCase();
 
-		search = search.toLowerCase();
+        //for each Auction only add it to the Feed if it is not completed
+        for (Auction auction : auctionArrayList) {
+            if (!auction.isCompleted()) {
+                String nameLowerCase = auction.getArtwork().title.toLowerCase();
+                String descriptionLowerCase = auction.getArtwork().getDescription().toString().toLowerCase();
+                String creatorName = auction.getArtwork().getCreatorName().toLowerCase();
+                String creationDate = auction.getArtwork().getCreationDate().toLowerCase();
+                String userName = auction.getSellerName().toLowerCase();
+                search = search.trim();
+                if (nameLowerCase.contains(search)) {
+                    feed.add(auction);
+                } else if (descriptionLowerCase.contains(search)) {
+                    feed.add(auction);
+                } else if (creatorName.contains(search)) {
+                    feed.add(auction);
+                } else if (creationDate.contains(search)) {
+                    feed.add(auction);
+                } else if (userName.contains(search)) {
+                    feed.add(auction);
+                }
+            }
+        }
+    }
 
-		//for each Auction only add it to the Feed if it is not completed
-		for (Auction auction : auctionArrayList) {
-			if (!auction.isCompleted()) {
-				String nameLowerCase = auction.getArtwork().title.toLowerCase();
-				String descriptionLowerCase = auction.getArtwork().getDescription().toString().toLowerCase();
-				String creatorName = auction.getArtwork().getCreatorName().toLowerCase();
-				String creationDate = auction.getArtwork().getCreationDate().toLowerCase();
-				String userName = auction.getSellerName().toLowerCase();
-				search = search.trim();
-				if (nameLowerCase.contains(search)) {
-					feed.add(auction);
-				} else if (descriptionLowerCase.contains(search)) {
-					feed.add(auction);
-				} else if (creatorName.contains(search)) {
-					feed.add(auction);
-				} else if (creationDate.contains(search)) {
-					feed.add(auction);
-				} else if (userName.contains(search)) {
-					feed.add(auction);
-				}
-			}
-		}
-	}
+    public static void getAllAuctions() {
+        Auction[] fromJson = readInAuctionFile();
 
-	public static void getAllAuctions() {
-		Auction[] fromJson = readInAuctionFile();
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 
-		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+        Feed feed = Feed.getNewInstanceWithCapacity(auctionArrayList.size());
+        feed.updateWith(auctionArrayList);
 
-		Feed feed = Feed.getNewInstanceWithCapacity(auctionArrayList.size());
-		feed.updateWith(auctionArrayList);
+    }
 
-	}
+    /**
+     * Gets active auctions by username.
+     *
+     * @param username the username
+     */
+    public static void getActiveAuctionsByUsername(String username) {
+        Auction[] fromJson = readInAuctionFile();
 
-	/**
-	 * Gets active auctions by username.
-	 *
-	 * @param username the username
-	 */
-	public static void getActiveAuctionsByUsername(String username) {
-		Auction[] fromJson = readInAuctionFile();
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 
-		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+        Feed feed = Feed.getNewInstance();
 
-		Feed feed = Feed.getNewInstance();
+        //for each Auction only add it to the Feed if its sold by the given user
+        for (Auction auction : auctionArrayList) {
+            if (auction.getSellerName().equals(username)) {
+                feed.add(auction);
+            }
+        }
+    }
 
-		//for each Auction only add it to the Feed if its sold by the given user
-		for (Auction auction : auctionArrayList) {
-			if (auction.getSellerName().equals(username)) {
-				feed.add(auction);
-			}
-		}
-	}
+    /**
+     * Reads in only active sculpture auctions.
+     */
+    public static void getSculptureAuctions() {
+        Auction[] fromJson = readInAuctionFile();
 
-	/**
-	 * Reads in only active sculpture auctions.
-	 */
-	public static void getSculptureAuctions() {
-		Auction[] fromJson = readInAuctionFile();
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 
-		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+        Feed feed = Feed.getNewInstance();
 
-		Feed feed = Feed.getNewInstance();
+        //for each Auction only add it to the Feed if it is not completed
+        for (Auction auction : auctionArrayList) {
+            if (auction.getArtwork().type == ArtworkType.Sculpture && !auction.isCompleted()) {
+                feed.add(auction);
+            }
+        }
+    }
 
-		//for each Auction only add it to the Feed if it is not completed
-		for (Auction auction : auctionArrayList) {
-			if (auction.getArtwork().type == ArtworkType.Sculpture && !auction.isCompleted()) {
-				feed.add(auction);
-			}
-		}
-	}
+    /**
+     * Reads in only active painting auctions.
+     */
+    public static void getPaintingAuctions() {
+        Auction[] fromJson = readInAuctionFile();
 
-	/**
-	 * Reads in only active painting auctions.
-	 */
-	public static void getPaintingAuctions() {
-		Auction[] fromJson = readInAuctionFile();
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
 
-		ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+        Feed feed = Feed.getNewInstance();
 
-		Feed feed = Feed.getNewInstance();
+        //for each Auction only add it to the Feed if it is not completed
+        for (Auction auction : auctionArrayList) {
+            if (auction.getArtwork().type == ArtworkType.Painting && !auction.isCompleted()) {
+                feed.add(auction);
+            }
+        }
+    }
 
-		//for each Auction only add it to the Feed if it is not completed
-		for (Auction auction : auctionArrayList) {
-			if (auction.getArtwork().type == ArtworkType.Painting && !auction.isCompleted()) {
-				feed.add(auction);
-			}
-		}
-	}
+    /**
+     * Takes in a new profile and saves it to file.
+     *
+     * @param profile to be added to the database.
+     */
+    public static void saveNewProfileToFile(Profile profile) {
+        Profile[] temp = readInProfileFile();
+        //Read all profiles in from database
+        List<Profile> tempList = new ArrayList<>(Arrays.asList(temp));
+        //Add new profile to List and save the new list to database overwriting it
+        tempList.add(profile);
+        saveListOfProfilesToFile(tempList);
+    }
 
-	/**
-	 * Takes in a new profile and saves it to file.
-	 *
-	 * @param profile to be added to the database.
-	 */
-	public static void saveNewProfileToFile(Profile profile) {
-		Profile[] temp = readInProfileFile();
-		//Read all profiles in from database
-		List<Profile> tempList = new ArrayList<>(Arrays.asList(temp));
-		//Add new profile to List and save the new list to database overwriting it
-		tempList.add(profile);
-		saveListOfProfilesToFile(tempList);
-	}
+    /**
+     * Saves a profile to file.
+     *
+     * @param profile the profile
+     */
+    public static void saveProfileToFile(Profile profile) {
+        Profile[] temp = readInProfileFile();
+        String username = profile.getUsername();
+        for (int i = 0; i < temp.length; i++) {
+            //For all profiles in database find the one that matches the username and overwrite it in list
+            if (Objects.equals(temp[i].getUsername(), username)) {
+                temp[i] = profile;
+            }
+        }
+        //Save new list to file overwriting previous
+        saveListOfProfilesToFile(Arrays.asList(temp));
+    }
 
-	/**
-	 * Saves a profile to file.
-	 *
-	 * @param profile the profile
-	 */
-	public static void saveProfileToFile(Profile profile) {
-		Profile[] temp = readInProfileFile();
-		String username = profile.getUsername();
-		for (int i = 0; i < temp.length; i++) {
-			//For all profiles in database find the one that matches the username and overwrite it in list
-			if (Objects.equals(temp[i].getUsername(), username)) {
-				temp[i] = profile;
-			}
-		}
-		//Save new list to file overwriting previous
-		saveListOfProfilesToFile(Arrays.asList(temp));
-	}
+    /**
+     * Saves a auction to file.
+     *
+     * @param auction the auction
+     */
+    public static void saveAuctionToFile(Auction auction) {
+        Auction[] temp = readInAuctionFile();
+        Integer auctionID = auction.getAuctionID();
+        for (int i = 0; i < temp.length; i++) {
+            //For all auctions in database find the one that matches the auctionID and overwrite it in list
+            if (auctionID.equals(temp[i].getAuctionID())) {
+                temp[i] = auction;
+            }
+        }
+        //Save new list to file overwriting previous
+        saveListOfAuctionsToFile(Arrays.asList(temp));
+    }
 
-	/**
-	 * Saves a auction to file.
-	 *
-	 * @param auction the auction
-	 */
-	public static void saveAuctionToFile(Auction auction) {
-		Auction[] temp = readInAuctionFile();
-		Integer auctionID = auction.getAuctionID();
-		for (int i = 0; i < temp.length; i++) {
-			//For all auctions in database find the one that matches the auctionID and overwrite it in list
-			if (auctionID.equals(temp[i].getAuctionID())) {
-				temp[i] = auction;
-			}
-		}
-		//Save new list to file overwriting previous
-		saveListOfAuctionsToFile(Arrays.asList(temp));
-	}
+    /**
+     * Save a list of auctions to file.
+     *
+     * @param auctions Auctions to be saved to file
+     */
+    public static void saveListOfAuctionsToFile(List<Auction> auctions) {
+        try {
+            FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
+            gson.toJson(auctions, fileWriter);
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * Save a list of auctions to file.
-	 *
-	 * @param auctions Auctions to be saved to file
-	 */
-	public static void saveListOfAuctionsToFile(List<Auction> auctions) {
-		try {
-			FileWriter fileWriter = new FileWriter("JSON Files/Auctions.json");
-			gson.toJson(auctions, fileWriter);
-			fileWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Save a list of profiles to file.
+     *
+     * @param profiles Profiles to be saved to file
+     */
+    public static void saveListOfProfilesToFile(List<Profile> profiles) {
+        try {
+            FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
+            gson.toJson(profiles, fileWriter);
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * Save a list of profiles to file.
-	 *
-	 * @param profiles Profiles to be saved to file
-	 */
-	public static void saveListOfProfilesToFile(List<Profile> profiles) {
-		try {
-			FileWriter fileWriter = new FileWriter("JSON Files/Profiles.json");
-			gson.toJson(profiles, fileWriter);
-			fileWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Add types to gson for artwork, sculpture and painting.
+     *
+     * @return Gson with added types (need to differentiate when reading and saving)
+     */
+    public static Gson addTypesToGson() {
+        RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "typeGSON");
 
-	/**
-	 * Add types to gson for artwork, sculpture and painting.
-	 *
-	 * @return Gson with added types (need to differentiate when reading and saving)
-	 */
-	public static Gson addTypesToGson() {
-		RuntimeTypeAdapterFactory<Artwork> artworkAdapterFactory = RuntimeTypeAdapterFactory.of(Artwork.class, "typeGSON");
+        artworkAdapterFactory.registerSubtype(Artwork.class);
+        artworkAdapterFactory.registerSubtype(Painting.class);
+        artworkAdapterFactory.registerSubtype(Sculpture.class);
 
-		artworkAdapterFactory.registerSubtype(Artwork.class);
-		artworkAdapterFactory.registerSubtype(Painting.class);
-		artworkAdapterFactory.registerSubtype(Sculpture.class);
+        return new GsonBuilder()
+                .registerTypeAdapterFactory(artworkAdapterFactory)
+                .create();
+    }
 
-		return new GsonBuilder()
-				.registerTypeAdapterFactory(artworkAdapterFactory)
-				.create();
-	}
+    /**
+     * Gets new auction id from file.
+     *
+     * @return the new auction id
+     */
+    public static int getNewAuctionID() {
+        int auctionID = -1;
 
-	/**
-	 * Gets new auction id from file.
-	 *
-	 * @return the new auction id
-	 */
-	public static int getNewAuctionID() {
-		int auctionID = -1;
+        try {
+            //Reads in auctionID from file
+            Scanner scanner = new Scanner(new File("JSON Files/AuctionID.txt."));
+            auctionID = scanner.nextInt();
 
-		try {
-			//Reads in auctionID from file
-			Scanner scanner = new Scanner(new File("JSON Files/AuctionID.txt."));
-			auctionID = scanner.nextInt();
+            //Adds one to auctionID to avoid conflicts
+            auctionID++;
+            scanner.close();
 
-			//Adds one to auctionID to avoid conflicts
-			auctionID++;
-			scanner.close();
+            //Saves the new auctionID back to file
+            saveNewAuctionID(auctionID);
+            return auctionID;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return auctionID;
+    }
 
-			//Saves the new auctionID back to file
-			saveNewAuctionID(auctionID);
-			return auctionID;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return auctionID;
-	}
+    /**
+     * Saves new auctionID back to file
+     *
+     * @param auctionID to be saved to file
+     */
+    private static void saveNewAuctionID(int auctionID) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(
+                    "JSON Files/AuctionID.txt"));
+            writer.write(Integer.toString(auctionID));
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * Saves new auctionID back to file
-	 *
-	 * @param auctionID to be saved to file
-	 */
-	private static void saveNewAuctionID(int auctionID) {
-		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(
-					"JSON Files/AuctionID.txt"));
-			writer.write(Integer.toString(auctionID));
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Gets current user.
+     *
+     * @return the current user
+     */
+    public static Profile getCurrentUser() {
+        return currentUser;
+    }
 
-	/**
-	 * Gets current user.
-	 *
-	 * @return the current user
-	 */
-	public static Profile getCurrentUser() {
-		return currentUser;
-	}
+    /**
+     * Sets a new current user.
+     *
+     * @param currentUser the new current user
+     */
+    public static void setCurrentUser(Profile currentUser) {
+        Util.currentUser = currentUser;
+    }
 
-	/**
-	 * Sets a new current user.
-	 *
-	 * @param currentUser the new current user
-	 */
-	public static void setCurrentUser(Profile currentUser) {
-		Util.currentUser = currentUser;
-	}
+    /**
+     * Gets home layout.
+     *
+     * @return the home layout
+     */
+    public static BorderPane getHomeLayout() {
+        return homeLayout;
+    }
 
-	/**
-	 * Gets home layout.
-	 *
-	 * @return the home layout
-	 */
-	public static BorderPane getHomeLayout() {
-		return homeLayout;
-	}
+    /**
+     * Sets home layout.
+     *
+     * @param borderPane the border pane
+     */
+    public static void setHomeLayout(BorderPane borderPane) {
+        homeLayout = borderPane;
+    }
 
-	/**
-	 * Sets home layout.
-	 *
-	 * @param borderPane the border pane
-	 */
-	public static void setHomeLayout(BorderPane borderPane) {
-		homeLayout = borderPane;
-	}
+    /**
+     * Gets main stage.
+     *
+     * @return the main stage
+     */
+    public static Stage getMainStage() {
+        return mainStage;
+    }
 
-	/**
-	 * Gets main stage.
-	 *
-	 * @return the main stage
-	 */
-	public static Stage getMainStage() {
-		return mainStage;
-	}
+    /**
+     * Sets main stage.
+     *
+     * @param stage the stage
+     */
+    public static void setMainStage(Stage stage) {
+        mainStage = stage;
+    }
 
-	/**
-	 * Sets main stage.
-	 *
-	 * @param stage the stage
-	 */
-	public static void setMainStage(Stage stage) {
-		mainStage = stage;
-	}
+    /**
+     * Sets profile image.
+     *
+     * @param imageView the image view
+     */
+    public static void setProfileImage(ImageView imageView) {
+        profileImage = imageView;
+    }
 
-	/**
-	 * Sets profile image.
-	 *
-	 * @param imageView the image view
-	 */
-	public static void setProfileImage(ImageView imageView) {
-		profileImage = imageView;
-	}
+    /**
+     * Gets profile image.
+     *
+     * @return the profile image
+     */
+    public static ImageView getProfileImage() {
+        return profileImage;
+    }
 
-	/**
-	 * Gets profile image.
-	 *
-	 * @return the profile image
-	 */
-	public static ImageView getProfileImage() {
-		return profileImage;
-	}
+    /**
+     * Sets favorite users grid pane.
+     *
+     * @param gridPane the grid pane
+     */
+    public static void setFavoriteUsersGridPane(GridPane gridPane) {
+        favoriteUsersGridPane = gridPane;
+    }
 
-	/**
-	 * Sets favorite users grid pane.
-	 *
-	 * @param gridPane the grid pane
-	 */
-	public static void setFavoriteUsersGridPane(GridPane gridPane) {
-		favoriteUsersGridPane = gridPane;
-	}
+    /**
+     * Gets favorite users grid pane.
+     *
+     * @return the favorite users grid pane
+     */
+    public static GridPane getFavoriteUsersGridPane() {
+        return favoriteUsersGridPane;
+    }
 
-	/**
-	 * Gets favorite users grid pane.
-	 *
-	 * @return the favorite users grid pane
-	 */
-	public static GridPane getFavoriteUsersGridPane() {
-		return favoriteUsersGridPane;
-	}
+    /**
+     * Gets filter choice box.
+     *
+     * @return the filter choice box
+     */
+    public static ChoiceBox getFilterChoiceBox() {
+        return filterChoiceBox;
+    }
 
-	/**
-	 * Gets filter choice box.
-	 *
-	 * @return the filter choice box
-	 */
-	public static ChoiceBox getFilterChoiceBox() {
-		return filterChoiceBox;
-	}
+    /**
+     * Sets filter choice box.
+     *
+     * @param choiceBox the choice box
+     */
+    public static void setFilterChoiceBox(ChoiceBox choiceBox) {
+        filterChoiceBox = choiceBox;
+    }
 
-	/**
-	 * Sets filter choice box.
-	 *
-	 * @param choiceBox the choice box
-	 */
-	public static void setFilterChoiceBox(ChoiceBox choiceBox) {
-		filterChoiceBox = choiceBox;
-	}
+    /**
+     * Dynamic favorites grid pane.
+     *
+     * @param gridPane  the grid pane
+     * @param favorites the favorites
+     */
+    public static void dynamicFavoritesGridPane(GridPane gridPane, List<Profile> favorites) {
+        final int IMAGE_COLUMN = 0;
+        final int PROFILE_COLUMN = 1;
+        final int FAVORITES_PROFILE_IMAGE = 20;
+        int row = 0;
+        Hyperlink favoriteUser;
+        ImageView profileImage;
+        gridPane.addRow(favorites.size());
+        for (Profile elem : favorites) {
+            profileImage = new ImageView();
+            profileImage.setFitHeight(FAVORITES_PROFILE_IMAGE);
+            profileImage.setFitWidth(FAVORITES_PROFILE_IMAGE);
+            try {
+                profileImage.setImage(new Image(elem.getProfileImagePath()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            favoriteUser = new Hyperlink();
+            favoriteUser.setText(elem.getUsername());
+            favoriteUser.setOnAction(event -> {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("/layouts/profile_layout.fxml"));
+                try {
+                    BorderPane profileLayout = (BorderPane) loader.load();
+                    ProfileController controller = loader.getController();
+                    controller.initProfile(elem);
+                    Util.getHomeLayout().setCenter(profileLayout);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            gridPane.add(favoriteUser, PROFILE_COLUMN, row);
+            gridPane.add(profileImage, IMAGE_COLUMN, row);
+            row++;
+        }
+    }
 
-	/**
-	 * Dynamic favorites grid pane.
-	 *
-	 * @param gridPane the grid pane
-	 * @param favorites the favorites
-	 */
-	public static void dynamicFavoritesGridPane(GridPane gridPane, List<Profile> favorites) {
-		final int IMAGE_COLUMN = 0;
-		final int PROFILE_COLUMN = 1;
-		final int FAVORITES_PROFILE_IMAGE = 20;
-		int row = 0;
-		Hyperlink favoriteUser;
-		ImageView profileImage;
-		gridPane.addRow(favorites.size());
-		for (Profile elem : favorites) {
-			profileImage = new ImageView();
-			profileImage.setFitHeight(FAVORITES_PROFILE_IMAGE);
-			profileImage.setFitWidth(FAVORITES_PROFILE_IMAGE);
-			try {
-				profileImage.setImage(new Image(elem.getProfileImagePath()));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			favoriteUser = new Hyperlink();
-			favoriteUser.setText(elem.getUsername());
-			favoriteUser.setOnAction(event -> {
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("/layouts/profile_layout.fxml"));
-				try {
-					BorderPane profileLayout = (BorderPane) loader.load();
-					ProfileController controller = loader.getController();
-					controller.initProfile(elem);
-					Util.getHomeLayout().setCenter(profileLayout);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			});
-			gridPane.add(favoriteUser, PROFILE_COLUMN, row);
-			gridPane.add(profileImage, IMAGE_COLUMN, row);
-			row++;
-		}
-	}
-
-	/**
-	 * Delete grid row.
-	 *
-	 * @param grid the grid
-	 * @param row the row
-	 */
-	public static void deleteGridRow(GridPane grid, final int row) {
-		Set<Node> deleteNodes = new HashSet<>();
-		for (Node child : grid.getChildren()) {
-			Integer rowIndex = GridPane.getRowIndex(child);
-			int r = rowIndex == null ? 0 : rowIndex;
-			if (r > row) {
-				GridPane.setRowIndex(child, r - 1);
-			} else if (r == row) {
-				deleteNodes.add(child);
-			}
-		}
-		grid.getChildren().removeAll(deleteNodes);
-	}
+    /**
+     * Delete grid row.
+     *
+     * @param grid the grid
+     * @param row  the row
+     */
+    public static void deleteGridRow(GridPane grid, final int row) {
+        Set<Node> deleteNodes = new HashSet<>();
+        for (Node child : grid.getChildren()) {
+            Integer rowIndex = GridPane.getRowIndex(child);
+            int r = rowIndex == null ? 0 : rowIndex;
+            if (r > row) {
+                GridPane.setRowIndex(child, r - 1);
+            } else if (r == row) {
+                deleteNodes.add(child);
+            }
+        }
+        grid.getChildren().removeAll(deleteNodes);
+    }
 }
