@@ -104,7 +104,7 @@ public class HomeController implements Initializable {
     private void getNewAuctionsSinceLastLogon() {
         if (!Notification.getNewAuctionsSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
-            item.setText(Notification.getNewAuctionsSinceLastLogon().size() + " New Auctions since Last logon");
+            item.setText(Notification.getNewAuctionsSinceLastLogon().size() + " new auctions");
 
             item.setOnAction(onClick -> {
                 feed.updateWith(Notification.getNewAuctionsSinceLastLogon());
