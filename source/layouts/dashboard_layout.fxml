@@ -24,7 +24,7 @@
          <center>
             <AnchorPane>
                <children>
-                  <ImageView fx:id="profileImage" fitHeight="239.0" fitWidth="201.0" layoutX="15.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fx:id="dashboardProfileImage" fitHeight="239.0" fitWidth="201.0" layoutX="15.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="0.0">
                      <HBox.margin>
                         <Insets left="15.0" right="15.0" />
                      </HBox.margin>

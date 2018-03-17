@@ -47,6 +47,7 @@ public class HomeController implements Initializable {
 	private BorderPane homeLayout;
 	@FXML
 	private GridPane favoritesGridPane;
+	@FXML
 	private Feed feed;
 	private ArrayList<Profile> favoriteUsers;
 	private ChoiceBox choiceBox;

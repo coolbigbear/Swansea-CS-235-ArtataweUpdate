@@ -3,6 +3,8 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import model.Auction;
 import model.Bid;
@@ -10,7 +12,6 @@ import model.Painting;
 import model.Util;
 
 import javax.xml.soap.Text;
-import java.awt.*;
 import javafx.scene.control.Label;
 import java.io.IOException;
 import java.net.URL;
@@ -50,10 +51,8 @@ public class DashboardController implements Initializable {
 	private Label auctionsWon;
 	@FXML
 	private Label totalbids;
-
-
-
-
+	@FXML
+	private ImageView dashboardProfileImage;
 
 	private List<Auction> boughtAuctions;
 	private List<Auction> soldAuctions;
@@ -66,29 +65,26 @@ public class DashboardController implements Initializable {
 		boughtAuctions = Util.getCurrentUser().getWonAuctions();
 		soldAuctions = Util.getCurrentUser().getCompletedAuctions();
 		allBidsPlaced = Util.getCurrentUser().getAllBidsPlaced();
-		for (Bid elem : allBidsPlaced) {
-			try {
-				System.out.println(Util.getAuctionByAuctionID(elem.getAuctionID()));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 		currentlySelling = Util.getCurrentUser().getCurrentlySelling();
+		try {
+			initPieChartWonLost(boughtAuctions, allBidsPlaced);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		initProfileImage();
+		initTextData();
+	}
 
-
+	private void initTextData() {
 		double moneySpent = 0;
 		for (Auction elem : boughtAuctions) {
 			moneySpent = moneySpent + (int) (double) elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
 		}
-
 		double moneyEarned = 0;
 		for (Auction elem : soldAuctions) {
-				moneyEarned = moneyEarned +  (int) (double) elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
-			}
-
-
+			moneyEarned = moneyEarned +  (int) (double) elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
+		}
 		profitTotal = moneyEarned - moneySpent;
-
 		initBarChart(boughtAuctions, soldAuctions);
 		initPieChart(soldAuctions);
 		initLineChart(currentlySelling, soldAuctions);
@@ -107,10 +103,12 @@ public class DashboardController implements Initializable {
 		else if (profitTotal < 0) {
 			profit.setTextFill(Color.RED);
 		}
+	}
 
+	private void initProfileImage() {
 		try {
-			initPieChartWonLost(boughtAuctions, allBidsPlaced);
-		} catch (IOException e) {
+			dashboardProfileImage.setImage(new Image(Util.getCurrentUser().getProfileImagePath()));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -141,29 +139,11 @@ public class DashboardController implements Initializable {
 
 		int[] countBidsOnDay = new int[7];
 		ArrayList<Auction> myAuctions = new ArrayList<>();
-
-		//TODO currentlySelling list doesnt have a bid list on the auction
 		myAuctions.addAll(currentlySelling);
-
-		for (int i = 0; i < currentlySelling.size(); i++) {
-			System.out.println("num of bidders on " + currentlySelling.get(i).getArtwork().getTitle() + " " + currentlySelling.get(i).getBidList().size());
-//			for (int j = 0; j < currentlySelling.get(i).getBidList().size(); j++) {
-//				System.out.println(currentlySelling.get(i).getBidList().get(j));
-//			}
-		}
-
-
-
 		myAuctions.addAll(soldAuctions);
 
 		for (Auction auction : myAuctions) {
-
-//			System.out.println(auction.getArtwork().getTitle());
-
 			for (Bid bid : auction.getBidList()) {
-
-//				System.out.println(bid.getBidderUsername());
-
 				if (bid.getDateTimePlaced().isAfter(sevenDaysEarlier)) {
 					switch (bid.getDateTimePlaced().getDayOfWeek().getValue()) {
 						case 1 :
