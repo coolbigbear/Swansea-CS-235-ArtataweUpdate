@@ -177,10 +177,10 @@ public class DashboardController implements Initializable {
 		barChart.getData().add(sculpturesSold);
 		barChart.getData().add(paintingsBought);
 		barChart.getData().add(sculpturesBought);
-		paintingsSold.setName("$ earned p");
-		sculpturesSold.setName("$ earned s");
-		paintingsBought.setName("$ spent p");
-		sculpturesBought.setName("$ spent s");
+		paintingsSold.setName("£ earned p");
+		sculpturesSold.setName("£ earned s");
+		paintingsBought.setName("£ spent p");
+		sculpturesBought.setName("£ spent s");
 	}
 }
 
