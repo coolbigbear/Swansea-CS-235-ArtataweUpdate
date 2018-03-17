@@ -83,10 +83,9 @@ public class DashboardController implements Initializable {
 
 		double moneyEarned = 0;
 		for (Auction elem : soldAuctions) {
-			if (elem.getArtwork() instanceof Painting) {
 				moneyEarned = moneyEarned +  (int) (double) elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
 			}
-		}
+
 
 		profitTotal = moneyEarned - moneySpent;
 
