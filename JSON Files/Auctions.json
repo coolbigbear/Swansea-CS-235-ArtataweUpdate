@@ -13,7 +13,26 @@
     },
     "sellerName": "bassam",
     "auctionID": 73,
-    "bidList": [],
+    "bidList": [
+      {
+        "auctionID": 73,
+        "bidAmount": 222.0,
+        "bidder": "ivanov",
+        "dateTimePlaced": {
+          "date": {
+            "year": 2018,
+            "month": 3,
+            "day": 17
+          },
+          "time": {
+            "hour": 14,
+            "minute": 15,
+            "second": 38,
+            "nano": 80000000
+          }
+        }
+      }
+    ],
     "reservePrice": 200.0,
     "bidsAllowed": 5,
     "dateTimePlaced": {
@@ -29,9 +48,10 @@
         "nano": 978000000
       }
     },
-    "bidsLeft": 5,
+    "bidsLeft": 4,
+    "highestBidder": "ivanov",
     "isCompleted": false,
-    "highestPrice": 0.0
+    "highestPrice": 222.0
   },
   {
     "artwork": {
@@ -206,6 +226,221 @@
       }
     },
     "bidsLeft": 3,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Sculpture",
+      "width": 300,
+      "height": 200,
+      "depth": 30,
+      "mainMaterial": "Bronze",
+      "additionalImagesPaths": [
+        "images/auctions/sculptures/sculpture8-2.png",
+        "images/auctions/sculptures/sculpture8-4.png"
+      ],
+      "title": "Nun",
+      "description": "This is a nun with magical powers.",
+      "creationDate": "12th century",
+      "creatorName": "Unknown",
+      "mainImagePath": "images/auctions/sculptures/sculpture8-1.png",
+      "type": "Sculpture"
+    },
+    "sellerName": "ivanov",
+    "auctionID": 79,
+    "bidList": [],
+    "reservePrice": 1000.0,
+    "bidsAllowed": 3,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 19,
+        "second": 10,
+        "nano": 304000000
+      }
+    },
+    "bidsLeft": 3,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Painting",
+      "width": 40,
+      "height": 40,
+      "title": "Genuine Mona Lisa",
+      "description": "The real deal.",
+      "creationDate": "1995",
+      "creatorName": "Leo DiCaprio",
+      "mainImagePath": "images/auctions/paintings/painting4.PNG",
+      "type": "Painting"
+    },
+    "sellerName": "ivanov",
+    "auctionID": 80,
+    "bidList": [],
+    "reservePrice": 3000.0,
+    "bidsAllowed": 2,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 21,
+        "second": 48,
+        "nano": 85000000
+      }
+    },
+    "bidsLeft": 2,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Painting",
+      "width": 50,
+      "height": 40,
+      "title": "Wud",
+      "description": "Wid is this?",
+      "creationDate": "1879",
+      "creatorName": "Bartolomeo Macio",
+      "mainImagePath": "images/auctions/paintings/painting7.png",
+      "type": "Painting"
+    },
+    "sellerName": "mariika",
+    "auctionID": 81,
+    "bidList": [],
+    "reservePrice": 5000.0,
+    "bidsAllowed": 1,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 23,
+        "second": 24,
+        "nano": 538000000
+      }
+    },
+    "bidsLeft": 1,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Sculpture",
+      "width": 30,
+      "height": 40,
+      "depth": 2,
+      "mainMaterial": "Wood",
+      "additionalImagesPaths": [
+        "images/auctions/sculptures/sculpture10-2.png"
+      ],
+      "title": "Elena",
+      "description": "This is the elena of scuptures.",
+      "creationDate": "17th century",
+      "creatorName": "Unknown",
+      "mainImagePath": "images/auctions/sculptures/sculpture10-1.png",
+      "type": "Sculpture"
+    },
+    "sellerName": "mariika",
+    "auctionID": 82,
+    "bidList": [],
+    "reservePrice": 12000.0,
+    "bidsAllowed": 1,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 25,
+        "second": 59,
+        "nano": 913000000
+      }
+    },
+    "bidsLeft": 1,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Painting",
+      "width": 30,
+      "height": 40,
+      "title": "Cave",
+      "description": "This is the cave from the north. But with no snow.",
+      "creationDate": "1300",
+      "creatorName": "Someone",
+      "mainImagePath": "images/auctions/paintings/painting12.png",
+      "type": "Painting"
+    },
+    "sellerName": "jon",
+    "auctionID": 83,
+    "bidList": [],
+    "reservePrice": 300.0,
+    "bidsAllowed": 1,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 27,
+        "second": 18,
+        "nano": 526000000
+      }
+    },
+    "bidsLeft": 1,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Painting",
+      "width": 30,
+      "height": 25,
+      "title": "Not so cave",
+      "description": "This aint a cave tho.",
+      "creationDate": "2000",
+      "creatorName": "Roberto the Fancy",
+      "mainImagePath": "images/auctions/paintings/painting6.png",
+      "type": "Painting"
+    },
+    "sellerName": "jon",
+    "auctionID": 84,
+    "bidList": [],
+    "reservePrice": 45.0,
+    "bidsAllowed": 2,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 28,
+        "second": 57,
+        "nano": 966000000
+      }
+    },
+    "bidsLeft": 2,
     "isCompleted": false,
     "highestPrice": 0.0
   }
