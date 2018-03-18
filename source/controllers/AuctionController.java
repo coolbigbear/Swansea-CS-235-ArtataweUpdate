@@ -441,7 +441,7 @@ public class AuctionController {
 		placeBidLabel.setText("STATUS:");
 		bidInputTextField.setDisable(true);
 		bidInputTextField.setVisible(false);
-		sellingInfoGridPane.add(new Label("CLOSED"), 1, 4);
+		sellingInfoGridPane.add(new Label("CLOSED"), 1, 5);
 		bidButton.setVisible(false);
 		bidButton.setDisable(true);
 	}
