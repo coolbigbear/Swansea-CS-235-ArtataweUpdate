@@ -34,7 +34,7 @@ import java.util.Set;
  * @author Alex Wing
  * @author Bezhan Kodomani
  * @author Iliyan Garnev
- * @version 0.2
+ * @version 1.0
  */
 public class DashboardController implements Initializable {
 
@@ -133,8 +133,6 @@ public class DashboardController implements Initializable {
 //			System.out.println(Util.getAuctionByAuctionID(elem.getAuctionID()).isCompleted());
 //			System.out.println(Util.getAuctionByAuctionID(elem.getAuctionID()).getHighestBidder());
         }
-
-
 
 		wonLostPieChart.getData().add(new PieChart.Data("Won", boughtAuctions.size()));
 		wonLostPieChart.getData().add(new PieChart.Data("Lost", auctionsLost.size()));

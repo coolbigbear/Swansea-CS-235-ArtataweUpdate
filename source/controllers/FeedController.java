@@ -22,6 +22,20 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * The Controller for the feed layout, this is in charge of <code>layouts.feed_layout.fxml</code>.
+ *
+ * This is the Controller and Layout pair in charge of showing the Feed as well as the search bar,
+ * this layout is in the center of {@link HomeController}.
+ *
+ * @author Bezhan Kodomani
+ * @author Iliyan Garnev
+ * @author ***REMOVED*** ***REMOVED***
+ * @author Bassam Helal
+ * @version 3.0
+ * @see Initializable
+ * @see HomeController
+ */
 public class FeedController implements Initializable {
 	
 	@FXML
@@ -33,8 +47,8 @@ public class FeedController implements Initializable {
 	@FXML
 	private Button searchButton;
 
-	private ObservableList<String> choiceBoxList = FXCollections.observableArrayList("Show All", "Paintings",
-			"Sculptures");
+	private ObservableList<String> choiceBoxList =
+			FXCollections.observableArrayList("Show All", "Paintings", "Sculptures");
 	private Feed feed;
 	private ArrayList<Auction> currentlySelectedAuctions;
 	

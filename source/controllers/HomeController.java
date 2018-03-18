@@ -32,7 +32,10 @@ import java.util.ResourceBundle;
  * @author Bezhan Kodomani
  * @author Bassam Helal
  * @author Iliyan Garnev
- * @version 2.0
+ * @author Ben Sampson
+ * @author Alex Wing
+ * @author ***REMOVED*** ***REMOVED***
+ * @version 3.0
  * @see Initializable
  */
 public class HomeController implements Initializable {
@@ -86,7 +89,7 @@ public class HomeController implements Initializable {
     private void initNotifications() {
         notificationsNumberLabel.setText("0");
         Integer number = Notification.getNewAuctionsSinceLastLogon().size() +
-                Notification.getNewBidsAuctionsSinceLastLogon().size() + //TODO change this too
+                Notification.getNewBidsSinceLastLogon().size() +
                 Notification.getAuctionsCurrentUserSoldSinceLastLogon().size() +
                 Notification.getAuctionsCurrentUserLostSinceLastLogon().size() +
                 Notification.getAuctionsComingToCloseSinceLastLogon().size();
@@ -118,9 +121,9 @@ public class HomeController implements Initializable {
     }
 
     private void getNewBidsSinceLastLogon() {
-        if (!Notification.getNewBidsAuctionsSinceLastLogon().isEmpty()) {
+        if (!Notification.getNewBidsSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
-            item.setText(Notification.getNewBidsAuctionsSinceLastLogon().size() + " new bids on auctions");
+            item.setText(Notification.getNewBidsSinceLastLogon().size() + " new bids on auctions");
 
             item.setOnAction(onClick -> {
 				notificationPopUps();

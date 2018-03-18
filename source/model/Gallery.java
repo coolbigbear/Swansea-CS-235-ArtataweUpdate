@@ -2,6 +2,19 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * A Gallery is a collection of Auctions that the user can add Auctions to and view Auctions from.
+ *
+ * A User can have any number of Galleries, each of which can contain any number of Auctions which can be
+ * both ongoing or finished.
+ *
+ * Note that a Gallery cannot have duplicate Auctions.
+ *
+ * @author ***REMOVED*** ***REMOVED***
+ * @version 1.0
+ * @see Artwork
+ * @see Auction
+ */
 public class Gallery {
 
     private String galleryName;

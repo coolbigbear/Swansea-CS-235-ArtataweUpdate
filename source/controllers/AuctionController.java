@@ -24,9 +24,10 @@ import java.util.Optional;
  *
  * @author Bezhan Kodomani
  * @author Bassam Helal
- * @version 1.5
+ * @version 2.0
  * @see Initializable
  * @see Auction
+ * @see Gallery
  */
 public class AuctionController {
 

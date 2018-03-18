@@ -225,7 +225,8 @@ public final class Util {
 
         //for each Auction only add it if it is after time
         for (Auction auction : auctionArrayList) {
-            if (auction.getDateTimePlaced().isAfter(time)) {
+            if (auction.getDateTimePlaced().isAfter(time) &&
+                    !auction.getSellerName().equals(getCurrentUser().getUsername())) {
                 auctionsSinceTime.add(auction);
             }
         }
