@@ -78,7 +78,12 @@ public class DashboardController implements Initializable {
 		}
 		initProfileImage();
 		initTextData();
+		initBarChart(boughtAuctions, soldAuctions);
+		initPieChart(soldAuctions);
+		initLineChart(Util.getActualCurrentlySelling(), soldAuctions);
 	}
+
+
 
 	private void initTextData() {
 		double moneySpent = 0;
@@ -90,9 +95,6 @@ public class DashboardController implements Initializable {
 			moneyEarned = moneyEarned + elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
 		}
 		profitTotal = moneyEarned - moneySpent;
-		initBarChart(boughtAuctions, soldAuctions);
-		initPieChart(soldAuctions);
-		initLineChart(currentlySelling, soldAuctions);
 		totalBids.setText(String.valueOf(allBidsPlaced.size()));
 		auctionsWon.setText(String.valueOf(boughtAuctions.size()));
 		profit.setText("£" + String.valueOf(profitTotal));

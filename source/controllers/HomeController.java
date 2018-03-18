@@ -193,7 +193,8 @@ public class HomeController implements Initializable {
 		choices.add("");
 		for (Bid elem : bids) {
 			try {
-				choices.add(elem.getBidderUsername() + " " + Util.getAuctionByAuctionID(elem.getAuctionID()).getArtwork().getTitle());
+				choices.add(elem.getBidderUsername() + " bid on " + Util.getAuctionByAuctionID(elem.getAuctionID())
+						.getArtwork().getTitle());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

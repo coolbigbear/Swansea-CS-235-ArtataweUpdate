@@ -233,6 +233,22 @@ public final class Util {
 
     }
 
+    public static ArrayList<Auction> getActualCurrentlySelling() {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        ArrayList<Auction> currentlySelling = new ArrayList<>();
+
+        for (Auction auction: auctionArrayList) {
+            if (auction.getSellerName().equals(getCurrentUser().getUsername()) &&
+                    !auction.isCompleted()) {
+                currentlySelling.add(auction);
+            }
+        }
+        return currentlySelling;
+    }
+
     /**
      * Gets active auctions by username.
      *
