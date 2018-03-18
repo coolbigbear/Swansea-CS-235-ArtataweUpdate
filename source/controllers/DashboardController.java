@@ -83,11 +83,11 @@ public class DashboardController implements Initializable {
 	private void initTextData() {
 		double moneySpent = 0;
 		for (Auction elem : boughtAuctions) {
-			moneySpent = moneySpent + (int) (double) elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
+			moneySpent = moneySpent + elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
 		}
 		double moneyEarned = 0;
 		for (Auction elem : soldAuctions) {
-			moneyEarned = moneyEarned +  (int) (double) elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
+			moneyEarned = moneyEarned + elem.getBidList().get(elem.getBidList().size() - 1).getBidAmount();
 		}
 		profitTotal = moneyEarned - moneySpent;
 		initBarChart(boughtAuctions, soldAuctions);

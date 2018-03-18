@@ -185,11 +185,10 @@ public class AuctionController {
 					Util.saveProfileToFile(seller);
 
 				}
+				Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
 				Util.saveProfileToFile(Util.getCurrentUser());
 
 				Util.saveAuctionToFile(currentAuction);
-				
-				
 			} catch (IllegalBidException exception) {
 				if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
 					errorMessageLabel.setText("Already highest bidder!");
