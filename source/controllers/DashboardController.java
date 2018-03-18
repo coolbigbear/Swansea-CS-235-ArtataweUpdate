@@ -124,7 +124,6 @@ public class DashboardController implements Initializable {
 		Set<Auction> auctionsLost = new HashSet<>();
 
         for (Bid elem : allBidsPlaced) {
-            //TODO null stuff here!
             if (Util.getAuctionByAuctionID(elem.getAuctionID()).isCompleted() &&
                     !Util.getAuctionByAuctionID(elem.getAuctionID()).getHighestBidder()
                             .equalsIgnoreCase(Util.getCurrentUser().getUsername())) {
