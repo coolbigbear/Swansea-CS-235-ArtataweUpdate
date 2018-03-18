@@ -186,8 +186,7 @@ public class AuctionController {
 
 				}
 				Util.saveProfileToFile(Util.getCurrentUser());
-				//TODO @Basammy boi pls find the seller and their currently selling and then add this bid there
-				//TODO I think we fixed it
+
 				Util.saveAuctionToFile(currentAuction);
 				
 				

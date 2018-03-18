@@ -39,7 +39,7 @@ import java.util.Set;
  * @author ***REMOVED*** ***REMOVED***
  * @author Bezhan Kodomani
  * @author Bassam Helal
- * @version 2.0
+ * @version 3.0
  */
 public final class Util {
 
@@ -57,43 +57,6 @@ public final class Util {
     private static GridPane favoriteUsersGridPane;
     private static ChoiceBox filterChoiceBox;
     private static MenuButton galleryMenuButton;
-
-    public static void getGalleriesDynamic(MenuButton galleryMenuButton) {
-        galleryMenuButton.getItems().clear();
-        for (Gallery elem : Util.getCurrentUser().getUserGalleries()) {
-            MenuItem item = new MenuItem();
-            item.setText(elem.getGalleryName());
-            galleryMenuButton.getItems().add(item);
-            item.setOnAction(e -> {
-                ArrayList<Auction> auctions = new ArrayList<>();
-                for (Integer i : elem.getListOfAuctionIDs()) {
-                    try {
-                        auctions.add(Util.getAuctionByAuctionID(i));
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-                Feed.getInstance().updateWith(auctions);
-                try {
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(Main.class.getResource("/layouts/feed_layout.fxml"));
-                    BorderPane feedLayout = (BorderPane) loader.load();
-                    feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
-                    homeLayout.setCenter(feedLayout);
-                } catch (IOException e2) {
-                    e2.printStackTrace();
-                }
-            });
-        }
-    }
-
-    public static void setGalleryMenuButton(MenuButton menuButton) {
-        galleryMenuButton = menuButton;
-    }
-
-    public static MenuButton getGalleryMenuButton() {
-        return galleryMenuButton;
-    }
 
     /**
      * Reads in all profiles from database.
@@ -213,127 +176,17 @@ public final class Util {
         }
     }
 
-    //BASSAM NOTIFICATIONS
-    //----------------------------------------------------------------------
-
-    public static List<Auction> getNewAuctionsSince(LocalDateTime time) {
-        Auction[] fromJson = readInAuctionFile();
-
-        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-
-        ArrayList<Auction> auctionsSinceTime = new ArrayList<>();
-
-        //for each Auction only add it if it is after time
-        for (Auction auction : auctionArrayList) {
-            if (auction.getDateTimePlaced().isAfter(time) &&
-                    !auction.getSellerName().equals(getCurrentUser().getUsername())) {
-                auctionsSinceTime.add(auction);
-            }
-        }
-        return auctionsSinceTime;
-    }
-
-    public static List<Bid> getNewBidsOnCurrentUserSince(LocalDateTime time) {
-        Auction[] fromJson = readInAuctionFile();
-
-        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-
-        ArrayList<Bid> bidsSinceTime = new ArrayList<>();
-
-        for (Auction auction : auctionArrayList) {
-            if (auction.getSellerName().equals(getCurrentUser().getUsername())) {
-
-                for (Bid bid : auction.getBidList()) {
-                    if (bid.getDateTimePlaced().isAfter(time)) {
-                        bidsSinceTime.add(bid);
-                    }
-
-                }
-            }
-
-        }
-        return bidsSinceTime;
-    }
-
-    public static List<Auction> getAuctionsSoldSince(LocalDateTime time) {
-        Auction[] fromJson = readInAuctionFile();
-
-        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-
-        ArrayList<Auction> auctionsSoldSinceTime = new ArrayList<>();
-
-        for (Auction auction : auctionArrayList) {
-            if (auction.isCompleted() &&
-                    auction.getSellerName().equals(getCurrentUser().getUsername()) &&
-                    getLastBid(auction.getBidList()).getDateTimePlaced().isAfter(time)) {
-                auctionsSoldSinceTime.add(auction);
-            }
-        }
-        return auctionsSoldSinceTime;
-    }
-
-    public static List<Auction> getAuctionsLostSince(LocalDateTime time) {
-        Auction[] fromJson = readInAuctionFile();
-
-        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-
-        ArrayList<Auction> auctionsSoldSinceTime = new ArrayList<>();
-
-        for (Auction auction : auctionArrayList) {
-            if (auction.isCompleted() &&
-                    hasUserBiddedOnAuction(getCurrentUser(), auction) &&
-                    !auction.getHighestBidder().equals(getCurrentUser().getUsername()) &&
-                    getLastBid(auction.getBidList()).getDateTimePlaced().isAfter(time)) {
-
-                auctionsSoldSinceTime.add(auction);
-            }
-        }
-        return auctionsSoldSinceTime;
-    }
-
-    public static List<Auction> getAuctionsComingToCloseSince(LocalDateTime time) {
-        Auction[] fromJson = readInAuctionFile();
-
-        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
-
-        ArrayList<Auction> auctionsComingToClose = new ArrayList<>();
-
-        for (Auction auction : auctionArrayList) {
-            if (!auction.isCompleted() &&
-                    !auction.getBidList().isEmpty() &&
-                    !auction.getHighestBidder().equals(getCurrentUser().getUsername())&&
-                    auction.getBidsLeft() <= 2 &&
-                    hasUserBiddedOnAuction(getCurrentUser(), auction)) {
-                auctionsComingToClose.add(auction);
-            }
-        }
-        return auctionsComingToClose;
-    }
-
-    private static Boolean hasUserBiddedOnAuction(Profile user, Auction auction) {
-        for (Bid bid : auction.getBidList()) {
-            if (bid.getBidderUsername().equals(user.getUsername())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static Bid getLastBid(List<Bid> bids) {
-        LocalDateTime time = LocalDateTime.MIN;
-        Bid result = null;
-
-        for (Bid bid : bids) {
-            if (bid.getDateTimePlaced().isAfter(time)) {
-                result = bid;
-                time = bid.getDateTimePlaced();
-            }
-        }
-        return result;
-    }
-
-    //-----------------------------------------------------------------------
-
+    /**
+     * Updates the feed with the Auctions that are active that have the search String in any of the following:
+     * <ul>
+     *     <li>Artwork Title</li>
+     *     <li>Description</li>
+     *     <li>Creator name</li>
+     *     <li>Creation Date</li>
+     *     <li>Seller name</li>
+     * </ul>
+     * @param search the search queryString
+     */
     public static void getAuctionsByName(String search) {
         Auction[] fromJson = readInAuctionFile();
 
@@ -367,6 +220,9 @@ public final class Util {
         }
     }
 
+    /**
+     * Updates the feed with all the Auctions
+     */
     public static void getAllAuctions() {
         Auction[] fromJson = readInAuctionFile();
 
@@ -742,4 +598,254 @@ public final class Util {
         }
         grid.getChildren().removeAll(deleteNodes);
     }
+
+    /**
+     * Gets the galleries to update dynamically
+     *
+     * @param galleryMenuButton the gallery menu button
+     */
+    public static void getGalleriesDynamic(MenuButton galleryMenuButton) {
+        galleryMenuButton.getItems().clear();
+        for (Gallery elem : Util.getCurrentUser().getUserGalleries()) {
+            MenuItem item = new MenuItem();
+            item.setText(elem.getGalleryName());
+            galleryMenuButton.getItems().add(item);
+            item.setOnAction(e -> {
+                ArrayList<Auction> auctions = new ArrayList<>();
+                for (Integer i : elem.getListOfAuctionIDs()) {
+                    try {
+                        auctions.add(Util.getAuctionByAuctionID(i));
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                Feed.getInstance().updateWith(auctions);
+                try {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(Main.class.getResource("/layouts/feed_layout.fxml"));
+                    BorderPane feedLayout = (BorderPane) loader.load();
+                    feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
+                    homeLayout.setCenter(feedLayout);
+                } catch (IOException e2) {
+                    e2.printStackTrace();
+                }
+            });
+        }
+    }
+
+    /**
+     * Sets the gallery menu button
+     *
+     * @param menuButton the gallery menu button to be set to
+     */
+    public static void setGalleryMenuButton(MenuButton menuButton) {
+        galleryMenuButton = menuButton;
+    }
+
+    /**
+     * Gets the gallery menu button
+     *
+     * @return the gallery menu button
+     */
+    public static MenuButton getGalleryMenuButton() {
+        return galleryMenuButton;
+    }
+
+    //-------------------------NOTIFICATIONS---------------------------------
+
+    /**
+     * Gets the List of new Auctions that that are now being sold that weren't existing since the passed in time.
+     *
+     * The Auctions must be:
+     * <ul>
+     * <li>Placed after the passed in time</li>
+     * <li>Have the seller be not the current user</li>
+     * </ul>
+     *
+     * @param time the time to compare with
+     * @return the List of new Auctions that that are now being sold that weren't existing since the passed in time.
+     */
+    public static List<Auction> getNewAuctionsSince(LocalDateTime time) {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        ArrayList<Auction> auctionsSinceTime = new ArrayList<>();
+
+        for (Auction auction : auctionArrayList) {
+            if (auction.getDateTimePlaced().isAfter(time) &&
+                    !auction.getSellerName().equals(getCurrentUser().getUsername())) {
+                auctionsSinceTime.add(auction);
+            }
+        }
+        return auctionsSinceTime;
+    }
+
+    /**
+     * Gets the List of new Bids placed on the current user's currently selling Auctions that weren't
+     * there since the passed in time.
+     *
+     * The Bids must be from Auctions the current user is selling and the Bids must be placed after the passed in time
+     *
+     * @param time the time to compare with
+     * @return the List of new Bids placed on the current user's currently selling Auctions since the passed in time
+     */
+    public static List<Bid> getNewBidsOnCurrentUserSince(LocalDateTime time) {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        ArrayList<Bid> bidsSinceTime = new ArrayList<>();
+
+        for (Auction auction : auctionArrayList) {
+            if (auction.getSellerName().equals(getCurrentUser().getUsername())) {
+
+                for (Bid bid : auction.getBidList()) {
+                    if (bid.getDateTimePlaced().isAfter(time)) {
+                        bidsSinceTime.add(bid);
+                    }
+
+                }
+            }
+
+        }
+        return bidsSinceTime;
+    }
+
+    /**
+     * Gets the List of Auctions that the current user has managed to sell since the passed in time.
+     *
+     * The Auctions must be:
+     * <ul>
+     * <li>Completed</li>
+     * <li>Have the current user as the seller</li>
+     * <li>Have the last bid placed after the passed in time</li>
+     * </ul>
+     *
+     * @param time the time to compare with
+     * @return the List of Auctions that the current user has managed to sell since the passed in time
+     */
+    public static List<Auction> getAuctionsSoldSince(LocalDateTime time) {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        ArrayList<Auction> auctionsSoldSinceTime = new ArrayList<>();
+
+        for (Auction auction : auctionArrayList) {
+            if (auction.isCompleted() &&
+                    auction.getSellerName().equals(getCurrentUser().getUsername()) &&
+                    getLastBid(auction.getBidList()).getDateTimePlaced().isAfter(time)) {
+
+                auctionsSoldSinceTime.add(auction);
+            }
+        }
+        return auctionsSoldSinceTime;
+    }
+
+    /**
+     * Gets the List of Auctions that the current user has bid on that they have now lost since the passed in time.
+     *
+     * The Auctions must be:
+     * <ul>
+     * <li>Completed</li>
+     * <li>Not have the current user as the highest bidder</li>
+     * <li>Have the current user bidded on the Auction</li>
+     * <li>Have the last bid placed after the passed in time</li>
+     * </ul>
+     *
+     * @param time the time to compare with
+     * @return the List of Auctions that the current user has bid on that they have now lost since the passed in time
+     */
+    public static List<Auction> getAuctionsLostSince(LocalDateTime time) {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        ArrayList<Auction> auctionsSoldSinceTime = new ArrayList<>();
+
+        for (Auction auction : auctionArrayList) {
+            if (auction.isCompleted() &&
+                    hasUserBiddedOnAuction(getCurrentUser(), auction) &&
+                    !auction.getHighestBidder().equals(getCurrentUser().getUsername()) &&
+                    getLastBid(auction.getBidList()).getDateTimePlaced().isAfter(time)) {
+
+                auctionsSoldSinceTime.add(auction);
+            }
+        }
+        return auctionsSoldSinceTime;
+    }
+
+    /**
+     * Gets the List of Auctions coming to a close meaning fewer than 2 bids since the passed in time.
+     * The Auctions must be:
+     * <ul>
+     * <li>Not completed</li>
+     * <li>Not have an empty bid list</li>
+     * <li>Not have the current user as the highest bidder</li>
+     * <li>Have 2 or less bids left (but not 0)</li>
+     * <li>Have the current user bidded on the Auction</li>
+     * <li>Have the last bid placed after the passed in time</li>
+     * </ul>
+     *
+     * @param time the time to compare with
+     * @return the List of Auctions coming to a close since the passed in time
+     */
+    public static List<Auction> getAuctionsComingToCloseSince(LocalDateTime time) {
+        Auction[] fromJson = readInAuctionFile();
+
+        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+
+        ArrayList<Auction> auctionsComingToClose = new ArrayList<>();
+
+        for (Auction auction : auctionArrayList) {
+            if (!auction.isCompleted() &&
+                    !auction.getBidList().isEmpty() &&
+                    !auction.getHighestBidder().equals(getCurrentUser().getUsername()) &&
+                    auction.getBidsLeft() <= 2 &&
+                    hasUserBiddedOnAuction(getCurrentUser(), auction) &&
+                    getLastBid(auction.getBidList()).getDateTimePlaced().isAfter(time)) {
+                auctionsComingToClose.add(auction);
+            }
+        }
+        return auctionsComingToClose;
+    }
+
+    /**
+     * Utility function to check whether the passed in user has bidded on an Auction or not
+     *
+     * @param user    the user to check whether they bidded on an Auction or not
+     * @param auction the Auction to check whether the user has bidded on it or not
+     * @return true if the Auction has a Bid with the placer of the Bid being the user passed in,
+     *         false otherwise
+     */
+    private static Boolean hasUserBiddedOnAuction(Profile user, Auction auction) {
+        for (Bid bid : auction.getBidList()) {
+            if (bid.getBidderUsername().equals(user.getUsername())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Utility function to get the last placed Bid given a list of Bids
+     *
+     * @param bids the list of Bids to check
+     * @return the last placed Bid on the passed in list of Bids
+     */
+    private static Bid getLastBid(List<Bid> bids) {
+        LocalDateTime time = LocalDateTime.MIN;
+        Bid result = null;
+
+        for (Bid bid : bids) {
+            if (bid.getDateTimePlaced().isAfter(time)) {
+                result = bid;
+                time = bid.getDateTimePlaced();
+            }
+        }
+        return result;
+    }
+
+    //-----------------------------------------------------------------------
 }
