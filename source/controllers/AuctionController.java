@@ -185,12 +185,12 @@ public class AuctionController {
 					Util.saveProfileToFile(seller);
 
 				}
+				Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
 				Util.saveProfileToFile(Util.getCurrentUser());
+
 				//TODO @Basammy boi pls find the seller and their currently selling and then add this bid there
 				//TODO I think we fixed it
 				Util.saveAuctionToFile(currentAuction);
-				
-				
 			} catch (IllegalBidException exception) {
 				if (exception.getType().equals(IllegalBidException.IllegalBidType.ALREADY_HIGHEST_BIDDER)) {
 					errorMessageLabel.setText("Already highest bidder!");
