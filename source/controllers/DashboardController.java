@@ -66,6 +66,11 @@ public class DashboardController implements Initializable {
 	private double profitTotal;
 
 
+	/**
+	 * Method used to execute all the methods that need to be initialized
+	 * @param location
+	 * @param resources
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		boughtAuctions = Util.getCurrentUser().getWonAuctions();
 		soldAuctions = Util.getCurrentUser().getCompletedAuctions();
@@ -84,7 +89,9 @@ public class DashboardController implements Initializable {
 	}
 
 
-
+	/**
+	 * Method initializing all of the additional data that is being displayed in the text field
+	 */
 	private void initTextData() {
 		double moneySpent = 0;
 		for (Auction elem : boughtAuctions) {
@@ -112,6 +119,9 @@ public class DashboardController implements Initializable {
 		}
 	}
 
+	/**
+	 * Method displaying the profile image of the currently logged in user
+	 */
 	private void initProfileImage() {
 		try {
 			dashboardProfileImage.setImage(new Image(Util.getCurrentUser().getProfileImagePath()));
@@ -120,6 +130,12 @@ public class DashboardController implements Initializable {
 		}
 	}
 
+	/**
+	 * Method populating the pie chart, displaying the won and lost auctions
+	 * @param boughtAuctions	List of bought auctions
+	 * @param allBidsPlaced		List of bids placed
+	 * @throws IOException
+	 */
 	private void initPieChartWonLost(List<Auction> boughtAuctions, List<Bid> allBidsPlaced) throws IOException {
 		Set<Auction> auctionsLost = new HashSet<>();
 
@@ -139,6 +155,11 @@ public class DashboardController implements Initializable {
 		wonLostPieChart.getData().add(new PieChart.Data("Lost", auctionsLost.size()));
 	}
 
+	/**
+	 * Method populating the line chart, displaying the bids our auctions have received over a period of 7 days
+	 * @param currentlySelling		List of currently selling auctions
+	 * @param soldAuctions			List of sold auctions
+	 */
 	private void initLineChart(List<Auction> currentlySelling, List<Auction> soldAuctions) {
 		LocalDateTime today = LocalDateTime.now();
 		LocalDateTime sevenDaysEarlier = today.minusDays(7);
@@ -190,6 +211,10 @@ public class DashboardController implements Initializable {
 		lineChart.legendVisibleProperty().setValue(false);
 	}
 
+	/**
+	 * Method populating the pie chart displaying how many auctions a user has purchased from someone
+	 * @param soldAuctions		List of sold auctions
+	 */
 	private void initPieChart(List<Auction> soldAuctions) {
 		ArrayList<String> users = new ArrayList<>();
 
@@ -209,6 +234,11 @@ public class DashboardController implements Initializable {
 		}
 	}
 
+	/**
+	 * Method populating the bar chart, displaying information about earnings and spendings
+	 * @param boughtAuctions	List of bought auctions
+	 * @param soldAuctions		List of sold auctions
+	 */
 	private void initBarChart(List<Auction> boughtAuctions, List<Auction> soldAuctions) {
 		int moneySpentPaintings = 0;
 		int moneySpentSculptures = 0;

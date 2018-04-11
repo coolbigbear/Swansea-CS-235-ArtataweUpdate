@@ -49,7 +49,10 @@ public class DrawingController {
     private double yBegin;
     private double yEnd;
 
-    //method to save the file to the system
+    /**
+     * Method used to save custom image created in given location
+     * If it fails it prints the exception with a simple error message
+     */
     public void onSave() {
         try {
             Image snapshot = canvas.snapshot(null, null);
@@ -63,13 +66,17 @@ public class DrawingController {
         }
     }
 
-    //method to clear the canvas
+    /**
+     * Method used to clear the canvas
+     */
     public void onClear() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
-    //method to initialize the canvas and canvas listeners
+    /**
+     *  Method used to initialize the canvas and canvas listeners
+     */
     public void initialize() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         canvas.setOnMouseDragged(event -> {
@@ -101,6 +108,10 @@ public class DrawingController {
         });
     }
 
+    /**
+     * method to generate the name of the drawing and set it's location
+     * @return String for the image path and the random generated string as a name
+     */
     //method to generate the name of the drawing and set it's location
     private String generateNameAndSetLocation() {
         String generatedString = UUID.randomUUID().toString();

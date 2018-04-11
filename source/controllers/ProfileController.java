@@ -70,6 +70,10 @@ public class ProfileController {
     private GridPane currentlySellingAuctionsGridPane;
     private Profile selectedProfile;
 
+    /**
+     * Method setting the image, buttons, and selling auctions for the current user
+     * @param profile       Instance of a profile
+     */
     public void initProfile(Profile profile) {
         selectedProfile = profile;
         setUserSpecificButtons();
@@ -82,6 +86,9 @@ public class ProfileController {
         populateCurrentlySellingAuctions();
     }
 
+    /**
+     * Method used for choosing a profile image, using file browser
+     */
     @FXML
     private void chooseProfileImg() {
         FileChooser fileChooser = new FileChooser();
@@ -95,6 +102,9 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Method used for creating the custom image
+     */
     @FXML
     private void createCustomImg() {
         try {
@@ -107,6 +117,9 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Method used for setting a user as favourite user
+     */
     @FXML
     private void setFavouriteUser() {
         int counter = Util.getCurrentUser().getFavouriteUsers().size();
@@ -136,6 +149,9 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Next four methods are setting the four default images' paths
+     */
     @FXML
     private void setDefaultImage1() {
         changeDefaultImage("images/profile/male4.png");
@@ -153,13 +169,20 @@ public class ProfileController {
         changeDefaultImage("images/profile/female2.png");
     }
 
+    /**
+     * Method used for changing the default image to one of the above
+     * @param defImagePath      Image path, which one of the defaultImage methods will pass
+     */
     //method to change the default image
     private void changeDefaultImage(String defImagePath) {
         selectedProfile.setProfileImagePath(defImagePath);
         settingImageAll(defImagePath);
     }
 
-    //method to set both images
+    /**
+     * Method to set both images
+     * @param path      Image path
+     */
     private void settingImageAll(String path) {
         try {
             setImage();
@@ -170,6 +193,10 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Method to check if user has been favouited
+     * @return      true if the user has been favourited, otherwise it returns false
+     */
     //method to check if user has been favorited
     private boolean isFavorited() {
         boolean favorite = false;
@@ -181,7 +208,9 @@ public class ProfileController {
         return favorite;
     }
 
-    //method to set all relevant labels
+    /**
+     * Method to set all relevant labels
+     */
     private void setLabels() {
         usernameLabelProfile.setText(selectedProfile.getUsername());
         postCode.setText(selectedProfile.getPostcode());
@@ -204,13 +233,17 @@ public class ProfileController {
         }
     }
 
-    //method to set the main image
+    /**
+     * Method to set the main image
+     */
     private void setImage() {
         Image profileImage = new Image(selectedProfile.getProfileImagePath());
         this.profileImg.setImage(profileImage);
     }
 
-    //method to set user specific buttons, wheter this is user's profile or somebody else's
+    /**
+     * Method to set ser specific buttons, whether this is user's profile or somebody else's
+     */
     private void setUserSpecificButtons() {
         if (isSignedInUser()) {
             chooseImage.setDisable(false);
@@ -233,18 +266,28 @@ public class ProfileController {
         }
     }
 
-    // method to check if the user is the same as the user logged into the system currently
+    /**
+     * method to check if the user is the same as the user logged into the system currently
+     * @return the name of the currently logged on user
+     */
     private boolean isSignedInUser() {
         return selectedProfile.getUsername().equalsIgnoreCase(Util.getCurrentUser().getUsername());
     }
 
-    //helper method to replace chars until images
+    /**
+     * Helper method to replace chars until images
+     * @param input     takes the image path
+     * @return a new image path with replaced "\\\\" to "/"
+     */
     private String ourString(String input) {
         String newPath = input.substring(input.indexOf("images"));
         return newPath.replaceAll("\\\\", "/");
     }
 
-    //method to get all the user's favorite users
+    /**
+     * method to get all the users' favourite users
+     * @return the users' favourite users
+     */
     private ArrayList<Profile> populateFavoriteUsers() {
         ArrayList<Profile> profiles = new ArrayList<>();
         for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
@@ -253,7 +296,9 @@ public class ProfileController {
         return profiles;
     }
 
-    //method to populate the currently selling grid of favorites
+    /**
+     * method populating the currently selling grid of favourites
+     */
     private void populateCurrentlySellingAuctions() {
         final int AUCTIONS_IMAGE_COLUMN = 0;
         final int AUCTIONS_SELLING_COLUMN = 1;
