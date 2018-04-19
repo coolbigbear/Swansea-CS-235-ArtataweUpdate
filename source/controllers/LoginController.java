@@ -41,7 +41,10 @@ public class LoginController implements Initializable {
     @FXML
     private ImageView loginImages;
     private Thread cycleImageThread;
-    
+
+    /**
+     * Method which initializes the Longin Controller
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cycleImageThread = new Thread(cycleImagesRunnable());
@@ -49,6 +52,12 @@ public class LoginController implements Initializable {
         Util.getMainStage().setOnCloseRequest(e -> cycleImageThread.interrupt());
     }
 
+    /**
+     * Method which logins the user
+     * @param e event of the button
+     * @throws IOException
+     * @throws InterruptedException
+     */
     @FXML
     private void loginButtonAction(ActionEvent e) throws IOException, InterruptedException {
         if (validate(loginTextField.getText())) {
@@ -56,6 +65,11 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Button method which registers the user
+     * @param e The button event
+     * @throws IOException
+     */
     @FXML
     private void registerButtonAction(ActionEvent e) throws IOException {
         cycleImageThread.interrupt();
@@ -70,7 +84,11 @@ public class LoginController implements Initializable {
         stage.show();
     }
 
-    //method to go to the main program (home layout)
+    /**
+     * Method to go to the main program (home layout)
+     * @param e Button event
+     * @throws IOException
+     */
     private void successfulLogin(ActionEvent e) throws IOException {
         cycleImageThread.interrupt();
         loginUserPrompt.setText("Welcome to Artatawe" + ", " + Util.getCurrentUser().getFirstName() + "!");
@@ -85,7 +103,12 @@ public class LoginController implements Initializable {
         stage.show();
     }
 
-    //method to validate user input
+    /**
+     * Method to validate user input
+     * @param input The user's input in login text field
+     * @return
+     * @throws InterruptedException
+     */
     private boolean validate(String input) throws InterruptedException {
         if (!validCharacterInput(input)) {
             loginUserPrompt.setText("   ");
@@ -107,24 +130,39 @@ public class LoginController implements Initializable {
         }
     }
 
-    //helper method to check if there are characters which are not alphanumerical
+    /**
+     * Helper method to check if there are characters which are not alphanumerical
+     * @param input String input to be checked
+     * @return true if it is valid, false if invalid
+     */
     private boolean validCharacterInput(String input) {
         Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(input);
         return !matcher.find();
     }
 
-    //helper method on validating the length of the user's input
+    /**
+     * Helper method on validating the length of the user's input
+     * @param input String input to be checked
+     * @return true of the input is of valid length, false if not
+     */
     private boolean validLengthInput(String input) {
         return input.length() < 15;
     }
 
-    //method to verify user if he is the database or not
+    /**
+     * Method to verify user if he is the database or not
+     * @param input The string to be checked
+     * @return true if the user is in the JSON file (registered), false if not
+     */
     private boolean validUser(String input) {
         return Util.checkAndSetUser(input);
     }
 
-    //runnable to cycle through images and create fading in and out effect, animation, this is passed to the thread
+    /**
+     * Runnable to cycle through images and create fading in and out effect, animation, this is passed to the thread
+     * @return The runnable created
+     */
     private Runnable cycleImagesRunnable() {
         Runnable r = () -> {
             try {
@@ -157,7 +195,10 @@ public class LoginController implements Initializable {
         return r;
     }
 
-    //fading in effect of an image
+    /**
+     * Helper method which does fading in effect of an image
+     * @param image the image to add the effect to
+     */
     private void fading(ImageView image) {
         FadeTransition t = new FadeTransition(Duration.seconds(2), image);
         t.setFromValue(0.0);
@@ -165,7 +206,10 @@ public class LoginController implements Initializable {
         t.play();
     }
 
-    //fading out effect of an image
+    /**
+     * Helper method which does fading out effect of an image
+     * @param image the image to add the effect to
+     */
     private void fadingOut(ImageView image) {
         FadeTransition t = new FadeTransition(Duration.seconds(1), image);
         t.setFromValue(1.0);

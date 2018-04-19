@@ -35,57 +35,67 @@ public class CreatePaintingController implements Initializable {
 	 * The Error label.
 	 */
 	@FXML
-	Label errorLabel;
+	private Label errorLabel;
+
 	/**
 	 * The Artwork description.
 	 */
 	@FXML
-	TextArea artworkDescription;
+	private TextArea artworkDescription;
+
 	/**
 	 * The Artwork title.
 	 */
 	@FXML
-	TextField artworkTitle;
+	private TextField artworkTitle;
+
 	/**
 	 * The Painting height.
 	 */
 	@FXML
-	TextField paintingHeight;
+	private TextField paintingHeight;
+
 	/**
 	 * The Painting width.
 	 */
 	@FXML
-	TextField paintingWidth;
+	private TextField paintingWidth;
+
 	/**
 	 * The Reserve price.
 	 */
 	@FXML
-	TextField reservePrice;
+	private TextField reservePrice;
+
 	/**
 	 * The No of bids allowed.
 	 */
 	@FXML
-	TextField noOfBidsAllowed;
+	private TextField noOfBidsAllowed;
+
 	/**
 	 * The Year of creation.
 	 */
 	@FXML
-	TextField yearOfCreation;
+	private TextField yearOfCreation;
+
 	/**
 	 * The Creator name.
 	 */
 	@FXML
-	TextField creatorName;
+	private TextField creatorName;
+
 	/**
 	 * Browse for main photo button.
 	 */
 	@FXML
-	Button browseForMainPhoto;
+	private Button browseForMainPhoto;
+
 	/**
 	 * Sell painting button.
 	 */
 	@FXML
-	Button sellPaintingButton;
+	private Button sellPaintingButton;
 	
 	/**
 	 * Variables pulled from text fields.
@@ -101,15 +111,17 @@ public class CreatePaintingController implements Initializable {
 	private Integer numberOfBidsAllowedPulled;
 	private Integer paintingWidthPulled;
 	private Integer paintingHeightPulled;
-	
-	//Boolean to check if user chose img.
+
+	/**
+	 * Boolean to check if user chose img.
+	 */
 	private Boolean imgChosen = false;
-	
+
+	/**
+	 * Method which initializes the Painting Controller
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		/**
-		 * When sell button is clicked
-		 */
 		sellPaintingButton.setOnAction(e -> {
 			
 			//If all values entered correctly

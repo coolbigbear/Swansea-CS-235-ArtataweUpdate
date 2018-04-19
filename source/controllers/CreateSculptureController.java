@@ -38,67 +38,79 @@ public class CreateSculptureController implements Initializable {
 	 * The Error label.
 	 */
 	@FXML
-	Label errorLabel;
+	private Label errorLabel;
+
 	/**
 	 * The Artwork description.
 	 */
 	@FXML
-	TextArea artworkDescription;
+	private TextArea artworkDescription;
+
 	/**
 	 * The Artwork title.
 	 */
 	@FXML
-	TextField artworkTitle;
+	private TextField artworkTitle;
+
 	/**
 	 * The Sculpture height.
 	 */
 	@FXML
-	TextField sculptureHeight;
+	private TextField sculptureHeight;
+
 	/**
 	 * The Sculpture width.
 	 */
 	@FXML
-	TextField sculptureWidth;
+	private TextField sculptureWidth;
+
 	/**
 	 * The Sculpture depth.
 	 */
 	@FXML
-	TextField sculptureDepth;
+	private TextField sculptureDepth;
+
 	/**
 	 * The Sculpture material.
 	 */
 	@FXML
-	TextField sculptureMaterial;
+	private TextField sculptureMaterial;
+
 	/**
 	 * The Reserve price.
 	 */
 	@FXML
-	TextField reservePrice;
+	private TextField reservePrice;
+
 	/**
 	 * The No of bids allowed.
 	 */
 	@FXML
-	TextField noOfBidsAllowed;
+	private TextField noOfBidsAllowed;
+
 	/**
 	 * The Year of creation.
 	 */
 	@FXML
-	TextField yearOfCreation;
+	private TextField yearOfCreation;
+
 	/**
 	 * The Creator name.
 	 */
 	@FXML
-	TextField creatorName;
+	private TextField creatorName;
+
 	/**
 	 * The Choose main sculpture img.
 	 */
 	@FXML
-	Button chooseMainSculptureImg;
+	private Button chooseMainSculptureImg;
+
 	/**
 	 * The Sell sculpture button.
 	 */
 	@FXML
-	Button sellSculptureButton;
+	private Button sellSculptureButton;
 	
 	/**
 	 * Variables pulled from text fields.
@@ -120,16 +132,19 @@ public class CreateSculptureController implements Initializable {
 	private Integer sculptureWidthPulled;
 	private Integer sculptureHeightPulled;
 	private Integer sculptureDepthPulled;
-	
-	//Boolean to check if user chose img.
+
+	/**
+	 * Boolean to check if user chose img.
+	 */
 	private Boolean imgChosen = false;
+
 	private ArrayList pathsToImages = new ArrayList();
-	
+
+	/**
+	 * Method which initializes the Sculpture Controller
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		/**
-		 * When sell button is clicked
-		 */
 		sellSculptureButton.setOnAction(e -> {
 			
 			//If all values entered correctly
@@ -271,26 +286,35 @@ public class CreateSculptureController implements Initializable {
 	}
 	
 	/**
-	 * Grabs additional images (up to 4)
+	 * Grabs additional images 1
 	 */
 	@FXML
 	private void imgButton1() {
 		image1 = chooseMainSculptureImg();
 		pathsToImages.add(image1);
 	}
-	
+
+	/**
+	 * Grabs additional images 2
+	 */
 	@FXML
 	private void imgButton2() {
 		image2 = chooseMainSculptureImg();
 		pathsToImages.add(image2);
 	}
-	
+
+	/**
+	 * Grabs additional images 3
+	 */
 	@FXML
 	private void imgButton3() {
 		image3 = chooseMainSculptureImg();
 		pathsToImages.add(image3);
 	}
-	
+
+	/**
+	 * Grabs additional images 4
+	 */
 	@FXML
 	private void imgButton4() {
 		image4 = chooseMainSculptureImg();
