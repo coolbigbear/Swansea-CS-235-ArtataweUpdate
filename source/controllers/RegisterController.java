@@ -248,7 +248,7 @@ public class RegisterController implements Initializable {
     }
 
     /**
-     * Method that helps to check if there are characters which re not alphanumerical
+     * Method that helps to check if there are characters which re not alphanumerical.
      * @param input
      * @return if characters are correct to the rule
      */

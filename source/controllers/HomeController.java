@@ -501,7 +501,7 @@ public class HomeController implements Initializable {
 	}
 
     /**
-     * Method that helps get all the favourite users of a profile
+     * Method that helps get all the favourite users of a profile.
      * @return profiles
      */
 	private ArrayList<Profile> populateFavoriteUsers() {

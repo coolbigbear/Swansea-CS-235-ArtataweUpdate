@@ -108,7 +108,7 @@ public class FeedController implements Initializable {
 	}
 
     /**
-     * Method that allows you to filter out the feed to select items
+     * Method that allows you to filter out the feed to select items.
      */
 	private void setChoiceBox() {
 		choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener(
