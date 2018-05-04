@@ -94,6 +94,11 @@ public class RegisterController implements Initializable {
     private String profileImagePath;
     private boolean choseImg = false;
 
+    /**
+     *  Method that gets the register view
+     * @param location location of the page
+     * @param resources actual resource used
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         /**
@@ -128,28 +133,50 @@ public class RegisterController implements Initializable {
         });
     }
 
+    /**
+     * Method to set a default image
+     */
     @FXML
     private void setDefaultImage1() {
         changeDefaultImage("images/profile/male4.png");
     }
+
+    /**
+     * Method to set a default image
+     */
     @FXML
     private void setDefaultImage2() {
         changeDefaultImage("images/profile/male3.png");
     }
+
+    /**
+     * Method to set a default image
+     */
     @FXML
     private void setDefaultImage3() {
         changeDefaultImage("images/profile/female3.png");
     }
+
+    /**
+     * Method to set a default image
+     */
     @FXML
     private void setDefaultImage4() {
         changeDefaultImage("images/profile/female2.png");
     }
 
+    /**
+     * Method to change the default image
+     * @param defImagePath changes the image
+     */
     private void changeDefaultImage(String defImagePath) {
         profileImagePath = defImagePath;
         choseImg = true;
     }
 
+    /**
+     * Method that loads the login view
+     */
     @FXML
     private void backAction() {
         try {
@@ -169,7 +196,10 @@ public class RegisterController implements Initializable {
         }
     }
 
-    //gets the text field values if they are correct
+    /**
+     * Method that gets the text field values if they are correct
+     * @returntrue if values are correct, false if values are incorrect
+     */
     private boolean getTextFieldValues(){
         try {
             usernamePulled = username.getText();
@@ -217,6 +247,11 @@ public class RegisterController implements Initializable {
         }
     }
 
+    /**
+     * Method that helps to check if there are characters which re not alphanumerical
+     * @param input
+     * @return if characters are correct to the rule
+     */
     //helper method to check if there are characters which are not alphanumerical
     private boolean validCharacterInput(String input) {
         Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);

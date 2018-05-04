@@ -51,8 +51,12 @@ public class FeedController implements Initializable {
 			FXCollections.observableArrayList("Show All", "Paintings", "Sculptures");
 	private Feed feed;
 	private ArrayList<Auction> currentlySelectedAuctions;
-	
-	
+
+	/**
+	 * Method that calls the feed
+	 * @param location location of the page
+	 * @param resources actual resource used
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		choiceBoxFilter.setItems(choiceBoxList);
@@ -69,28 +73,43 @@ public class FeedController implements Initializable {
 		Util.setFilterChoiceBox(choiceBoxFilter);
 	}
 
+	/**
+	 * Method that allows you to use the search bar
+	 * @throws IOException
+	 */
 	public void searchButtonPress () throws IOException {
 		search(searchBar.getText());
 	}
 
+	/**
+	 * Method that searches auctions depending on your search query
+	 * @param searchQuery uses what you searched in to search through auctions
+	 * @throws IOException
+	 */
 	public void search(String searchQuery) throws IOException {
 		Util.getAuctionsByName(searchQuery);
 		setAuctionsCenter();
 	}
 
+	/**
+	 * Method that reacts to when the enter key is pressed, and activates the search bar
+	 */
 	@FXML
 	public void onEnter() {
 		searchBar.setOnKeyPressed(event -> {
-            if (event.getCode().equals(KeyCode.ENTER)) {
+			if (event.getCode().equals(KeyCode.ENTER)) {
 				try {
 					search(searchBar.getText());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
-        });
+		});
 	}
 
+    /**
+     * Method that allows you to filter out the feed to select items
+     */
 	private void setChoiceBox() {
 		choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener(
 				(observable, oldValue, newValue) -> {
@@ -114,6 +133,10 @@ public class FeedController implements Initializable {
 				});
 	}
 
+    /**
+     * Method that allows you to show all items on a feed
+     * @throws IOException
+     */
 	private void filterAll() throws IOException {
 		System.out.println("Show all: ");
 		ArrayList<Auction> resultList = new ArrayList<>();
@@ -129,7 +152,11 @@ public class FeedController implements Initializable {
 		feed.updateWith(resultList);
 		setAuctionsCenter();
 	}
-	
+
+    /**
+     * Method that allows you to filter only paintings in the feed
+     * @throws IOException
+     */
 	private void filterPaintings() throws IOException {
 		System.out.println("Paintings: ");
 		ArrayList<Auction> resultList = new ArrayList<>();
@@ -144,7 +171,11 @@ public class FeedController implements Initializable {
 		feed.updateWith(resultList);
 		setAuctionsCenter();
 	}
-	
+
+    /**
+     * Method that allows you to filter out only sculptures in the feed
+     * @throws IOException
+     */
 	private void filterSculptures() throws IOException {
 		System.out.println("Sculptures: ");
 		ArrayList<Auction> resultList = new ArrayList<>();
@@ -159,13 +190,20 @@ public class FeedController implements Initializable {
 		feed.updateWith(resultList);
 		setAuctionsCenter();
 	}
-	
+
+    /**
+     * Method that changes the card grid of items depending on the filter
+     */
 	private void modifyCardGrid() {
 		final int DEFAULT_NUMBER_OF_COLUMNS = 3;
 		int numberOfRows = (int) Math.ceil(feed.size() / DEFAULT_NUMBER_OF_COLUMNS);
 		cardsGridPane.addRow(numberOfRows);
 	}
-	
+
+    /**
+     * Method that populates the card grid of items
+     * @throws IOException
+     */
 	private void populateCardGrid() throws IOException {
 		FXMLLoader loader;
 		AnchorPane cardLayout;
@@ -186,7 +224,11 @@ public class FeedController implements Initializable {
 			}
 		}
 	}
-	
+
+    /**
+     * Method that sets the feed layout to center
+     * @throws IOException
+     */
 	private void setAuctionsCenter() throws IOException {
 		BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
 		feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
