@@ -62,6 +62,11 @@ public class HomeController implements Initializable {
 	private ArrayList<Profile> favoriteUsers;
 	private ChoiceBox choiceBox;
 
+	/**
+	 * Method that gets the different pages that are viewable from the home view
+	 * @param location location of the page
+	 * @param resources actual resource used
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Util.setHomeLayout(homeLayout);
@@ -86,6 +91,9 @@ public class HomeController implements Initializable {
 		initNotifications();
 	}
 
+	/**
+	 * Method to fill notifactions icon
+	 */
     private void initNotifications() {
         notificationsNumberLabel.setText("0");
         Integer number = Notification.getNewAuctionsSinceLastLogon().size() +
@@ -103,6 +111,9 @@ public class HomeController implements Initializable {
         getAuctionsComingToCloseSinceLastLogon();
     }
 
+    /**
+     * Method to get a new auction since last logon
+     */
     private void getNewAuctionsSinceLastLogon() {
         if (!Notification.getNewAuctionsSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
@@ -120,6 +131,9 @@ public class HomeController implements Initializable {
         }
     }
 
+    /**
+     * Method to get new bids since last log on
+     */
     private void getNewBidsSinceLastLogon() {
         if (!Notification.getNewBidsSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
@@ -133,6 +147,9 @@ public class HomeController implements Initializable {
         }
     }
 
+    /**
+     * Method to get new auctions that have been sold to the current logged in user since last logon
+     */
     private void getAuctionsCurrentUserSoldSinceLastLogon() {
         if (!Notification.getAuctionsCurrentUserSoldSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
@@ -151,6 +168,9 @@ public class HomeController implements Initializable {
         }
     }
 
+    /**
+     * Method to get auctions that have been lost since last logon
+     */
     private void getAuctionsCurrentUserLostSinceLastLogon() {
         if (!Notification.getAuctionsCurrentUserLostSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
@@ -169,6 +189,9 @@ public class HomeController implements Initializable {
         }
     }
 
+    /**
+     * Method to get auctions that are close to finishing
+     */
     private void getAuctionsComingToCloseSinceLastLogon() {
         if (!Notification.getAuctionsComingToCloseSinceLastLogon().isEmpty()) {
             MenuItem item = new MenuItem();
@@ -187,6 +210,9 @@ public class HomeController implements Initializable {
         }
     }
 
+    /**
+     * Method to create a notifaction popup when logged in
+     */
     private void notificationPopUps() {
 		ArrayList<Bid> bids = (ArrayList<Bid>) Notification.getNewBidsSinceLastLogon();
 		List<String> choices = new ArrayList<>();
@@ -226,7 +252,10 @@ public class HomeController implements Initializable {
 		}
 	}
 
-	//method to set the profile image on the top right corner
+    /**
+     * Method to set the profile image on the top right of the screen
+     * @param imagePath gets the image path
+     */
 	private void setProfileImageView(String imagePath) {
 		Image img = new Image(imagePath);
 		try {
@@ -236,14 +265,22 @@ public class HomeController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
+    /**
+     * Method to call current auctions once clicked
+     * @throws IOException
+     */
 	@FXML
 	private void currentAuctionsButtonAction() throws IOException {
 		Util.getActiveAuctions();
 		feed = Feed.getInstance();
 		setAuctionsCenter();
 	}
-	
+
+    /**
+     * Method to load the profile once clicked
+     * @throws IOException
+     */
 	@FXML
 	private void myProfileMenuItemAction() throws IOException {
 //        BorderPane profileLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/profile_layout.fxml"));
@@ -256,7 +293,12 @@ public class HomeController implements Initializable {
 		controller.initProfile(Util.getCurrentUser());
 		homeLayout.setCenter(profileLayout);
 	}
-	
+
+    /**
+     * Method to load the logout menu once clicked logout
+     * @param e event of the button
+     * @throws IOException
+     */
 	@FXML
 	public void logoutMenuItemAction(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/layouts/login_layout.fxml"));
@@ -273,9 +315,12 @@ public class HomeController implements Initializable {
 	}
 	
 	//----------------------Auctions Bids----------------------
-	
-	
-	//Auctions which you have placed Bids on and also current Auctions
+
+
+    /**
+     * Method to see which auctions you have bid on and also current auctions
+     * @throws IOException
+     */
 	@FXML
 	private void auctionsPlacedMenuItemAction() throws IOException {
 		List<Bid> bidList = Util.getCurrentUser().getAllBidsPlaced();
@@ -294,8 +339,11 @@ public class HomeController implements Initializable {
 		feed.updateWith(resultList);
 		setAuctionsCenter();
 	}
-	
-	//Auctions that you have won and you finished them
+
+    /**
+     * Method to see which auctions that you have won and to show you have finished them
+     * @throws IOException
+     */
 	@FXML
 	private void auctionsWonMenuItemAction() throws IOException {
 		ArrayList<Bid> bidList = getAllBids();
@@ -317,8 +365,11 @@ public class HomeController implements Initializable {
 	}
 	
 	//--------------------Auctions selling---------------------
-	
-	//All Auctions that you are currently selling
+
+    /**
+     * Method to show all auctions that you are currently selling
+     * @throws IOException
+     */
 	@FXML
 	private void currentlySellingMenuItemAction() throws IOException {
 		Util.getAllAuctions();
@@ -335,8 +386,11 @@ public class HomeController implements Initializable {
 		feed.updateWith(resultList);
 		setAuctionsCenter();
 	}
-	
-	//All Auctions you have sold
+
+    /**
+     * Method to show all auctions that you have sold
+     * @throws IOException
+     */
 	@FXML
 	private void auctionsSoldMenuItemAction() throws IOException {
 		Util.getAllAuctions();
@@ -353,30 +407,50 @@ public class HomeController implements Initializable {
 		feed.updateWith(resultList);
 		setAuctionsCenter();
 	}
-	
+
+    /**
+     * Method that once clicked loads the make sculpture view
+     * @throws IOException
+     */
 	@FXML
 	private void createSculptureButtonAction() throws IOException {
 		AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/create_sculpture_layout.fxml"));
 		homeLayout.setCenter(profileLayout);
 	}
 
+    /**
+     * Method that once clicked, loads the dashboard view
+     * @throws IOException
+     */
 	@FXML
 	private void ViewDashboardButtonAction() throws IOException {
 		AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/dashboard_layout.fxml"));
 		homeLayout.setCenter(profileLayout);
 	}
+
+    /**
+     * Method that once clicked, loads the make painting view
+     * @throws IOException
+     */
 	@FXML
 	private void createPaintingButtonAction() throws IOException {
 		AnchorPane profileLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/create_painting_layout.fxml"));
 		homeLayout.setCenter(profileLayout);
 	}
-	
+
+    /**
+     * Method that once clicked, loads the bid history view
+     * @throws IOException
+     */
 	@FXML
 	private void bidHistoryButtonAction() throws IOException {
 		AnchorPane bidHistory = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/bidhistory_layout.fxml"));
 		homeLayout.setCenter(bidHistory);
 	}
-	
+
+    /**
+     * Method that allows you to view your favourite users auctions once clicked
+     */
 	@FXML
 	private void favouriteUsersAuctionsButtonOnAction() {
 		Util.getActiveAuctions();
@@ -399,7 +473,10 @@ public class HomeController implements Initializable {
 		}
 	}
 
-	//method to get all the bids from auctions
+    /**
+     * Method that gets all the bids from auctions
+     * @return bid list
+     */
 	private ArrayList<Bid> getAllBids() {
 		Util.getAllAuctions();
 		Feed feed = Feed.getInstance();
@@ -411,7 +488,11 @@ public class HomeController implements Initializable {
 		return bidList;
 	}
 
-	// method to set the centre to feed
+    /**
+     * Method to set the centre to feed
+     * @return feed layout
+     * @throws IOException
+     */
 	private BorderPane setAuctionsCenter() throws IOException {
 		BorderPane feedLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
 		feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
@@ -419,7 +500,10 @@ public class HomeController implements Initializable {
 		return feedLayout;
 	}
 
-	//helper method to get all the favorite users of a profile
+    /**
+     * Method that helps get all the favourite users of a profile
+     * @return profiles
+     */
 	private ArrayList<Profile> populateFavoriteUsers() {
 		ArrayList<Profile> profiles = new ArrayList<>();
 		for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
@@ -428,7 +512,9 @@ public class HomeController implements Initializable {
 		return profiles;
 	}
 
-	//method to populate the dynamic favorite bar on the left
+    /**
+     * Method that populates the dynamic favourite bar displayed on the left
+     */
 	private void populateFavoritesView() {
 		Util.dynamicFavoritesGridPane(favoritesGridPane, favoriteUsers);
 		Util.setFavoriteUsersGridPane(favoritesGridPane);
