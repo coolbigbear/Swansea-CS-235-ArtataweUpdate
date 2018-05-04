@@ -36,6 +36,10 @@ public class CardController implements Initializable {
 
     }
 
+    /**
+     * Method which gets the auction and populates it
+     * @param auction
+     */
     public void getAuctionAndPopulate(Auction auction) {
         currentAuction = auction;
         titleCardAuctionHyperlink.setText(currentAuction.getArtwork().getTitle());
@@ -50,6 +54,10 @@ public class CardController implements Initializable {
         setAuctionImage();
     }
 
+    /**
+     * Method which goes to the specific auction
+     * @throws IOException If the auction is not found
+     */
     @FXML
     private void goToAuctionAction() throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -60,6 +68,9 @@ public class CardController implements Initializable {
         Util.getHomeLayout().setCenter(profileLayout);
     }
 
+    /**
+     * Method which sets the main Image of the auction
+     */
     private void setAuctionImage() {
         try {
             cardAuctionImage.setImage(new Image(currentAuction.getArtwork().getMainImagePath()));
