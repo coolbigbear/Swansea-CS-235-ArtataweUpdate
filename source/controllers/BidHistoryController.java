@@ -38,7 +38,10 @@ public class BidHistoryController implements Initializable {
 	
 	@FXML
 	private GridPane bidGridPane;
-	
+
+	/**
+	 * Inititalize method for bid history
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
@@ -49,7 +52,10 @@ public class BidHistoryController implements Initializable {
 		}
 	}
 
-	//method to populate the whole bid history grid
+	/**
+	 * Method to populate the whole bid history grid
+	 * @throws IOException If auction is not found
+	 */
 	private void populateBidGridPane() throws IOException {
 		
 		bidGridPane.addRow(GRID_ROWS);
@@ -80,14 +86,23 @@ public class BidHistoryController implements Initializable {
 		}
 	}
 
-	//helper method to get the auctionID
+	/**
+	 * Helper method to get the auctionID
+	 * @param auction The Auction which the ID is wanted
+	 * @return The ID of the auction
+	 */
 	private Label generateAuctionIDLabel(Auction auction) {
 		Label auctionID = new Label();
 		auctionID.setText(String.valueOf(auction.getAuctionID()));
 		return auctionID;
 	}
 
-	//helper method to get the name of the auction
+	/**
+	 * Helper method to get the name of the auction
+	 * @param auction The auction which the name is wanted
+	 * @param elem The bid on the auction
+	 * @return A hyperlink to that auction
+	 */
 	private Hyperlink generateAuctionNameHyperLink(Auction auction, Bid elem) {
 		Hyperlink auctionName = new Hyperlink();
 		auctionName.setText(auction.getArtwork().getTitle());
@@ -106,14 +121,22 @@ public class BidHistoryController implements Initializable {
 		return auctionName;
 	}
 
-	//helper method to get the bid amount on the specific auction
+	/**
+	 * Helper method to get the bid amount on the specific auction
+	 * @param elem The bid to be generated to a label
+	 * @return A label with the bid
+	 */
 	private Label generateBidAmountLabel(Bid elem) {
 		Label bidAmount = new Label();
 		bidAmount.setText(String.valueOf(elem.getBidAmount()));
 		return bidAmount;
 	}
 
-	//helper method to get the date placed
+	/**
+	 * Helper method to get the date placed
+	 * @param elem The bid on which are interested on it's date
+	 * @return The generated date label
+	 */
 	private Label generateDatePlacedLabel(Bid elem) {
 		Label datePlaced = new Label();
 		datePlaced.setText(elem.getDateTimePlaced().getHour() + ":" + + elem.getDateTimePlaced().getMinute() + " " +
@@ -122,7 +145,11 @@ public class BidHistoryController implements Initializable {
 		return datePlaced;
 	}
 
-	//helper method to generate the status of the auction
+	/**
+	 * Helper method to generate the status of the auction
+	 * @param elem The bid on which are interested on it's status
+	 * @return The generated status label
+	 */
 	private Label generateStatusLabel(Bid elem) {
 		Label status = new Label();
 		try {
@@ -133,7 +160,11 @@ public class BidHistoryController implements Initializable {
 		return status;
 	}
 
-	//helper method to display the appropriate status to the user
+	/**
+	 * Helper method to display the appropriate status to the user
+	 * @param auction The auction on which are interested on it's status
+	 * @return The status of that auction as a plain string
+	 */
 	private String auctionStatus(Auction auction) {
 		String status = "";
 		if (auction.getHighestBidder().equalsIgnoreCase(Util.getCurrentUser().getUsername()) && auction.isCompleted()) {
