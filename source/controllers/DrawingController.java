@@ -17,7 +17,7 @@ import java.util.UUID;
 
 /**
  * The Controller for the custom drawing, this is in charge of <code>layouts.custom_drawing.fxml</code>.
- *
+ * <p>
  * This is the Controller and Layout pair in charge of the Custom Drawing Page
  *
  * @author Iliyan Garnev
@@ -75,7 +75,7 @@ public class DrawingController {
     }
 
     /**
-     *  Method used to initialize the canvas and canvas listeners
+     * Method used to initialize the canvas and canvas listeners
      */
     public void initialize() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -95,21 +95,22 @@ public class DrawingController {
         canvas.setOnMouseReleased(event -> {
             xEnd = event.getX();
             yEnd = event.getY();
-            if(drawLine.isSelected()) {
+            if (drawLine.isSelected()) {
                 gc.setFill(colorPicker.getValue());
                 gc.setLineWidth(Double.parseDouble(brushSize.getText()));
                 gc.strokeLine(xBegin, yBegin, xEnd, yEnd);
             }
-            if(drawRectangle.isSelected()){
+            if (drawRectangle.isSelected()) {
                 double size = Double.parseDouble((brushSize.getText()));
                 gc.setFill(colorPicker.getValue());
-                gc.strokeRect(xBegin, yBegin, size, size );
+                gc.strokeRect(xBegin, yBegin, size, size);
             }
         });
     }
 
     /**
      * method to generate the name of the drawing and set it's location
+     *
      * @return String for the image path and the random generated string as a name
      */
     //method to generate the name of the drawing and set it's location

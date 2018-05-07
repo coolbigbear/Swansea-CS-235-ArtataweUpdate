@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 
 /**
  * The Controller for the Login layout, this is in charge of <code>layouts.login_layout.fxml</code>.
- *
+ * <p>
  * This is the Controller and Layout pair in charge of the login page.
  *
  * @author Bezhan Kodomani
@@ -56,6 +56,7 @@ public class LoginController implements Initializable {
 
     /**
      * Method which logins the user
+     *
      * @param e event of the button
      * @throws IOException
      * @throws InterruptedException
@@ -70,6 +71,7 @@ public class LoginController implements Initializable {
 
     /**
      * Button method which registers the user
+     *
      * @param e The button event
      * @throws IOException
      */
@@ -79,7 +81,7 @@ public class LoginController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/register_layout.fxml"));
         //root.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         Scene registerScene = new Scene(root);
-        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setScene(registerScene);
         stage.setResizable(false);
         stage.setMinWidth(680);
@@ -93,6 +95,7 @@ public class LoginController implements Initializable {
 
     /**
      * Method to go to the main program (home layout)
+     *
      * @param e Button event
      * @throws IOException
      */
@@ -100,7 +103,7 @@ public class LoginController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/home_layout.fxml"));
         root.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         Scene homeScene = new Scene(root);
-        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setScene(homeScene);
         stage.setResizable(true);
         stage.setMinHeight(700);
@@ -110,11 +113,11 @@ public class LoginController implements Initializable {
 
     /**
      * Method to validate user input
+     *
      * @param input The user's input in login text field
      * @return
-     * @throws InterruptedException
      */
-    private boolean validate(String input) throws InterruptedException {
+    private boolean validate(String input) {
         if (!validCharacterInput(input)) {
             loginUserPrompt.setText("   ");
             loginUserPrompt.setText("Only alphanumerical values are allowed!");
@@ -137,6 +140,7 @@ public class LoginController implements Initializable {
 
     /**
      * Helper method to check if there are characters which are not alphanumerical
+     *
      * @param input String input to be checked
      * @return true if it is valid, false if invalid
      */
@@ -148,6 +152,7 @@ public class LoginController implements Initializable {
 
     /**
      * Helper method on validating the length of the user's input
+     *
      * @param input String input to be checked
      * @return true of the input is of valid length, false if not
      */
@@ -157,6 +162,7 @@ public class LoginController implements Initializable {
 
     /**
      * Method to verify user if he is the database or not
+     *
      * @param input The string to be checked
      * @return true if the user is in the JSON file (registered), false if not
      */
@@ -166,6 +172,7 @@ public class LoginController implements Initializable {
 
     /**
      * Runnable to cycle through images and create fading in and out effect, animation, this is passed to the thread
+     *
      * @return The runnable created
      */
     private Runnable cycleImagesRunnable() {
@@ -202,6 +209,7 @@ public class LoginController implements Initializable {
 
     /**
      * Helper method which does fading in effect of an image
+     *
      * @param image the image to add the effect to
      */
     private void fading(ImageView image) {
@@ -213,6 +221,7 @@ public class LoginController implements Initializable {
 
     /**
      * Helper method which does fading out effect of an image
+     *
      * @param image the image to add the effect to
      */
     private void fadingOut(ImageView image) {

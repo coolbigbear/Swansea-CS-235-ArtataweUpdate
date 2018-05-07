@@ -17,21 +17,9 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.exception.ProfileNotFoundException;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A Utility class used mostly for reading and writing to the JSON database but also to send receive global Objects.
@@ -179,12 +167,13 @@ public final class Util {
     /**
      * Updates the feed with the Auctions that are active that have the search String in any of the following:
      * <ul>
-     *     <li>Artwork Title</li>
-     *     <li>Description</li>
-     *     <li>Creator name</li>
-     *     <li>Creation Date</li>
-     *     <li>Seller name</li>
+     * <li>Artwork Title</li>
+     * <li>Description</li>
+     * <li>Creator name</li>
+     * <li>Creation Date</li>
+     * <li>Seller name</li>
      * </ul>
+     *
      * @param search the search queryString
      */
     public static void getAuctionsByName(String search) {
@@ -240,7 +229,7 @@ public final class Util {
 
         ArrayList<Auction> currentlySelling = new ArrayList<>();
 
-        for (Auction auction: auctionArrayList) {
+        for (Auction auction : auctionArrayList) {
             if (auction.getSellerName().equals(getCurrentUser().getUsername()) &&
                     !auction.isCompleted()) {
                 currentlySelling.add(auction);
@@ -581,7 +570,7 @@ public final class Util {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("/layouts/profile_layout.fxml"));
                 try {
-                    BorderPane profileLayout = (BorderPane) loader.load();
+                    BorderPane profileLayout = loader.load();
                     ProfileController controller = loader.getController();
                     controller.initProfile(elem);
                     Util.getHomeLayout().setCenter(profileLayout);
@@ -639,7 +628,7 @@ public final class Util {
                 try {
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(Main.class.getResource("/layouts/feed_layout.fxml"));
-                    BorderPane feedLayout = (BorderPane) loader.load();
+                    BorderPane feedLayout = loader.load();
                     feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
                     homeLayout.setCenter(feedLayout);
                 } catch (IOException e2) {
@@ -671,7 +660,7 @@ public final class Util {
 
     /**
      * Gets the List of new Auctions that that are now being sold that weren't existing since the passed in time.
-     *
+     * <p>
      * The Auctions must be:
      * <ul>
      * <li>Placed after the passed in time</li>
@@ -700,7 +689,7 @@ public final class Util {
     /**
      * Gets the List of new Bids placed on the current user's currently selling Auctions that weren't
      * there since the passed in time.
-     *
+     * <p>
      * The Bids must be from Auctions the current user is selling and the Bids must be placed after the passed in time
      *
      * @param time the time to compare with
@@ -730,7 +719,7 @@ public final class Util {
 
     /**
      * Gets the List of Auctions that the current user has managed to sell since the passed in time.
-     *
+     * <p>
      * The Auctions must be:
      * <ul>
      * <li>Completed</li>
@@ -761,7 +750,7 @@ public final class Util {
 
     /**
      * Gets the List of Auctions that the current user has bid on that they have now lost since the passed in time.
-     *
+     * <p>
      * The Auctions must be:
      * <ul>
      * <li>Completed</li>
@@ -833,7 +822,7 @@ public final class Util {
      * @param user    the user to check whether they bidded on an Auction or not
      * @param auction the Auction to check whether the user has bidded on it or not
      * @return true if the Auction has a Bid with the placer of the Bid being the user passed in,
-     *         false otherwise
+     * false otherwise
      */
     private static Boolean hasUserBiddedOnAuction(Profile user, Auction auction) {
         for (Bid bid : auction.getBidList()) {

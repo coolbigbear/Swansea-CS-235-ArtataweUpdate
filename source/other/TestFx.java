@@ -32,9 +32,9 @@ public class TestFx extends Application {
         List<String> favouritesOfP4 = new ArrayList<>();
         List<String> favouritesOfP5 = new ArrayList<>();
         List<String> favouritesOfP6 = new ArrayList<>();
-        
+
         Util.checkAndSetUser("bigbear");
-        
+
         List<Bid> p1Bids = new ArrayList<>();
         p1Bids.add(new Bid(2, 420d));
         p1Bids.add(new Bid(5, 699d));

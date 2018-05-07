@@ -31,6 +31,7 @@ public class CardController implements Initializable {
     private ImageView cardAuctionImage;
 
     private Auction currentAuction;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -38,6 +39,7 @@ public class CardController implements Initializable {
 
     /**
      * Method which gets the auction and populates it
+     *
      * @param auction
      */
     public void getAuctionAndPopulate(Auction auction) {
@@ -56,6 +58,7 @@ public class CardController implements Initializable {
 
     /**
      * Method which goes to the specific auction
+     *
      * @throws IOException If the auction is not found
      */
     @FXML

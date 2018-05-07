@@ -10,22 +10,22 @@ package model;
  */
 public enum ArtworkType {
 
-	Painting,
-	Sculpture;
-	
-	/**
-	 * Returns the String representation of an ArtworkType.
-	 * Returns "Sculpture" if the type is a Sculpture.
-	 * Returns "Painting" if the type is a Painting.
-	 *
-	 * @return the String representation of an ArtworkType
-	 */
-	@Override
-	public String toString() {
-		if (this.equals(Sculpture)) {
-			return "Sculpture";
-		} else if (this.equals(Painting)) {
-			return "Painting";
-		} else throw new IllegalStateException("Artwork Type not defined");
-	}
+    Painting,
+    Sculpture;
+
+    /**
+     * Returns the String representation of an ArtworkType.
+     * Returns "Sculpture" if the type is a Sculpture.
+     * Returns "Painting" if the type is a Painting.
+     *
+     * @return the String representation of an ArtworkType
+     */
+    @Override
+    public String toString() {
+        if (this.equals(Sculpture)) {
+            return "Sculpture";
+        } else if (this.equals(Painting)) {
+            return "Painting";
+        } else throw new IllegalStateException("Artwork Type not defined");
+    }
 }

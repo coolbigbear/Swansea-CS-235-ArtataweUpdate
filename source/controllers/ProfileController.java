@@ -2,7 +2,6 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,15 +17,14 @@ import javafx.stage.Stage;
 import model.Auction;
 import model.Profile;
 import model.Util;
+
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 /**
  * The Controller for the Profile layout, this is in charge of <code>layouts.profile_layout.fxml</code>.
- *
+ * <p>
  * This is the Controller and Layout pair in charge of generating and showing the profile page.
  *
  * @author Bezhan Kodomani
@@ -72,7 +70,8 @@ public class ProfileController {
 
     /**
      * Method setting the image, buttons, and selling auctions for the current user
-     * @param profile       Instance of a profile
+     *
+     * @param profile Instance of a profile
      */
     public void initProfile(Profile profile) {
         selectedProfile = profile;
@@ -130,7 +129,7 @@ public class ProfileController {
                     Util.getCurrentUser().getFavouriteUsers().remove(i);
                 }
             }
-            for (int i = counter -1; i >= 0; i--) {
+            for (int i = counter - 1; i >= 0; i--) {
                 Util.deleteGridRow(Util.getFavoriteUsersGridPane(), i);
             }
             Util.dynamicFavoritesGridPane(Util.getFavoriteUsersGridPane(), populateFavoriteUsers());
@@ -139,7 +138,7 @@ public class ProfileController {
             favouriteUser.setText("Add to favorites");
         } else {
             Util.getCurrentUser().getFavouriteUsers().add(selectedProfile.getUsername());
-            for (int i = counter -1; i >= 0; i--) {
+            for (int i = counter - 1; i >= 0; i--) {
                 Util.deleteGridRow(Util.getFavoriteUsersGridPane(), i);
                 System.out.println("REMOVING" + i);
             }
@@ -156,14 +155,17 @@ public class ProfileController {
     private void setDefaultImage1() {
         changeDefaultImage("images/profile/male4.png");
     }
+
     @FXML
     private void setDefaultImage2() {
         changeDefaultImage("images/profile/male3.png");
     }
+
     @FXML
     private void setDefaultImage3() {
         changeDefaultImage("images/profile/female3.png");
     }
+
     @FXML
     private void setDefaultImage4() {
         changeDefaultImage("images/profile/female2.png");
@@ -171,7 +173,8 @@ public class ProfileController {
 
     /**
      * Method used for changing the default image to one of the above
-     * @param defImagePath      Image path, which one of the defaultImage methods will pass
+     *
+     * @param defImagePath Image path, which one of the defaultImage methods will pass
      */
     //method to change the default image
     private void changeDefaultImage(String defImagePath) {
@@ -181,7 +184,8 @@ public class ProfileController {
 
     /**
      * Method to set both images
-     * @param path      Image path
+     *
+     * @param path Image path
      */
     private void settingImageAll(String path) {
         try {
@@ -195,7 +199,8 @@ public class ProfileController {
 
     /**
      * Method to check if user has been favouited
-     * @return      true if the user has been favourited, otherwise it returns false
+     *
+     * @return true if the user has been favourited, otherwise it returns false
      */
     //method to check if user has been favorited
     private boolean isFavorited() {
@@ -222,8 +227,8 @@ public class ProfileController {
         city.setText(selectedProfile.getCity());
         country.setText(selectedProfile.getCountry());
         lastLogin.setText(selectedProfile.getLastLogInTime().getHour() + ":" + selectedProfile.getLastLogInTime().getMinute() +
-                                " " + selectedProfile.getLastLogInTime().getDayOfMonth() + "." + selectedProfile.getLastLogInTime().getMonthValue() +
-                                    "." + selectedProfile.getLastLogInTime().getYear());
+                " " + selectedProfile.getLastLogInTime().getDayOfMonth() + "." + selectedProfile.getLastLogInTime().getMonthValue() +
+                "." + selectedProfile.getLastLogInTime().getYear());
         if (!isSignedInUser()) {
             if (isFavorited()) {
                 favouriteUser.setText("Remove favorite");
@@ -268,6 +273,7 @@ public class ProfileController {
 
     /**
      * method to check if the user is the same as the user logged into the system currently
+     *
      * @return the name of the currently logged on user
      */
     private boolean isSignedInUser() {
@@ -276,7 +282,8 @@ public class ProfileController {
 
     /**
      * Helper method to replace chars until images
-     * @param input     takes the image path
+     *
+     * @param input takes the image path
      * @return a new image path with replaced "\\\\" to "/"
      */
     private String ourString(String input) {
@@ -286,6 +293,7 @@ public class ProfileController {
 
     /**
      * method to get all the users' favourite users
+     *
      * @return the users' favourite users
      */
     private ArrayList<Profile> populateFavoriteUsers() {
@@ -340,9 +348,9 @@ public class ProfileController {
                     e.printStackTrace();
                 }
             });
-            currentlySellingAuctionsGridPane.add(auctionImage,AUCTIONS_IMAGE_COLUMN,row);
-            currentlySellingAuctionsGridPane.add(auctionLink,AUCTIONS_SELLING_COLUMN,row);
-            currentlySellingAuctionsGridPane.add(auctionPrice,AUCTIONS_PRICE_COLUMN,row);
+            currentlySellingAuctionsGridPane.add(auctionImage, AUCTIONS_IMAGE_COLUMN, row);
+            currentlySellingAuctionsGridPane.add(auctionLink, AUCTIONS_SELLING_COLUMN, row);
+            currentlySellingAuctionsGridPane.add(auctionPrice, AUCTIONS_PRICE_COLUMN, row);
             row++;
         }
     }

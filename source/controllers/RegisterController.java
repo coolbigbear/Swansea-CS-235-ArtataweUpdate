@@ -15,9 +15,10 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 /**
  * The Controller for the Register layout, this is in charge of <code>layouts.register_layout.fxml</code>.
- *
+ * <p>
  * This is the Controller and Layout pair in charge of the register page.
  *
  * @author ***REMOVED*** ***REMOVED***
@@ -27,53 +28,65 @@ import java.util.regex.Pattern;
 public class RegisterController implements Initializable {
 
     /**
-     *  Error label.
+     * Error label.
      */
-    @FXML Label errorLabel;
+    @FXML
+    Label errorLabel;
     /**
      * The Username.
      */
-    @FXML TextField username;
+    @FXML
+    TextField username;
     /**
      * The First name.
      */
-    @FXML TextField firstName;
+    @FXML
+    TextField firstName;
     /**
      * The Last name.
      */
-    @FXML TextField lastName;
+    @FXML
+    TextField lastName;
     /**
      * The Contact number.
      */
-    @FXML TextField contactNumber;
+    @FXML
+    TextField contactNumber;
     /**
      * Address line one.
      */
-    @FXML TextField addressLineOne;
+    @FXML
+    TextField addressLineOne;
     /**
      * Address line two.
      */
-    @FXML TextField addressLineTwo;
+    @FXML
+    TextField addressLineTwo;
     /**
      * City.
      */
-    @FXML TextField city;
+    @FXML
+    TextField city;
     /**
      * Country.
      */
-    @FXML TextField country;
+    @FXML
+    TextField country;
     /**
      * Post code.
      */
-    @FXML TextField postCode;
+    @FXML
+    TextField postCode;
     /**
      * Back button.
      */
-    @FXML Button backButton;
+    @FXML
+    Button backButton;
     /**
      * Register button.
      */
-    @FXML Button registerButton;
+    @FXML
+    Button registerButton;
 
     /**
      * Variables pulled from text fields.
@@ -91,8 +104,9 @@ public class RegisterController implements Initializable {
     private boolean choseImg = false;
 
     /**
-     *  Method that gets the register view
-     * @param location location of the page
+     * Method that gets the register view
+     *
+     * @param location  location of the page
      * @param resources actual resource used
      */
     @Override
@@ -103,10 +117,10 @@ public class RegisterController implements Initializable {
         registerButton.setOnAction(e -> {
 
             //If all values entered correctly
-            if(getTextFieldValues()) {
+            if (getTextFieldValues()) {
 
                 //If user chose an image (required)
-                if(choseImg) {
+                if (choseImg) {
                     if (validCharacterInput(usernamePulled)) {
                         if (!Util.checkAndSetUser(usernamePulled)) {
                             Profile temp = Profile.createNewProfile(usernamePulled, firstNamePulled, lastNamePulled, contactNumberPulled,
@@ -163,6 +177,7 @@ public class RegisterController implements Initializable {
 
     /**
      * Method to change the default image
+     *
      * @param defImagePath changes the image
      */
     private void changeDefaultImage(String defImagePath) {
@@ -175,7 +190,7 @@ public class RegisterController implements Initializable {
      */
     @FXML
     private void backAction() {
-            HomeController temp = new HomeController();
+        HomeController temp = new HomeController();
         try {
             temp.logoutMenuItemAction();
         } catch (IOException e) {
@@ -185,9 +200,10 @@ public class RegisterController implements Initializable {
 
     /**
      * Method that gets the text field values if they are correct
+     *
      * @returntrue if values are correct, false if values are incorrect
      */
-    private boolean getTextFieldValues(){
+    private boolean getTextFieldValues() {
         try {
             usernamePulled = username.getText();
             firstNamePulled = firstName.getText();
@@ -236,6 +252,7 @@ public class RegisterController implements Initializable {
 
     /**
      * Method that helps to check if there are characters which re not alphanumerical.
+     *
      * @param input
      * @return if characters are correct to the rule
      */

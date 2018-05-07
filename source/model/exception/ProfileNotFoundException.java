@@ -9,14 +9,14 @@ package model.exception;
  * @see IllegalArgumentException
  */
 public class ProfileNotFoundException extends IllegalArgumentException {
-	
-	/**
-	 * Constructs a ProfileNotFoundException with the passed in message
-	 *
-	 * @param message the message to be shown on the stacktrace
-	 */
-	public ProfileNotFoundException(String message) {
-		super(message);
-	}
-	
+
+    /**
+     * Constructs a ProfileNotFoundException with the passed in message
+     *
+     * @param message the message to be shown on the stacktrace
+     */
+    public ProfileNotFoundException(String message) {
+        super(message);
+    }
+
 }

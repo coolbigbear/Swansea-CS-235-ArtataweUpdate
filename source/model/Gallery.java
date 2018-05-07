@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 /**
  * A Gallery is a collection of Auctions that the user can add Auctions to and view Auctions from.
- *
+ * <p>
  * A User can have any number of Galleries, each of which can contain any number of Auctions which can be
  * both ongoing or finished.
- *
+ * <p>
  * Note that a Gallery cannot have duplicate Auctions.
  *
  * @author ***REMOVED*** ***REMOVED***
