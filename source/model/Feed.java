@@ -242,7 +242,7 @@ public final class Feed implements Iterable<Auction> {
      * @return the new Feed instance
      */
     public Feed updateWith(Collection<Auction> auctions) {
-        Auction[] converted = (Auction[]) auctions.toArray();
+        Auction[] converted = auctions.toArray(new Auction[0]);
         return newInstanceClearOtherwise(converted);
     }
 
@@ -281,7 +281,7 @@ public final class Feed implements Iterable<Auction> {
      * @return the new Feed instance
      */
     public Feed updateWithCapacity(int capacity, Collection<Auction> auctions) {
-        Auction[] converted = (Auction[]) auctions.toArray();
+        Auction[] converted = auctions.toArray(new Auction[0]);
         return updateWithCapacityCall(capacity, converted);
     }
 
