@@ -1,15 +1,11 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import model.Profile;
 import model.Util;
 
@@ -175,22 +171,13 @@ public class RegisterController implements Initializable {
     }
 
     /**
-     * Method that loads the login view
+     * Method that calls the logout method in HomeController and loads the login view.
      */
     @FXML
     private void backAction() {
+            HomeController temp = new HomeController();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/layouts/login_layout.fxml"));
-            Scene login = new Scene(root);
-            Stage stage = Util.getMainStage();
-            stage.setScene(login);
-            root.getStylesheets().add(Main.class.getResource("/css/login.css").toExternalForm());
-            stage.setMinHeight(519);
-            stage.setMinWidth(656);
-            stage.setHeight(519);
-            stage.setWidth(656);
-            stage.setResizable(false);
-            stage.show();
+            temp.logoutMenuItemAction();
         } catch (IOException e) {
             e.printStackTrace();
         }

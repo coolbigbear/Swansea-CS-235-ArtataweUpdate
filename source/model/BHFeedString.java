@@ -105,17 +105,15 @@ public final class BHFeedString implements Iterable<String> {
 	}
 	
 	public BHFeedString updateWith(Collection<String> strings) {
-		if (instance == null) {
-			instance = new BHFeedString(DEFAULT_CAPACITY);
-			instance.addAll(strings);
-		} else {
-			instance.clear();
-			instance.addAll(strings);
-		}
-		return instance;
+		String[] stringsConvertedToArray = (String[]) strings.toArray();
+		return newInstanceClearOtherwise(stringsConvertedToArray);
 	}
 
 	public BHFeedString updateWith(String... strings) {
+		return newInstanceClearOtherwise(strings);
+	}
+
+	private BHFeedString newInstanceClearOtherwise(String[] strings) {
 		if (instance == null) {
 			instance = new BHFeedString(DEFAULT_CAPACITY);
 			instance.addAll(strings);
@@ -127,17 +125,15 @@ public final class BHFeedString implements Iterable<String> {
 	}
 	
 	public BHFeedString updateWithCapacity(int capacity, Collection<String> strings) {
-		if (instance == null) {
-			instance = new BHFeedString(capacity);
-			instance.addAll(strings);
-		} else {
-			instance = new BHFeedString(capacity);
-			instance.addAll(strings);
-		}
-		return instance;
+		String[] convertedToArray = (String[]) strings.toArray();
+		return updateWithCapacity(capacity,convertedToArray);
 	}
 	
 	public BHFeedString updateWithCapacity(int capacity, String... strings) {
+		return updateWithCapacity(capacity,strings);
+	}
+
+	private BHFeedString updateWithCapacityCall(int capacity, String[] strings) {
 		if (instance == null) {
 			instance = new BHFeedString(capacity);
 			instance.addAll(strings);

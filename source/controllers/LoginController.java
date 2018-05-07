@@ -37,6 +37,8 @@ public class LoginController implements Initializable {
     @FXML
     private TextField loginTextField;
     @FXML
+    private TextField loginTextFieldPassword;
+    @FXML
     private Label loginUserPrompt;
     @FXML
     private ImageView loginImages;

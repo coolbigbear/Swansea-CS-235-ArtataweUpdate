@@ -1,6 +1,5 @@
 package controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,7 +15,6 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -296,16 +294,15 @@ public class HomeController implements Initializable {
 
     /**
      * Method to load the logout menu once clicked logout
-     * @param e event of the button
      * @throws IOException
      */
 	@FXML
-	public void logoutMenuItemAction(ActionEvent e) throws IOException {
+	public void logoutMenuItemAction() throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/layouts/login_layout.fxml"));
 		Scene login = new Scene(root);
 		Stage stage = Util.getMainStage();
 		stage.setScene(login);
-		root.getStylesheets().add(Main.class.getResource("/css/login.css").toExternalForm());
+		//root.getStylesheets().add(Main.class.getResource("/css/login.css").toExternalForm());
 		stage.setMinHeight(519);
 		stage.setMinWidth(656);
 		stage.setHeight(519);
