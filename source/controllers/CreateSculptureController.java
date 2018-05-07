@@ -1,13 +1,11 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import model.*;
@@ -176,10 +174,9 @@ public class CreateSculptureController implements Initializable {
 					Util.saveProfileToFile(Util.getCurrentUser());
 					
 					//Load the homepage back up
+					LoginController temp = new LoginController();
 					try {
-						BorderPane feedLayout = FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
-						feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
-						Util.getHomeLayout().setCenter(feedLayout);
+						temp.successfulLogin(e);
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}

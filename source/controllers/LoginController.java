@@ -63,6 +63,7 @@ public class LoginController implements Initializable {
     @FXML
     private void loginButtonAction(ActionEvent e) throws IOException, InterruptedException {
         if (validate(loginTextField.getText())) {
+            stopImageThread();
             successfulLogin(e);
         }
     }
@@ -86,14 +87,16 @@ public class LoginController implements Initializable {
         stage.show();
     }
 
+    private void stopImageThread() {
+        cycleImageThread.interrupt();
+    }
+
     /**
      * Method to go to the main program (home layout)
      * @param e Button event
      * @throws IOException
      */
-    private void successfulLogin(ActionEvent e) throws IOException {
-        cycleImageThread.interrupt();
-        loginUserPrompt.setText("Welcome to Artatawe" + ", " + Util.getCurrentUser().getFirstName() + "!");
+    public void successfulLogin(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/home_layout.fxml"));
         root.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         Scene homeScene = new Scene(root);
