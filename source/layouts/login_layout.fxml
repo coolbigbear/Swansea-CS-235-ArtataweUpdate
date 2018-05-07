@@ -9,17 +9,19 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <children>
-        <TextField fx:id="loginTextField" alignment="CENTER" layoutX="386.0" layoutY="201.0" onAction="#loginButtonAction" prefHeight="31.0" prefWidth="230.0" />
-        <Button layoutX="444.0" layoutY="258.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="44.0" prefWidth="115.0" text="Login" />
-        <Button layoutX="466.0" layoutY="392.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
+      <ImageView fx:id="loginImages" fitHeight="240.0" fitWidth="347.0" layoutX="26.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
         <ImageView fitHeight="109.0" fitWidth="257.0" layoutX="369.0" layoutY="51.0" pickOnBounds="true">
             <image>
                 <Image url="@../images/misc/logoHome.png" />
             </image>
         </ImageView>
-      <ImageView fx:id="loginImages" fitHeight="240.0" fitWidth="347.0" layoutX="26.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
-        <Label fx:id="loginUserPrompt" alignment="CENTER" layoutX="373.0" layoutY="225.0" prefHeight="33.0" prefWidth="257.0" textAlignment="CENTER" textFill="RED" />
-      <Label layoutX="429.0" layoutY="369.0" text="Not a member? Click here" />
-      <Label layoutX="473.0" layoutY="184.0" text="Username:" />
+        <Label fx:id="loginUserPrompt" alignment="CENTER" layoutX="373.0" layoutY="160.0" prefHeight="33.0" prefWidth="257.0" textAlignment="CENTER" textFill="RED" />
+      <Label layoutX="473.0" layoutY="193.0" text="Username:" />
+        <TextField fx:id="loginTextField" alignment="CENTER" layoutX="387.0" layoutY="209.0" onAction="#loginButtonAction" prefHeight="31.0" prefWidth="230.0" />
+      <Label layoutX="473.0" layoutY="240.0" text="Password:" />
+      <TextField fx:id="loginTextFieldPassword" alignment="CENTER" layoutX="387.0" layoutY="257.0" prefHeight="31.0" prefWidth="230.0" />
+        <Button layoutX="446.0" layoutY="295.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="44.0" prefWidth="115.0" text="Login" />
+      <Label layoutX="434.0" layoutY="359.0" text="Not a member? Click here" />
+        <Button layoutX="473.0" layoutY="383.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
     </children>
 </AnchorPane>

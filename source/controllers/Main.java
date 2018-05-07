@@ -14,9 +14,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		Util.setMainStage(primaryStage);
 		Parent root = FXMLLoader.load(getClass().getResource("/layouts/login_layout.fxml"));
-		primaryStage.setTitle("Artatawe v2.0");
+		primaryStage.setTitle("Artatawe v3.0");
 		primaryStage.setScene(new Scene(root));
-		root.getStylesheets().add(Main.class.getResource("/css/login.css").toExternalForm());
+		//root.getStylesheets().add(Main.class.getResource("/css/login.css").toExternalForm());
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		Util.setMainStage(primaryStage);
