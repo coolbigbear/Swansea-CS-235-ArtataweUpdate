@@ -1,7 +1,6 @@
 package model;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import controllers.Main;
 import controllers.ProfileController;
 import javafx.fxml.FXMLLoader;
@@ -61,6 +60,21 @@ public final class Util {
             e.printStackTrace();
         }
         return profiles;
+    }
+
+    private static JsonArray readInHashFile() {
+        JsonParser parser = new JsonParser();
+        JsonArray hashes = new JsonArray();
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("JSON Files/Passwords.json"));
+            JsonArray obj = (JsonArray) parser.parse(br);
+            hashes = obj;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return hashes;
     }
 
     /**
@@ -291,6 +305,25 @@ public final class Util {
             if (auction.getArtwork().type == ArtworkType.Painting && !auction.isCompleted()) {
                 feed.add(auction);
             }
+        }
+    }
+
+    public static void saveNewHashToFile(String user, String hash) {
+        JsonArray exisitingHashes = readInHashFile();
+        JsonObject newHash = new JsonObject();
+        newHash.addProperty("username",user);
+        newHash.addProperty("hash",hash);
+        exisitingHashes.add(newHash);
+        updateHashFile(exisitingHashes);
+    }
+
+    private static void updateHashFile(JsonArray exisitingHashes) {
+        try {
+            FileWriter fileWriter = new FileWriter("JSON Files/Passwords.json");
+            gson.toJson(exisitingHashes, fileWriter);
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

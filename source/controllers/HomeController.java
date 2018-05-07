@@ -302,8 +302,8 @@ public class HomeController implements Initializable {
      * @throws IOException
      */
     @FXML
-    public void logoutMenuItemAction() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/layouts/login_layout.fxml"));
+    public static void logoutMenuItemAction() throws IOException {
+        Parent root = FXMLLoader.load(HomeController.class.getResource("/layouts/login_layout.fxml"));
         Scene login = new Scene(root);
         Stage stage = Util.getMainStage();
         stage.setScene(login);

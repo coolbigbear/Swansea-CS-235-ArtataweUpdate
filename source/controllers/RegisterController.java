@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import model.BCrypt;
 import model.Profile;
 import model.Util;
 
@@ -27,64 +28,30 @@ import java.util.regex.Pattern;
  */
 public class RegisterController implements Initializable {
 
-    /**
-     * Error label.
-     */
     @FXML
     Label errorLabel;
-    /**
-     * The Username.
-     */
     @FXML
     TextField username;
-    /**
-     * The First name.
-     */
+    @FXML
+    TextField password;
     @FXML
     TextField firstName;
-    /**
-     * The Last name.
-     */
     @FXML
     TextField lastName;
-    /**
-     * The Contact number.
-     */
     @FXML
     TextField contactNumber;
-    /**
-     * Address line one.
-     */
     @FXML
     TextField addressLineOne;
-    /**
-     * Address line two.
-     */
     @FXML
     TextField addressLineTwo;
-    /**
-     * City.
-     */
     @FXML
     TextField city;
-    /**
-     * Country.
-     */
     @FXML
     TextField country;
-    /**
-     * Post code.
-     */
     @FXML
     TextField postCode;
-    /**
-     * Back button.
-     */
     @FXML
     Button backButton;
-    /**
-     * Register button.
-     */
     @FXML
     Button registerButton;
 
@@ -92,6 +59,7 @@ public class RegisterController implements Initializable {
      * Variables pulled from text fields.
      */
     private String usernamePulled;
+    private String passwordPulled;
     private String firstNamePulled;
     private String lastNamePulled;
     private String addressLineOnePulled;
@@ -121,11 +89,13 @@ public class RegisterController implements Initializable {
 
                 //If user chose an image (required)
                 if (choseImg) {
-                    if (validCharacterInput(usernamePulled)) {
+                    if (validCharacterInput(usernamePulled) && validCharacterInput(passwordPulled)) {
                         if (!Util.checkAndSetUser(usernamePulled)) {
                             Profile temp = Profile.createNewProfile(usernamePulled, firstNamePulled, lastNamePulled, contactNumberPulled,
                                     addressLineOnePulled, addressLineTwoPulled, cityPulled, countryPulled, postCodePulled, profileImagePath);
                             Util.saveNewProfileToFile(temp);
+                            String hashed = BCrypt.hashpw(passwordPulled,BCrypt.gensalt());
+                            Util.saveNewHashToFile(usernamePulled,hashed);
                             backAction();
                         } else {
                             errorLabel.setVisible(true);
@@ -190,9 +160,8 @@ public class RegisterController implements Initializable {
      */
     @FXML
     private void backAction() {
-        HomeController temp = new HomeController();
         try {
-            temp.logoutMenuItemAction();
+            HomeController.logoutMenuItemAction();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -204,17 +173,25 @@ public class RegisterController implements Initializable {
      * @returntrue if values are correct, false if values are incorrect
      */
     private boolean getTextFieldValues() {
-        try {
-            usernamePulled = username.getText();
-            firstNamePulled = firstName.getText();
-            lastNamePulled = lastName.getText();
-            addressLineOnePulled = addressLineOne.getText();
-            addressLineTwoPulled = addressLineTwo.getText();
-            postCodePulled = postCode.getText();
-            cityPulled = city.getText();
-            countryPulled = country.getText();
-            contactNumberPulled = contactNumber.getText();
 
+        usernamePulled = username.getText();
+        passwordPulled = password.getText();
+        firstNamePulled = firstName.getText();
+        lastNamePulled = lastName.getText();
+        addressLineOnePulled = addressLineOne.getText();
+        addressLineTwoPulled = addressLineTwo.getText();
+        postCodePulled = postCode.getText();
+        cityPulled = city.getText();
+        countryPulled = country.getText();
+        contactNumberPulled = contactNumber.getText();
+
+        try {
+            if (usernamePulled == null || Objects.equals(usernamePulled,"")) {
+                throw new IllegalArgumentException();
+            }
+            if (passwordPulled == null || Objects.equals(passwordPulled, "")) {
+                throw new IllegalArgumentException();
+            }
             if (firstNamePulled == null || Objects.equals(firstNamePulled, "")) {
                 throw new IllegalArgumentException();
             }
