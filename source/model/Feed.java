@@ -247,14 +247,8 @@ public final class Feed implements Iterable<Auction> {
 	 * @return the new Feed instance
 	 */
 	public Feed updateWith(Collection<Auction> auctions) {
-		if (instance == null) {
-			instance = new Feed(DEFAULT_CAPACITY);
-			instance.addAll(auctions);
-		} else {
-			instance.clear();
-			instance.addAll(auctions);
-		}
-		return instance;
+		Auction[] converted = (Auction[]) auctions.toArray();
+		return newInstanceClearOtherwise(converted);
 	}
 	
 	/**
@@ -267,12 +261,16 @@ public final class Feed implements Iterable<Auction> {
 	 * @return the new Feed instance
 	 */
 	public Feed updateWith(Auction... auctions) {
+		return newInstanceClearOtherwise(auctions);
+	}
+
+	private Feed newInstanceClearOtherwise(Auction[] strings) {
 		if (instance == null) {
 			instance = new Feed(DEFAULT_CAPACITY);
-			instance.addAll(auctions);
+			instance.addAll(strings);
 		} else {
 			instance.clear();
-			instance.addAll(auctions);
+			instance.addAll(strings);
 		}
 		return instance;
 	}
@@ -290,14 +288,8 @@ public final class Feed implements Iterable<Auction> {
 	 * @return the new Feed instance
 	 */
 	public Feed updateWithCapacity(int capacity, Collection<Auction> auctions) {
-		if (instance == null) {
-			instance = new Feed(capacity);
-			instance.addAll(auctions);
-		} else {
-			instance = new Feed(capacity);
-			instance.addAll(auctions);
-		}
-		return instance;
+		Auction[] converted = (Auction[]) auctions.toArray();
+		return updateWithCapacityCall(capacity,converted);
 	}
 	
 	/**
@@ -313,12 +305,16 @@ public final class Feed implements Iterable<Auction> {
 	 * @return the new Feed instance
 	 */
 	public Feed updateWithCapacity(int capacity, Auction... auctions) {
+		return updateWithCapacityCall(capacity,auctions);
+	}
+
+	private Feed updateWithCapacityCall(int capacity, Auction[] strings) {
 		if (instance == null) {
 			instance = new Feed(capacity);
-			instance.addAll(auctions);
+			instance.addAll(strings);
 		} else {
 			instance = new Feed(capacity);
-			instance.addAll(auctions);
+			instance.addAll(strings);
 		}
 		return instance;
 	}

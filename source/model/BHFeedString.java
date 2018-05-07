@@ -126,11 +126,11 @@ public final class BHFeedString implements Iterable<String> {
 	
 	public BHFeedString updateWithCapacity(int capacity, Collection<String> strings) {
 		String[] convertedToArray = (String[]) strings.toArray();
-		return updateWithCapacity(capacity,convertedToArray);
+		return updateWithCapacityCall(capacity,convertedToArray);
 	}
 	
 	public BHFeedString updateWithCapacity(int capacity, String... strings) {
-		return updateWithCapacity(capacity,strings);
+		return updateWithCapacityCall(capacity,strings);
 	}
 
 	private BHFeedString updateWithCapacityCall(int capacity, String[] strings) {
