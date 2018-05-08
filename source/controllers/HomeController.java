@@ -302,12 +302,11 @@ public class HomeController implements Initializable {
      * @throws IOException
      */
     @FXML
-    public static void logoutMenuItemAction() throws IOException {
-        Parent root = FXMLLoader.load(HomeController.class.getResource("/layouts/login_layout.fxml"));
+    public void logoutMenuItemAction() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/layouts/login_layout.fxml"));
         Scene login = new Scene(root);
         Stage stage = Util.getMainStage();
         stage.setScene(login);
-        //root.getStylesheets().add(Main.class.getResource("/css/login.css").toExternalForm());
         stage.setMinHeight(519);
         stage.setMinWidth(656);
         stage.setHeight(519);

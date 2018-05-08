@@ -1,6 +1,131 @@
 [
   {
     "artwork": {
+      "typeGSON": "Painting",
+      "width": 50,
+      "height": 80,
+      "title": "Bird on the River",
+      "description": "Beautiful blue bird on the river with a flower",
+      "creationDate": "1997",
+      "creatorName": "Adam Saleh",
+      "mainImagePath": "images/auctions/paintings/painting8.png",
+      "type": "Painting"
+    },
+    "sellerName": "bassam",
+    "auctionID": 73,
+    "bidList": [
+      {
+        "auctionID": 73,
+        "bidAmount": 222.0,
+        "bidder": "ivanov",
+        "dateTimePlaced": {
+          "date": {
+            "year": 2018,
+            "month": 3,
+            "day": 17
+          },
+          "time": {
+            "hour": 14,
+            "minute": 15,
+            "second": 38,
+            "nano": 80000000
+          }
+        }
+      }
+    ],
+    "reservePrice": 200.0,
+    "bidsAllowed": 5,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 0,
+        "second": 24,
+        "nano": 978000000
+      }
+    },
+    "bidsLeft": 4,
+    "highestBidder": "ivanov",
+    "isCompleted": false,
+    "highestPrice": 222.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Sculpture",
+      "width": 60,
+      "height": 100,
+      "depth": 60,
+      "mainMaterial": "Marble",
+      "additionalImagesPaths": [],
+      "title": "Baby with ancient guitar",
+      "description": "Ancient sculpture of baby with ancient guitar",
+      "creationDate": "2000 BC",
+      "creatorName": "Platotius ",
+      "mainImagePath": "images/auctions/sculptures/sculpture1.png",
+      "type": "Sculpture"
+    },
+    "sellerName": "bassam",
+    "auctionID": 74,
+    "bidList": [],
+    "reservePrice": 4000.0,
+    "bidsAllowed": 1,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 1,
+        "second": 53,
+        "nano": 374000000
+      }
+    },
+    "bidsLeft": 1,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Painting",
+      "width": 60,
+      "height": 120,
+      "title": "Green hatty",
+      "description": "Modern art of a woman with a green hat wearing red lipstick, she\u0027s really pale.",
+      "creationDate": "2006",
+      "creatorName": "Alexis Sevchenko",
+      "mainImagePath": "images/auctions/paintings/painting5.png",
+      "type": "Painting"
+    },
+    "sellerName": "yousef",
+    "auctionID": 75,
+    "bidList": [],
+    "reservePrice": 500.0,
+    "bidsAllowed": 4,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 3,
+        "second": 42,
+        "nano": 214000000
+      }
+    },
+    "bidsLeft": 4,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
       "typeGSON": "Sculpture",
       "width": 60,
       "height": 400,
@@ -33,6 +158,148 @@
       }
     },
     "bidsLeft": 3,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Painting",
+      "width": 50,
+      "height": 60,
+      "title": "Jurassic Valley",
+      "description": "Painting of pre-historic valley of mountains where dinosaurs lived.",
+      "creationDate": "1986",
+      "creatorName": "Roger Khalifa",
+      "mainImagePath": "images/auctions/paintings/painting3.png",
+      "type": "Painting"
+    },
+    "sellerName": "nada",
+    "auctionID": 77,
+    "bidList": [],
+    "reservePrice": 300.0,
+    "bidsAllowed": 1,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 6,
+        "second": 19,
+        "nano": 588000000
+      }
+    },
+    "bidsLeft": 1,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Painting",
+      "width": 50,
+      "height": 20,
+      "title": "Leaves of Autumn",
+      "description": "Autumn trees painting drawn by the famous painter Fredrik van de Wall.",
+      "creationDate": "1942",
+      "creatorName": "Fredrik van de Wall",
+      "mainImagePath": "images/auctions/paintings/painting11.png",
+      "type": "Painting"
+    },
+    "sellerName": "nada",
+    "auctionID": 78,
+    "bidList": [],
+    "reservePrice": 6000.0,
+    "bidsAllowed": 3,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 7,
+        "second": 40,
+        "nano": 203000000
+      }
+    },
+    "bidsLeft": 3,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Sculpture",
+      "width": 300,
+      "height": 200,
+      "depth": 30,
+      "mainMaterial": "Bronze",
+      "additionalImagesPaths": [
+        "images/auctions/sculptures/sculpture8-2.png",
+        "images/auctions/sculptures/sculpture8-4.png"
+      ],
+      "title": "Nun",
+      "description": "This is a nun with magical powers.",
+      "creationDate": "12th century",
+      "creatorName": "Unknown",
+      "mainImagePath": "images/auctions/sculptures/sculpture8-1.png",
+      "type": "Sculpture"
+    },
+    "sellerName": "ivanov",
+    "auctionID": 79,
+    "bidList": [],
+    "reservePrice": 1000.0,
+    "bidsAllowed": 3,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 19,
+        "second": 10,
+        "nano": 304000000
+      }
+    },
+    "bidsLeft": 3,
+    "isCompleted": false,
+    "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Painting",
+      "width": 40,
+      "height": 40,
+      "title": "Genuine Mona Lisa",
+      "description": "The real deal.",
+      "creationDate": "1995",
+      "creatorName": "Leo DiCaprio",
+      "mainImagePath": "images/auctions/paintings/painting4.PNG",
+      "type": "Painting"
+    },
+    "sellerName": "ivanov",
+    "auctionID": 80,
+    "bidList": [],
+    "reservePrice": 3000.0,
+    "bidsAllowed": 2,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 3,
+        "day": 17
+      },
+      "time": {
+        "hour": 14,
+        "minute": 21,
+        "second": 48,
+        "nano": 85000000
+      }
+    },
+    "bidsLeft": 2,
     "isCompleted": false,
     "highestPrice": 0.0
   },
@@ -174,77 +441,6 @@
       }
     },
     "bidsLeft": 2,
-    "isCompleted": false,
-    "highestPrice": 0.0
-  },
-  {
-    "artwork": {
-      "typeGSON": "Painting",
-      "width": 5,
-      "height": 5,
-      "title": "test",
-      "description": "test",
-      "creationDate": "45",
-      "creatorName": "t",
-      "mainImagePath": "images/auctions/paintings/painting10.png",
-      "type": "Painting"
-    },
-    "sellerName": "mariika",
-    "auctionID": 86,
-    "bidList": [],
-    "reservePrice": 40.0,
-    "bidsAllowed": 1,
-    "dateTimePlaced": {
-      "date": {
-        "year": 2018,
-        "month": 3,
-        "day": 18
-      },
-      "time": {
-        "hour": 18,
-        "minute": 9,
-        "second": 47,
-        "nano": 336000000
-      }
-    },
-    "bidsLeft": 1,
-    "isCompleted": false,
-    "highestPrice": 0.0
-  },
-  {
-    "artwork": {
-      "typeGSON": "Sculpture",
-      "width": 8,
-      "height": 8,
-      "depth": 8,
-      "mainMaterial": "8",
-      "additionalImagesPaths": [],
-      "title": "nknk",
-      "description": "nkn\t",
-      "creationDate": "nkn",
-      "creatorName": "nkn",
-      "mainImagePath": "images/auctions/sculptures/sculpture9-1.png",
-      "type": "Sculpture"
-    },
-    "sellerName": "bassam",
-    "auctionID": 91,
-    "bidList": [],
-    "reservePrice": 88.0,
-    "bidsAllowed": 8,
-    "dateTimePlaced": {
-      "date": {
-        "year": 2018,
-        "month": 5,
-        "day": 7
-      },
-      "time": {
-        "hour": 14,
-        "minute": 21,
-        "second": 45,
-        "nano": 909000000
-      }
-    },
-    "bidsLeft": 8,
     "isCompleted": false,
     "highestPrice": 0.0
   }

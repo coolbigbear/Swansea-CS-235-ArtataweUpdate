@@ -161,7 +161,8 @@ public class RegisterController implements Initializable {
     @FXML
     private void backAction() {
         try {
-            HomeController.logoutMenuItemAction();
+            HomeController temp = new HomeController();
+            temp.logoutMenuItemAction();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -46,6 +46,11 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                     </GridPane.margin>
                 </TextField>
+                <TextField fx:id="password" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                    </GridPane.margin>
+                </TextField>
                 <TextField fx:id="firstName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" promptText="First Name" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -131,11 +136,6 @@
                 </MenuButton>
                 <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backAction" prefHeight="31.0" prefWidth="80.0" text="Go Back" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                 <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="80.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                <TextField fx:id="password" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <GridPane.margin>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                    </GridPane.margin>
-                </TextField>
                 <Label fx:id="errorLabel" contentDisplay="CENTER" text="All fields are mandatory" textAlignment="CENTER" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

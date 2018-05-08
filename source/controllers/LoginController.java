@@ -14,14 +14,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.BCrypt;
 import model.Util;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * The Controller for the Login layout, this is in charge of <code>layouts.login_layout.fxml</code>.
@@ -62,8 +61,8 @@ public class LoginController implements Initializable {
      * @throws InterruptedException
      */
     @FXML
-    private void loginButtonAction(ActionEvent e) throws IOException, InterruptedException {
-        if (validate(loginTextField.getText())) {
+    private void loginButtonAction(ActionEvent e) throws IOException {
+        if (validate(loginTextField.getText()) && validatePassword(loginTextFieldPassword.getText())) {
             stopImageThread();
             successfulLogin(e);
         }
@@ -118,36 +117,30 @@ public class LoginController implements Initializable {
      * @return
      */
     private boolean validate(String input) {
-        if (!validCharacterInput(input)) {
-            loginUserPrompt.setText("   ");
-            loginUserPrompt.setText("Only alphanumerical values are allowed!");
+        if (!validLengthInput(input)) {
+            loginUserPrompt.setText("Username too long!");
             return false;
         } else {
-            if (!validLengthInput(input)) {
-                loginUserPrompt.setText(" ");
-                loginUserPrompt.setText("Username too long!");
+            if (!validUser(input)) {
+                loginUserPrompt.setText("User not found!");
                 return false;
             } else {
-                if (!validUser(input)) {
-                    loginUserPrompt.setText("User not found!");
-                    return false;
-                } else {
-                    return true;
-                }
+                return true;
             }
         }
     }
 
-    /**
-     * Helper method to check if there are characters which are not alphanumerical
-     *
-     * @param input String input to be checked
-     * @return true if it is valid, false if invalid
-     */
-    private boolean validCharacterInput(String input) {
-        Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(input);
-        return !matcher.find();
+    private boolean validatePassword(String password) {
+        String hash = Util.getHashByUsername(loginTextField.getText());
+        if (hash.equals("")) {
+            return true;
+        } else {
+            if (BCrypt.checkpw(password, hash)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     /**

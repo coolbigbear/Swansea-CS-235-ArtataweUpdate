@@ -327,6 +327,19 @@ public final class Util {
         }
     }
 
+    public static String getHashByUsername(String username) {
+        JsonArray existingHashes = readInHashFile();
+        String hash = "";
+        for (JsonElement i: existingHashes) {
+            JsonObject temp = i.getAsJsonObject();
+            if(username.equals(temp.get("username").getAsString())) {
+                hash = temp.get("hash").getAsString();
+                break;
+            }
+        }
+        return hash;
+    }
+
     /**
      * Takes in a new profile and saves it to file.
      *
@@ -884,6 +897,7 @@ public final class Util {
         }
         return result;
     }
+
 
     //-----------------------------------------------------------------------
 }
