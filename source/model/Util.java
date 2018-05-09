@@ -309,18 +309,31 @@ public final class Util {
     }
 
     public static void saveNewHashToFile(String user, String hash) {
-        JsonArray exisitingHashes = readInHashFile();
+        JsonArray existingHashes = readInHashFile();
         JsonObject newHash = new JsonObject();
-        newHash.addProperty("username",user);
-        newHash.addProperty("hash",hash);
-        exisitingHashes.add(newHash);
-        updateHashFile(exisitingHashes);
+        newHash.addProperty("username", user);
+        newHash.addProperty("hash", hash);
+        existingHashes.add(newHash);
+        updateHashFile(existingHashes);
     }
 
-    private static void updateHashFile(JsonArray exisitingHashes) {
+    public static void updatePasswordOfUser(String username, String hash) {
+        JsonArray existingHashes = readInHashFile();
+        for (JsonElement i : existingHashes) {
+            JsonObject temp = i.getAsJsonObject();
+            if (username.equals(temp.get("username").getAsString())) {
+                temp.remove("hash");
+                temp.addProperty("hash",hash);
+                break;
+            }
+        }
+        updateHashFile(existingHashes);
+    }
+
+    private static void updateHashFile(JsonArray existingHashes) {
         try {
             FileWriter fileWriter = new FileWriter("JSON Files/Passwords.json");
-            gson.toJson(exisitingHashes, fileWriter);
+            gson.toJson(existingHashes, fileWriter);
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -330,9 +343,9 @@ public final class Util {
     public static String getHashByUsername(String username) {
         JsonArray existingHashes = readInHashFile();
         String hash = "";
-        for (JsonElement i: existingHashes) {
+        for (JsonElement i : existingHashes) {
             JsonObject temp = i.getAsJsonObject();
-            if(username.equals(temp.get("username").getAsString())) {
+            if (username.equals(temp.get("username").getAsString())) {
                 hash = temp.get("hash").getAsString();
                 break;
             }

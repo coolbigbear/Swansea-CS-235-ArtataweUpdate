@@ -1,46 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<BorderPane fx:id="profileLayout" prefHeight="538" prefWidth="1023" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="profileLayout" prefHeight="538" prefWidth="1023" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
     <right>
         <VBox layoutY="39.0" prefHeight="538.0" prefWidth="185.0">
             <children>
                 <AnchorPane prefHeight="30.0" prefWidth="200.0">
                     <children>
-                        <Label alignment="CENTER" prefHeight="28.0" prefWidth="199.0" text="Currently Selling"
-                               AnchorPane.rightAnchor="0.0">
+                        <Label alignment="CENTER" prefHeight="28.0" prefWidth="199.0" text="Currently Selling" AnchorPane.rightAnchor="0.0">
                             <font>
-                                <Font name="System Bold" size="17.0"/>
+                                <Font name="System Bold" size="17.0" />
                             </font>
                         </Label>
                     </children>
                 </AnchorPane>
                 <AnchorPane>
                     <children>
-                        <ScrollPane fitToWidth="true" hbarPolicy="ALWAYS" prefHeight="508.0" prefWidth="200.0"
-                                    style="-fx-border-color: grey; -fx-background: #cfdff9;" vbarPolicy="ALWAYS"
-                                    AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                    AnchorPane.topAnchor="0.0">
+                        <ScrollPane fitToWidth="true" hbarPolicy="ALWAYS" prefHeight="508.0" prefWidth="200.0" style="-fx-border-color: grey; -fx-background: #cfdff9;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <content>
-                                <GridPane fx:id="currentlySellingAuctionsGridPane" prefHeight="505.0" prefWidth="178.0"
-                                          style="-fx-background-color: #cfdff9;" AnchorPane.bottomAnchor="0.0"
-                                          AnchorPane.rightAnchor="-1.0">
+                                <GridPane fx:id="currentlySellingAuctionsGridPane" prefHeight="505.0" prefWidth="178.0" style="-fx-background-color: #cfdff9;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
                                     </rowConstraints>
                                     <children>
-                                        <Label text="Title:" GridPane.columnIndex="1"/>
-                                        <Label text="Price:" GridPane.columnIndex="2"/>
+                                        <Label text="Title:" GridPane.columnIndex="1" />
+                                        <Label text="Price:" GridPane.columnIndex="2" />
                                     </children>
                                 </GridPane>
                             </content>
@@ -53,205 +58,200 @@
     <center>
         <AnchorPane prefHeight="538.0" prefWidth="841.0" BorderPane.alignment="CENTER">
             <children>
-                <VBox layoutX="31.0" layoutY="34.0" AnchorPane.topAnchor="34.0">
+                <VBox alignment="TOP_CENTER" layoutX="31.0" prefHeight="422.0" prefWidth="266.0">
                     <children>
-                        <ImageView fx:id="profileImg" fitHeight="207.0" fitWidth="266.0" layoutX="31.0" layoutY="34.0"
-                                   pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="profileImg" fitHeight="207.0" fitWidth="266.0" layoutX="31.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                             <VBox.margin>
-                                <Insets bottom="25.0"/>
+                                <Insets bottom="10.0" top="5.0" />
                             </VBox.margin>
                         </ImageView>
-                        <Button fx:id="chooseImage" layoutX="33.0" layoutY="207.0" mnemonicParsing="false"
-                                onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Browse Images">
+                        <Button fx:id="favouriteUser" layoutX="33.0" layoutY="231.0" mnemonicParsing="false" onAction="#setFavouriteUser" prefHeight="31.0" prefWidth="157.0" text="Add to favorites">
                             <VBox.margin>
-                                <Insets bottom="10.0" left="25.0"/>
+                                <Insets bottom="10.0" />
                             </VBox.margin>
                         </Button>
-                        <MenuButton fx:id="browseDefaultImage" alignment="CENTER_RIGHT" mnemonicParsing="false"
-                                    prefHeight="31.0" prefWidth="157.0" text="Browse Default">
+                        <Button fx:id="chooseImage" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="207.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseProfileImg" prefHeight="31.0" prefWidth="157.0" text="Browse Images" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Button>
+                        <MenuButton fx:id="browseDefaultImage" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" text="Browse Default" textAlignment="CENTER">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#setDefaultImage1" text="Image 1">
                                     <graphic>
-                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true"
-                                                   preserveRatio="true">
+                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/profile/male4.png"/>
+                                                <Image url="@../images/profile/male4.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
                                 </MenuItem>
                                 <MenuItem mnemonicParsing="false" onAction="#setDefaultImage2" text="Image 2">
                                     <graphic>
-                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true"
-                                                   preserveRatio="true">
+                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/profile/male3.png"/>
+                                                <Image url="@../images/profile/male3.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
                                 </MenuItem>
                                 <MenuItem mnemonicParsing="false" onAction="#setDefaultImage3" text="Image 3">
                                     <graphic>
-                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true"
-                                                   preserveRatio="true">
+                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/profile/female3.png"/>
+                                                <Image url="@../images/profile/female3.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
                                 </MenuItem>
                                 <MenuItem mnemonicParsing="false" onAction="#setDefaultImage4" text="Image 4">
                                     <graphic>
-                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true"
-                                                   preserveRatio="true">
+                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/profile/female5.png"/>
+                                                <Image url="@../images/profile/female5.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
                                 </MenuItem>
                             </items>
                             <VBox.margin>
-                                <Insets bottom="10.0" left="25.0"/>
+                                <Insets bottom="10.0" />
                             </VBox.margin>
                         </MenuButton>
-                        <Button fx:id="createCustom" layoutX="33.0" layoutY="257.0" mnemonicParsing="false"
-                                onAction="#createCustomImg" prefHeight="31.0" prefWidth="157.0" text="Create Image">
+                        <Button fx:id="createCustom" layoutX="33.0" layoutY="257.0" mnemonicParsing="false" onAction="#createCustomImg" prefHeight="31.0" prefWidth="157.0" text="Create Image">
                             <VBox.margin>
-                                <Insets bottom="10.0" left="25.0"/>
+                                <Insets bottom="10.0" />
                             </VBox.margin>
                         </Button>
-                        <Button fx:id="favouriteUser" layoutX="33.0" layoutY="231.0" mnemonicParsing="false"
-                                onAction="#setFavouriteUser" prefHeight="31.0" prefWidth="157.0"
-                                text="Add to favorites">
-                            <VBox.margin>
-                                <Insets bottom="25.0" left="25.0"/>
-                            </VBox.margin>
-                        </Button>
-                        <HBox>
-                            <children>
-                                <Label prefHeight="34.0" prefWidth="70.0" text="Username:"/>
-                                <Label fx:id="usernameLabelProfile" alignment="CENTER" layoutX="33.0" layoutY="308.0"
-                                       prefHeight="35.0" prefWidth="196.0" text="bigbear1"/>
-                            </children>
-                        </HBox>
-                        <HBox>
-                            <children>
-                                <Label text="Last login: "/>
-                                <Label fx:id="lastLogin" prefHeight="21.0" prefWidth="121.0" text="Label">
-                                    <HBox.margin>
-                                        <Insets left="69.0"/>
-                                    </HBox.margin>
-                                </Label>
-                            </children>
-                        </HBox>
+                  <Button fx:id="changePasswordButton" alignment="CENTER" mnemonicParsing="false" onAction="#changePassword" prefHeight="31.0" prefWidth="157.0" text="Change password" textAlignment="CENTER" />
                     </children>
-                </VBox> <!--"bigbear1" temp test method-->
-                <GridPane layoutX="255.0" layoutY="73.0" prefHeight="368.0" prefWidth="443.0"
-                          style="-fx-border-color: grey;" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="73.0">
+                </VBox>
+                <GridPane layoutX="297.0" layoutY="72.0" prefHeight="350.0" prefWidth="443.0" style="-fx-border-color: grey;" AnchorPane.leftAnchor="297.0" AnchorPane.topAnchor="72.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label fx:id="postCode" prefHeight="95.0" prefWidth="229.0" text="Label"
-                               GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Label fx:id="postCode" prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <GridPane.margin>
-                                <Insets left="5.0"/>
+                                <Insets left="5.0" />
                             </GridPane.margin>
                         </Label> <!--Post Code-->
-                        <Label alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="229.0" text="Last Name:"
-                               GridPane.rowIndex="1">
+                        <Label fx:id="lastNameLabel" alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="229.0" text="Last Name:" GridPane.rowIndex="3">
                             <GridPane.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </GridPane.margin>
                             <font>
-                                <Font name="System Bold" size="16.0"/>
+                                <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="229.0" text="Address:"
-                               GridPane.rowIndex="3">
+                        <Label fx:id="addressLabel" alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="229.0" text="Address:" GridPane.rowIndex="5">
                             <GridPane.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </GridPane.margin>
                             <font>
-                                <Font name="System Bold" size="16.0"/>
+                                <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
-                        <Label fx:id="contactNumber" prefHeight="95.0" prefWidth="229.0" text="Label"
-                               GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="contactNumber" prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <GridPane.margin>
-                                <Insets left="5.0"/>
+                                <Insets left="5.0" />
                             </GridPane.margin>
                         </Label> <!--Contact Number-->
-                        <Label alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="229.0" text="Contact Number:"
-                               GridPane.rowIndex="2">
+                        <Label fx:id="contactNumberLabel" alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="229.0" text="Contact Number:" GridPane.rowIndex="4">
                             <GridPane.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </GridPane.margin>
                             <font>
-                                <Font name="System Bold" size="16.0"/>
+                                <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
-                        <Label fx:id="lastName" prefHeight="95.0" prefWidth="229.0" text="Label"
-                               GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="lastName" prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <GridPane.margin>
-                                <Insets left="5.0"/>
+                                <Insets left="5.0" />
                             </GridPane.margin>
                         </Label> <!--Last Name-->
-                        <Label fx:id="firstName" prefHeight="95.0" prefWidth="229.0" text="Label"
-                               GridPane.columnIndex="1">
+                        <Label fx:id="firstName" prefHeight="95.0" prefWidth="229.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <GridPane.margin>
-                                <Insets left="5.0"/>
+                                <Insets left="5.0" />
                             </GridPane.margin>
                         </Label> <!--Address-->
-                        <Label alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="229.0" text="First Name:">
+                        <Label fx:id="firstNameLabel" alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="229.0" text="First Name:" GridPane.rowIndex="2">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <GridPane.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </GridPane.margin>
                             <font>
-                                <Font name="System Bold" size="16.0"/>
+                                <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="229.0" text="Post Code:"
-                               GridPane.rowIndex="4">
+                        <Label fx:id="postcodeLabel" alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="229.0" text="Post Code:" GridPane.rowIndex="6">
                             <GridPane.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </GridPane.margin>
                             <font>
-                                <Font name="System Bold" size="16.0"/>
+                                <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
-                        <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <GridPane alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints maxWidth="1.7976931348623157E308" percentWidth="0.0" prefWidth="215.0" />
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Label fx:id="addressLine1" text="Label"/>
-                                <Label fx:id="addressLine2" GridPane.rowIndex="1"/>
-                                <Label fx:id="city" text="Label" GridPane.rowIndex="2"/>
-                                <Label fx:id="country" text="Label" GridPane.rowIndex="3"/>
+                                <Label fx:id="addressLine1" text="Label" />
+                                <Label fx:id="addressLine2" GridPane.rowIndex="1" />
+                                <Label fx:id="city" text="Label" GridPane.rowIndex="2" />
+                                <Label fx:id="country" text="Label" GridPane.rowIndex="3" />
                             </children>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                         </GridPane>
+                          <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="34.0" prefWidth="312.0" text="Username:" textAlignment="RIGHT">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin></Label>
+                          <Label fx:id="usernameLabelProfile" prefHeight="35.0" prefWidth="196.0" text="bigbear1" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin></Label>
+                          <Label fx:id="lastLoginLabel" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="284.0" text="Last login: " textAlignment="RIGHT" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin></Label>
+                          <Label fx:id="lastLogin" prefHeight="21.0" prefWidth="121.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin></Label>
                     </children>
                 </GridPane>
             </children>

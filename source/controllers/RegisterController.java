@@ -91,12 +91,17 @@ public class RegisterController implements Initializable {
                 if (choseImg) {
                     if (validCharacterInput(usernamePulled) && validCharacterInput(passwordPulled)) {
                         if (!Util.checkAndSetUser(usernamePulled)) {
-                            Profile temp = Profile.createNewProfile(usernamePulled, firstNamePulled, lastNamePulled, contactNumberPulled,
-                                    addressLineOnePulled, addressLineTwoPulled, cityPulled, countryPulled, postCodePulled, profileImagePath);
-                            Util.saveNewProfileToFile(temp);
-                            String hashed = BCrypt.hashpw(passwordPulled,BCrypt.gensalt());
-                            Util.saveNewHashToFile(usernamePulled,hashed);
-                            backAction();
+                            if (passwordPulled.length() >= 8) {
+                                Profile temp = Profile.createNewProfile(usernamePulled, firstNamePulled, lastNamePulled, contactNumberPulled,
+                                        addressLineOnePulled, addressLineTwoPulled, cityPulled, countryPulled, postCodePulled, profileImagePath);
+                                Util.saveNewProfileToFile(temp);
+                                String hashed = BCrypt.hashpw(passwordPulled, BCrypt.gensalt());
+                                Util.saveNewHashToFile(usernamePulled, hashed);
+                                backAction();
+                            } else {
+                                errorLabel.setVisible(true);
+                                errorLabel.setText("Your password is too short!");
+                            }
                         } else {
                             errorLabel.setVisible(true);
                             errorLabel.setText("This username is already taken!");
@@ -187,7 +192,7 @@ public class RegisterController implements Initializable {
         contactNumberPulled = contactNumber.getText();
 
         try {
-            if (usernamePulled == null || Objects.equals(usernamePulled,"")) {
+            if (usernamePulled == null || Objects.equals(usernamePulled, "")) {
                 throw new IllegalArgumentException();
             }
             if (passwordPulled == null || Objects.equals(passwordPulled, "")) {

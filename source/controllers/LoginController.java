@@ -88,6 +88,11 @@ public class LoginController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    private void forgotPassword() {
+
+    }
+
     private void stopImageThread() {
         cycleImageThread.interrupt();
     }
@@ -122,7 +127,7 @@ public class LoginController implements Initializable {
             return false;
         } else {
             if (!validUser(input)) {
-                loginUserPrompt.setText("User not found!");
+                loginUserPrompt.setText("Username or password is incorrect");
                 return false;
             } else {
                 return true;
@@ -138,6 +143,7 @@ public class LoginController implements Initializable {
             if (BCrypt.checkpw(password, hash)) {
                 return true;
             } else {
+                loginUserPrompt.setText("Username or password is incorrect");
                 return false;
             }
         }

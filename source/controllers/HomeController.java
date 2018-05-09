@@ -91,7 +91,7 @@ public class HomeController implements Initializable {
     }
 
     /**
-     * Method to fill notifactions icon
+     * Method to fill notifications icon
      */
     private void initNotifications() {
         notificationsNumberLabel.setText("0");
@@ -210,7 +210,7 @@ public class HomeController implements Initializable {
     }
 
     /**
-     * Method to create a notifaction popup when logged in
+     * Method to create a notifiaction popup when logged in
      */
     private void notificationPopUps() {
         ArrayList<Bid> bids = (ArrayList<Bid>) Notification.getNewBidsSinceLastLogon();

@@ -1,26 +1,27 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Auction;
+import model.BCrypt;
 import model.Profile;
 import model.Util;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * The Controller for the Profile layout, this is in charge of <code>layouts.profile_layout.fxml</code>.
@@ -35,6 +36,18 @@ import java.util.ArrayList;
 public class ProfileController {
 
     @FXML
+    private Label addressLabel;
+    @FXML
+    private Label contactNumberLabel;
+    @FXML
+    private Label firstNameLabel;
+    @FXML
+    private Label postcodeLabel;
+    @FXML
+    private Label lastNameLabel;
+    @FXML
+    private Label lastLoginLabel;
+    @FXML
     private ImageView profileImg;
     @FXML
     private Button chooseImage;
@@ -42,6 +55,8 @@ public class ProfileController {
     private MenuButton browseDefaultImage;
     @FXML
     private Button createCustom;
+    @FXML
+    private Button changePasswordButton;
     @FXML
     private Button favouriteUser;
     @FXML
@@ -66,7 +81,15 @@ public class ProfileController {
     private Label usernameLabelProfile;
     @FXML
     private GridPane currentlySellingAuctionsGridPane;
+
     private Profile selectedProfile;
+    private final Label currentPasswordLabel = new Label("Current password: ");
+    private final Label newPasswordLabel = new Label("New password: ");
+    private final Label confirmationPasswordLabel = new Label("Confirm password: ");
+    private final Label errorLabel = new Label("Your old password doesn't match");
+    private final TextField currentPasswordText = new TextField();
+    private final TextField newPasswordText = new TextField();
+    private final TextField confirmPasswordText = new TextField();
 
     /**
      * Method setting the image, buttons, and selling auctions for the current user
@@ -171,6 +194,73 @@ public class ProfileController {
         changeDefaultImage("images/profile/female2.png");
     }
 
+    @FXML
+    private void changePassword() {
+        errorLabel.setVisible(false);
+        Dialog dialog = new Dialog();
+        dialog.setTitle("Change your password");
+        dialog.setHeaderText("Please enter your current password.\n" +
+                "Then please enter your new password and confirm it.");
+        dialog.setResizable(false);
+
+        GridPane grid = new GridPane();
+        grid.add(currentPasswordLabel, 1, 1);
+        grid.add(currentPasswordText, 2, 1);
+        grid.add(newPasswordLabel, 1, 2);
+        grid.add(newPasswordText, 2, 2);
+        grid.add(confirmationPasswordLabel, 1, 3);
+        grid.add(confirmPasswordText, 2, 3);
+        grid.add(errorLabel, 1, 4);
+        dialog.getDialogPane().setContent(grid);
+
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+        final Button btOK = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+        btOK.addEventFilter(
+                ActionEvent.ACTION,
+                event -> {
+                    if (Util.getHashByUsername(Util.getCurrentUser().getUsername()).equals("")) {
+                        checkPasswordChange(event);
+                    } else {
+                        if (BCrypt.checkpw(currentPasswordText.getText(), Util.getHashByUsername(Util.getCurrentUser().getUsername()))) {
+                            checkPasswordChange(event);
+                        } else {
+                            event.consume();
+                            errorLabel.setVisible(true);
+                            errorLabel.setTextFill(Color.RED);
+                            errorLabel.setText("Your old password doesn't match");
+                        }
+                    }
+                });
+
+        Optional result = dialog.showAndWait();
+        if (result.isPresent()) {
+            String newPassword = confirmPasswordText.getText();
+            System.out.println(newPassword);
+            String newHash = BCrypt.hashpw(newPassword,BCrypt.gensalt());
+            Util.updatePasswordOfUser(Util.getCurrentUser().getUsername(), newHash);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Your password has been updated!");
+            alert.showAndWait();
+        }
+    }
+
+    private void checkPasswordChange(ActionEvent event) {
+        if (!newPasswordText.getText().equals(confirmPasswordText.getText())) {
+            event.consume();
+            errorLabel.setVisible(true);
+            errorLabel.setTextFill(Color.RED);
+            errorLabel.setText("Your new passwords don't match");
+        }
+        else if (newPasswordText.getText().length() < 8) {
+            event.consume();
+            errorLabel.setVisible(true);
+            errorLabel.setTextFill(Color.RED);
+            errorLabel.setText("Your new password is too short");
+        }
+    }
+
     /**
      * Method used for changing the default image to one of the above
      *
@@ -198,11 +288,11 @@ public class ProfileController {
     }
 
     /**
-     * Method to check if user has been favouited
+     * Method to check if user has been favourited
      *
      * @return true if the user has been favourited, otherwise it returns false
      */
-    //method to check if user has been favorited
+    //method to check if user has been favourited
     private boolean isFavorited() {
         boolean favorite = false;
         for (String elem : Util.getCurrentUser().getFavouriteUsers()) {
@@ -247,7 +337,7 @@ public class ProfileController {
     }
 
     /**
-     * Method to set ser specific buttons, whether this is user's profile or somebody else's
+     * Method to set specific buttons, whether this is user's profile or somebody else's
      */
     private void setUserSpecificButtons() {
         if (isSignedInUser()) {
@@ -259,8 +349,18 @@ public class ProfileController {
             createCustom.setVisible(true);
             favouriteUser.setVisible(false);
             browseDefaultImage.setVisible(true);
+            changePasswordButton.setVisible(true);
         } else {
-            chooseImage.setDisable(true);
+            postCode.setVisible(false);
+            contactNumber.setVisible(false);
+            firstName.setVisible(false);
+            lastName.setVisible(false);
+            addressLine1.setVisible(false);
+            addressLine2.setVisible(false);
+            city.setVisible(false);
+            country.setVisible(false);
+            lastLogin.setVisible(false);
+            chooseImage.setVisible(false);
             createCustom.setDisable(true);
             favouriteUser.setDisable(false);
             browseDefaultImage.setDisable(true);
@@ -268,6 +368,14 @@ public class ProfileController {
             createCustom.setVisible(false);
             favouriteUser.setVisible(true);
             browseDefaultImage.setVisible(false);
+            changePasswordButton.setVisible(false);
+            contactNumberLabel.setVisible(false);
+            firstNameLabel.setVisible(false);
+            postcodeLabel.setVisible(false);
+            lastNameLabel.setVisible(false);
+            lastLoginLabel.setVisible(false);
+            addressLabel.setVisible(false);
+
         }
     }
 
@@ -318,6 +426,7 @@ public class ProfileController {
         ImageView auctionImage;
         Hyperlink auctionLink;
         Label auctionPrice;
+
         for (Auction elem : selectedProfile.getCurrentlySelling()) {
             System.out.println("IN CURRENTLY SELLING");
             auctionImage = new ImageView();
