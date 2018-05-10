@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="profileLayout" prefHeight="538" prefWidth="1023" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
+<BorderPane prefHeight="538" prefWidth="1023" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
     <right>
         <VBox layoutY="39.0" prefHeight="538.0" prefWidth="185.0">
             <children>
@@ -237,7 +237,7 @@
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin></Label>
-                          <Label fx:id="usernameLabelProfile" prefHeight="35.0" prefWidth="196.0" text="bigbear1" GridPane.columnIndex="1">
+                          <Label fx:id="usernameLabelProfile" prefHeight="35.0" prefWidth="196.0" text="Label" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin></Label>
