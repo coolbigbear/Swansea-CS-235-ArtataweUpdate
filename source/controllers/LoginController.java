@@ -8,17 +8,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.BCrypt;
+import model.Profile;
 import model.Util;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -90,7 +93,86 @@ public class LoginController implements Initializable {
 
     @FXML
     private void forgotPassword() {
+        Dialog dialog = new Dialog();
+        dialog.setTitle("Reset your password");
+        dialog.setHeaderText("Please enter your current username.\n" +
+                "Then please enter your personal details");
+        dialog.setResizable(false);
 
+        final Label usernameLabel = new Label("Username: ");
+        final Label firstNameLabel = new Label("First Name: ");
+        final Label lastNameLabel = new Label("Last Name: ");
+        final Label phoneNumberLabel = new Label("Phone Number: ");
+        final Label errorLabel = new Label("Your old password doesn't match");
+        final TextField usernameText = new TextField();
+        final TextField firstNameText = new TextField();
+        final TextField lastNameText = new TextField();
+        final TextField phoneNumberText = new TextField();
+        errorLabel.setVisible(false);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(5);
+        grid.setVgap(5);
+        grid.add(usernameLabel, 1, 1);
+        grid.add(usernameText, 2, 1);
+        grid.add(firstNameLabel, 1, 2);
+        grid.add(firstNameText, 2, 2);
+        grid.add(lastNameLabel, 1, 3);
+        grid.add(lastNameText, 2, 3);
+        grid.add(phoneNumberLabel, 1, 4);
+        grid.add(phoneNumberText, 2, 4);
+        grid.add(errorLabel, 1, 5,2,2);
+        dialog.getDialogPane().setContent(grid);
+
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+        final Button btOK = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+        btOK.addEventFilter(
+                ActionEvent.ACTION,
+                event -> {
+                    String usrname = usernameText.getText();
+                    String firstName = firstNameText.getText();
+                    String lastName = lastNameText.getText();
+                    String phoneNumber = phoneNumberText.getText();
+                    if (Util.checkAndSetUser(usrname)) {
+                        Profile tempProfile = Util.getProfileByUsername(usrname);
+                        if (tempProfile.getFirstName().equalsIgnoreCase(firstName)) {
+                            if (tempProfile.getLastName().equalsIgnoreCase(lastName)) {
+                                if (tempProfile.getPhoneNumber().equalsIgnoreCase(phoneNumber)) {
+                                    errorLabel.setVisible(false);
+                                } else {
+                                    errorMsg(event,errorLabel);
+                                }
+                            } else {
+                                errorMsg(event,errorLabel);
+                            }
+                        } else {
+                            errorMsg(event,errorLabel);
+                        }
+                    } else {
+                        errorMsg(event,errorLabel);
+                    }
+                });
+        Optional result = dialog.showAndWait();
+        if (result.isPresent()) {
+            String newPassword = "bread";
+            String newHash = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+            Util.updatePasswordOfUser(Util.getCurrentUser().getUsername(), newHash);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Your password has been reset!\n" +
+                    "Your new password is \"bread\" !\n" +
+                    "Please change your password as soon as you log in!");
+            alert.showAndWait();
+        }
+    }
+
+    private void errorMsg(ActionEvent event, Label errorLabel) {
+        event.consume();
+        errorLabel.setVisible(true);
+        errorLabel.setTextFill(Color.RED);
+        errorLabel.setText("Those details don't match our records");
     }
 
     private void stopImageThread() {

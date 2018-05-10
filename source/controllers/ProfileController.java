@@ -204,13 +204,15 @@ public class ProfileController {
         dialog.setResizable(false);
 
         GridPane grid = new GridPane();
+        grid.setHgap(5);
+        grid.setVgap(5);
         grid.add(currentPasswordLabel, 1, 1);
         grid.add(currentPasswordText, 2, 1);
         grid.add(newPasswordLabel, 1, 2);
         grid.add(newPasswordText, 2, 2);
         grid.add(confirmationPasswordLabel, 1, 3);
         grid.add(confirmPasswordText, 2, 3);
-        grid.add(errorLabel, 1, 4);
+        grid.add(errorLabel, 1, 4,2,2);
         dialog.getDialogPane().setContent(grid);
 
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);

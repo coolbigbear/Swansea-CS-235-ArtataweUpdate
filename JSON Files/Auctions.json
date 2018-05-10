@@ -380,40 +380,6 @@
     "artwork": {
       "typeGSON": "Painting",
       "width": 30,
-      "height": 40,
-      "title": "Cave",
-      "description": "This is the cave from the north. But with no snow.",
-      "creationDate": "1300",
-      "creatorName": "Someone",
-      "mainImagePath": "images/auctions/paintings/painting12.png",
-      "type": "Painting"
-    },
-    "sellerName": "jon",
-    "auctionID": 83,
-    "bidList": [],
-    "reservePrice": 300.0,
-    "bidsAllowed": 1,
-    "dateTimePlaced": {
-      "date": {
-        "year": 2018,
-        "month": 3,
-        "day": 17
-      },
-      "time": {
-        "hour": 14,
-        "minute": 27,
-        "second": 18,
-        "nano": 526000000
-      }
-    },
-    "bidsLeft": 1,
-    "isCompleted": false,
-    "highestPrice": 0.0
-  },
-  {
-    "artwork": {
-      "typeGSON": "Painting",
-      "width": 30,
       "height": 25,
       "title": "Not so cave",
       "description": "This aint a cave tho.",
@@ -443,5 +409,59 @@
     "bidsLeft": 2,
     "isCompleted": false,
     "highestPrice": 0.0
+  },
+  {
+    "artwork": {
+      "typeGSON": "Painting",
+      "width": 69,
+      "height": 69,
+      "title": "Mums Pussy ",
+      "description": "The Womb after birth",
+      "creationDate": "6969",
+      "creatorName": "Bob da vinci",
+      "mainImagePath": "images/auctions/paintings/painting12.png",
+      "type": "Painting"
+    },
+    "sellerName": "Sonz",
+    "auctionID": 92,
+    "bidList": [
+      {
+        "auctionID": 92,
+        "bidAmount": 696969.0,
+        "bidder": "mariika",
+        "dateTimePlaced": {
+          "date": {
+            "year": 2018,
+            "month": 5,
+            "day": 9
+          },
+          "time": {
+            "hour": 23,
+            "minute": 40,
+            "second": 6,
+            "nano": 623000000
+          }
+        }
+      }
+    ],
+    "reservePrice": 6969.0,
+    "bidsAllowed": 69,
+    "dateTimePlaced": {
+      "date": {
+        "year": 2018,
+        "month": 5,
+        "day": 9
+      },
+      "time": {
+        "hour": 23,
+        "minute": 39,
+        "second": 6,
+        "nano": 470000000
+      }
+    },
+    "bidsLeft": 1,
+    "highestBidder": "mariika",
+    "isCompleted": false,
+    "highestPrice": 696969.0
   }
 ]
