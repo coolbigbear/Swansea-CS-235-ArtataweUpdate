@@ -34,7 +34,7 @@ public class FeedController implements Initializable {
 
     @FXML
     private GridPane cardsGridPane;
-    private static Feed feed;
+    private Feed feed;
     private ArrayList<Auction> currentlySelectedAuctions;
 
     /**
@@ -81,7 +81,7 @@ public class FeedController implements Initializable {
      * @throws IOException
      */
 
-    public void updateFeed() {
+    public static void updateFeed() {
         try {
             setAuctionsCenter();
         } catch (IOException e) {
