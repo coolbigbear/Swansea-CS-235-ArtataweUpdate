@@ -30,7 +30,8 @@ import java.util.Optional;
  *
  * @author Bezhan Kodomani
  * @author Ben Sampson
- * @version 1.8
+ * @author ***REMOVED*** ***REMOVED***
+ * @version 2.5
  * @see Profile
  */
 public class ProfileController {
@@ -82,14 +83,14 @@ public class ProfileController {
     @FXML
     private GridPane currentlySellingAuctionsGridPane;
 
+    // Fields and labels for change password popup
     private Profile selectedProfile;
-    private final Label currentPasswordLabel = new Label("Current password: ");
-    private final Label newPasswordLabel = new Label("New password: ");
-    private final Label confirmationPasswordLabel = new Label("Confirm password: ");
     private final Label errorLabel = new Label("Your old password doesn't match");
     private final PasswordField currentPasswordText = new PasswordField();
     private final PasswordField newPasswordText = new PasswordField();
     private final PasswordField confirmPasswordText = new PasswordField();
+
+    private final int MIN_PASSWORD_LENGTH = 8;
 
     /**
      * Method setting the image, buttons, and selling auctions for the current user
@@ -194,6 +195,12 @@ public class ProfileController {
         changeDefaultImage("images/profile/female2.png");
     }
 
+
+    /**
+     * Changes the password of the user.
+     * Generates a popup and asks for 3 inputs, old password, new passwords and new password again.
+     * Hangles validation of inputs
+     */
     @FXML
     private void changePassword() {
         errorLabel.setVisible(false);
@@ -203,9 +210,14 @@ public class ProfileController {
                 "Then please enter your new password and confirm it.");
         dialog.setResizable(false);
 
+        // Grid generation
         GridPane grid = new GridPane();
         grid.setHgap(5);
         grid.setVgap(5);
+        Label newPasswordLabel = new Label("New password: ");
+        Label confirmationPasswordLabel = new Label("Confirm password: ");
+        Label currentPasswordLabel = new Label("Current password: ");
+
         grid.add(currentPasswordLabel, 1, 1);
         grid.add(currentPasswordText, 2, 1);
         grid.add(newPasswordLabel, 1, 2);
@@ -215,6 +227,7 @@ public class ProfileController {
         grid.add(errorLabel, 1, 4,2,2);
         dialog.getDialogPane().setContent(grid);
 
+        // Input validation
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
         final Button btOK = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
         btOK.addEventFilter(
@@ -225,7 +238,7 @@ public class ProfileController {
                     } else {
                         if (BCrypt.checkpw(currentPasswordText.getText(), Util.getHashByUsername(Util.getCurrentUser().getUsername()))) {
                             checkPasswordChange(event);
-                        } else {
+                        } else { // Old password doesn't match
                             event.consume();
                             errorLabel.setVisible(true);
                             errorLabel.setTextFill(Color.RED);
@@ -234,13 +247,18 @@ public class ProfileController {
                     }
                 });
 
+        // All validation passed
         Optional result = dialog.showAndWait();
         if (result.isPresent()) {
             String newPassword = confirmPasswordText.getText();
-            System.out.println(newPassword);
+
+            // Hash new password
             String newHash = BCrypt.hashpw(newPassword,BCrypt.gensalt());
+
+            // Save to JSON
             Util.updatePasswordOfUser(Util.getCurrentUser().getUsername(), newHash);
 
+            // Alert user
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setContentText("Your password has been updated!");
@@ -249,13 +267,16 @@ public class ProfileController {
     }
 
     private void checkPasswordChange(ActionEvent event) {
+
+        // Check if two new password fields match
         if (!newPasswordText.getText().equals(confirmPasswordText.getText())) {
             event.consume();
             errorLabel.setVisible(true);
             errorLabel.setTextFill(Color.RED);
             errorLabel.setText("Your new passwords don't match");
         }
-        else if (newPasswordText.getText().length() < 8) {
+        // Check if password is long enough
+        else if (newPasswordText.getText().length() < MIN_PASSWORD_LENGTH) {
             event.consume();
             errorLabel.setVisible(true);
             errorLabel.setTextFill(Color.RED);

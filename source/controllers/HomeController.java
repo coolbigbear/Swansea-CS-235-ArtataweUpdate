@@ -33,7 +33,7 @@ import java.util.*;
  * @author Ben Sampson
  * @author Alex Wing
  * @author ***REMOVED*** ***REMOVED***
- * @version 3.0
+ * @version 4.0
  * @see Initializable
  */
 public class HomeController implements Initializable {
@@ -68,6 +68,8 @@ public class HomeController implements Initializable {
     private Label notificationsNumberLabel;
 
     private ArrayList<Profile> favoriteUsers;
+
+    // Options for dropdown menus
     private ObservableList<String> choiceBoxList =
             FXCollections.observableArrayList("Show All", "Paintings", "Sculptures");
 
@@ -75,7 +77,8 @@ public class HomeController implements Initializable {
             FXCollections.observableArrayList("Popular", "Price: Low to High", "Price: High to Low", "Auction Name: A-Z", "Auction Name: Z-A" );
 
     /**
-     * Method that gets the different pages that are viewable from the home view
+     * Method that gets the different pages that are viewable from the home view.
+     * Initialise the dropdown boxes
      *
      * @param location  location of the page
      * @param resources actual resource used
@@ -148,6 +151,9 @@ public class HomeController implements Initializable {
         });
     }
 
+    /**
+     * Sorts the current Feed depending on user choice
+     */
     private void setFilterBox() {
         sortingBoxFilter.getSelectionModel().selectedIndexProperty().addListener(
                 (observable, oldValue, newValue) -> {
@@ -179,6 +185,12 @@ public class HomeController implements Initializable {
                 });
     }
 
+
+    /**
+     * Sorts the current feed depending on chose case.
+     *
+     * @param switchCase case to sort the feed by
+     */
     private void compare(int switchCase) {
         Feed originalFeed = Feed.getInstance();
         ArrayList<Auction> asArrayList = originalFeed.getAllAsArrayList();

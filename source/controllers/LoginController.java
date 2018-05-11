@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
  * This is the Controller and Layout pair in charge of the login page.
  *
  * @author Bezhan Kodomani
- * @version 1.5
+ * @version 2.0
  * @see Initializable
  */
 public class LoginController implements Initializable {
@@ -47,7 +47,7 @@ public class LoginController implements Initializable {
     private Thread cycleImageThread;
 
     /**
-     * Method which initializes the Longin Controller
+     * Method which initializes the Login Controller
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,11 +57,10 @@ public class LoginController implements Initializable {
     }
 
     /**
-     * Method which logins the user
+     * Method which logs in the user
      *
      * @param e event of the button
      * @throws IOException
-     * @throws InterruptedException
      */
     @FXML
     private void loginButtonAction(ActionEvent e) throws IOException {
@@ -91,6 +90,11 @@ public class LoginController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Forgot password.
+     * Creates a dialog with text fields asking for the user to input personal information.
+     * Resets password and closes dialog.
+     */
     @FXML
     private void forgotPassword() {
         Dialog dialog = new Dialog();
@@ -99,6 +103,7 @@ public class LoginController implements Initializable {
                 "Then please enter your personal details");
         dialog.setResizable(false);
 
+        // Label creation
         final Label usernameLabel = new Label("Username: ");
         final Label firstNameLabel = new Label("First Name: ");
         final Label lastNameLabel = new Label("Last Name: ");
@@ -110,6 +115,7 @@ public class LoginController implements Initializable {
         final TextField phoneNumberText = new TextField();
         errorLabel.setVisible(false);
 
+        // Grid allocation
         GridPane grid = new GridPane();
         grid.setHgap(5);
         grid.setVgap(5);
@@ -124,6 +130,7 @@ public class LoginController implements Initializable {
         grid.add(errorLabel, 1, 5,2,2);
         dialog.getDialogPane().setContent(grid);
 
+        // Input validation
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
         final Button btOK = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
         btOK.addEventFilter(
@@ -139,25 +146,30 @@ public class LoginController implements Initializable {
                             if (tempProfile.getLastName().equalsIgnoreCase(lastName)) {
                                 if (tempProfile.getPhoneNumber().equalsIgnoreCase(phoneNumber)) {
                                     errorLabel.setVisible(false);
-                                } else {
+                                } else {    // Phone number was wrong
                                     errorMsg(event,errorLabel);
                                 }
-                            } else {
+                            } else {    // Last name was wrong
                                 errorMsg(event,errorLabel);
                             }
-                        } else {
+                        } else {    // First name was wrong
                             errorMsg(event,errorLabel);
                         }
-                    } else {
+                    } else {    // Username was wrong
                         errorMsg(event,errorLabel);
                     }
                 });
+
+        // All details matched
         Optional result = dialog.showAndWait();
         if (result.isPresent()) {
+            // New password is bread
             String newPassword = "bread";
+            // Hash password and store in JSON
             String newHash = BCrypt.hashpw(newPassword, BCrypt.gensalt());
             Util.updatePasswordOfUser(Util.getCurrentUser().getUsername(), newHash);
 
+            // Alert dialog informing password has been changed
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText(null);
@@ -168,6 +180,13 @@ public class LoginController implements Initializable {
         }
     }
 
+
+    /**
+     * Displays error msg when user information does not match
+     *
+     * @param event Clicking on OK button to change password
+     * @param errorLabel Label where error msg is displayed
+     */
     private void errorMsg(ActionEvent event, Label errorLabel) {
         event.consume();
         errorLabel.setVisible(true);
@@ -175,6 +194,10 @@ public class LoginController implements Initializable {
         errorLabel.setText("Those details don't match our records");
     }
 
+
+    /**
+     * Stops the image thread.
+     */
     private void stopImageThread() {
         cycleImageThread.interrupt();
     }
@@ -183,7 +206,7 @@ public class LoginController implements Initializable {
      * Method to go to the main program (home layout)
      *
      * @param e Button event
-     * @throws IOException
+     * @throws IOException the io exception
      */
     public void successfulLogin(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/home_layout.fxml"));
@@ -201,7 +224,7 @@ public class LoginController implements Initializable {
      * Method to validate user input
      *
      * @param input The user's input in login text field
-     * @return
+     * @return True or false depending on if username an password is correct
      */
     private boolean validate(String input) {
         if (!validLengthInput(input)) {
@@ -217,6 +240,12 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Check if password matches one stored on record.
+     *
+     * @param password to be checked against hashed version
+     * @return  True or false depending on if hashes matched
+     */
     private boolean validatePassword(String password) {
         String hash = Util.getHashByUsername(loginTextField.getText());
         if (hash.equals("")) {
