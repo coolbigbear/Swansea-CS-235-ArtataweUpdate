@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -348,4 +349,68 @@ public final class Auction implements Comparable<Auction> {
     public int compareTo(@NotNull Auction otherAuction) {
         return this.getDateTimePlaced().compareTo(otherAuction.getDateTimePlaced());
     }
+
+    public static Comparator<Auction> artworkComparatorPriceAsc = (s1, s2) -> {
+
+        double artworkPrice1;
+        double artworkPrice2;
+
+        if (s1.getReservePrice()>s1.getHighestPrice()) {
+            artworkPrice1 = s1.getReservePrice();
+        } else {
+            artworkPrice1 = s1.getHighestPrice();
+        }
+        if (s2.getReservePrice()>s2.getHighestPrice()) {
+            artworkPrice2 = s2.getReservePrice();
+        } else {
+            artworkPrice2 = s2.getHighestPrice();
+        }
+
+        /*For ascending order*/
+        return (int) (artworkPrice1-artworkPrice2);
+
+        /*For descending order*/
+        //rollno2-rollno1;
+    };
+
+    public static Comparator<Auction> artworkComparatorPriceDesc = (s1, s2) -> {
+
+        double artworkPrice1;
+        double artworkPrice2;
+
+        if (s1.getReservePrice()>s1.getHighestPrice()) {
+            artworkPrice1 = s1.getReservePrice();
+        } else {
+            artworkPrice1 = s1.getHighestPrice();
+        }
+        if (s2.getReservePrice()>s2.getHighestPrice()) {
+            artworkPrice2 = s2.getReservePrice();
+        } else {
+            artworkPrice2 = s2.getHighestPrice();
+        }
+
+        /*For descending order*/
+        return (int) (artworkPrice2-artworkPrice1);
+
+    };
+
+    public static Comparator<Auction> artworkComparatorNameAsc = (s1, s2) -> {
+
+        String artworkName1 = s1.getArtwork().title;
+        String artworkName2 = s2.getArtwork().title;
+
+        /*For descending order*/
+        return artworkName1.compareTo(artworkName2);
+
+    };
+
+    public static Comparator<Auction> artworkComparatorNameDesc = (s1, s2) -> {
+
+        String artworkName1 = s1.getArtwork().title;
+        String artworkName2 = s2.getArtwork().title;
+
+        /*For descending order*/
+        return artworkName2.compareTo(artworkName1);
+
+    };
 }
