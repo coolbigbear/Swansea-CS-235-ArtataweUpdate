@@ -87,9 +87,9 @@ public class ProfileController {
     private final Label newPasswordLabel = new Label("New password: ");
     private final Label confirmationPasswordLabel = new Label("Confirm password: ");
     private final Label errorLabel = new Label("Your old password doesn't match");
-    private final TextField currentPasswordText = new TextField();
-    private final TextField newPasswordText = new TextField();
-    private final TextField confirmPasswordText = new TextField();
+    private final PasswordField currentPasswordText = new PasswordField();
+    private final PasswordField newPasswordText = new PasswordField();
+    private final PasswordField confirmPasswordText = new PasswordField();
 
     /**
      * Method setting the image, buttons, and selling auctions for the current user

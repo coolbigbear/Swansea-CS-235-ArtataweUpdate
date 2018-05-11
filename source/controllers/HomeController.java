@@ -154,38 +154,54 @@ public class HomeController implements Initializable {
                     switch (newValue.intValue()) {
                         case 0:
                             //Popular
-                            Util.getActiveAuctions();
-                            FeedController.updateFeed();
+                            compare(0);
                             break;
                         case 1:
                             // Low to High
-                            Util.getActiveAuctions();
-                            lowToHigh();
-                            FeedController.updateFeed();
+                            compare(1);
                             break;
 
                         case 2:
                             // High to Low
-
+                            compare(2);
                             break;
 
                         case 3:
                             // A-Z
+                            compare(3);
                             break;
 
                         case 4:
                             // Z-A
+                            compare(4);
                             break;
                     }
                 });
     }
 
-    private void lowToHigh() {
+    private void compare(int switchCase) {
         Feed originalFeed = Feed.getInstance();
         ArrayList<Auction> asArrayList = originalFeed.getAllAsArrayList();
         Feed feed = Feed.getNewInstance();
-        Collections.sort(asArrayList, Auction::compareTo);
+        switch (switchCase) {
+            case 0:
+                asArrayList.sort(Auction::compareTo);
+                break;
+            case 1:
+                asArrayList.sort(Auction.artworkComparatorPriceAsc);
+                break;
+            case 2:
+                asArrayList.sort(Auction.artworkComparatorPriceDesc);
+                break;
+            case 3:
+                asArrayList.sort(Auction.artworkComparatorNameAsc);
+                break;
+            case 4:
+                asArrayList.sort(Auction.artworkComparatorNameDesc);
+                break;
+        }
         feed.addAll(asArrayList);
+        FeedController.updateFeed();
     }
 
     /**
@@ -398,6 +414,8 @@ public class HomeController implements Initializable {
     private void currentAuctionsButtonAction() throws IOException {
         Util.getActiveAuctions();
         feed = Feed.getInstance();
+        sortingBoxFilter.setValue(sortingBoxList.get(0));
+        choiceBoxFilter.setValue(choiceBoxList.get(0));
         setAuctionsCenter();
     }
 

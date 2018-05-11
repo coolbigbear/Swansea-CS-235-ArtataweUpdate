@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane fx:id="registerLayout" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="468.0" prefWidth="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -46,11 +47,11 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                     </GridPane.margin>
                 </TextField>
-                <TextField fx:id="password" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <PasswordField fx:id="password" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                     </GridPane.margin>
-                </TextField>
+                </PasswordField>
                 <TextField fx:id="firstName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" promptText="First Name" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

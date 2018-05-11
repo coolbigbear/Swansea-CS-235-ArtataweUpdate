@@ -39,7 +39,7 @@ public class LoginController implements Initializable {
     @FXML
     private TextField loginTextField;
     @FXML
-    private TextField loginTextFieldPassword;
+    private PasswordField loginTextFieldPassword;
     @FXML
     private Label loginUserPrompt;
     @FXML
