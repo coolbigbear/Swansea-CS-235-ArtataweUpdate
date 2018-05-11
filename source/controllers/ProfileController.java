@@ -377,7 +377,6 @@ public class ProfileController {
             lastNameLabel.setVisible(false);
             lastLoginLabel.setVisible(false);
             addressLabel.setVisible(false);
-
         }
     }
 

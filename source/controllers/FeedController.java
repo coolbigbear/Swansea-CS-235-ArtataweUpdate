@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import model.ArtworkType;
 import model.Auction;
 import model.Feed;
 import model.Util;
@@ -35,7 +34,6 @@ public class FeedController implements Initializable {
     @FXML
     private GridPane cardsGridPane;
     private Feed feed;
-    private ArrayList<Auction> currentlySelectedAuctions;
 
     /**
      * Method that calls the feed
@@ -54,33 +52,6 @@ public class FeedController implements Initializable {
         }
     }
 
-    /**
-     * Method that allows you to show all items on a feed
-     *
-     * @throws IOException
-     */
-    public void filterAll() throws IOException {
-        System.out.println("Show all: ");
-        ArrayList<Auction> resultList = new ArrayList<>();
-        Util.getActiveAuctions();
-        feed = Feed.getInstance();
-        for (Auction auction : feed) {
-            if (auction.getArtwork().getType().equals(ArtworkType.Sculpture) ||
-                    auction.getArtwork().getType().equals(ArtworkType.Painting)) {
-                resultList.add(auction);
-                System.out.println("\t" + auction.getArtwork().getTitle());
-            }
-        }
-        feed.updateWith(resultList);
-        setAuctionsCenter();
-    }
-
-    /**
-     * Method that allows you to filter only paintings in the feed
-     *
-     * @throws IOException
-     */
-
     public static void updateFeed() {
         try {
             setAuctionsCenter();
@@ -89,45 +60,10 @@ public class FeedController implements Initializable {
         }
     }
 
-    private void filterPaintings() throws IOException {
-        System.out.println("Paintings: ");
-        ArrayList<Auction> resultList = new ArrayList<>();
-        Util.getActiveAuctions();
-        feed = Feed.getInstance();
-        for (Auction auction : feed) {
-            if (auction.getArtwork().getType().equals(ArtworkType.Painting)) {
-                resultList.add(auction);
-                System.out.println("\t" + auction.getArtwork().getTitle());
-            }
-        }
-        feed.updateWith(resultList);
-        setAuctionsCenter();
-    }
-
     private void sortFeed() {
         feed = Feed.getInstance();
         ArrayList<Auction> feedArrayList = feed.getAllAsArrayList();
         System.out.println(feedArrayList.get(1));
-    }
-
-    /**
-     * Method that allows you to filter out only sculptures in the feed
-     *
-     * @throws IOException
-     */
-    private void filterSculptures() throws IOException {
-        System.out.println("Sculptures: ");
-        ArrayList<Auction> resultList = new ArrayList<>();
-        Util.getActiveAuctions();
-        feed = Feed.getInstance();
-        for (Auction auction : feed) {
-            if (auction.getArtwork().getType().equals(ArtworkType.Sculpture)) {
-                resultList.add(auction);
-                System.out.println("\t" + auction.getArtwork().getTitle());
-            }
-        }
-        feed.updateWith(resultList);
-        setAuctionsCenter();
     }
 
     /**

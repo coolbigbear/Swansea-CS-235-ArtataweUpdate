@@ -4,12 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>CS_230_Group</groupId>
-    <artifactId>cs-230-assignment-3-artatawe</artifactId>
-    <version>v2</version>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <groupId>***REMOVED***-A3</groupId>
+    <artifactId>***REMOVED***-A3</artifactId>
+    <version>v3</version>
 
     <dependencies>
         <dependency>
@@ -18,32 +15,34 @@
             <version>2.8.2</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>RELEASE</version>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>16.0.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>Artatawe_v2</finalName>
+        <sourceDirectory>source</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>source</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                    <include>**/*.jpg</include>
+                    <include>**/*.png</include>
+                    <include>**/*.css</include>
+                </includes>
+            </resource>
+        </resources>
 
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.2</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <debug>true</debug>
-                    <debuglevel>lines,vars,source</debuglevel>
                 </configuration>
             </plugin>
             <plugin>
@@ -59,7 +58,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>

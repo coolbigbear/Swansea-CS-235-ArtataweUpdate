@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 
-<BorderPane fx:id="feedLayout" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FeedController" >
+<BorderPane fx:id="feedLayout" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FeedController">
     <center>
         <ScrollPane prefHeight="557.0" prefWidth="1043.0" style="-fx-background: #cfdff9;" BorderPane.alignment="CENTER">
             <content>
-                <GridPane fx:id="cardsGridPane" layoutX="3.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="494.0" prefWidth="1020.0" vgap="25.0" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="3.0">
+                <GridPane fx:id="cardsGridPane" layoutX="3.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="556.0" prefWidth="1000.0" vgap="25.0" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="3.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />

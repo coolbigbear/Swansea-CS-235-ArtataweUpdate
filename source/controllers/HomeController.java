@@ -19,10 +19,7 @@ import model.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * The Controller for the home layout, this is in charge of <code>layouts.home_layout.fxml</code>.
@@ -51,6 +48,8 @@ public class HomeController implements Initializable {
     private ImageView profileImageView;
     @FXML
     private BorderPane homeLayout;
+    @FXML
+    private AnchorPane searchAndSortBar;
     @FXML
     private GridPane favoritesGridPane;
     @FXML
@@ -85,10 +84,10 @@ public class HomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         choiceBoxFilter.setItems(choiceBoxList);
-        //choiceBoxFilter.setValue("Show All");
+        choiceBoxFilter.setValue("Show All");
 
         sortingBoxFilter.setItems(sortingBoxList);
-        //sortingBoxFilter.setValue("Popular");
+        sortingBoxFilter.setValue("Popular");
         setChoiceBox();
         setFilterBox();
 
@@ -155,11 +154,14 @@ public class HomeController implements Initializable {
                     switch (newValue.intValue()) {
                         case 0:
                             //Popular
+                            Util.getActiveAuctions();
+                            FeedController.updateFeed();
                             break;
-
                         case 1:
                             // Low to High
-
+                            Util.getActiveAuctions();
+                            lowToHigh();
+                            FeedController.updateFeed();
                             break;
 
                         case 2:
@@ -176,6 +178,14 @@ public class HomeController implements Initializable {
                             break;
                     }
                 });
+    }
+
+    private void lowToHigh() {
+        Feed originalFeed = Feed.getInstance();
+        ArrayList<Auction> asArrayList = originalFeed.getAllAsArrayList();
+        Feed feed = Feed.getNewInstance();
+        Collections.sort(asArrayList, Auction::compareTo);
+        feed.addAll(asArrayList);
     }
 
     /**
@@ -398,15 +408,15 @@ public class HomeController implements Initializable {
      */
     @FXML
     private void myProfileMenuItemAction() throws IOException {
-//        BorderPane profileLayout = (BorderPane) FXMLLoader.load(getClass().getResource("/layouts/profile_layout.fxml"));
-//        homeLayout.setCenter(profileLayout);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/layouts/profile_layout.fxml"));
         BorderPane profileLayout = loader.load();
         ProfileController controller = loader.getController();
-        System.out.print(Util.getCurrentUser());
+        //System.out.print(Util.getCurrentUser());
         controller.initProfile(Util.getCurrentUser());
         homeLayout.setCenter(profileLayout);
+        searchAndSortBar.setVisible(false);
+
     }
 
     /**
@@ -535,6 +545,7 @@ public class HomeController implements Initializable {
     private void createSculptureButtonAction() throws IOException {
         AnchorPane profileLayout = FXMLLoader.load(getClass().getResource("/layouts/create_sculpture_layout.fxml"));
         homeLayout.setCenter(profileLayout);
+        searchAndSortBar.setVisible(false);
     }
 
     /**
@@ -546,6 +557,7 @@ public class HomeController implements Initializable {
     private void ViewDashboardButtonAction() throws IOException {
         AnchorPane profileLayout = FXMLLoader.load(getClass().getResource("/layouts/dashboard_layout.fxml"));
         homeLayout.setCenter(profileLayout);
+        searchAndSortBar.setVisible(false);
     }
 
     /**
@@ -557,6 +569,7 @@ public class HomeController implements Initializable {
     private void createPaintingButtonAction() throws IOException {
         AnchorPane profileLayout = FXMLLoader.load(getClass().getResource("/layouts/create_painting_layout.fxml"));
         homeLayout.setCenter(profileLayout);
+        searchAndSortBar.setVisible(false);
     }
 
     /**
@@ -621,6 +634,7 @@ public class HomeController implements Initializable {
         BorderPane feedLayout = FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
         feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         homeLayout.setCenter(feedLayout);
+        searchAndSortBar.setVisible(true);
         return feedLayout;
     }
 

@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cs-230-assignment-3-artatawe" />
+        <module name="***REMOVED***-A3" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cs-230-assignment-3-artatawe" target="1.8" />
+      <module name="***REMOVED***-A3" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -191,9 +191,7 @@ public final class Util {
      * @param search the search queryString
      */
     public static void getAuctionsByName(String search) {
-        Auction[] fromJson = readInAuctionFile();
-
-        ArrayList<Auction> auctionArrayList = new ArrayList<>(Arrays.asList(fromJson));
+        ArrayList<Auction> auctionArrayList = Feed.getInstance().getAllAsArrayList();
 
         Feed feed = Feed.getNewInstance();
 
