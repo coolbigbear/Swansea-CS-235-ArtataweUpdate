@@ -1,14 +1,8 @@
 package controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -40,16 +34,7 @@ public class FeedController implements Initializable {
 
     @FXML
     private GridPane cardsGridPane;
-    @FXML
-    private ChoiceBox choiceBoxFilter;
-    @FXML
-    private TextField searchBar;
-    @FXML
-    private Button searchButton;
-
-    private ObservableList<String> choiceBoxList =
-            FXCollections.observableArrayList("Show All", "Paintings", "Sculptures");
-    private Feed feed;
+    private static Feed feed;
     private ArrayList<Auction> currentlySelectedAuctions;
 
     /**
@@ -60,80 +45,13 @@ public class FeedController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        choiceBoxFilter.setItems(choiceBoxList);
-        choiceBoxFilter.setValue("Show All");
         feed = Feed.getInstance();
-        System.out.println(feed.size());
         modifyCardGrid();
         try {
             populateCardGrid();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        setChoiceBox();
-        Util.setFilterChoiceBox(choiceBoxFilter);
-    }
-
-    /**
-     * Method that allows you to use the search bar
-     *
-     * @throws IOException
-     */
-    public void searchButtonPress() throws IOException {
-        search(searchBar.getText());
-    }
-
-    /**
-     * Method that searches auctions depending on your search query
-     *
-     * @param searchQuery uses what you searched in to search through auctions
-     * @throws IOException
-     */
-    public void search(String searchQuery) throws IOException {
-        Util.getAuctionsByName(searchQuery);
-        setAuctionsCenter();
-    }
-
-    /**
-     * Method that reacts to when the enter key is pressed, and activates the search bar
-     */
-    @FXML
-    public void onEnter() {
-        searchBar.setOnKeyPressed(event -> {
-            if (event.getCode().equals(KeyCode.ENTER)) {
-                try {
-                    search(searchBar.getText());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Method that allows you to filter out the feed to select items.
-     */
-    private void setChoiceBox() {
-        choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                    try {
-                        switch (newValue.intValue()) {
-                            case 0:
-                                filterAll();
-                                break;
-
-                            case 1:
-                                filterPaintings();
-                                break;
-
-                            case 2:
-                                filterSculptures();
-                                break;
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
     }
 
     /**
@@ -141,7 +59,7 @@ public class FeedController implements Initializable {
      *
      * @throws IOException
      */
-    private void filterAll() throws IOException {
+    public void filterAll() throws IOException {
         System.out.println("Show all: ");
         ArrayList<Auction> resultList = new ArrayList<>();
         Util.getActiveAuctions();
@@ -162,6 +80,15 @@ public class FeedController implements Initializable {
      *
      * @throws IOException
      */
+
+    public void updateFeed() {
+        try {
+            setAuctionsCenter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void filterPaintings() throws IOException {
         System.out.println("Paintings: ");
         ArrayList<Auction> resultList = new ArrayList<>();
@@ -175,6 +102,12 @@ public class FeedController implements Initializable {
         }
         feed.updateWith(resultList);
         setAuctionsCenter();
+    }
+
+    private void sortFeed() {
+        feed = Feed.getInstance();
+        ArrayList<Auction> feedArrayList = feed.getAllAsArrayList();
+        System.out.println(feedArrayList.get(1));
     }
 
     /**
@@ -237,8 +170,8 @@ public class FeedController implements Initializable {
      *
      * @throws IOException
      */
-    private void setAuctionsCenter() throws IOException {
-        BorderPane feedLayout = FXMLLoader.load(getClass().getResource("/layouts/feed_layout.fxml"));
+    public static void setAuctionsCenter() throws IOException {
+        BorderPane feedLayout = FXMLLoader.load(FeedController.class.getResource("/layouts/feed_layout.fxml"));
         feedLayout.getStylesheets().add(Main.class.getResource("/css/home_layout.css").toExternalForm());
         Util.getHomeLayout().setCenter(feedLayout);
     }

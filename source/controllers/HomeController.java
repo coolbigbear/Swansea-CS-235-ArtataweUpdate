@@ -1,5 +1,7 @@
 package controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -53,12 +56,24 @@ public class HomeController implements Initializable {
     @FXML
     private Feed feed;
     @FXML
+    private ChoiceBox<String> choiceBoxFilter;
+    @FXML
+    private ChoiceBox<String> sortingBoxFilter;
+    @FXML
+    private TextField searchBar;
+    @FXML
+    private Button searchButton;
+    @FXML
     private MenuButton notificationsMenuButton;
     @FXML
     private Label notificationsNumberLabel;
 
     private ArrayList<Profile> favoriteUsers;
-    private ChoiceBox choiceBox;
+    private ObservableList<String> choiceBoxList =
+            FXCollections.observableArrayList("Show All", "Paintings", "Sculptures");
+
+    private ObservableList<String> sortingBoxList =
+            FXCollections.observableArrayList("Popular", "Price: Low to High", "Price: High to Low", "Auction Name: A-Z", "Auction Name: Z-A" );
 
     /**
      * Method that gets the different pages that are viewable from the home view
@@ -68,6 +83,15 @@ public class HomeController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        choiceBoxFilter.setItems(choiceBoxList);
+        //choiceBoxFilter.setValue("Show All");
+
+        sortingBoxFilter.setItems(sortingBoxList);
+        //sortingBoxFilter.setValue("Popular");
+        setChoiceBox();
+        setFilterBox();
+
         Util.setHomeLayout(homeLayout);
         Util.setGalleryMenuButton(getGalleries);
         Util.getActiveAuctions();
@@ -85,9 +109,98 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
         populateFavoritesView();
-        choiceBox = Util.getFilterChoiceBox();
         Util.getGalleriesDynamic(getGalleries);
         initNotifications();
+    }
+
+    /**
+     * Method that searches auctions depending on your search query
+     *
+     * @param searchQuery uses what you searched in to search through auctions
+     * @throws IOException
+     */
+    public void search(String searchQuery) throws IOException {
+        Util.getAuctionsByName(searchQuery);
+        setAuctionsCenter();
+    }
+
+    /**
+     * Method that allows you to use the search bar
+     *
+     * @throws IOException
+     */
+    public void searchButtonPress() throws IOException {
+        search(searchBar.getText());
+    }
+
+    /**
+     * Method that reacts to when the enter key is pressed, and activates the search bar
+     */
+    @FXML
+    public void onEnter() {
+        searchBar.setOnKeyPressed(event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                try {
+                    search(searchBar.getText());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void setFilterBox() {
+        sortingBoxFilter.getSelectionModel().selectedIndexProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    switch (newValue.intValue()) {
+                        case 0:
+                            //Popular
+                            break;
+
+                        case 1:
+                            // Low to High
+
+                            break;
+
+                        case 2:
+                            // High to Low
+
+                            break;
+
+                        case 3:
+                            // A-Z
+                            break;
+
+                        case 4:
+                            // Z-A
+                            break;
+                    }
+                });
+    }
+
+    /**
+     * Method that allows you to filter out the feed to select items.
+     */
+    private void setChoiceBox() {
+        choiceBoxFilter.getSelectionModel().selectedIndexProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    switch (newValue.intValue()) {
+                        case 0:
+                            Util.getActiveAuctions();
+                            FeedController.updateFeed();
+                            break;
+
+                        case 1:
+                            Util.getPaintingAuctions();
+                            FeedController.updateFeed();
+                            break;
+
+                        case 2:
+                            Util.getSculptureAuctions();
+                            FeedController.updateFeed();
+                            break;
+                    }
+                });
     }
 
     /**

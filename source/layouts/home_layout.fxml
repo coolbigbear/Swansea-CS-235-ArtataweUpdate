@@ -1,217 +1,235 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<BorderPane fx:id="homeLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="638.0" prefWidth="1183.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.HomeController">
-    <top>
-        <AnchorPane prefHeight="113.0" prefWidth="1183.0">
-            <children>
-                <HBox layoutY="6.0">
-                    <children>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+   <children>
+      <StackPane layoutY="6.0">
+         <children>
+            <AnchorPane prefHeight="113.0" prefWidth="1183.0">
+               <children>
+                  <HBox layoutY="6.0">
+                     <children>
                         <ImageView fitHeight="98.0" fitWidth="260.0" pickOnBounds="true">
-                            <image>
-                                <Image url="@../images/misc/logoHome.png"/>
-                            </image>
+                           <image>
+                              <Image url="@../images/misc/logoHome.png" />
+                           </image>
                         </ImageView>
-                    </children>
-                </HBox>
-                <HBox layoutX="797.0" layoutY="13.0" AnchorPane.rightAnchor="0.0">
-                    <children>
-                        <VBox layoutX="773.0" layoutY="6.0" prefHeight="90.0" prefWidth="107.0"
-                              AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="797.0" AnchorPane.rightAnchor="134.0"
-                              AnchorPane.topAnchor="43.0">
-                            <children>
-                                <Label fx:id="welcomeLabel" layoutX="805.0" layoutY="43.0" prefHeight="26.0"
-                                       prefWidth="109.0" text="wilkommen">
-                                    <opaqueInsets>
-                                        <Insets/>
-                                    </opaqueInsets>
-                                    <font>
-                                        <Font name="System Bold" size="15.0"/>
-                                    </font>
-                                </Label>
-                                <MenuButton alignment="CENTER" layoutX="797.0" layoutY="67.0" mnemonicParsing="false"
-                                            text="Options">
-                                    <items>
-                                        <MenuItem mnemonicParsing="false" onAction="#myProfileMenuItemAction"
-                                                  text="My Profile"/>
-                                        <MenuItem mnemonicParsing="false" onAction="#logoutMenuItemAction"
-                                                  text="Logout"/>
-                                    </items>
-                                    <opaqueInsets>
-                                        <Insets/>
-                                    </opaqueInsets>
-                                    <VBox.margin>
-                                        <Insets top="10.0"/>
-                                    </VBox.margin>
-                                </MenuButton>
-                            </children>
-                            <opaqueInsets>
-                                <Insets/>
-                            </opaqueInsets>
-                            <HBox.margin>
-                                <Insets right="20.0"/>
-                            </HBox.margin>
-                            <padding>
-                                <Insets top="10.0"/>
-                            </padding>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="797.0" layoutY="13.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <VBox layoutX="773.0" layoutY="6.0" prefHeight="90.0" prefWidth="107.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="797.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="43.0">
+                           <children>
+                              <Label fx:id="welcomeLabel" layoutX="805.0" layoutY="43.0" prefHeight="26.0" prefWidth="109.0" text="wilkommen">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <MenuButton alignment="CENTER" layoutX="797.0" layoutY="67.0" mnemonicParsing="false" text="Options">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#myProfileMenuItemAction" text="My Profile" />
+                                    <MenuItem mnemonicParsing="false" onAction="#logoutMenuItemAction" text="Logout" />
+                                 </items>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </MenuButton>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
                         </VBox>
-                        <HBox layoutX="916.0" layoutY="6.0" prefHeight="90.0" prefWidth="120.0"
-                              AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="920.0" AnchorPane.rightAnchor="14.0"
-                              AnchorPane.topAnchor="13.0">
-                            <children>
-                                <ImageView fx:id="profileImageView" fitHeight="90.0" fitWidth="90.0" layoutX="920.0"
-                                           layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-                                    <HBox.margin>
-                                        <Insets right="15.0"/>
-                                    </HBox.margin>
-                                </ImageView>
-                            </children>
+                        <HBox layoutX="916.0" layoutY="6.0" prefHeight="90.0" prefWidth="120.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="920.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="13.0">
+                           <children>
+                              <ImageView fx:id="profileImageView" fitHeight="90.0" fitWidth="90.0" layoutX="920.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
                         </HBox>
-                    </children>
-                </HBox>
-                <HBox alignment="TOP_RIGHT" layoutX="727.0" layoutY="7.0" prefHeight="103.0" prefWidth="200.0"
-                      AnchorPane.rightAnchor="256.0" AnchorPane.topAnchor="7.0">
-                    <children>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" layoutX="727.0" layoutY="7.0" prefHeight="103.0" prefWidth="200.0" AnchorPane.rightAnchor="256.0" AnchorPane.topAnchor="7.0">
+                     <children>
                         <AnchorPane prefHeight="103.0" prefWidth="164.0">
-                            <children>
-                                <MenuButton fx:id="notificationsMenuButton" layoutX="142.0" layoutY="52.0"
-                                            mnemonicParsing="false" prefHeight="26.0" prefWidth="46.0"/>
-                                <ImageView fitHeight="43.0" fitWidth="45.0" layoutX="118.0" layoutY="45.0"
-                                           pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/misc/bell-1096280_960_720.png"/>
-                                    </image>
-                                </ImageView>
-                                <Label fx:id="notificationsNumberLabel" layoutX="156.0" layoutY="35.0" prefHeight="19.0"
-                                       prefWidth="36.0" text="5" textFill="#ff0101" wrapText="true">
-                                    <font>
-                                        <Font name="Bookman Old Style Bold" size="17.0"/>
-                                    </font>
-                                </Label>
-                            </children>
+                           <children>
+                              <MenuButton fx:id="notificationsMenuButton" layoutX="142.0" layoutY="52.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="46.0" />
+                              <ImageView fitHeight="43.0" fitWidth="45.0" layoutX="118.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/misc/bell-1096280_960_720.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="notificationsNumberLabel" layoutX="156.0" layoutY="35.0" prefHeight="19.0" prefWidth="36.0" text="5" textFill="#ff0101" wrapText="true">
+                                 <font>
+                                    <Font name="Bookman Old Style Bold" size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
                         </AnchorPane>
-                    </children>
-                </HBox>
-            </children>
-            <opaqueInsets>
-                <Insets/>
-            </opaqueInsets>
-        </AnchorPane>
-    </top>
-    <left>
-        <SplitPane dividerPositions="0.42447418738049714" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0"
-                   BorderPane.alignment="CENTER">
-            <items>
-                <VBox fx:id="buttonpane" prefHeight="200.0" prefWidth="100.0">
-                    <children>
-                        <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0"
-                                    prefWidth="159.0" text="Create auction">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#createSculptureButtonAction"
-                                          text="Sculpture"/>
-                                <MenuItem mnemonicParsing="false" onAction="#createPaintingButtonAction"
-                                          text="Painting"/>
-                            </items>
-                            <font>
-                                <Font name="System Bold Italic" size="16.0"/>
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="3.5" left="1.9" right="1.9" top="3.5"/>
-                            </VBox.margin>
-                        </MenuButton>
-                        <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction" prefHeight="31.0"
-                                prefWidth="159.0" text="Current auctions">
-                            <VBox.margin>
-                                <Insets bottom="3.5" left="1.9" right="1.9"/>
-                            </VBox.margin>
-                        </Button>
-                        <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0"
-                                    prefWidth="159.0" text="Buying">
-                            <items>
-                                <MenuItem fx:id="auctionsPlacedMenuItemAction" mnemonicParsing="false"
-                                          onAction="#auctionsPlacedMenuItemAction" text="Auctions bidding on"/>
-                                <MenuItem fx:id="auctionsWonMenuItemAction" mnemonicParsing="false"
-                                          onAction="#auctionsWonMenuItemAction" text="Auctions won"/>
-                            </items>
-                            <VBox.margin>
-                                <Insets bottom="3.5" left="1.9" right="1.9"/>
-                            </VBox.margin>
-                        </MenuButton>
-                        <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0"
-                                    prefWidth="159.0" text="Selling">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#currentlySellingMenuItemAction"
-                                          text="Auctions selling"/>
-                                <MenuItem mnemonicParsing="false" onAction="#auctionsSoldMenuItemAction"
-                                          text="Auctions sold"/>
-                            </items>
-                            <VBox.margin>
-                                <Insets bottom="3.5" left="1.9" right="1.9"/>
-                            </VBox.margin>
-                        </MenuButton>
-                        <Button fx:id="favouriteUsersAuctionsButton" mnemonicParsing="false"
-                                onAction="#favouriteUsersAuctionsButtonOnAction" prefHeight="31.0" prefWidth="159.0"
-                                text="Favorites' auctions">
-                            <VBox.margin>
-                                <Insets bottom="3.5" left="1.9" right="1.9"/>
-                            </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#bidHistoryButtonAction" prefHeight="10.0"
-                                prefWidth="159.0" text="Bid History">
-                            <VBox.margin>
-                                <Insets bottom="3.5" left="1.9" right="1.9"/>
-                            </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#ViewDashboardButtonAction" prefHeight="10.0"
-                                prefWidth="159.0" text="Dashboard">
-                            <VBox.margin>
-                                <Insets bottom="3.5" left="1.9" right="1.9"/>
-                            </VBox.margin>
-                        </Button>
-                        <MenuButton fx:id="getGalleries" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0"
-                                    layoutY="113.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0"
-                                    text="Galleries"/>
-                    </children>
-                    <VBox.margin>
-                        <Insets bottom="3.5" left="1.9" right="1.9" top="4.0"/>
-                    </VBox.margin>
-                </VBox>
-                <VBox fx:id="leftsidepane" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                    <children>
-                        <Label fx:id="favouriteUsersLabel" alignment="CENTER" prefHeight="31.0" prefWidth="158.0"
-                               text="Favourite Users">
-                            <font>
-                                <Font name="System Bold" size="15.0"/>
-                            </font>
-                        </Label>
-                        <GridPane fx:id="favoritesGridPane" prefHeight="0.0" prefWidth="158.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="74.0" minWidth="10.0" prefWidth="36.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0"
-                                                   prefWidth="122.0"/>
-                            </columnConstraints>
-                            <padding>
-                                <Insets left="1.9"/>
-                            </padding>
-                            <VBox.margin>
-                                <Insets bottom="2.0"/>
-                            </VBox.margin>
-                        </GridPane>
-                    </children>
-                </VBox>
-            </items>
-        </SplitPane>
-    </left>
-    <opaqueInsets>
-        <Insets/>
-    </opaqueInsets>
-    <VBox.margin>
-        <Insets bottom="3.5" left="1.9" right="1.9" top="45.0"/>
-    </VBox.margin>
-</BorderPane>
+                     </children>
+                  </HBox>
+                  <SplitPane dividerPositions="0.42447418738049714" layoutY="104.0" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="535.0" prefWidth="162.0">
+                     <items>
+                        <VBox fx:id="buttonpane" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="Create auction">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#createSculptureButtonAction" text="Sculpture" />
+                                    <MenuItem mnemonicParsing="false" onAction="#createPaintingButtonAction" text="Painting" />
+                                 </items>
+                                 <font>
+                                    <Font name="System Bold Italic" size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="3.5" left="1.9" right="1.9" top="3.5" />
+                                 </VBox.margin>
+                              </MenuButton>
+                              <Button mnemonicParsing="false" onAction="#currentAuctionsButtonAction" prefHeight="31.0" prefWidth="159.0" text="Current auctions">
+                                 <VBox.margin>
+                                    <Insets bottom="3.5" left="1.9" right="1.9" />
+                                 </VBox.margin>
+                              </Button>
+                              <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="Buying">
+                                 <items>
+                                    <MenuItem fx:id="auctionsPlacedMenuItemAction" mnemonicParsing="false" onAction="#auctionsPlacedMenuItemAction" text="Auctions bidding on" />
+                                    <MenuItem fx:id="auctionsWonMenuItemAction" mnemonicParsing="false" onAction="#auctionsWonMenuItemAction" text="Auctions won" />
+                                 </items>
+                                 <VBox.margin>
+                                    <Insets bottom="3.5" left="1.9" right="1.9" />
+                                 </VBox.margin>
+                              </MenuButton>
+                              <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="Selling">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#currentlySellingMenuItemAction" text="Auctions selling" />
+                                    <MenuItem mnemonicParsing="false" onAction="#auctionsSoldMenuItemAction" text="Auctions sold" />
+                                 </items>
+                                 <VBox.margin>
+                                    <Insets bottom="3.5" left="1.9" right="1.9" />
+                                 </VBox.margin>
+                              </MenuButton>
+                              <Button fx:id="favouriteUsersAuctionsButton" mnemonicParsing="false" onAction="#favouriteUsersAuctionsButtonOnAction" prefHeight="31.0" prefWidth="159.0" text="Favorites' auctions">
+                                 <VBox.margin>
+                                    <Insets bottom="3.5" left="1.9" right="1.9" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#bidHistoryButtonAction" prefHeight="10.0" prefWidth="159.0" text="Bid History">
+                                 <VBox.margin>
+                                    <Insets bottom="3.5" left="1.9" right="1.9" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#ViewDashboardButtonAction" prefHeight="10.0" prefWidth="159.0" text="Dashboard">
+                                 <VBox.margin>
+                                    <Insets bottom="3.5" left="1.9" right="1.9" />
+                                 </VBox.margin>
+                              </Button>
+                              <MenuButton fx:id="getGalleries" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="113.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="Galleries" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="3.5" left="1.9" right="1.9" top="4.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox fx:id="leftsidepane" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="favouriteUsersLabel" alignment="CENTER" prefHeight="31.0" prefWidth="158.0" text="Favourite Users">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <GridPane fx:id="favoritesGridPane" prefHeight="0.0" prefWidth="158.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="74.0" minWidth="10.0" prefWidth="36.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="122.0" />
+                                 </columnConstraints>
+                                 <padding>
+                                    <Insets left="1.9" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                     </items>
+                  </SplitPane>
+                  <BorderPane fx:id="homeLayout" layoutX="162.0" layoutY="147.0" prefHeight="491.0" prefWidth="1023.0" />
+                  <AnchorPane layoutX="161.0" layoutY="109.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="1023.0" snapToPixel="false">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" layoutX="636.0" layoutY="3.0" prefHeight="33.0" prefWidth="387.0">
+                           <children>
+                              <ChoiceBox fx:id="sortingBoxFilter" layoutX="237.0" layoutY="10.0" prefHeight="30.0" prefWidth="180.0" stylesheets="@../css/feed.css" value="Show All">
+                                 <HBox.margin>
+                                    <Insets bottom="2.5" left="10.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                              <ChoiceBox fx:id="choiceBoxFilter" layoutX="308.0" layoutY="21.0" prefHeight="30.0" prefWidth="150.0" stylesheets="@../css/feed.css" value="Show All">
+                                 <HBox.margin>
+                                    <Insets bottom="2.5" left="10.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets left="8.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="471.0">
+                           <children>
+                              <TextField fx:id="searchBar" layoutX="14.0" layoutY="21.0" onKeyPressed="#onEnter" prefHeight="154.0" prefWidth="300.0" promptText="Search...">
+                                 <HBox.margin>
+                                    <Insets bottom="-3.0" left="2.5" right="2.5" top="2.5" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonPress" prefHeight="33.0" prefWidth="85.0" text="Search">
+                                 <HBox.margin>
+                                    <Insets bottom="-3.0" left="2.5" right="2.5" top="2.5" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
